@@ -376,7 +376,11 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
             if (liveItem) {
                 return {
                     ...staticItem,
-                    status: mapStatus(liveItem.recruitmentStatus),
+                    // If the liveItem has specific recruitment fields, override the static ones
+                    title: liveItem.title || staticItem.title,
+                    description: liveItem.description || staticItem.description,
+                    deadline_date: liveItem.deadline_date || staticItem.deadline_date,
+                    status: liveItem.recruitmentStatus ? mapStatus(liveItem.recruitmentStatus) : staticItem.status,
                     updated_at: liveItem.lastChecked || staticItem.updated_at,
                     portal_url: liveItem.url || staticItem.portal_url,
                     site_status: liveItem.status,       // 'online' | 'offline'
@@ -395,6 +399,43 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
     });
 
     // Return unsubscribe function (Firebase SDK pattern)
+    return unsubscribe;
+};
+
+/**
+ * Subscribes to a single recruitment by ID in real-time.
+ */
+export const subscribeToRecruitmentById = (id: string, callback: (data: RecruitmentUpdate | null) => void) => {
+    // Find base static data
+    const staticItem = STATIC_DATA.find(s => s.id === id);
+
+    // Initial callback with static data
+    if (staticItem) callback(staticItem);
+
+    const portalRef = ref(db, `portal_monitor/${id}`);
+    const unsubscribe = onValue(portalRef, (snapshot) => {
+        const liveItem = snapshot.val();
+        if (!liveItem) {
+            // Keep existing static if no firebase data
+            return;
+        }
+
+        if (staticItem) {
+            callback({
+                ...staticItem,
+                title: liveItem.title || staticItem.title,
+                description: liveItem.description || staticItem.description,
+                deadline_date: liveItem.deadline_date || staticItem.deadline_date,
+                status: liveItem.recruitmentStatus ? mapStatus(liveItem.recruitmentStatus) : staticItem.status,
+                updated_at: liveItem.lastChecked || staticItem.updated_at,
+                portal_url: liveItem.url || staticItem.portal_url,
+                site_status: liveItem.status,
+                latency: liveItem.latency,
+                shortlistDetected: liveItem.shortlistDetected,
+            });
+        }
+    });
+
     return unsubscribe;
 };
 
@@ -525,18 +566,21 @@ export const searchShortlist = async (query: string): Promise<ShortlistCandidate
  * Updates a single portal's status in Firebase.
  * Called by the admin panel when saving changes for one portal.
  */
-export const updatePortalStatus = async (id: string, data: {
+export const updatePortalStatus = async (id: string, data: Partial<{
     status: 'online' | 'offline';
     recruitmentStatus: 'Open' | 'Closed' | 'Unknown';
     shortlistDetected: boolean;
     name: string;
     url: string;
+    title: string;
+    deadline_date: string;
+    description: string;
     latency?: number;
     httpCode?: number;
     notes?: string;
-}): Promise<void> => {
+}>): Promise<void> => {
     const portalRef = ref(db, `portal_monitor/${id}`);
-    await set(portalRef, {
+    await update(portalRef, {
         ...data,
         id,
         lastChecked: new Date().toISOString(),

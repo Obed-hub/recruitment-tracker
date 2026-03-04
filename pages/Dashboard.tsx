@@ -3,7 +3,7 @@ import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, I
 import { Link } from 'react-router-dom';
 import { subscribeToRecruitments, getNews } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
-import SEO from '../components/SEO';
+import PortalMonitor from '../components/PortalMonitor';
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const getStyle = () => {
@@ -99,18 +99,13 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      <SEO
-        title="Live Status & Recruitment Updates"
-        description="Get real-time updates on Nigerian Army, Navy, Air Force, and Police recruitment status. View latest news and access practice tests."
-        canonicalPath="/"
-      />
       {/* Hero / Live Status Section */}
       <section>
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 flex items-center">
             <span className="w-2 h-8 bg-military-green mr-3 rounded-sm"></span>
             Live Recruitment Status
-          </h1>
+          </h2>
           <Link to="/recruitments" className="text-sm font-semibold text-military-blue hover:underline">View All</Link>
         </div>
 
@@ -225,7 +220,7 @@ const Dashboard: React.FC = () => {
         {/* News Feed */}
         <section className="lg:col-span-2">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Latest Recruitment News</h2>
+            <h2 className="text-xl font-bold text-gray-900">Latest Military & Paramilitary News</h2>
             <Link to="/news" className="text-military-blue text-sm font-medium hover:underline">View All</Link>
           </div>
 
@@ -356,6 +351,10 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
+          {/* Portal Monitor */}
+          <div>
+            <PortalMonitor portals={recruitments.map(r => ({ id: r.id, name: r.branch, url: r.portal_url, status: r.site_status, latency: r.latency }))} />
+          </div>
         </section>
       </div>
     </div >

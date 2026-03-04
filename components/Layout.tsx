@@ -29,7 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Link to="/" className="flex items-center space-x-2">
               <Shield className="w-8 h-8 text-yellow-400" />
               <div className="flex flex-col">
-                <span className="font-bold text-lg leading-tight tracking-wide">recruitmenttracker</span>
+                <span className="font-bold text-lg leading-tight tracking-wide">MILITARY TRACKER</span>
                 <span className="text-[10px] text-gray-300 tracking-wider">NIGERIA RECRUITMENT PORTAL</span>
               </div>
             </Link>
@@ -41,8 +41,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   key={item.path}
                   to={item.path}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive(item.path)
-                    ? 'bg-military-blue text-white shadow-md'
-                    : 'hover:bg-green-800 text-gray-100'
+                      ? 'bg-military-blue text-white shadow-md'
+                      : 'hover:bg-green-800 text-gray-100'
                     }`}
                 >
                   {item.icon}
@@ -73,8 +73,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   to={item.path}
                   onClick={closeMenu}
                   className={`flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium ${isActive(item.path)
-                    ? 'bg-military-blue text-white'
-                    : 'text-gray-300 hover:bg-green-800 hover:text-white'
+                      ? 'bg-military-blue text-white'
+                      : 'text-gray-300 hover:bg-green-800 hover:text-white'
                     }`}
                 >
                   {item.icon}
@@ -94,8 +94,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {/* Footer */}
       <footer className="bg-military-blue text-gray-300 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm">© 2026 recruitmenttracker. All rights reserved.</p>
-          <p className="text-xs mt-2 text-gray-500">Disclaimer: This is an informational tool and not the official portal of the Nigerian Armed Forces or agencies.</p>
+          <p className="text-sm">© 2026 Nigeria Military Recruitment Tracker. All rights reserved.</p>
+          <p className="text-xs mt-2 text-gray-500">Disclaimer: This is an informational tool and not the official portal of the Nigerian Armed Forces.</p>
         </div>
       </footer>
     </div>

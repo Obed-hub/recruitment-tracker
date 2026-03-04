@@ -43,6 +43,7 @@ export interface RecruitmentUpdate {
   exam_centers?: ExamCenter[];
   site_status?: 'online' | 'offline' | 'unknown';
   latency?: number;
+  shortlistDetected?: boolean;
 }
 
 export interface NewsItem {

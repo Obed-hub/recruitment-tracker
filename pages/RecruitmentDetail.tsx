@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, ListOrdered, Shield, MapPin, Phone } from 'lucide-react';
-import { getRecruitmentById } from '../services/mockFirebase';
+import { subscribeToRecruitmentById } from '../services/firebase';
 import { RecruitmentUpdate } from '../types';
-import SEO from '../components/SEO';
 
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,10 +11,11 @@ const RecruitmentDetail: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      getRecruitmentById(id).then(data => {
-        setRecruitment(data || null);
+      const unsub = subscribeToRecruitmentById(id, (data) => {
+        setRecruitment(data);
         setLoading(false);
       });
+      return () => unsub();
     }
   }, [id]);
 
@@ -64,36 +64,8 @@ const RecruitmentDetail: React.FC = () => {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   })();
 
-  const jobSchema = recruitment ? {
-    "@context": "https://schema.org/",
-    "@type": "JobPosting",
-    "title": recruitment.title,
-    "description": recruitment.description || `Recruitment exercise for ${recruitment.branch} - ${recruitment.category}.`,
-    "datePosted": new Date().toISOString().split('T')[0], // Approximation as we don't have post date
-    "validThrough": recruitment.deadline_date,
-    "hiringOrganization": {
-      "@type": "Organization",
-      "name": `Nigerian ${recruitment.branch}`,
-      "logo": "https://nigeria-military-recruitment-tracker.web.app/logo.png"
-    },
-    "jobLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "NG"
-      }
-    },
-    "employmentType": "FULL_TIME"
-  } : undefined;
-
   return (
     <div className="max-w-5xl mx-auto">
-      <SEO
-        title={`${recruitment.title} - ${recruitment.branch}`}
-        description={`Official recruitment details for ${recruitment.title}. Check eligibility, requirements, and application process for ${recruitment.branch}.`}
-        canonicalPath={`/recruitments/${id}`}
-        schema={jobSchema}
-      />
       <Link to="/recruitments" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4 mr-1" /> Back to Recruitments
       </Link>
@@ -209,7 +181,7 @@ const RecruitmentDetail: React.FC = () => {
 
               <div className="space-y-4">
                 <div className={`p-4 rounded-lg border ${recruitment.status === 'Open' ? 'bg-green-100 border-green-200 text-green-800' :
-                    recruitment.status === 'Closed' ? 'bg-red-100 border-red-200 text-red-800' : 'bg-yellow-100 border-yellow-200 text-yellow-800'
+                  recruitment.status === 'Closed' ? 'bg-red-100 border-red-200 text-red-800' : 'bg-yellow-100 border-yellow-200 text-yellow-800'
                   }`}>
                   <span className="block text-xs font-bold uppercase mb-1">Status</span>
                   <span className="text-lg font-bold">{recruitment.status}</span>
@@ -220,8 +192,8 @@ const RecruitmentDetail: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-full flex items-center justify-center py-4 px-4 rounded-xl text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 ${recruitment.status === 'Closed'
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : getBranchColor()
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : getBranchColor()
                     }`}
                   onClick={(e) => recruitment.status === 'Closed' && e.preventDefault()}
                 >

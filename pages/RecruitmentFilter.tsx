@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Filter, Calendar, ExternalLink, Clock, Info } from 'lucide-react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { getRecruitments } from '../services/mockFirebase';
+import { subscribeToRecruitments } from '../services/firebase';
 import { RecruitmentUpdate, Branch, RecruitmentCategory } from '../types';
-import SEO from '../components/SEO';
 
 const RecruitmentFilter: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -28,10 +27,11 @@ const RecruitmentFilter: React.FC = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    getRecruitments().then((data) => {
+    const unsub = subscribeToRecruitments((data) => {
       setRecruitments(data);
       setLoading(false);
     });
+    return () => unsub();
   }, []);
 
   const filteredRecruitments = recruitments.filter(item => {
@@ -105,12 +105,6 @@ const RecruitmentFilter: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <SEO
-        title="Recruitment Portal & Active Job Openings"
-        description="Browse all active Nigerian recruitment exercises. Filter by agency including Army, Navy, Air Force, and Police."
-        canonicalPath="/recruitments"
-        keywords={`Nigeria recruitment, ${branches.filter(b => b !== 'All').join(', ')} recruitment 2026`}
-      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Recruitment Portal</h1>
         <p className="text-gray-600 mt-2">Browse active and past recruitment exercises across all branches.</p>
