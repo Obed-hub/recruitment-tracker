@@ -1,5 +1,5 @@
 {
-  "name": "Nigeria Military Recruitment Tracker",
-  "description": "A comprehensive tracking system for Nigerian Army, Navy, and Air Force recruitments with eligibility checkers and status updates.",
+  "name": "Recruitmenttracker",
+  "description": "A comprehensive tracking system for Nigerian recruitment portals with eligibility checkers and status updates.",
   "requestFramePermissions": []
 }

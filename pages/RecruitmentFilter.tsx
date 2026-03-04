@@ -107,7 +107,7 @@ const RecruitmentFilter: React.FC = () => {
     <div className="max-w-5xl mx-auto">
       <SEO
         title="Recruitment Portal & Active Job Openings"
-        description="Browse all active Nigerian military and paramilitary recruitment exercises. Filter by branch including Army, Navy, Air Force, and Police."
+        description="Browse all active Nigerian recruitment exercises. Filter by agency including Army, Navy, Air Force, and Police."
         canonicalPath="/recruitments"
         keywords={`Nigeria recruitment, ${branches.filter(b => b !== 'All').join(', ')} recruitment 2026`}
       />

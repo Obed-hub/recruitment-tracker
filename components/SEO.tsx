@@ -15,7 +15,7 @@ const SEO: React.FC<SEOProps> = ({
     canonicalPath,
     schema
 }) => {
-    const baseTitle = "Nigeria Military Recruitment Tracker 2026";
+    const baseTitle = "recruitmenttracker";
     const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 
     useEffect(() => {

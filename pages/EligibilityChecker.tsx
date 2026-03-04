@@ -539,7 +539,7 @@ const EligibilityChecker: React.FC = () => {
         <div className="bg-military-green p-6 text-white">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl font-bold flex items-center gap-2">
-              <HeartPulse className="w-6 h-6" /> Military Eligibility
+              <HeartPulse className="w-6 h-6" /> Recruitment Eligibility
             </h1>
             <span className="text-xs font-mono bg-white/20 px-2 py-1 rounded">v2.1</span>
           </div>

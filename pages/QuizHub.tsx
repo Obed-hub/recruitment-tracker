@@ -23,7 +23,7 @@ const QuizHub: React.FC = () => {
     <div className="max-w-6xl mx-auto">
       <SEO
         title="CBT Practice Centre & Aptitude Test Prep"
-        description="Prepare for Nigerian military and paramilitary aptitude tests with our free CBT practice questions for Army, Navy, Police, and more."
+        description="Prepare for Nigerian recruitment aptitude tests with our free CBT practice questions for various agencies."
         canonicalPath="/practice"
       />
       <div className="text-center py-12">

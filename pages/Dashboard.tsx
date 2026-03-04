@@ -225,7 +225,7 @@ const Dashboard: React.FC = () => {
         {/* News Feed */}
         <section className="lg:col-span-2">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Latest Military & Paramilitary News</h2>
+            <h2 className="text-xl font-bold text-gray-900">Latest Recruitment News</h2>
             <Link to="/news" className="text-military-blue text-sm font-medium hover:underline">View All</Link>
           </div>
 

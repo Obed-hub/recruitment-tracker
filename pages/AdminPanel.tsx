@@ -650,7 +650,7 @@ const AdminPanel: React.FC = () => {
                 <div className="flex items-center gap-3">
                     <ShieldCheck className="w-6 h-6 text-military-green" />
                     <div>
-                        <h1 className="font-bold text-lg leading-tight">Admin Panel</h1>
+                        <h1 className="font-bold text-lg leading-tight">recruitmenttracker</h1>
                         <p className="text-gray-400 text-xs">Nigeria Recruitment Tracker</p>
                     </div>
                 </div>
