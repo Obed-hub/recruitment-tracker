@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { getQuestions } from '../services/mockFirebase';
 import { Question } from '../types';
+import SEO from '../components/SEO';
 
 // ── Question count options ───────────────────────────────────────────────────
 const COUNT_OPTIONS = [
@@ -291,6 +292,11 @@ const QuizInterface: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto py-6">
+      <SEO
+        title={`${branch} Practice Test - CBT Simulation`}
+        description={`Practice for the ${branch} recruitment aptitude test. Free CBT simulation with questions and detailed explanations.`}
+        canonicalPath={`/practice/${branch}`}
+      />
       <div className="mb-6 flex justify-between items-center">
         <div>
           <h2 className="text-lg font-bold text-gray-500">{branch} Practice Test</h2>

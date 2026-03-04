@@ -3,6 +3,7 @@ import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, I
 import { Link } from 'react-router-dom';
 import { subscribeToRecruitments, getNews } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
+import SEO from '../components/SEO';
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const getStyle = () => {
@@ -98,13 +99,18 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-8">
+      <SEO
+        title="Live Status & Recruitment Updates"
+        description="Get real-time updates on Nigerian Army, Navy, Air Force, and Police recruitment status. View latest news and access practice tests."
+        canonicalPath="/"
+      />
       {/* Hero / Live Status Section */}
       <section>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center">
             <span className="w-2 h-8 bg-military-green mr-3 rounded-sm"></span>
             Live Recruitment Status
-          </h2>
+          </h1>
           <Link to="/recruitments" className="text-sm font-semibold text-military-blue hover:underline">View All</Link>
         </div>
 

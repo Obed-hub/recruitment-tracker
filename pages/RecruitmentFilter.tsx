@@ -3,6 +3,7 @@ import { Filter, Calendar, ExternalLink, Clock, Info } from 'lucide-react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { getRecruitments } from '../services/mockFirebase';
 import { RecruitmentUpdate, Branch, RecruitmentCategory } from '../types';
+import SEO from '../components/SEO';
 
 const RecruitmentFilter: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -104,6 +105,12 @@ const RecruitmentFilter: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
+      <SEO
+        title="Recruitment Portal & Active Job Openings"
+        description="Browse all active Nigerian military and paramilitary recruitment exercises. Filter by branch including Army, Navy, Air Force, and Police."
+        canonicalPath="/recruitments"
+        keywords={`Nigeria recruitment, ${branches.filter(b => b !== 'All').join(', ')} recruitment 2026`}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Recruitment Portal</h1>
         <p className="text-gray-600 mt-2">Browse active and past recruitment exercises across all branches.</p>
@@ -120,8 +127,8 @@ const RecruitmentFilter: React.FC = () => {
                   key={branch}
                   onClick={() => setSelectedBranch(branch as Branch | 'All')}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedBranch === branch
-                      ? 'bg-military-green text-white shadow-md'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-military-green text-white shadow-md'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                 >
                   {branch}
@@ -138,8 +145,8 @@ const RecruitmentFilter: React.FC = () => {
                   key={cat}
                   onClick={() => setSelectedCategory(cat as RecruitmentCategory | 'All')}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === cat
-                      ? 'bg-military-blue text-white shadow-md'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-military-blue text-white shadow-md'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                 >
                   {cat}
@@ -198,7 +205,7 @@ const RecruitmentFilter: React.FC = () => {
 
                     <div className="flex flex-col gap-2">
                       <span className={`px-4 py-1.5 rounded text-center text-sm font-bold border ${rec.status === 'Open' ? 'bg-green-50 text-green-700 border-green-200' :
-                          rec.status === 'Shortlist Out' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 'bg-gray-100 text-gray-600'
+                        rec.status === 'Shortlist Out' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 'bg-gray-100 text-gray-600'
                         }`}>
                         {rec.status}
                       </span>

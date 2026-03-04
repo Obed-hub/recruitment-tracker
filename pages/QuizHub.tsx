@@ -2,6 +2,7 @@ import React from 'react';
 import { BrainCircuit, BookOpen, Clock, Award, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Branch } from '../types';
+import SEO from '../components/SEO';
 
 const QuizHub: React.FC = () => {
   const practiceOptions: { branch: Branch | 'General', label: string, desc: string, color: string }[] = [
@@ -20,6 +21,11 @@ const QuizHub: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      <SEO
+        title="CBT Practice Centre & Aptitude Test Prep"
+        description="Prepare for Nigerian military and paramilitary aptitude tests with our free CBT practice questions for Army, Navy, Police, and more."
+        canonicalPath="/practice"
+      />
       <div className="text-center py-12">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">CBT Practice Centre</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">

@@ -4,6 +4,7 @@ import {
   ChevronRight, X, AlertTriangle, RefreshCw, Filter
 } from 'lucide-react';
 import { subscribeToShortlists, ShortlistPdf } from '../services/firebase';
+import SEO from '../components/SEO';
 
 const BRANCHES = ['All', 'Army', 'Navy', 'Air Force', 'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs'];
 
@@ -44,6 +45,11 @@ const PdfViewer: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
+      <SEO
+        title="Official Shortlist Viewer & PDF Downloads"
+        description="View and download official recruitment shortlists for Nigerian Army, Navy, Air Force, and Police. Real-time updates on successful candidates."
+        canonicalPath="/shortlists"
+      />
       {/* Header */}
       <div className="text-center mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Shortlist Viewer</h1>
@@ -78,8 +84,8 @@ const PdfViewer: React.FC = () => {
               key={b}
               onClick={() => setActiveBranch(b)}
               className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all ${activeBranch === b
-                  ? 'bg-military-green text-white border-military-green shadow-sm'
-                  : 'bg-gray-50 text-gray-600 border-gray-200 hover:border-military-green hover:text-military-green'
+                ? 'bg-military-green text-white border-military-green shadow-sm'
+                : 'bg-gray-50 text-gray-600 border-gray-200 hover:border-military-green hover:text-military-green'
                 }`}
             >
               {b}
@@ -124,10 +130,10 @@ const PdfViewer: React.FC = () => {
             >
               {/* Card colour strip */}
               <div className={`h-1.5 w-full ${pdf.branch === 'Army' ? 'bg-military-green' :
-                  pdf.branch === 'Navy' ? 'bg-military-blue' :
-                    pdf.branch === 'Air Force' ? 'bg-sky-500' :
-                      pdf.branch === 'Police' ? 'bg-indigo-600' :
-                        pdf.branch === 'FRSC' ? 'bg-orange-500' : 'bg-gray-400'
+                pdf.branch === 'Navy' ? 'bg-military-blue' :
+                  pdf.branch === 'Air Force' ? 'bg-sky-500' :
+                    pdf.branch === 'Police' ? 'bg-indigo-600' :
+                      pdf.branch === 'FRSC' ? 'bg-orange-500' : 'bg-gray-400'
                 }`} />
 
               <div className="p-5">

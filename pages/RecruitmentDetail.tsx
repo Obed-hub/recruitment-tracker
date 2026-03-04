@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, ListOrdered, Shield, MapPin, Phone } from 'lucide-react';
 import { getRecruitmentById } from '../services/mockFirebase';
 import { RecruitmentUpdate } from '../types';
+import SEO from '../components/SEO';
 
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -63,8 +64,36 @@ const RecruitmentDetail: React.FC = () => {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   })();
 
+  const jobSchema = recruitment ? {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": recruitment.title,
+    "description": recruitment.description || `Recruitment exercise for ${recruitment.branch} - ${recruitment.category}.`,
+    "datePosted": new Date().toISOString().split('T')[0], // Approximation as we don't have post date
+    "validThrough": recruitment.deadline_date,
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": `Nigerian ${recruitment.branch}`,
+      "logo": "https://nigeria-military-recruitment-tracker.web.app/logo.png"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "NG"
+      }
+    },
+    "employmentType": "FULL_TIME"
+  } : undefined;
+
   return (
     <div className="max-w-5xl mx-auto">
+      <SEO
+        title={`${recruitment.title} - ${recruitment.branch}`}
+        description={`Official recruitment details for ${recruitment.title}. Check eligibility, requirements, and application process for ${recruitment.branch}.`}
+        canonicalPath={`/recruitments/${id}`}
+        schema={jobSchema}
+      />
       <Link to="/recruitments" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4 mr-1" /> Back to Recruitments
       </Link>
@@ -73,7 +102,7 @@ const RecruitmentDetail: React.FC = () => {
         {/* Header Banner */}
         <div className={`${getBranchColor()} p-8 text-white relative overflow-hidden`}>
           <div className="absolute top-0 right-0 p-8 opacity-10">
-             <Shield className="w-64 h-64" />
+            <Shield className="w-64 h-64" />
           </div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4 text-sm font-medium opacity-90 uppercase tracking-wider">
@@ -82,18 +111,18 @@ const RecruitmentDetail: React.FC = () => {
               <span className="bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">{recruitment.category}</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold mb-4">{recruitment.title}</h1>
-            
+
             <div className="flex flex-wrap gap-6 text-sm font-medium">
               <div className="flex items-center bg-black/20 px-3 py-1.5 rounded-lg">
                 <Calendar className="w-4 h-4 mr-2 opacity-80" />
                 <span>Deadline: {new Date(recruitment.deadline_date).toLocaleDateString()}</span>
               </div>
-              
+
               {recruitment.status === 'Open' && daysRemaining >= 0 && (
-                 <div className="flex items-center bg-white/20 px-3 py-1.5 rounded-lg text-white">
-                    <Clock className="w-4 h-4 mr-2" />
-                    <span>{daysRemaining === 0 ? 'Last Day!' : `${daysRemaining} Days Left`}</span>
-                 </div>
+                <div className="flex items-center bg-white/20 px-3 py-1.5 rounded-lg text-white">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>{daysRemaining === 0 ? 'Last Day!' : `${daysRemaining} Days Left`}</span>
+                </div>
               )}
             </div>
           </div>
@@ -101,7 +130,7 @@ const RecruitmentDetail: React.FC = () => {
 
         {/* Content Body */}
         <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
-          
+
           <div className="lg:col-span-2 space-y-8">
             <section>
               <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Description</h3>
@@ -112,7 +141,7 @@ const RecruitmentDetail: React.FC = () => {
 
             <section>
               <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center">
-                 <CheckCircle className="w-5 h-5 mr-2 text-military-green" /> Requirements
+                <CheckCircle className="w-5 h-5 mr-2 text-military-green" /> Requirements
               </h3>
               <ul className="space-y-3">
                 {recruitment.requirements?.length ? (
@@ -177,25 +206,23 @@ const RecruitmentDetail: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 sticky top-24">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Action Center</h3>
-              
+
               <div className="space-y-4">
-                <div className={`p-4 rounded-lg border ${
-                   recruitment.status === 'Open' ? 'bg-green-100 border-green-200 text-green-800' :
-                   recruitment.status === 'Closed' ? 'bg-red-100 border-red-200 text-red-800' : 'bg-yellow-100 border-yellow-200 text-yellow-800'
-                }`}>
+                <div className={`p-4 rounded-lg border ${recruitment.status === 'Open' ? 'bg-green-100 border-green-200 text-green-800' :
+                    recruitment.status === 'Closed' ? 'bg-red-100 border-red-200 text-red-800' : 'bg-yellow-100 border-yellow-200 text-yellow-800'
+                  }`}>
                   <span className="block text-xs font-bold uppercase mb-1">Status</span>
                   <span className="text-lg font-bold">{recruitment.status}</span>
                 </div>
 
-                <a 
-                  href={recruitment.portal_url} 
+                <a
+                  href={recruitment.portal_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full flex items-center justify-center py-4 px-4 rounded-xl text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 ${
-                    recruitment.status === 'Closed' 
-                      ? 'bg-gray-400 cursor-not-allowed' 
+                  className={`w-full flex items-center justify-center py-4 px-4 rounded-xl text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 ${recruitment.status === 'Closed'
+                      ? 'bg-gray-400 cursor-not-allowed'
                       : getBranchColor()
-                  }`}
+                    }`}
                   onClick={(e) => recruitment.status === 'Closed' && e.preventDefault()}
                 >
                   {recruitment.status === 'Closed' ? 'Applications Closed' : 'Apply on Portal'}
