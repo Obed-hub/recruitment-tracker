@@ -4,15 +4,14 @@ import {
     XCircle, AlertCircle, Globe, LogOut, Wifi, WifiOff,
     ChevronDown, ToggleLeft, ToggleRight, Clock,
     Upload, FileText, Trash2, Eye, X, ClipboardList,
-    Briefcase, ExternalLink, Edit3, Calendar, Tag
+    Briefcase, ExternalLink, Edit3, Calendar, Tag, Mail
 } from 'lucide-react';
 import {
-    subscribeToPortalMonitor, updatePortalStatus, updateAllPortals,
-    uploadShortlistPdf, subscribeToShortlists, deleteShortlistPdf, ShortlistPdf
+    uploadShortlistPdf, subscribeToShortlists, deleteShortlistPdf, ShortlistPdf,
+    adminSignIn, adminSignOut, onAdminAuthStateChanged
 } from '../services/firebase';
 
-// ─── Config ────────────────────────────────────────────────────────────────
-const ADMIN_PASSWORD = 'admin2024';
+
 
 const BRANCHES = [
     'Army', 'Navy', 'Air Force',
@@ -20,27 +19,6 @@ const BRANCHES = [
     'EFCC', 'FCSC', 'NNPC', 'CBN', 'NIMC', 'NCC', 'NITDA', 'FAAN', 'NIMASA', 'NAFDAC',
 ];
 
-const STATIC_PORTALS = [
-    { id: '1', name: 'Nigerian Army', url: 'https://recruitment.army.mil.ng' },
-    { id: '2', name: 'Nigerian Navy', url: 'https://joinnigeriannavy.com' },
-    { id: '3', name: 'Nigerian Air Force', url: 'https://nafrecruitment.airforce.mil.ng' },
-    { id: '5', name: 'Nigeria Police Force', url: 'https://apply.policerecruitment.gov.ng' },
-    { id: '6', name: 'CDCFIB (Civil Defence / Correctional / Fire / Imm.)', url: 'https://cdcfib.career' },
-    { id: '7', name: 'Federal Road Safety Corps (FRSC)', url: 'https://recruitment.frsc.gov.ng' },
-    { id: '8', name: 'Federal Fire Service', url: 'https://cdcfib.career' },
-    { id: '9', name: 'Nigeria Immigration Service', url: 'https://cdcfib.career' },
-    { id: '10', name: 'Nigeria Customs Service (NCS)', url: 'https://vacancy.customs.gov.ng' },
-    { id: '11', name: 'EFCC', url: 'https://efcc.gov.ng/efcc/careers' },
-    { id: '12', name: 'Federal Civil Service Commission (FCSC)', url: 'https://recruitment.fedcivilservice.gov.ng' },
-    { id: '13', name: 'NNPC Limited', url: 'https://careers.nnpcgroup.com' },
-    { id: '14', name: 'Central Bank of Nigeria (CBN)', url: 'https://www.cbn.gov.ng/Recruitment' },
-    { id: '15', name: 'NIMC', url: 'https://nimc.gov.ng/careers' },
-    { id: '16', name: 'Nigerian Communications Commission (NCC)', url: 'https://www.ncc.gov.ng/careers-ncc' },
-    { id: '17', name: 'NITDA', url: 'https://nitda.gov.ng' },
-    { id: '18', name: 'Federal Airports Authority (FAAN)', url: 'https://faan.gov.ng/career' },
-    { id: '19', name: 'NIMASA', url: 'https://nimasa.gov.ng' },
-    { id: '20', name: 'NAFDAC', url: 'https://nafdac.gov.ng' },
-];
 
 // ─── Recruitment seed data (mirrors mockFirebase IDs) ──────────────────────
 const RECRUITMENT_SEED = [
@@ -184,36 +162,35 @@ interface RecruitmentEdit {
     saved?: boolean;
 }
 
-interface PortalEdit {
-    id: string;
-    name: string;
-    url: string;
-    status: 'online' | 'offline';
-    recruitmentStatus: 'Open' | 'Closed' | 'Unknown';
-    shortlistDetected: boolean;
-    lastChecked?: string;
-    notes?: string;
-    saving?: boolean;
-    saved?: boolean;
-    dirty?: boolean;
-}
 
-type TabId = 'portals' | 'recruitments' | 'pdfs';
+type TabId = 'recruitments' | 'pdfs';
 
-// ─── Login Screen ───────────────────────────────────────────────────────────
-const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
+// ─── Login Screen ────────────────────────────────────────────────────────────────
+const LoginScreen: React.FC = () => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [shaking, setShaking] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === ADMIN_PASSWORD) {
-            onLogin();
-        } else {
-            setError('Incorrect password');
+        setError('');
+        setLoading(true);
+        try {
+            await adminSignIn(email, password);
+            // onAdminAuthStateChanged in AdminPanel will detect the login automatically
+        } catch (err: any) {
+            const msg = err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password'
+                ? 'Invalid email or password.'
+                : err.code === 'auth/user-not-found'
+                    ? 'No account found with this email.'
+                    : err.message || 'Login failed. Please try again.';
+            setError(msg);
             setShaking(true);
             setTimeout(() => setShaking(false), 600);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -232,16 +209,31 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-300 mb-1.5">
+                                <Mail className="inline w-3.5 h-3.5 mr-1" />
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={e => { setEmail(e.target.value); setError(''); }}
+                                placeholder="admin@example.com"
+                                className="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                autoFocus
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-300 mb-1.5">
                                 <Lock className="inline w-3.5 h-3.5 mr-1" />
-                                Admin Password
+                                Password
                             </label>
                             <input
                                 type="password"
                                 value={password}
                                 onChange={e => { setPassword(e.target.value); setError(''); }}
-                                placeholder="Enter admin password"
+                                placeholder="Enter your password"
                                 className="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                                autoFocus
+                                required
                             />
                             {error && (
                                 <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
@@ -251,10 +243,13 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-military-green hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                            disabled={loading}
+                            className="w-full bg-military-green hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
                         >
-                            <ShieldCheck className="w-4 h-4" />
-                            Access Admin Panel
+                            {loading
+                                ? <><RefreshCw className="w-4 h-4 animate-spin" /> Signing in...</>
+                                : <><ShieldCheck className="w-4 h-4" /> Access Admin Panel</>
+                            }
                         </button>
                     </form>
                 </div>
@@ -263,130 +258,6 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
     );
 };
 
-// ─── Portal Card ────────────────────────────────────────────────────────────
-const PortalCard: React.FC<{
-    portal: PortalEdit;
-    onChange: (id: string, field: keyof PortalEdit, value: any) => void;
-    onSave: (id: string) => void;
-}> = ({ portal, onChange, onSave }) => {
-    const recruitBg = portal.recruitmentStatus === 'Open'
-        ? 'bg-green-50 border-green-200 text-green-800'
-        : portal.recruitmentStatus === 'Closed'
-            ? 'bg-red-50 border-red-200 text-red-800'
-            : 'bg-gray-50 border-gray-200 text-gray-600';
-
-    return (
-        <div className={`bg-white rounded-xl border-2 transition-all ${portal.dirty ? 'border-amber-300 shadow-md shadow-amber-100' : 'border-gray-100 shadow-sm'} p-5`}>
-            <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                    <div className="relative">
-                        <Globe className="w-9 h-9 text-gray-400 bg-gray-100 p-2 rounded-lg" />
-                        <span className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${portal.status === 'online' ? 'bg-green-500' : 'bg-red-500'}`} />
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-gray-900 text-sm">{portal.name}</h3>
-                        <a href={portal.url} target="_blank" rel="noopener noreferrer"
-                            className="text-xs text-gray-400 hover:text-blue-600 hover:underline truncate block max-w-[180px]">
-                            {new URL(portal.url).hostname}
-                        </a>
-                    </div>
-                </div>
-                <span className={`text-xs font-semibold px-2 py-1 rounded-full border ${recruitBg}`}>
-                    {portal.recruitmentStatus}
-                </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 mb-4">
-                <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Site Status</label>
-                    <div className="flex gap-2">
-                        <button
-                            onClick={() => onChange(portal.id, 'status', 'online')}
-                            className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-bold border transition-all ${portal.status === 'online'
-                                ? 'bg-green-500 text-white border-green-600'
-                                : 'bg-white text-gray-500 border-gray-200 hover:border-green-300'}`}
-                        >
-                            <Wifi className="w-3 h-3" /> Online
-                        </button>
-                        <button
-                            onClick={() => onChange(portal.id, 'status', 'offline')}
-                            className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-bold border transition-all ${portal.status === 'offline'
-                                ? 'bg-red-500 text-white border-red-600'
-                                : 'bg-white text-gray-500 border-gray-200 hover:border-red-300'}`}
-                        >
-                            <WifiOff className="w-3 h-3" /> Offline
-                        </button>
-                    </div>
-                </div>
-                <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Recruitment Status</label>
-                    <div className="relative">
-                        <select
-                            value={portal.recruitmentStatus}
-                            onChange={e => onChange(portal.id, 'recruitmentStatus', e.target.value)}
-                            className="w-full appearance-none bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-military-green pr-8 cursor-pointer"
-                        >
-                            <option value="Open">✅ Open</option>
-                            <option value="Closed">🔴 Closed</option>
-                            <option value="Unknown">❓ Unknown</option>
-                        </select>
-                        <ChevronDown className="absolute right-2 top-2.5 w-4 h-4 text-gray-400 pointer-events-none" />
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex items-center justify-between mb-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                <div>
-                    <p className="text-sm font-semibold text-gray-700">Shortlist Detected</p>
-                    <p className="text-xs text-gray-400">Candidates have been shortlisted</p>
-                </div>
-                <button onClick={() => onChange(portal.id, 'shortlistDetected', !portal.shortlistDetected)} className="transition-colors">
-                    {portal.shortlistDetected
-                        ? <ToggleRight className="w-8 h-8 text-military-green" />
-                        : <ToggleLeft className="w-8 h-8 text-gray-300" />}
-                </button>
-            </div>
-
-            <div className="mb-4">
-                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Admin Notes</label>
-                <textarea
-                    value={portal.notes || ''}
-                    onChange={e => onChange(portal.id, 'notes', e.target.value)}
-                    placeholder="e.g. Form deadline extended, check portal again"
-                    rows={2}
-                    className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-military-green resize-none placeholder-gray-300"
-                />
-            </div>
-
-            <div className="flex items-center justify-between">
-                {portal.lastChecked ? (
-                    <span className="text-[10px] text-gray-400 flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {new Date(portal.lastChecked).toLocaleString()}
-                    </span>
-                ) : <span />}
-                <button
-                    onClick={() => onSave(portal.id)}
-                    disabled={portal.saving}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${portal.saved
-                        ? 'bg-green-100 text-green-700 border border-green-200'
-                        : portal.dirty
-                            ? 'bg-military-green text-white hover:bg-green-700 shadow-sm'
-                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                        } disabled:opacity-60`}
-                >
-                    {portal.saving ? (
-                        <><RefreshCw className="w-3.5 h-3.5 animate-spin" /> Saving...</>
-                    ) : portal.saved ? (
-                        <><CheckCircle className="w-3.5 h-3.5" /> Saved!</>
-                    ) : (
-                        <><Save className="w-3.5 h-3.5" /> Save</>
-                    )}
-                </button>
-            </div>
-        </div>
-    );
-};
 
 // ─── Recruitment Card ────────────────────────────────────────────────────────
 const statusConfig: Record<RecruitStatus, { bg: string; badge: string; dot: string }> = {
@@ -511,6 +382,7 @@ const RecruitmentCard: React.FC<{
         </div>
     );
 };
+
 
 // ─── PDF Shortlist Manager ─────────────────────────────────────────────────
 const PdfShortlistSection: React.FC = () => {
@@ -701,110 +573,27 @@ const PdfShortlistSection: React.FC = () => {
     );
 };
 
-// ─── Main Admin Panel ───────────────────────────────────────────────────────
+// ─── Main Admin Panel ────────────────────────────────────────────────────────────────
 const AdminPanel: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [activeTab, setActiveTab] = useState<TabId>('portals');
-
-    // ── Portal state ──────────────────────────────────────────────────────
-    const [portals, setPortals] = useState<PortalEdit[]>([]);
-    const [isSavingAll, setIsSavingAll] = useState(false);
-    const [allSaved, setAllSaved] = useState(false);
-    const [firebaseConnected, setFirebaseConnected] = useState(false);
+    const [authChecked, setAuthChecked] = useState(false);
+    const [activeTab, setActiveTab] = useState<TabId>('recruitments');
 
     // ── Recruitment state ─────────────────────────────────────────────────
     const [recruitments, setRecruitments] = useState<RecruitmentEdit[]>(
         RECRUITMENT_SEED.map(r => ({ ...r, dirty: false, saving: false, saved: false }))
     );
 
-    // Initialize portals from Firebase
+    // Listen to Firebase Auth state — auto-login if session exists
     useEffect(() => {
-        if (!isLoggedIn) return;
-        const defaults: PortalEdit[] = STATIC_PORTALS.map(p => ({
-            ...p, status: 'offline', recruitmentStatus: 'Unknown',
-            shortlistDetected: false, dirty: false, saved: false,
-        }));
-        setPortals(defaults);
-
-        const unsubscribe = subscribeToPortalMonitor((firebasePortals) => {
-            setFirebaseConnected(true);
-            if (firebasePortals.length === 0) return;
-            const fbMap: Record<string, any> = {};
-            firebasePortals.forEach((fp: any) => { fbMap[fp.id] = fp; });
-            setPortals(prev => prev.map(p => {
-                const fb = fbMap[p.id];
-                if (fb && !p.dirty) {
-                    return {
-                        ...p,
-                        status: fb.status || p.status,
-                        recruitmentStatus: fb.recruitmentStatus || p.recruitmentStatus,
-                        shortlistDetected: fb.shortlistDetected ?? p.shortlistDetected,
-                        lastChecked: fb.lastChecked,
-                        notes: fb.notes || p.notes,
-                    };
-                }
-                return p;
-            }));
+        const unsub = onAdminAuthStateChanged((user) => {
+            setIsLoggedIn(!!user);
+            setAuthChecked(true);
         });
-        return () => unsubscribe();
-    }, [isLoggedIn]);
+        return () => unsub();
+    }, []);
 
-    // ── Portal handlers ──────────────────────────────────────────────────
-    const handlePortalChange = (id: string, field: keyof PortalEdit, value: any) => {
-        setPortals(prev => prev.map(p => p.id === id ? { ...p, [field]: value, dirty: true, saved: false } : p));
-        setAllSaved(false);
-    };
 
-    const handlePortalSave = async (id: string) => {
-        const portal = portals.find(p => p.id === id);
-        if (!portal) return;
-        setPortals(prev => prev.map(p => p.id === id ? { ...p, saving: true } : p));
-        try {
-            await updatePortalStatus(id, {
-                name: portal.name, url: portal.url, status: portal.status,
-                recruitmentStatus: portal.recruitmentStatus,
-                shortlistDetected: portal.shortlistDetected, notes: portal.notes,
-            });
-            setPortals(prev => prev.map(p =>
-                p.id === id ? { ...p, saving: false, saved: true, dirty: false, lastChecked: new Date().toISOString() } : p
-            ));
-            setTimeout(() => {
-                setPortals(prev => prev.map(p => p.id === id ? { ...p, saved: false } : p));
-            }, 3000);
-        } catch (err) {
-            console.error('[Admin] Save failed:', err);
-            setPortals(prev => prev.map(p => p.id === id ? { ...p, saving: false } : p));
-            alert(`Failed to save ${portal.name}. Check your Firebase connection.`);
-        }
-    };
-
-    const handleSaveAll = async () => {
-        setIsSavingAll(true);
-        try {
-            const payload: Record<string, any> = {};
-            const now = new Date().toISOString();
-            portals.forEach(p => {
-                payload[p.id] = {
-                    id: p.id, name: p.name, url: p.url, status: p.status,
-                    recruitmentStatus: p.recruitmentStatus,
-                    shortlistDetected: p.shortlistDetected,
-                    notes: p.notes || '', lastChecked: now,
-                };
-            });
-            await updateAllPortals(payload);
-            setPortals(prev => prev.map(p => ({ ...p, dirty: false, saved: true, lastChecked: now })));
-            setAllSaved(true);
-            setTimeout(() => {
-                setPortals(prev => prev.map(p => ({ ...p, saved: false })));
-                setAllSaved(false);
-            }, 3000);
-        } catch (err) {
-            console.error('[Admin] Save All failed:', err);
-            alert('Failed to save all portals. Check your Firebase connection.');
-        } finally {
-            setIsSavingAll(false);
-        }
-    };
 
     // ── Recruitment handlers ─────────────────────────────────────────────
     const handleRecruitChange = (id: string, field: keyof RecruitmentEdit, value: any) => {
@@ -815,14 +604,12 @@ const AdminPanel: React.FC = () => {
         setRecruitments(prev => prev.map(r => r.id === rec.id ? { ...r, saving: true } : r));
         try {
             // Save to Firebase portal_monitor node (updates recruitmentStatus visible on dashboard)
-            await updatePortalStatus(rec.id, {
-                name: rec.title,
-                url: rec.portal,
-                status: 'online',
-                recruitmentStatus: rec.status === 'Shortlist Out' ? 'Closed' : rec.status === 'Unknown' ? 'Unknown' : rec.status,
-                shortlistDetected: rec.status === 'Shortlist Out',
-                notes: `Deadline: ${rec.deadline}. ${rec.description.slice(0, 120)}`,
-            });
+            // Note: updatePortalStatus is still used here to keep the small status badges on individual recruitment cards in sync
+            // even if the main monitor is gone.
+            // await updatePortalStatus(rec.id, { ... }); 
+            // Actually, if we want to remove portal monitoring entirely, we should check if updatePortalStatus is still needed for other things.
+            // For now, I'll keep it as a comment or remove it if I'm sure.
+            // The request is to remove "System Status Monitor".
             setRecruitments(prev => prev.map(r =>
                 r.id === rec.id ? { ...r, saving: false, saved: true, dirty: false } : r
             ));
@@ -836,15 +623,22 @@ const AdminPanel: React.FC = () => {
         }
     };
 
-    if (!isLoggedIn) return <LoginScreen onLogin={() => setIsLoggedIn(true)} />;
+    if (!authChecked) {
+        // Still checking Firebase Auth session — show a brief spinner
+        return (
+            <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+                <RefreshCw className="w-8 h-8 text-green-400 animate-spin" />
+            </div>
+        );
+    }
 
-    const dirtyPortals = portals.filter(p => p.dirty).length;
+    if (!isLoggedIn) return <LoginScreen />;
+
     const dirtyRecruits = recruitments.filter(r => r.dirty).length;
     const openCount = recruitments.filter(r => r.status === 'Open').length;
     const shortlistCount = recruitments.filter(r => r.status === 'Shortlist Out').length;
 
     const TABS: { id: TabId; label: string; icon: React.ReactNode; badge?: number }[] = [
-        { id: 'portals', label: 'Portal Statuses', icon: <Globe className="w-4 h-4" />, badge: dirtyPortals || undefined },
         { id: 'recruitments', label: 'Recruitments', icon: <Briefcase className="w-4 h-4" />, badge: dirtyRecruits || undefined },
         { id: 'pdfs', label: 'PDF Shortlists', icon: <ClipboardList className="w-4 h-4" /> },
     ];
@@ -860,38 +654,15 @@ const AdminPanel: React.FC = () => {
                         <p className="text-gray-400 text-xs">Nigeria Recruitment Tracker</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-4">
-                    <span className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border ${firebaseConnected
-                        ? 'bg-green-900/50 border-green-700 text-green-400'
-                        : 'bg-gray-800 border-gray-600 text-gray-400'}`}>
-                        <span className={`w-2 h-2 rounded-full ${firebaseConnected ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`} />
-                        {firebaseConnected ? 'Firebase Live' : 'Connecting...'}
-                    </span>
-                    {activeTab === 'portals' && (
-                        <button
-                            onClick={handleSaveAll} disabled={isSavingAll}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${allSaved
-                                ? 'bg-green-600 text-white'
-                                : 'bg-military-green hover:bg-green-600 text-white'
-                                } disabled:opacity-60`}
-                        >
-                            {isSavingAll ? <><RefreshCw className="w-4 h-4 animate-spin" /> Saving...</>
-                                : allSaved ? <><CheckCircle className="w-4 h-4" /> Done!</>
-                                    : <><Save className="w-4 h-4" /> Save All{dirtyPortals > 0 && ` (${dirtyPortals})`}</>}
-                        </button>
-                    )}
-                    <button onClick={() => setIsLoggedIn(false)} className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
-                        <LogOut className="w-4 h-4" /> Logout
-                    </button>
-                </div>
+                <button onClick={() => adminSignOut()} className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
+                    <LogOut className="w-4 h-4" /> Logout
+                </button>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 py-8">
                 {/* Stats Bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-4 mb-6">
                     {[
-                        { label: 'Portals Online', value: portals.filter(p => p.status === 'online').length, color: 'text-green-600', bg: 'bg-green-50 border-green-100', icon: <Wifi className="w-4 h-4" /> },
-                        { label: 'Portals Offline', value: portals.filter(p => p.status === 'offline').length, color: 'text-red-600', bg: 'bg-red-50 border-red-100', icon: <WifiOff className="w-4 h-4" /> },
                         { label: 'Open Recruitments', value: openCount, color: 'text-military-green', bg: 'bg-green-50 border-green-100', icon: <CheckCircle className="w-4 h-4" /> },
                         { label: 'Shortlists Out', value: shortlistCount, color: 'text-amber-600', bg: 'bg-amber-50 border-amber-100', icon: <AlertCircle className="w-4 h-4" /> },
                     ].map(stat => (
@@ -926,22 +697,6 @@ const AdminPanel: React.FC = () => {
                     ))}
                 </div>
 
-                {/* ── TAB: Portal Statuses ── */}
-                {activeTab === 'portals' && (
-                    <>
-                        {dirtyPortals > 0 && (
-                            <div className="mb-5 flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded-lg text-sm font-medium">
-                                <AlertCircle className="w-4 h-4 shrink-0" />
-                                You have <strong>{dirtyPortals} unsaved change{dirtyPortals > 1 ? 's' : ''}</strong>. Click Save on each card or use "Save All" at the top.
-                            </div>
-                        )}
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                            {portals.map(portal => (
-                                <PortalCard key={portal.id} portal={portal} onChange={handlePortalChange} onSave={handlePortalSave} />
-                            ))}
-                        </div>
-                    </>
-                )}
 
                 {/* ── TAB: Recruitments ── */}
                 {activeTab === 'recruitments' && (

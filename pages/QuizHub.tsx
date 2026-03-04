@@ -37,13 +37,13 @@ const QuizHub: React.FC = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">{opt.label} Practice</h3>
               <p className="text-gray-500 text-sm mb-6 h-10">{opt.desc}</p>
-              
+
               <div className="flex items-center text-xs text-gray-400 mb-6 space-x-4">
-                 <div className="flex items-center"><Clock className="w-3 h-3 mr-1" /> 15 Mins</div>
-                 <div className="flex items-center"><BookOpen className="w-3 h-3 mr-1" /> 20 Questions</div>
+                <div className="flex items-center"><Clock className="w-3 h-3 mr-1" /> Flexible</div>
+                <div className="flex items-center"><BookOpen className="w-3 h-3 mr-1" /> 10–100 Questions</div>
               </div>
 
-              <Link 
+              <Link
                 to={`/practice/${opt.branch}`}
                 className={`w-full block text-center py-3 rounded-lg font-semibold text-white transition-opacity hover:opacity-90 ${opt.color}`}
               >
@@ -58,35 +58,35 @@ const QuizHub: React.FC = () => {
       <div className="bg-indigo-50 rounded-2xl p-8 lg:p-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1">
-             <h2 className="text-2xl font-bold text-gray-900 mb-4">Why use our Practice Centre?</h2>
-             <ul className="space-y-4">
-               <li className="flex items-start">
-                 <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><BrainCircuit className="w-4 h-4 text-indigo-700" /></div>
-                 <div>
-                   <h4 className="font-bold text-gray-800">Exam Simulation</h4>
-                   <p className="text-sm text-gray-600">Get familiar with the CBT interface used in actual recruitment screenings.</p>
-                 </div>
-               </li>
-               <li className="flex items-start">
-                 <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><Award className="w-4 h-4 text-indigo-700" /></div>
-                 <div>
-                   <h4 className="font-bold text-gray-800">Instant Scoring</h4>
-                   <p className="text-sm text-gray-600">See your results immediately and review correct answers to learn from mistakes.</p>
-                 </div>
-               </li>
-             </ul>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why use our Practice Centre?</h2>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><BrainCircuit className="w-4 h-4 text-indigo-700" /></div>
+                <div>
+                  <h4 className="font-bold text-gray-800">Exam Simulation</h4>
+                  <p className="text-sm text-gray-600">Get familiar with the CBT interface used in actual recruitment screenings.</p>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><Award className="w-4 h-4 text-indigo-700" /></div>
+                <div>
+                  <h4 className="font-bold text-gray-800">Instant Scoring</h4>
+                  <p className="text-sm text-gray-600">See your results immediately and review correct answers to learn from mistakes.</p>
+                </div>
+              </li>
+            </ul>
           </div>
           <div className="flex-1 flex justify-center">
-             <div className="bg-white p-6 rounded-xl shadow-md rotate-3 border border-indigo-100 max-w-xs">
-                <div className="flex justify-between items-center border-b border-gray-100 pb-2 mb-4">
-                  <span className="text-xs font-bold text-gray-500">SCORE REPORT</span>
-                  <span className="text-green-600 font-bold text-sm">PASSED</span>
-                </div>
-                <div className="text-center py-4">
-                   <div className="text-5xl font-extrabold text-indigo-900">85%</div>
-                   <p className="text-sm text-gray-500 mt-2">Excellent performance!</p>
-                </div>
-             </div>
+            <div className="bg-white p-6 rounded-xl shadow-md rotate-3 border border-indigo-100 max-w-xs">
+              <div className="flex justify-between items-center border-b border-gray-100 pb-2 mb-4">
+                <span className="text-xs font-bold text-gray-500">SCORE REPORT</span>
+                <span className="text-green-600 font-bold text-sm">PASSED</span>
+              </div>
+              <div className="text-center py-4">
+                <div className="text-5xl font-extrabold text-indigo-900">85%</div>
+                <p className="text-sm text-gray-500 mt-2">Excellent performance!</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

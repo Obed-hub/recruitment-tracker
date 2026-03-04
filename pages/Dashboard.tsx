@@ -3,7 +3,6 @@ import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, I
 import { Link } from 'react-router-dom';
 import { subscribeToRecruitments, getNews } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
-import PortalMonitor from '../components/PortalMonitor';
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const getStyle = () => {
@@ -351,10 +350,6 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
-          {/* Portal Monitor */}
-          <div>
-            <PortalMonitor portals={recruitments.map(r => ({ id: r.id, name: r.branch, url: r.portal_url, status: r.site_status, latency: r.latency }))} />
-          </div>
         </section>
       </div>
     </div >

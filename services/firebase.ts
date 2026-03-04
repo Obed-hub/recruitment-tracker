@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, get, child, set, update, remove } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
 import { RecruitmentUpdate, Question, NewsItem, ShortlistCandidate, Branch, RecruitmentCategory, ExamCenter } from "../types";
 
 // --- CONFIGURATION ---
@@ -20,6 +21,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const storage = getStorage(app);
+const auth = getAuth(app);
+
+// ─── Auth Helpers ────────────────────────────────────────────────────────────
+const ADMIN_UID = 'sslks9wMvYbWZAo66vcbdmN0gbP2';
+
+export const adminSignIn = async (email: string, password: string): Promise<User> => {
+    const credential = await signInWithEmailAndPassword(auth, email, password);
+    if (credential.user.uid !== ADMIN_UID) {
+        await signOut(auth);
+        throw new Error('Unauthorised: You do not have admin access.');
+    }
+    return credential.user;
+};
+
+export const adminSignOut = () => signOut(auth);
+
+export const onAdminAuthStateChanged = (cb: (user: User | null) => void) =>
+    onAuthStateChanged(auth, (user) => {
+        // Only pass the user through if it matches the admin UID
+        cb(user && user.uid === ADMIN_UID ? user : null);
+    });
 
 // --- STATIC DATA FOR MERGING ---
 // We keep this here so the UI has rich content (descriptions, etc.) while status comes from Firebase.
