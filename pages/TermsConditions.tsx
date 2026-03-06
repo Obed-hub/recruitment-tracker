@@ -1,9 +1,16 @@
 import React from 'react';
 import { Scale, AlertTriangle, CheckSquare, Info } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const TermsConditions: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto py-12 px-4">
+            <SEO
+                title="Terms & Conditions - Legal Disclaimer"
+                description="Please read our terms and conditions carefully. We are an independent informational platform providing recruitment tracking and preparation tools."
+                canonical="/terms"
+                keywords={['terms and conditions', 'legal disclaimer', 'usage policy', 'recruitment tracker terms']}
+            />
             <div className="border-b border-gray-200 pb-8 mb-8 text-center">
                 <h1 className="text-4xl font-extrabold text-military-blue">Terms & Conditions</h1>
                 <p className="text-gray-500 mt-2">Legal Disclaimer and Usage Policy</p>
@@ -39,7 +46,7 @@ const TermsConditions: React.FC = () => {
                         <h2 className="text-2xl font-bold">3. Use of Services</h2>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
-                        The services provided on this platform, including the recruitment tracker, eligibility checker, and practice tests, are for personal, non-commercial use only. Users are prohibited from scraping, redistributing, or selling the content found on this platform.
+                        The services provided on this platform, including the recruitment tracker, eligibility checker, and past questions, are for personal, non-commercial use only. Users are prohibited from scraping, redistributing, or selling the content found on this platform.
                     </p>
                 </section>
 

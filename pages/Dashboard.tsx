@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, Image as ImageIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { subscribeToRecruitments, getNews } from '../services/firebase';
+import { subscribeToRecruitments, getNews, subscribeToShortlists, ShortlistPdf } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
 import PortalMonitor from '../components/PortalMonitor';
 import SEO from '../components/SEO';
@@ -26,6 +26,7 @@ const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
 const Dashboard: React.FC = () => {
   const [recruitments, setRecruitments] = useState<RecruitmentUpdate[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
+  const [shortlists, setShortlists] = useState<ShortlistPdf[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -55,14 +56,19 @@ const Dashboard: React.FC = () => {
       setLoading(false);
     }
 
-    // Fetch News (One-time or could be periodic)
     getNews()
       .then(newsData => setNews(newsData))
       .catch(err => console.error('[Dashboard] News fetch error:', err));
 
+    // Fetch latest Shortlists
+    const unsubShortlists = subscribeToShortlists((data) => {
+      setShortlists(data.slice(0, 3)); // Only show latest 3
+    });
+
     return () => {
       clearTimeout(timeoutId);
       if (unsubscribe) unsubscribe();
+      unsubShortlists();
     };
   }, []);
 
@@ -311,17 +317,17 @@ const Dashboard: React.FC = () => {
             <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Resources</h2>
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
 
-              {/* CBT Practice Section */}
+              {/* CBT Past Questions Section */}
               <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Preparation</h3>
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Past Questions</h3>
                 <Link to="/practice" className="w-full flex items-center justify-between p-4 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-colors group">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-indigo-200 rounded text-indigo-800">
                       <BrainCircuit className="w-6 h-6" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-bold text-indigo-900">Take CBT Practice Test</span>
-                      <span className="text-xs text-indigo-600">Simulate exam conditions</span>
+                      <span className="text-sm font-bold text-indigo-900">Take CBT Past Questions</span>
+                      <span className="text-xs text-indigo-600">Prepare with real past questions</span>
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-indigo-400 group-hover:text-indigo-600" />
@@ -329,25 +335,32 @@ const Dashboard: React.FC = () => {
               </div>
 
               <div className="pt-4 border-t border-gray-100 space-y-3">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Past Questions (PDF)</h3>
-                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors group">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-red-100 rounded text-red-600">
-                      <FileDown className="w-5 h-5" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Nigerian Army DSSC</span>
+                <div className="flex justify-between items-center">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Latest Shortlists (PDF)</h3>
+                  <Link to="/shortlists" className="text-[10px] text-military-blue hover:underline font-bold">View All</Link>
+                </div>
+
+                {shortlists.length > 0 ? (
+                  shortlists.map(pdf => (
+                    <Link
+                      key={pdf.id}
+                      to="/shortlists" // Deep link to viewer would be better but /shortlists works for now
+                      className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors group"
+                    >
+                      <div className="flex items-center gap-3 overflow-hidden">
+                        <div className="p-2 bg-red-100 rounded text-red-600 shrink-0">
+                          <FileDown className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate">{pdf.title}</span>
+                      </div>
+                      <span className="text-[10px] text-gray-400 shrink-0">PDF</span>
+                    </Link>
+                  ))
+                ) : (
+                  <div className="p-4 bg-gray-50 rounded-lg border border-dashed border-gray-200 text-center">
+                    <p className="text-[10px] text-gray-400 italic">No shortlists uploaded yet.</p>
                   </div>
-                  <span className="text-xs text-gray-400">PDF</span>
-                </button>
-                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors group">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-red-100 rounded text-red-600">
-                      <FileDown className="w-5 h-5" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Police Past Questions</span>
-                  </div>
-                  <span className="text-xs text-gray-400">PDF</span>
-                </button>
+                )}
               </div>
 
               <div className="pt-4 border-t border-gray-100 space-y-3">

@@ -40,7 +40,7 @@ const SetupScreen: React.FC<{
           <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <ListChecks className="w-7 h-7 text-white" />
           </div>
-          <h2 className="text-2xl font-bold">{branch} Practice Test</h2>
+          <h2 className="text-2xl font-bold">{branch} Past Questions</h2>
           <p className="text-green-100 text-sm mt-1">Configure your session before starting</p>
         </div>
 
@@ -194,7 +194,7 @@ const QuizInterface: React.FC = () => {
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold text-gray-800">No questions available for {branch} yet.</h2>
-        <Link to="/practice" className="text-military-blue underline mt-4 inline-block">Back to Practice Centre</Link>
+        <Link to="/practice" className="text-military-blue underline mt-4 inline-block">Back to Past Questions Centre</Link>
       </div>
     );
   }
@@ -220,8 +220,8 @@ const QuizInterface: React.FC = () => {
       <div className="max-w-2xl mx-auto py-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden text-center">
           <div className={`${passed ? 'bg-green-600' : 'bg-red-600'} p-8 text-white`}>
-            <h2 className="text-3xl font-bold mb-2">{passed ? 'Congratulations!' : 'Keep Practicing'}</h2>
-            <p className="opacity-90">You completed the {branch} Practice Test</p>
+            <h2 className="text-3xl font-bold mb-2">{passed ? 'Congratulations!' : 'Keep Studying'}</h2>
+            <p className="opacity-90">You completed the {branch} Past Questions Test</p>
           </div>
 
           <div className="p-8">
@@ -293,7 +293,7 @@ const QuizInterface: React.FC = () => {
     <div className="max-w-3xl mx-auto py-6">
       <div className="mb-6 flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-bold text-gray-500">{branch} Practice Test</h2>
+          <h2 className="text-lg font-bold text-gray-500">{branch} Past Questions</h2>
           <p className="text-xs text-gray-400">Question {currentQuestion + 1} of {questions.length}</p>
         </div>
         <div className="flex items-center gap-3">

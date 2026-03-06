@@ -3,6 +3,7 @@ import { Filter, Calendar, ExternalLink, Clock, Info } from 'lucide-react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { subscribeToRecruitments } from '../services/firebase';
 import { RecruitmentUpdate, Branch, RecruitmentCategory } from '../types';
+import SEO from '../components/SEO';
 
 const RecruitmentFilter: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -105,6 +106,12 @@ const RecruitmentFilter: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
+      <SEO
+        title="Recruitment Portal - Browse All Active Openings"
+        description="Search and filter through all active Nigerian recruitment exercises. Track application deadlines and portal links for Army, Navy, Police, and Civil Service."
+        canonical="/recruitments"
+        keywords={['recruitment portal', 'job openings Nigeria', 'active recruitments', 'Army recruitment', 'Police recruitment']}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Recruitment Portal</h1>
         <p className="text-gray-600 mt-2">Browse active and past recruitment exercises across all branches.</p>

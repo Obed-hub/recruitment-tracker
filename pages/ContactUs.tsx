@@ -1,9 +1,16 @@
 import React from 'react';
 import { Mail, MapPin, MessageSquare, Twitter, Facebook, Instagram } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const ContactUs: React.FC = () => {
     return (
         <div className="max-w-5xl mx-auto py-12 px-4">
+            <SEO
+                title="Contact Us - Get Technical Support or Inquiries"
+                description="Have questions about Nigeria recruitment tracking? Contact our team for support, partnership inquiries, or to report a technical issue."
+                canonical="/contact"
+                keywords={['contact us', 'recruitment support', 'help desk', 'Nigeria job portal contact']}
+            />
             <div className="text-center mb-16">
                 <h1 className="text-4xl font-extrabold text-military-blue mb-4">Get in Touch</h1>
                 <p className="text-xl text-gray-600">We're here to help you with your recruitment journey.</p>

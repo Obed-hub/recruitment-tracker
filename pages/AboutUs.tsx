@@ -1,9 +1,16 @@
 import React from 'react';
 import { Target, Users, Shield, Award } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const AboutUs: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto py-12 px-4">
+            <SEO
+                title="About Us - Nigeria Recruitment Tracker Team"
+                description="Learn about our mission to centralize and simplify Nigerian recruitment information for all aspiring candidates. We provide tracking, eligibility, and past questions."
+                canonical="/about"
+                keywords={['about recruitment tracker', 'our mission', 'Nigeria job tracking team']}
+            />
             <div className="text-center mb-16">
                 <h1 className="text-4xl font-extrabold text-military-blue mb-4">Our Story</h1>
                 <p className="text-xl text-gray-600">Empowering Nigeria's Future Protectors</p>
@@ -55,7 +62,7 @@ const AboutUs: React.FC = () => {
                     </li>
                     <li className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2" />
-                        <span>Official shortlist access and practice exam resources.</span>
+                        <span>Official shortlist access and past question resources.</span>
                     </li>
                     <li className="flex items-start space-x-3">
                         <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2" />

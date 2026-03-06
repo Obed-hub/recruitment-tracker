@@ -1,9 +1,16 @@
 import React from 'react';
 import { Lock, Eye, Cookie, ShieldCheck } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const PrivacyPolicy: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto py-12 px-4">
+            <SEO
+                title="Privacy Policy - Data Protection & Cookies"
+                description="Our commitment to your privacy. Learn how we handle your data and our use of Google AdSense and cookies to provide our recruitment tracking services."
+                canonical="/privacy"
+                keywords={['privacy policy', 'Google AdSense', 'data protection', 'cookie policy']}
+            />
             <div className="border-b border-gray-200 pb-8 mb-8 text-center">
                 <h1 className="text-4xl font-extrabold text-military-blue">Privacy Policy</h1>
                 <p className="text-gray-500 mt-2">Last Updated: March 2026</p>

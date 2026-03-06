@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Ruler, User, BookOpen, Check, XCircle, RefreshCw, ChevronRight, ArrowRight, HeartPulse, Stethoscope, AlertTriangle, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { UserEligibility, Grade } from '../types';
+import SEO from '../components/SEO';
 
 interface Result {
   qualified: boolean;
@@ -528,6 +529,12 @@ const EligibilityChecker: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
+      <SEO
+        title="Eligibility Checker - Check Your Recruitment Qualification"
+        description="Check if you are eligible for Nigerian Army, Navy, Police, and Paramilitary recruitment. Automated physical, medical, and academic screening tool."
+        canonical="/eligibility"
+        keywords={['eligibility checker', 'recruitment qualification', 'military requirements', 'Nigeria job eligibility', 'height requirement']}
+      />
       <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
         {/* Progress Bar Header */}
         <div className="bg-military-green p-6 text-white">

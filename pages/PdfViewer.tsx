@@ -4,6 +4,7 @@ import {
   ChevronRight, X, AlertTriangle, RefreshCw, Filter
 } from 'lucide-react';
 import { subscribeToShortlists, ShortlistPdf } from '../services/firebase';
+import SEO from '../components/SEO';
 
 const BRANCHES = ['All', 'Army', 'Navy', 'Air Force', 'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs'];
 
@@ -44,6 +45,12 @@ const PdfViewer: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
+      <SEO
+        title="Shortlist Viewer - Official Recruitment PDFs"
+        description="View and download official shortlist PDFs published by Nigerian recruiting agencies. Real-time updates for Army, Navy, Police, and more."
+        canonical="/shortlists"
+        keywords={['shortlist PDF', 'recruitment list 2026', 'successful candidates', 'Army shortlist', 'Navy shortlist']}
+      />
       {/* Header */}
       <div className="text-center mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Shortlist Viewer</h1>

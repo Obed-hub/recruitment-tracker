@@ -2,6 +2,7 @@ import React from 'react';
 import { BrainCircuit, BookOpen, Clock, Award, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Branch } from '../types';
+import SEO from '../components/SEO';
 
 const QuizHub: React.FC = () => {
   const practiceOptions: { branch: Branch | 'General', label: string, desc: string, color: string }[] = [
@@ -20,10 +21,15 @@ const QuizHub: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      <SEO
+        title="CBT Past Questions - Nigeria Recruitment Preparation"
+        description="Prepare for Nigerian recruitment aptitude tests with our CBT past questions. Practice with real exam questions from Army, Navy, Police, and more."
+        keywords={['CBT past questions', 'Nigeria recruitment test', 'aptitude test practice', 'Army past questions', 'Police past questions']}
+      />
       <div className="text-center py-12">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">CBT Practice Centre</h1>
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">CBT Past Questions Centre</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment. Select a branch to begin.
+          Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment using real past questions. Select a branch to begin.
         </p>
       </div>
 
@@ -35,7 +41,7 @@ const QuizHub: React.FC = () => {
               <div className={`w-12 h-12 rounded-lg ${opt.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
                 <Shield className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{opt.label} Practice</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{opt.label} Past Questions</h3>
               <p className="text-gray-500 text-sm mb-6 h-10">{opt.desc}</p>
 
               <div className="flex items-center text-xs text-gray-400 mb-6 space-x-4">
@@ -58,7 +64,7 @@ const QuizHub: React.FC = () => {
       <div className="bg-indigo-50 rounded-2xl p-8 lg:p-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why use our Practice Centre?</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why use our Past Questions Centre?</h2>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><BrainCircuit className="w-4 h-4 text-indigo-700" /></div>
