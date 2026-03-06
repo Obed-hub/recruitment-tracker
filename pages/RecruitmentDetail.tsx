@@ -77,7 +77,7 @@ const RecruitmentDetail: React.FC = () => {
         title={`${recruitment.title} - How to Apply`}
         description={`Complete guide on how to apply for the ${recruitment.title}. Check requirements, deadline, and portal link for ${recruitment.branch} recruitment.`}
         canonical={`/recruitments/${id}`}
-        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'military', recruitment.category]}
+        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'tracker', recruitment.category]}
       />
       <RecruitmentSchema recruitment={recruitment} />
 

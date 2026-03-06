@@ -18,12 +18,12 @@ const SEO: React.FC<SEOProps> = ({
     ogImage = '/assets/og-image.png',
     keywords = [],
 }) => {
-    const siteName = 'Nigeria Military Recruitment Tracker';
+    const siteName = 'Nigeria Recruitment Tracker';
     const fullTitle = title ? `${title} | ${siteName}` : siteName;
     const siteUrl = window.location.origin;
     const fullCanonical = canonical ? `${siteUrl}${canonical}` : window.location.href;
 
-    const defaultDescription = 'Track latest Nigeria military recruitment updates, check eligibility, and prepare for exams.';
+    const defaultDescription = 'Track latest Nigeria recruitment updates, check eligibility, and prepare for exams.';
 
     return (
         <Helmet>

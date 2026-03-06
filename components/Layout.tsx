@@ -30,7 +30,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <img src="/assets/logo.png" alt="Recruitment Tracker Logo" className="w-10 h-10 object-contain rounded-lg shadow-sm bg-white p-1" />
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight tracking-wide text-white">RECRUITMENT TRACKER</span>
-                <span className="text-[10px] text-gray-300 tracking-wider">NIGERIA MILITARY PORTAL</span>
+                <span className="text-[10px] text-gray-300 tracking-wider">NIGERIA PORTAL</span>
               </div>
             </Link>
 
@@ -101,7 +101,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <span className="font-bold tracking-wide">RECRUITMENT TRACKER</span>
               </div>
               <p className="text-sm text-gray-400">
-                The most reliable platform for tracking Nigerian military recruitment updates and preparation.
+                The most reliable platform for tracking Nigerian recruitment updates and preparation.
               </p>
             </div>
 

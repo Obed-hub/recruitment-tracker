@@ -102,10 +102,10 @@ const Dashboard: React.FC = () => {
   return (
     <div className="space-y-8">
       <SEO
-        title="Home - Track Latest Nigeria Military Recruitment Updates"
-        description="Stay updated with the latest Nigerian Army, Navy, Air Force, Police, and Paramilitary recruitment news. Check eligibility, track portal status, and prepare with CBT tests."
+        title="Home - Track Latest Recruitment Updates"
+        description="Stay updated with the latest recruitment news in Nigeria. Check eligibility, track portal status, and prepare with CBT tests."
         canonical="/"
-        keywords={['Nigeria military recruitment', 'Army recruitment 2026', 'Navy recruitment', 'Police recruitment tracker', 'CBT practice Nigeria']}
+        keywords={['Nigeria recruitment updates', 'Latest job recruitment 2026', 'Recruitment tracker', 'CBT practice Nigeria']}
       />
 
       {/* Hero / Live Status Section */}
