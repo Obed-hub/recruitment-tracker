@@ -26,11 +26,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <Shield className="w-8 h-8 text-yellow-400" />
+            <Link to="/" className="flex items-center space-x-3">
+              <img src="/assets/logo.png" alt="Recruitment Tracker Logo" className="w-10 h-10 object-contain rounded-lg shadow-sm bg-white p-1" />
               <div className="flex flex-col">
-                <span className="font-bold text-lg leading-tight tracking-wide">MILITARY TRACKER</span>
-                <span className="text-[10px] text-gray-300 tracking-wider">NIGERIA RECRUITMENT PORTAL</span>
+                <span className="font-bold text-lg leading-tight tracking-wide text-white">RECRUITMENT TRACKER</span>
+                <span className="text-[10px] text-gray-300 tracking-wider">NIGERIA MILITARY PORTAL</span>
               </div>
             </Link>
 
@@ -41,8 +41,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   key={item.path}
                   to={item.path}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive(item.path)
-                      ? 'bg-military-blue text-white shadow-md'
-                      : 'hover:bg-green-800 text-gray-100'
+                    ? 'bg-military-blue text-white shadow-md'
+                    : 'hover:bg-green-800 text-gray-100'
                     }`}
                 >
                   {item.icon}
@@ -73,8 +73,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   to={item.path}
                   onClick={closeMenu}
                   className={`flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium ${isActive(item.path)
-                      ? 'bg-military-blue text-white'
-                      : 'text-gray-300 hover:bg-green-800 hover:text-white'
+                    ? 'bg-military-blue text-white'
+                    : 'text-gray-300 hover:bg-green-800 hover:text-white'
                     }`}
                 >
                   {item.icon}
@@ -92,10 +92,43 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-military-blue text-gray-300 py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm">© 2026 Nigeria Military Recruitment Tracker. All rights reserved.</p>
-          <p className="text-xs mt-2 text-gray-500">Disclaimer: This is an informational tool and not the official portal of the Nigerian Armed Forces.</p>
+      <footer className="bg-military-blue text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+            <div>
+              <div className="flex items-center justify-center md:justify-start space-x-3 text-white mb-4">
+                <img src="/assets/logo.png" alt="Recruitment Tracker Logo" className="w-8 h-8 object-contain rounded-md bg-white p-0.5" />
+                <span className="font-bold tracking-wide">RECRUITMENT TRACKER</span>
+              </div>
+              <p className="text-sm text-gray-400">
+                The most reliable platform for tracking Nigerian military recruitment updates and preparation.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link to="/about" className="hover:text-yellow-400 transition-colors">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link></li>
+                <li><Link to="/recruitments" className="hover:text-yellow-400 transition-colors">All Recruitments</Link></li>
+                <li><Link to="/practice" className="hover:text-yellow-400 transition-colors">Practice Tests</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link to="/privacy" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-yellow-400 transition-colors">Terms & Conditions</Link></li>
+                <li><Link to="/terms" className="hover:text-yellow-400 transition-colors">Disclaimer</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-sm">© 2026 Recruitment Tracker. All rights reserved.</p>
+            <p className="text-xs mt-2 text-gray-500">Disclaimer: This is an independent informational tool and not the official portal of the Nigerian Armed Forces.</p>
+          </div>
         </div>
       </footer>
     </div>

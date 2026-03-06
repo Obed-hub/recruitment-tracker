@@ -9,6 +9,10 @@ import RecruitmentDetail from './pages/RecruitmentDetail';
 import QuizHub from './pages/QuizHub';
 import QuizInterface from './pages/QuizInterface';
 import AdminPanel from './pages/AdminPanel';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +29,10 @@ const App: React.FC = () => {
         <Route path="/shortlists" element={<Layout><PdfViewer /></Layout>} />
         <Route path="/practice" element={<Layout><QuizHub /></Layout>} />
         <Route path="/practice/:branch" element={<Layout><QuizInterface /></Layout>} />
+        <Route path="/about" element={<Layout><AboutUs /></Layout>} />
+        <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
+        <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
+        <Route path="/terms" element={<Layout><TermsConditions /></Layout>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </HashRouter>

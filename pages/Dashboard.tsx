@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { subscribeToRecruitments, getNews } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
 import PortalMonitor from '../components/PortalMonitor';
+import SEO from '../components/SEO';
+import AdUnit from '../components/AdUnit';
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const getStyle = () => {
@@ -99,6 +101,13 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-8">
+      <SEO
+        title="Home - Track Latest Nigeria Military Recruitment Updates"
+        description="Stay updated with the latest Nigerian Army, Navy, Air Force, Police, and Paramilitary recruitment news. Check eligibility, track portal status, and prepare with CBT tests."
+        canonical="/"
+        keywords={['Nigeria military recruitment', 'Army recruitment 2026', 'Navy recruitment', 'Police recruitment tracker', 'CBT practice Nigeria']}
+      />
+
       {/* Hero / Live Status Section */}
       <section>
         <div className="flex justify-between items-center mb-4">
@@ -214,6 +223,9 @@ const Dashboard: React.FC = () => {
             })}
           </div>
         )}
+
+        {/* Ad Unit after recruitment grid */}
+        <AdUnit slot="HOME_GRID_BOTTOM_AD" />
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

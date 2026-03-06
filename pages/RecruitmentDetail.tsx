@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, ListOrdered, Shield, MapPin, Phone } from 'lucide-react';
 import { subscribeToRecruitmentById } from '../services/firebase';
 import { RecruitmentUpdate } from '../types';
+import SEO from '../components/SEO';
+import { RecruitmentSchema } from '../components/StructuredData';
+import AdUnit from '../components/AdUnit';
 
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -70,6 +73,14 @@ const RecruitmentDetail: React.FC = () => {
         <ArrowLeft className="w-4 h-4 mr-1" /> Back to Recruitments
       </Link>
 
+      <SEO
+        title={`${recruitment.title} - How to Apply`}
+        description={`Complete guide on how to apply for the ${recruitment.title}. Check requirements, deadline, and portal link for ${recruitment.branch} recruitment.`}
+        canonical={`/recruitments/${id}`}
+        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'military', recruitment.category]}
+      />
+      <RecruitmentSchema recruitment={recruitment} />
+
       <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
         {/* Header Banner */}
         <div className={`${getBranchColor()} p-8 text-white relative overflow-hidden`}>
@@ -109,6 +120,9 @@ const RecruitmentDetail: React.FC = () => {
               <p className="text-gray-700 leading-relaxed text-lg">
                 {recruitment.description || "No specific description available for this recruitment exercise. Please check the requirements below."}
               </p>
+
+              {/* Ad Unit after description */}
+              <AdUnit slot="PSEO_CONTENT_AD" />
             </section>
 
             <section>
@@ -204,13 +218,16 @@ const RecruitmentDetail: React.FC = () => {
                 <p className="text-xs text-gray-500 text-center px-4">
                   By clicking "Apply on Portal", you will be redirected to the official {recruitment.branch} website.
                 </p>
+
+                {/* Sidebar Ad Unit */}
+                <AdUnit slot="PSEO_SIDEBAR_AD" format="rectangle" />
               </div>
             </div>
           </div>
 
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
