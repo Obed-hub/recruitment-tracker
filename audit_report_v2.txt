@@ -1,0 +1,31 @@
+﻿# npm audit report
+
+rollup  4.0.0 - 4.58.0
+Severity: high
+Rollup 4 has Arbitrary File Write via Path Traversal - https://github.com/advisories/GHSA-mw96-cpmx-2vgc
+fix available via `npm audit fix`
+node_modules/rollup
+
+serialize-javascript  <=7.0.2
+Severity: high
+Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString() - https://github.com/advisories/GHSA-5c6j-r48x-rmvq
+fix available via `npm audit fix --force`
+Will install vite-plugin-pwa@0.19.8, which is a breaking change
+node_modules/serialize-javascript
+  @rollup/plugin-terser  0.2.0 - 0.4.4
+  Depends on vulnerable versions of serialize-javascript
+  node_modules/@rollup/plugin-terser
+    workbox-build  >=7.1.0
+    Depends on vulnerable versions of @rollup/plugin-terser
+    node_modules/workbox-build
+      vite-plugin-pwa  >=0.20.0
+      Depends on vulnerable versions of workbox-build
+      node_modules/vite-plugin-pwa
+
+5 high severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
