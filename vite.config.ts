@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
       react(),
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.png'],
+        includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.png', 'assets/*.png'],
         manifest: {
           name: 'Nigeria Recruitment Tracker',
           short_name: 'Recruitment NG',

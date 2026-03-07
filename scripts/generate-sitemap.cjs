@@ -16,7 +16,6 @@ async function generateSitemap() {
             '',
             '/recruitments',
             '/eligibility',
-            '/shortlists',
             '/practice',
             '/about',
             '/contact',
