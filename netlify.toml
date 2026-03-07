@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/news-api/*"
+  to = "https://newsdata.io/api/1/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
