@@ -29,4 +29,4 @@ console.log('   ✅ Shortlists page → reads shortlists node via onValue (real-
 console.log('   ✅ Admin panel → writes to portal_monitor + uploads PDFs to Storage');
 console.log('   ⚙️  Firebase Storage rules → needs manual update (see above)');
 console.log('\n🌐 App running at: http://localhost:5173');
-console.log('🔐 Admin panel at: http://localhost:5173/#/admin  (password: admin2024)');
+console.log('🔐 Admin panel at: http://localhost:5173/#/admin  (password: admin024)');

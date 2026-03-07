@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import InstallPrompt from './InstallPrompt';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -16,7 +17,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: 'Recruitments', path: '/recruitments', icon: <Search className="w-5 h-5" /> },
     { label: 'Eligibility', path: '/eligibility', icon: <CheckCircle className="w-5 h-5" /> },
     { label: 'Shortlists', path: '/shortlists', icon: <FileText className="w-5 h-5" /> },
-    { label: 'Practice Tests', path: '/practice', icon: <BrainCircuit className="w-5 h-5" /> },
+    { label: 'Past Questions', path: '/practice', icon: <BrainCircuit className="w-5 h-5" /> },
   ];
 
   return (
@@ -111,7 +112,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/about" className="hover:text-yellow-400 transition-colors">About Us</Link></li>
                 <li><Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link></li>
                 <li><Link to="/recruitments" className="hover:text-yellow-400 transition-colors">All Recruitments</Link></li>
-                <li><Link to="/practice" className="hover:text-yellow-400 transition-colors">Practice Tests</Link></li>
+                <li><Link to="/practice" className="hover:text-yellow-400 transition-colors">Past Questions</Link></li>
               </ul>
             </div>
 
@@ -131,6 +132,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
         </div>
       </footer>
+      <InstallPrompt />
     </div>
   );
 };
