@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import {
     subscribeToPortalMonitor, updatePortalStatus, updateAllPortals,
-    uploadShortlistPdf, subscribeToShortlists, deleteShortlistPdf, ShortlistPdf,
     adminSignIn, adminSignOut, onAdminAuthStateChanged
 } from '../services/firebase';
 
@@ -198,7 +197,7 @@ interface PortalEdit {
     dirty?: boolean;
 }
 
-type TabId = 'portals' | 'recruitments' | 'pdfs';
+type TabId = 'portals' | 'recruitments';
 
 // ─── Login Screen ────────────────────────────────────────────────────────────────
 const LoginScreen: React.FC = () => {
@@ -543,195 +542,6 @@ const RecruitmentCard: React.FC<{
 };
 
 
-// ─── PDF Shortlist Manager ─────────────────────────────────────────────────
-const PdfShortlistSection: React.FC = () => {
-    const [pdfs, setPdfs] = useState<ShortlistPdf[]>([]);
-    const [dragOver, setDragOver] = useState(false);
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [title, setTitle] = useState('');
-    const [branch, setBranch] = useState('Army');
-    const [uploading, setUploading] = useState(false);
-    const [progress, setProgress] = useState(0);
-    const [uploadError, setUploadError] = useState('');
-    const [deletingId, setDeletingId] = useState<string | null>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-        const unsub = subscribeToShortlists(setPdfs);
-        return () => unsub();
-    }, []);
-
-    const handleFileDrop = (e: React.DragEvent) => {
-        e.preventDefault();
-        setDragOver(false);
-        const file = e.dataTransfer.files[0];
-        if (file?.type === 'application/pdf') { setSelectedFile(file); setUploadError(''); }
-        else setUploadError('Please drop a PDF file.');
-    };
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) { setSelectedFile(file); setUploadError(''); }
-    };
-
-    const handleUpload = async () => {
-        if (!selectedFile || !title.trim()) {
-            setUploadError('Please select a file and enter a title.');
-            return;
-        }
-        setUploading(true); setProgress(0); setUploadError('');
-        try {
-            await uploadShortlistPdf(selectedFile, title.trim(), branch, setProgress);
-            setSelectedFile(null); setTitle(''); setBranch('Army');
-            if (fileInputRef.current) fileInputRef.current.value = '';
-        } catch {
-            setUploadError('Upload failed. Check Firebase Storage rules and try again.');
-        } finally {
-            setUploading(false);
-        }
-    };
-
-    const handleDelete = async (pdf: ShortlistPdf) => {
-        if (!confirm(`Delete "${pdf.title}"? This cannot be undone.`)) return;
-        setDeletingId(pdf.id);
-        try { await deleteShortlistPdf(pdf); }
-        catch { alert('Delete failed. Check Firebase Storage rules.'); }
-        finally { setDeletingId(null); }
-    };
-
-    return (
-        <div>
-            {/* Upload Card */}
-            <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
-                <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Upload className="w-4 h-4 text-military-green" /> Upload New PDF Shortlist
-                </h3>
-
-                <div
-                    onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-                    onDragLeave={() => setDragOver(false)}
-                    onDrop={handleFileDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all mb-4 ${dragOver ? 'border-military-green bg-green-50' :
-                        selectedFile ? 'border-green-400 bg-green-50' :
-                            'border-gray-200 bg-gray-50 hover:border-military-green hover:bg-green-50/50'}`}
-                >
-                    <input ref={fileInputRef} type="file" accept="application/pdf" className="hidden" onChange={handleFileChange} />
-                    {selectedFile ? (
-                        <div className="flex items-center justify-center gap-3">
-                            <FileText className="w-8 h-8 text-military-green" />
-                            <div className="text-left">
-                                <p className="font-semibold text-gray-800">{selectedFile.name}</p>
-                                <p className="text-xs text-gray-500">{Math.round(selectedFile.size / 1024)} KB</p>
-                            </div>
-                            <button onClick={e => { e.stopPropagation(); setSelectedFile(null); }}
-                                className="ml-2 p-1 rounded-full hover:bg-red-100 text-gray-400 hover:text-red-600 transition-colors">
-                                <X className="w-4 h-4" />
-                            </button>
-                        </div>
-                    ) : (
-                        <>
-                            <Upload className="w-10 h-10 text-gray-300 mx-auto mb-2" />
-                            <p className="text-gray-500 font-medium">Drop PDF here or <span className="text-military-green font-bold">browse</span></p>
-                            <p className="text-xs text-gray-400 mt-1">PDF files only</p>
-                        </>
-                    )}
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Title</label>
-                        <input
-                            type="text" value={title} onChange={e => setTitle(e.target.value)}
-                            placeholder="e.g. Nigerian Navy Batch 38 Shortlist"
-                            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-military-green"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Branch</label>
-                        <div className="relative">
-                            <select value={branch} onChange={e => setBranch(e.target.value)}
-                                className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-military-green pr-8">
-                                {BRANCHES.map(b => <option key={b} value={b}>{b}</option>)}
-                            </select>
-                            <ChevronDown className="absolute right-2.5 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
-                        </div>
-                    </div>
-                </div>
-
-                {uploading && (
-                    <div className="mb-4">
-                        <div className="flex justify-between text-xs text-gray-500 mb-1">
-                            <span>Uploading...</span><span>{progress}%</span>
-                        </div>
-                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-military-green rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
-                        </div>
-                    </div>
-                )}
-
-                {uploadError && (
-                    <p className="text-red-500 text-xs mb-4 flex items-center gap-1">
-                        <XCircle className="w-3.5 h-3.5" /> {uploadError}
-                    </p>
-                )}
-
-                <button
-                    onClick={handleUpload} disabled={uploading || !selectedFile}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-military-green text-white rounded-lg text-sm font-bold hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    {uploading ? <><RefreshCw className="w-4 h-4 animate-spin" /> Uploading {progress}%</> : <><Upload className="w-4 h-4" /> Upload PDF</>}
-                </button>
-            </div>
-
-            {/* PDF Grid */}
-            {pdfs.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                    {pdfs.map(pdf => (
-                        <div key={pdf.id} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex items-start gap-3">
-                                <div className="p-2.5 bg-red-50 rounded-lg border border-red-100 shrink-0">
-                                    <FileText className="w-6 h-6 text-red-500" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <h4 className="font-bold text-gray-900 text-sm leading-tight mb-0.5 truncate">{pdf.title}</h4>
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                        <span className="text-[10px] font-bold bg-military-green/10 text-military-green border border-military-green/20 px-2 py-0.5 rounded-full">
-                                            {pdf.branch}
-                                        </span>
-                                        <span className="text-[10px] text-gray-400">{pdf.fileSizeKB} KB</span>
-                                    </div>
-                                    <p className="text-[10px] text-gray-400 mt-1 flex items-center gap-1">
-                                        <Clock className="w-3 h-3" />
-                                        {new Date(pdf.uploadedAt).toLocaleDateString()}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex gap-2 mt-3">
-                                <a href={pdf.downloadURL} target="_blank" rel="noopener noreferrer"
-                                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-xs font-semibold hover:bg-blue-100 transition-colors">
-                                    <Eye className="w-3.5 h-3.5" /> Preview
-                                </a>
-                                <button onClick={() => handleDelete(pdf)} disabled={deletingId === pdf.id}
-                                    className="flex items-center justify-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-600 border border-red-100 rounded-lg text-xs font-semibold hover:bg-red-100 transition-colors disabled:opacity-50">
-                                    {deletingId === pdf.id ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl p-10 text-center">
-                    <FileText className="w-10 h-10 text-gray-300 mx-auto mb-2" />
-                    <p className="text-gray-400 font-medium">No PDFs uploaded yet</p>
-                    <p className="text-xs text-gray-300 mt-1">Upload a shortlist PDF above to get started</p>
-                </div>
-            )}
-        </div>
-    );
-};
-
 // ─── Main Admin Panel ────────────────────────────────────────────────────────────────
 const AdminPanel: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -896,7 +706,6 @@ const AdminPanel: React.FC = () => {
     const TABS: { id: TabId; label: string; icon: React.ReactNode; badge?: number }[] = [
         { id: 'portals', label: 'Portal Statuses', icon: <Globe className="w-4 h-4" />, badge: dirtyPortals || undefined },
         { id: 'recruitments', label: 'Recruitments', icon: <Briefcase className="w-4 h-4" />, badge: dirtyRecruits || undefined },
-        { id: 'pdfs', label: 'PDF Shortlists', icon: <ClipboardList className="w-4 h-4" /> },
     ];
 
     return (
@@ -1014,10 +823,6 @@ const AdminPanel: React.FC = () => {
                     </>
                 )}
 
-                {/* ── TAB: PDF Shortlists ── */}
-                {activeTab === 'pdfs' && (
-                    <PdfShortlistSection />
-                )}
 
                 <p className="text-center text-xs text-gray-400 mt-10">
                     Changes are saved to Firebase and pushed to all live users instantly.

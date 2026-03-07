@@ -16,7 +16,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: 'Dashboard', path: '/', icon: <Home className="w-5 h-5" /> },
     { label: 'Recruitments', path: '/recruitments', icon: <Search className="w-5 h-5" /> },
     { label: 'Eligibility', path: '/eligibility', icon: <CheckCircle className="w-5 h-5" /> },
-    { label: 'Shortlists', path: '/shortlists', icon: <FileText className="w-5 h-5" /> },
     { label: 'Past Questions', path: '/practice', icon: <BrainCircuit className="w-5 h-5" /> },
   ];
 
