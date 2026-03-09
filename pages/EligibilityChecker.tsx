@@ -545,6 +545,11 @@ const EligibilityChecker: React.FC = () => {
             <span className="text-xs font-mono bg-white/20 px-2 py-1 rounded">v2.1</span>
           </div>
 
+          <div className="bg-white/10 rounded-xl p-4 mb-4 text-xs leading-relaxed border border-white/20">
+            <p className="mb-2"><strong>Quick Guide:</strong> This automated tool uses official recruitment criteria from the Nigerian Armed Forces and Paramilitary agencies to pre-screen your profile.</p>
+            <p><strong>Instructions:</strong> Answer all questions accurately. Discrepancies in your physical or medical data during the actual screening can lead to permanent disqualification.</p>
+          </div>
+
           {step < 5 && (
             <div className="flex items-center gap-2">
               {[1, 2, 3, 4].map((s) => (
@@ -581,6 +586,57 @@ const EligibilityChecker: React.FC = () => {
               </button>
             </div>
           )}
+        </div>
+      </div>
+      <div className="mt-12 bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <Activity className="w-5 h-5 text-military-green" />
+          Standard Recruitment Requirements
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">Physical Standards</h3>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-military-green rounded-full mt-1.5 shrink-0" />
+                <span><strong>Height:</strong> Minimum of 1.68m for males and 1.65m for females in the Army and Navy.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-military-green rounded-full mt-1.5 shrink-0" />
+                <span><strong>Chest:</strong> Fully expanded chest measurement of not less than 0.87m (for males).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-military-green rounded-full mt-1.5 shrink-0" />
+                <span><strong>Fitness:</strong> Must be physically and medically fit according to agency standards.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">Academic Baselines</h3>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-military-blue rounded-full mt-1.5 shrink-0" />
+                <span><strong>O'Level:</strong> Minimum of 5 credits including English and Maths in not more than 2 sittings.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-military-blue rounded-full mt-1.5 shrink-0" />
+                <span><strong>Age Limit:</strong> Generally 18-22 for non-tradesmen and up to 26-30 for tradesmen/officers.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-military-blue rounded-full mt-1.5 shrink-0" />
+                <span><strong>Nationality:</strong> Only Nigerian citizens by birth are eligible for enlistment.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 p-4 bg-yellow-50 rounded-xl border border-yellow-200 flex gap-3">
+          <AlertTriangle className="w-5 h-5 text-yellow-600 shrink-0" />
+          <p className="text-xs text-yellow-800">
+            <strong>Disclaimer:</strong> This tool provides a preliminary assessment based on standard criteria. The final decision on eligibility rests solely with the recruiting agency's screening board.
+          </p>
         </div>
       </div>
     </div>

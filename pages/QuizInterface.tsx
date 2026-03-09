@@ -42,6 +42,14 @@ const SetupScreen: React.FC<{
           </div>
           <h2 className="text-2xl font-bold">{branch} Past Questions</h2>
           <p className="text-green-100 text-sm mt-1">Configure your session before starting</p>
+          <div className="mt-4 text-[10px] text-green-200 uppercase tracking-widest font-bold">Nigeria Recruitment Portal</div>
+        </div>
+
+        <div className="bg-blue-50/50 p-4 border-b border-blue-100 text-center">
+          <p className="text-xs text-blue-800 leading-tight">
+            <strong>Pro Tip:</strong> These questions are curated from previous {branch} recruitment exercises.
+            Focus on the patterns of the questions as similar logic is often repeated.
+          </p>
         </div>
 
         <div className="p-8">
@@ -183,8 +191,12 @@ const QuizInterface: React.FC = () => {
   // ── Loading ──
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
+      <div className="flex flex-col justify-center items-center h-96 space-y-4">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-military-green" />
+        <div className="text-center">
+          <p className="text-lg font-bold text-gray-700">Loading Questions...</p>
+          <p className="text-sm text-gray-400">Preparing your personalized {branch} practice session.</p>
+        </div>
       </div>
     );
   }

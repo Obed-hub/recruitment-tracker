@@ -119,8 +119,14 @@ const Dashboard: React.FC = () => {
 
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map(i => <div key={i} className="h-40 bg-gray-200 animate-pulse rounded-xl"></div>)}
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[1, 2, 3].map(i => <div key={i} className="h-40 bg-gray-200 animate-pulse rounded-xl"></div>)}
+            </div>
+            <div className="text-center py-4 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+              <p className="text-sm font-medium text-gray-500">Connecting to recruitment database...</p>
+              <p className="text-[10px] text-gray-400">Fetching live portal status for Nigerian Military & Paramilitary agencies.</p>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

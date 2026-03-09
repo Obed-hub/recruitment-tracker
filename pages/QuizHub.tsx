@@ -28,8 +28,8 @@ const QuizHub: React.FC = () => {
       />
       <div className="text-center py-12">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">CBT Past Questions Centre</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment using real past questions. Select a branch to begin.
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment. We provide real past questions from previous recruitment exercises to help you understand the pattern, timing, and difficulty level of the official exams.
         </p>
       </div>
 
@@ -92,6 +92,36 @@ const QuizHub: React.FC = () => {
                 <div className="text-5xl font-extrabold text-indigo-900">85%</div>
                 <p className="text-sm text-gray-500 mt-2">Excellent performance!</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Preparation Tips Section */}
+      <div className="mt-12 bg-white rounded-2xl p-8 border border-gray-200">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <BookOpen className="w-6 h-6 text-military-blue" />
+          Aptitude Test Preparation Tips
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+          <div className="space-y-4">
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <h4 className="font-bold text-gray-800 mb-1">1. Master Current Affairs</h4>
+              <p>Nigerian recruitment tests heavily feature questions on Nigerian history, geography, and current political leadership. Stay updated with national news.</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <h4 className="font-bold text-gray-800 mb-1">2. Practice Speed & Accuracy</h4>
+              <p>Most CBT exams give about 30-45 seconds per question. Use our untimed mode first to learn, then try to finish within 30 minutes to simulate real pressure.</p>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <h4 className="font-bold text-gray-800 mb-1">3. Know Your Branch</h4>
+              <p>Each agency has specific roles. The Navy often asks about maritime boundaries, while the Air Force might ask about aircraft types and ranks.</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <h4 className="font-bold text-gray-800 mb-1">4. Review and Relax</h4>
+              <p>After each test, use our "Review Answers" feature. Understanding why you missed a question is more valuable than just getting a high score.</p>
             </div>
           </div>
         </div>

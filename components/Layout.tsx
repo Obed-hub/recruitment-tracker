@@ -2,6 +2,7 @@ import React from 'react';
 import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import InstallPrompt from './InstallPrompt';
+import AdSenseScript from './AdSenseScript';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -21,6 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <AdSenseScript />
       {/* Navigation */}
       <nav className="bg-military-green sticky top-0 z-50 shadow-lg text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
