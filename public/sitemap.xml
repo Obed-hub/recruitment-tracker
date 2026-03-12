@@ -16,7 +16,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/practice</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -41,107 +41,152 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/0</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Army</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/1</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Navy</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/2</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Air Force</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/3</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/NDA</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/4</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Police</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/5</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Civil Defence</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/6</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Immigration</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/7</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Customs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/8</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/FRSC</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/9</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/Fire Service</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/10</loc>
+    <loc>https://recruitmenttracker.com.ng/past-questions/General</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/11</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/army-dssc</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/12</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/navy-batch</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/13</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/naf-bmtc</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/14</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/police-constable</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/15</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nscdc-general</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/16</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/frsc-recruitment</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/17</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/fire-inspector</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/18</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/immigration-inspector</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/19</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/customs-supplementary</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/20</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/efcc-investigator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/fcsc-entry-level</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nnpc-graduate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/cbn-entry-level</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nimc-staff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/ncc-entry-level</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nitda-it-officer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/faan-entry-level</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nimasa-marine</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nafdac-regulatory</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

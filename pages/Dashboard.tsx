@@ -234,20 +234,68 @@ const Dashboard: React.FC = () => {
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* News Feed */}
-        <section className="lg:col-span-2">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Latest Military & Paramilitary News</h2>
-            <Link to="/news" className="text-military-blue text-sm font-medium hover:underline">View All</Link>
+        {/* Left/Main Column: Quick Resources & Monitor */}
+        <section className="lg:col-span-2 space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Resources</h2>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+              {/* CBT Past Questions Section */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Past Questions</h3>
+                <Link to="/past-questions" className="w-full flex items-center justify-between p-4 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-colors group">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-indigo-200 rounded text-indigo-800">
+                      <BrainCircuit className="w-6 h-6" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-indigo-900">Take Past Question</span>
+                      <span className="text-xs text-indigo-600">Prepare with real past questions</span>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-indigo-400 group-hover:text-indigo-600" />
+                </Link>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Help Desk</h3>
+                <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-100 flex gap-3">
+                  <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0" />
+                  <div className="text-xs text-yellow-800">
+                    <span className="font-bold block mb-1">Scam Alert</span>
+                    Recruitment forms are FREE. Do not pay anyone for assistance. Report suspicious activity.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            {loading ? (
-              <div className="h-24 bg-gray-200 animate-pulse rounded-lg"></div>
-            ) : (
-              news.map(item => (
+          {/* Portal Monitor */}
+          <div>
+            <PortalMonitor portals={recruitments.map(r => ({ id: r.id, name: r.branch, url: r.portal_url, status: r.site_status, latency: r.latency }))} />
+          </div>
+
+          {/* Sidebar Ad (now in main col) */}
+          <AdUnit slot="DASHBOARD_MAIN_COL_AD" format="rectangle" />
+        </section>
+
+        {/* Right Column: News Feed (Moved to bottom of grid or separate section) */}
+        {/* We actually want news to be the LAST thing, so let's put it below this grid */}
+      </div>
+
+      {/* News Feed - Now at the bottom */}
+      <section className="mt-12">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-gray-900">Latest Military & Paramilitary News</h2>
+          <Link to="/news" className="text-military-blue text-sm font-medium hover:underline">View All</Link>
+        </div>
+
+        <div className="space-y-4">
+          {loading ? (
+            <div className="h-24 bg-gray-200 animate-pulse rounded-lg"></div>
+          ) : (
+            news.map((item, index) => (
+              <React.Fragment key={item.id}>
                 <a
-                  key={item.id}
                   href={item.source_link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -305,53 +353,13 @@ const Dashboard: React.FC = () => {
                     </div>
                   </div>
                 </a>
-              ))
-            )}
-          </div>
-        </section>
-
-        {/* Sidebar: Quick Links & Practice & Monitor */}
-        <section className="space-y-8">
-          <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Resources</h2>
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
-
-              {/* CBT Past Questions Section */}
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Past Questions</h3>
-                <Link to="/practice" className="w-full flex items-center justify-between p-4 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-colors group">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-indigo-200 rounded text-indigo-800">
-                      <BrainCircuit className="w-6 h-6" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-sm font-bold text-indigo-900">Take CBT Past Questions</span>
-                      <span className="text-xs text-indigo-600">Prepare with real past questions</span>
-                    </div>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-indigo-400 group-hover:text-indigo-600" />
-                </Link>
-              </div>
-
-              <div className="pt-4 border-t border-gray-100 space-y-3">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Help Desk</h3>
-                <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-100 flex gap-3">
-                  <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0" />
-                  <div className="text-xs text-yellow-800">
-                    <span className="font-bold block mb-1">Scam Alert</span>
-                    Recruitment forms are FREE. Do not pay anyone for assistance. Report suspicious activity.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Portal Monitor */}
-          <div>
-            <PortalMonitor portals={recruitments.map(r => ({ id: r.id, name: r.branch, url: r.portal_url, status: r.site_status, latency: r.latency }))} />
-          </div>
-        </section>
-      </div>
+                {/* Insert Ad every 4 news items */}
+                {(index + 1) % 4 === 0 && <AdUnit slot="DASHBOARD_FEED_AD" />}
+              </React.Fragment>
+            ))
+          )}
+        </div>
+      </section>
     </div >
   );
 };

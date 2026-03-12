@@ -17,7 +17,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: 'Dashboard', path: '/', icon: <Home className="w-5 h-5" /> },
     { label: 'Recruitments', path: '/recruitments', icon: <Search className="w-5 h-5" /> },
     { label: 'Eligibility', path: '/eligibility', icon: <CheckCircle className="w-5 h-5" /> },
-    { label: 'Past Questions', path: '/practice', icon: <BrainCircuit className="w-5 h-5" /> },
+    { label: 'Past Questions', path: '/past-questions', icon: <BrainCircuit className="w-5 h-5" /> },
   ];
 
   return (
@@ -113,7 +113,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/about" className="hover:text-yellow-400 transition-colors">About Us</Link></li>
                 <li><Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link></li>
                 <li><Link to="/recruitments" className="hover:text-yellow-400 transition-colors">All Recruitments</Link></li>
-                <li><Link to="/practice" className="hover:text-yellow-400 transition-colors">Past Questions</Link></li>
+                <li><Link to="/past-questions" className="hover:text-yellow-400 transition-colors">Past Questions</Link></li>
               </ul>
             </div>
 

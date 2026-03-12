@@ -8,11 +8,20 @@ import { useLocation } from 'react-router-dom';
  */
 const AdSenseScript: React.FC = () => {
     const location = useLocation();
-    const isAdminPage = location.pathname.startsWith('/admin');
+    
+    // Define "thin" or sensitive pages where AdSense should not load.
+    // This helps comply with "Screens without publisher content" policies.
+    const isThinPage = [
+        '/admin',
+        '/privacy',
+        '/terms',
+        '/contact',
+        '/about'
+    ].some(path => location.pathname.startsWith(path));
 
     useEffect(() => {
-        // We only load the script if we're not on an admin page
-        if (isAdminPage) return;
+        // We only load the script if we're not on a thin page
+        if (isThinPage) return;
 
         const scriptId = 'adsense-loader-script';
         if (document.getElementById(scriptId)) return;
@@ -28,7 +37,7 @@ const AdSenseScript: React.FC = () => {
         return () => {
             // Optional: Cleanup if needed, though usually script tags remain
         };
-    }, [isAdminPage]);
+    }, [isThinPage]);
 
     return null;
 };

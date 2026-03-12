@@ -22,12 +22,13 @@ const QuizHub: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto">
       <SEO
-        title="CBT Past Questions - Nigeria Recruitment Preparation"
-        description="Prepare for Nigerian recruitment aptitude tests with our CBT past questions. Practice with real exam questions from Army, Navy, Police, and more."
-        keywords={['CBT past questions', 'Nigeria recruitment test', 'aptitude test practice', 'Army past questions', 'Police past questions']}
+        title="Past Question Centre - Nigeria Recruitment Preparation"
+        description="Prepare for Nigerian recruitment aptitude tests with our professional Past Question CBT tests. Practice with real exam questions from Army, Navy, Police, and more."
+        canonical="/past-questions"
+        keywords={['past question', 'Nigeria recruitment test', 'aptitude test practice', 'Army past questions', 'Police past questions']}
       />
       <div className="text-center py-12">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">CBT Past Questions Centre</h1>
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Past Question Centre</h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment. We provide real past questions from previous recruitment exercises to help you understand the pattern, timing, and difficulty level of the official exams.
         </p>
@@ -41,7 +42,7 @@ const QuizHub: React.FC = () => {
               <div className={`w-12 h-12 rounded-lg ${opt.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
                 <Shield className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{opt.label} Past Questions</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{opt.label} Past Question</h3>
               <p className="text-gray-500 text-sm mb-6 h-10">{opt.desc}</p>
 
               <div className="flex items-center text-xs text-gray-400 mb-6 space-x-4">
@@ -50,7 +51,7 @@ const QuizHub: React.FC = () => {
               </div>
 
               <Link
-                to={`/practice/${opt.branch}`}
+                to={`/past-questions/${opt.branch}`}
                 className={`w-full block text-center py-3 rounded-lg font-semibold text-white transition-opacity hover:opacity-90 ${opt.color}`}
               >
                 Start Test

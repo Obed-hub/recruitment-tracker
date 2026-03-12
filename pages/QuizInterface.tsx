@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { getQuestions } from '../services/mockFirebase';
 import { Question } from '../types';
+import AdUnit from '../components/AdUnit';
 
 // ── Question count options ───────────────────────────────────────────────────
 const COUNT_OPTIONS = [
@@ -40,7 +41,7 @@ const SetupScreen: React.FC<{
           <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <ListChecks className="w-7 h-7 text-white" />
           </div>
-          <h2 className="text-2xl font-bold">{branch} Past Questions</h2>
+          <h2 className="text-2xl font-bold">{branch} Past Question</h2>
           <p className="text-green-100 text-sm mt-1">Configure your session before starting</p>
           <div className="mt-4 text-[10px] text-green-200 uppercase tracking-widest font-bold">Nigeria Recruitment Portal</div>
         </div>
@@ -102,14 +103,16 @@ const SetupScreen: React.FC<{
             </div>
           </div>
 
+          <AdUnit slot="QUIZ_SETUP_AD" />
+
           {/* Actions */}
           <div className="flex gap-3">
-            <Link
-              to="/practice"
-              className="flex-1 py-3 border border-gray-300 rounded-xl text-gray-600 font-medium text-center hover:bg-gray-50 transition-colors text-sm"
-            >
-              ← Back
-            </Link>
+              <Link
+                to="/past-questions"
+                className="flex-1 py-3 border border-gray-300 rounded-xl text-gray-600 font-medium text-center hover:bg-gray-50 transition-colors text-sm"
+              >
+                ← Back
+              </Link>
             <button
               onClick={() => onStart(selected)}
               className="flex-1 py-3 bg-military-green text-white rounded-xl font-bold hover:bg-green-700 transition-all hover:scale-105 shadow-md flex items-center justify-center gap-2 text-sm"
@@ -206,7 +209,7 @@ const QuizInterface: React.FC = () => {
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold text-gray-800">No questions available for {branch} yet.</h2>
-        <Link to="/practice" className="text-military-blue underline mt-4 inline-block">Back to Past Questions Centre</Link>
+        <Link to="/past-questions" className="text-military-blue underline mt-4 inline-block">Back to Past Questions Centre</Link>
       </div>
     );
   }
@@ -243,8 +246,10 @@ const QuizInterface: React.FC = () => {
               <p className="text-gray-500 mt-2">{score} out of {questions.length} questions correct</p>
             </div>
 
+            <AdUnit slot="QUIZ_RESULT_AD" />
+
             <div className="flex gap-4 justify-center">
-              <Link to="/practice" className="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+              <Link to="/past-questions" className="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
                 Back to Hub
               </Link>
               <button
@@ -305,7 +310,7 @@ const QuizInterface: React.FC = () => {
     <div className="max-w-3xl mx-auto py-6">
       <div className="mb-6 flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-bold text-gray-500">{branch} Past Questions</h2>
+          <h2 className="text-lg font-bold text-gray-500">{branch} Past Question</h2>
           <p className="text-xs text-gray-400">Question {currentQuestion + 1} of {questions.length}</p>
         </div>
         <div className="flex items-center gap-3">

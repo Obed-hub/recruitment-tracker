@@ -43,12 +43,35 @@ export const onAdminAuthStateChanged = (cb: (user: User | null) => void) =>
         cb(user && user.uid === ADMIN_UID ? user : null);
     });
 
+// --- MAPPING FOR TRANSITION ---
+const SLUG_TO_LEGACY: Record<string, string> = {
+    'army-dssc': '1',
+    'navy-batch': '2',
+    'naf-bmtc': '3',
+    'police-constable': '5',
+    'nscdc-general': '6',
+    'frsc-recruitment': '7',
+    'fire-inspector': '8',
+    'immigration-inspector': '9',
+    'customs-supplementary': '10',
+    'efcc-investigator': '11',
+    'fcsc-entry-level': '12',
+    'nnpc-graduate': '13',
+    'cbn-entry-level': '14',
+    'nimc-staff': '15',
+    'ncc-entry-level': '16',
+    'nitda-it-officer': '17',
+    'faan-entry-level': '18',
+    'nimasa-marine': '19',
+    'nafdac-regulatory': '20'
+};
+
 // --- STATIC DATA FOR MERGING ---
 // We keep this here so the UI has rich content (descriptions, etc.) while status comes from Firebase.
 
 const STATIC_DATA: RecruitmentUpdate[] = [
     {
-        id: '1',
+        id: 'army-dssc',
         branch: 'Army',
         title: 'Nigerian Army DSSC 29',
         category: 'DSSC',
@@ -62,7 +85,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         exam_centers: []
     },
     {
-        id: '2',
+        id: 'navy-batch',
         branch: 'Navy',
         title: 'Nigerian Navy Batch 38 Recruitment',
         category: 'Regular Recruit',
@@ -76,17 +99,20 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         exam_centers: []
     },
     {
-        id: '3',
+        id: 'naf-bmtc',
         branch: 'Air Force',
         title: 'NAF BMTC 45 Recruitment',
         category: 'Regular Recruit',
         status: 'Closed',
         deadline_date: '2025-11-01',
         portal_url: 'https://nafrecruitment.airforce.mil.ng',
-        updated_at: '2025-11-02T09:00:00Z'
+        updated_at: '2025-11-02T09:00:00Z',
+        description: 'The Nigerian Air Force (NAF) Basic Military Training Course (BMTC) is a recruitment program for airmen and airwomen to serve in various technical and non-technical roles.',
+        requirements: ['Nigerian citizen by birth.', 'Age 18-22 (non-trades) or 18-25 (trades).', 'Height: 1.66m (M), 1.63m (F).', 'Primary school leaving certificate.', '5 Credits SSCE including English.'],
+        application_process: ['Apply online at nafrecruitment.airforce.mil.ng.', 'Print application and parent consent forms.', 'Attend recruitment interview exercise across various centers.']
     },
     {
-        id: '5',
+        id: 'police-constable',
         branch: 'Police',
         title: 'Nigeria Police Force Constable Recruitment 2026',
         category: 'Constable',
@@ -99,7 +125,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         application_process: ['Visit portal.', 'Use NIN to register.']
     },
     {
-        id: '6',
+        id: 'nscdc-general',
         branch: 'Civil Defence',
         title: 'NSCDC 2026 General Recruitment',
         category: 'Regular Recruit',
@@ -112,17 +138,20 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         application_process: ['Apply via CDCFIB portal.']
     },
     {
-        id: '7',
+        id: 'frsc-recruitment',
         branch: 'FRSC',
         title: 'Federal Road Safety Corps Recruitment',
         category: 'Cadet',
         status: 'Closed',
         deadline_date: '2025-10-10',
         portal_url: 'https://www.frsc.gov.ng',
-        updated_at: '2025-10-12T00:00:00Z'
+        updated_at: '2025-10-12T00:00:00Z',
+        description: 'Recruitment into the Federal Road Safety Corps (FRSC) for Officer Cadets and Road Marshal Assistants to enhance traffic management and road safety.',
+        requirements: ['Nigerian citizen.', 'Age: 18-30 years.', 'Degree or SSCE based on cadre.', 'Height: 1.70m (M), 1.64m (F).', 'Must be medically fit.'],
+        application_process: ['Visit frsc.gov.ng.', 'Complete online application.', 'Print summary page.', 'Attend screening with original credentials.']
     },
     {
-        id: '8',
+        id: 'fire-inspector',
         branch: 'Fire Service',
         title: 'Federal Fire Service Recruitment 2026',
         category: 'Inspector',
@@ -135,7 +164,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         application_process: ['Submit application online.']
     },
     {
-        id: '9',
+        id: 'immigration-inspector',
         branch: 'Immigration',
         title: 'Nigeria Immigration Service (NIS) Recruitment 2026',
         category: 'Inspector',
@@ -148,19 +177,22 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         application_process: ['Visit CDCFIB portal.']
     },
     {
-        id: '10',
+        id: 'customs-supplementary',
         branch: 'Customs',
         title: 'Nigeria Customs Service Supplementary Recruitment',
         category: 'Regular Recruit',
         status: 'Closed',
         deadline_date: '2025-12-01',
         portal_url: 'https://vacancy.customs.gov.ng',
-        updated_at: '2025-12-02T09:00:00Z'
+        updated_at: '2025-12-02T09:00:00Z',
+        description: 'Supplementary recruitment into the Nigeria Customs Service (NCS) to fill vacancies in various cadres including Superintendent and Customs Assistant.',
+        requirements: ['Nigerian citizen.', 'Age 18-35 years.', 'Qualification matching the cadre (Degree/HND/SSCE).', 'Valid NIN.', 'Physical and medical fitness.'],
+        application_process: ['Visit NCS portal.', 'Submit application and credentials.', 'Attend aptitude test if shortlisted.', 'Oral interview followed by training.']
     },
 
     // ── Law Enforcement ──────────────────────────────────────────────────────
     {
-        id: '11',
+        id: 'efcc-investigator',
         branch: 'EFCC',
         title: 'EFCC Investigator / Analyst Recruitment 2026',
         category: 'Entry Level',
@@ -179,7 +211,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
 
     // ── Civil Service ─────────────────────────────────────────────────────────
     {
-        id: '12',
+        id: 'fcsc-entry-level',
         branch: 'FCSC',
         title: 'Federal Civil Service Commission (FCSC) Recruitment 2026',
         category: 'Entry Level',
@@ -198,7 +230,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
 
     // ── Oil, Gas & Energy ─────────────────────────────────────────────────────
     {
-        id: '13',
+        id: 'nnpc-graduate',
         branch: 'NNPC',
         title: 'NNPC Limited Graduate Trainee Recruitment 2026',
         category: 'Graduate Trainee',
@@ -217,7 +249,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
 
     // ── Finance & Banking ─────────────────────────────────────────────────────
     {
-        id: '14',
+        id: 'cbn-entry-level',
         branch: 'CBN',
         title: 'Central Bank of Nigeria (CBN) Entry-Level Recruitment 2026',
         category: 'Entry Level',
@@ -236,7 +268,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
 
     // ── Tech & Identity ───────────────────────────────────────────────────────
     {
-        id: '15',
+        id: 'nimc-staff',
         branch: 'NIMC',
         title: 'NIMC Staff Recruitment 2026',
         category: 'Entry Level',
@@ -252,7 +284,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         ]
     },
     {
-        id: '16',
+        id: 'ncc-entry-level',
         branch: 'NCC',
         title: 'Nigerian Communications Commission (NCC) Recruitment 2026',
         category: 'Entry Level',
@@ -268,7 +300,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         ]
     },
     {
-        id: '17',
+        id: 'nitda-it-officer',
         branch: 'NITDA',
         title: 'NITDA IT Officer Recruitment 2026',
         category: 'Entry Level',
@@ -286,7 +318,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
 
     // ── Transport & Maritime ──────────────────────────────────────────────────
     {
-        id: '18',
+        id: 'faan-entry-level',
         branch: 'FAAN',
         title: 'Federal Airports Authority of Nigeria (FAAN) Recruitment 2026',
         category: 'Entry Level',
@@ -303,7 +335,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         ]
     },
     {
-        id: '19',
+        id: 'nimasa-marine',
         branch: 'NIMASA',
         title: 'NIMASA Marine Officer Recruitment 2026',
         category: 'Entry Level',
@@ -322,7 +354,7 @@ const STATIC_DATA: RecruitmentUpdate[] = [
 
     // ── Health & Food Safety ──────────────────────────────────────────────────
     {
-        id: '20',
+        id: 'nafdac-regulatory',
         branch: 'NAFDAC',
         title: 'NAFDAC Regulatory Officer Recruitment 2026',
         category: 'Entry Level',
@@ -372,7 +404,8 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
 
         // Merge live Firebase data with rich static data (descriptions, requirements, etc.)
         const mergedData = STATIC_DATA.map(staticItem => {
-            const liveItem = liveDataMap[staticItem.id];
+            const legacyId = SLUG_TO_LEGACY[staticItem.id];
+            const liveItem = liveDataMap[staticItem.id] || (legacyId ? liveDataMap[legacyId] : null);
             if (liveItem) {
                 return {
                     ...staticItem,
@@ -412,15 +445,16 @@ export const subscribeToRecruitmentById = (id: string, callback: (data: Recruitm
     // Initial callback with static data
     if (staticItem) callback(staticItem);
 
-    const portalRef = ref(db, `portal_monitor/${id}`);
+    // Subscribe to both potential keys in Firebase
+    const portalRef = ref(db, 'portal_monitor');
     const unsubscribe = onValue(portalRef, (snapshot) => {
-        const liveItem = snapshot.val();
-        if (!liveItem) {
-            // Keep existing static if no firebase data
-            return;
-        }
+        const firebaseData = snapshot.val();
+        if (!firebaseData || !staticItem) return;
 
-        if (staticItem) {
+        const legacyId = SLUG_TO_LEGACY[id];
+        const liveItem = firebaseData[id] || (legacyId ? firebaseData[legacyId] : null);
+
+        if (liveItem) {
             callback({
                 ...staticItem,
                 title: liveItem.title || staticItem.title,

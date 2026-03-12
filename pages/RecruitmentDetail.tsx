@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, ListOrdered, Shield, MapPin, Phone } from 'lucide-react';
+import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight } from 'lucide-react';
 import { subscribeToRecruitmentById } from '../services/firebase';
 import { RecruitmentUpdate } from '../types';
 import SEO from '../components/SEO';
@@ -74,10 +74,10 @@ const RecruitmentDetail: React.FC = () => {
       </Link>
 
       <SEO
-        title={`${recruitment.title} - How to Apply`}
-        description={`Complete guide on how to apply for the ${recruitment.title}. Check requirements, deadline, and portal link for ${recruitment.branch} recruitment.`}
+        title={`${recruitment.title} ${new Date().getFullYear()} - Application Guide`}
+        description={`Wondering how to apply for ${recruitment.title}? Check current status (${recruitment.status}), requirements, application deadline (${new Date(recruitment.deadline_date).toLocaleDateString()}), and access the official portal for ${recruitment.branch} recruitment.`}
         canonical={`/recruitments/${id}`}
-        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'tracker', recruitment.category]}
+        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'tracker', recruitment.category, `${recruitment.branch} recruitment 2026`, 'job application Nigeria']}
       />
       <RecruitmentSchema recruitment={recruitment} />
 
@@ -160,6 +160,34 @@ const RecruitmentDetail: React.FC = () => {
                 ) : (
                   <p className="text-gray-500 italic">Please refer to the official portal for application steps.</p>
                 )}
+              </div>
+            </section>
+
+            <section className="bg-gradient-to-br from-military-blue to-blue-900 rounded-xl p-6 text-white shadow-lg overflow-hidden relative">
+              <div className="absolute right-0 top-0 opacity-10">
+                <BrainCircuit className="w-32 h-32" />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold mb-3 flex items-center">
+                  <BrainCircuit className="w-6 h-6 mr-2 text-yellow-400" />
+                  Free Past Questions Preview
+                </h3>
+                <p className="text-blue-100 mb-4 text-sm leading-relaxed">
+                  Prepare for the {recruitment.branch} recruitment aptitude test with our curated set of past questions and answers.
+                </p>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-4 border border-white/10">
+                  <div className="flex items-center justify-between text-xs mb-2 text-blue-200 uppercase tracking-tighter">
+                    <span>Sample Question</span>
+                    <span>Mathematics / General Knowledge</span>
+                  </div>
+                  <p className="text-sm font-medium">Which of these is the primary role of the {recruitment.branch} in national security?</p>
+                </div>
+                <Link
+                  to={`/past-questions/${recruitment.branch}`}
+                  className="inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-military-blue font-bold rounded-lg transition-all transform hover:scale-105"
+                >
+                  Start Practicing Now <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </div>
             </section>
 

@@ -16,7 +16,7 @@ async function generateSitemap() {
             '',
             '/recruitments',
             '/eligibility',
-            '/practice',
+            '/past-questions',
             '/about',
             '/contact',
             '/privacy',
@@ -35,10 +35,52 @@ async function generateSitemap() {
             xml += `  </url>\n`;
         });
 
+        // Branches for Past Questions
+        const branches = [
+            'Army', 'Navy', 'Air Force', 'NDA', 'Police',
+            'Civil Defence', 'Immigration', 'Customs', 'FRSC',
+            'Fire Service', 'General'
+        ];
+
+        branches.forEach(branch => {
+            xml += `  <url>\n`;
+            xml += `    <loc>${SITE_URL}/past-questions/${branch}</loc>\n`;
+            xml += `    <changefreq>weekly</changefreq>\n`;
+            xml += `    <priority>0.7</priority>\n`;
+            xml += `  </url>\n`;
+        });
+
+        // Mappings for recruitment slugs
+        const slugMapping = {
+            '1': 'army-dssc',
+            '2': 'navy-batch',
+            '3': 'naf-bmtc',
+            '5': 'police-constable',
+            '6': 'nscdc-general',
+            '7': 'frsc-recruitment',
+            '8': 'fire-inspector',
+            '9': 'immigration-inspector',
+            '10': 'customs-supplementary',
+            '11': 'efcc-investigator',
+            '12': 'fcsc-entry-level',
+            '13': 'nnpc-graduate',
+            '14': 'cbn-entry-level',
+            '15': 'nimc-staff',
+            '16': 'ncc-entry-level',
+            '17': 'nitda-it-officer',
+            '18': 'faan-entry-level',
+            '19': 'nimasa-marine',
+            '20': 'nafdac-regulatory'
+        };
+
         // Add dynamic recruitment routes
         ids.forEach(id => {
+            // Skip if no data for this index (e.g. null in array)
+            if (!data[id]) return;
+            
+            const slug = slugMapping[id] || id;
             xml += `  <url>\n`;
-            xml += `    <loc>${SITE_URL}/recruitments/${id}</loc>\n`;
+            xml += `    <loc>${SITE_URL}/recruitments/${slug}</loc>\n`;
             xml += `    <changefreq>weekly</changefreq>\n`;
             xml += `    <priority>0.7</priority>\n`;
             xml += `  </url>\n`;

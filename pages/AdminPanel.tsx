@@ -20,148 +20,148 @@ const BRANCHES = [
 ];
 
 const STATIC_PORTALS = [
-    { id: '1', name: 'Nigerian Army', url: 'https://recruitment.army.mil.ng' },
-    { id: '2', name: 'Nigerian Navy', url: 'https://joinnigeriannavy.com' },
-    { id: '3', name: 'Nigerian Air Force', url: 'https://nafrecruitment.airforce.mil.ng' },
-    { id: '5', name: 'Nigeria Police Force', url: 'https://apply.policerecruitment.gov.ng' },
-    { id: '6', name: 'CDCFIB (Civil Defence / Correctional / Fire / Imm.)', url: 'https://cdcfib.career' },
-    { id: '7', name: 'Federal Road Safety Corps (FRSC)', url: 'https://recruitment.frsc.gov.ng' },
-    { id: '8', name: 'Federal Fire Service', url: 'https://cdcfib.career' },
-    { id: '9', name: 'Nigeria Immigration Service', url: 'https://cdcfib.career' },
-    { id: '10', name: 'Nigeria Customs Service (NCS)', url: 'https://vacancy.customs.gov.ng' },
-    { id: '11', name: 'EFCC', url: 'https://efcc.gov.ng/efcc/careers' },
-    { id: '12', name: 'Federal Civil Service Commission (FCSC)', url: 'https://recruitment.fedcivilservice.gov.ng' },
-    { id: '13', name: 'NNPC Limited', url: 'https://careers.nnpcgroup.com' },
-    { id: '14', name: 'Central Bank of Nigeria (CBN)', url: 'https://www.cbn.gov.ng/Recruitment' },
-    { id: '15', name: 'NIMC', url: 'https://nimc.gov.ng/careers' },
-    { id: '16', name: 'Nigerian Communications Commission (NCC)', url: 'https://www.ncc.gov.ng/careers-ncc' },
-    { id: '17', name: 'NITDA', url: 'https://nitda.gov.ng' },
-    { id: '18', name: 'Federal Airports Authority (FAAN)', url: 'https://faan.gov.ng/career' },
-    { id: '19', name: 'NIMASA', url: 'https://nimasa.gov.ng' },
-    { id: '20', name: 'NAFDAC', url: 'https://nafdac.gov.ng' },
+    { id: 'army-dssc', name: 'Nigerian Army', url: 'https://recruitment.army.mil.ng' },
+    { id: 'navy-batch', name: 'Nigerian Navy', url: 'https://joinnigeriannavy.com' },
+    { id: 'naf-bmtc', name: 'Nigerian Air Force', url: 'https://nafrecruitment.airforce.mil.ng' },
+    { id: 'police-constable', name: 'Nigeria Police Force', url: 'https://apply.policerecruitment.gov.ng' },
+    { id: 'nscdc-general', name: 'CDCFIB (Civil Defence / Correctional / Fire / Imm.)', url: 'https://cdcfib.career' },
+    { id: 'frsc-recruitment', name: 'Federal Road Safety Corps (FRSC)', url: 'https://recruitment.frsc.gov.ng' },
+    { id: 'fire-inspector', name: 'Federal Fire Service', url: 'https://cdcfib.career' },
+    { id: 'immigration-inspector', name: 'Nigeria Immigration Service', url: 'https://cdcfib.career' },
+    { id: 'customs-supplementary', name: 'Nigeria Customs Service (NCS)', url: 'https://vacancy.customs.gov.ng' },
+    { id: 'efcc-investigator', name: 'EFCC', url: 'https://efcc.gov.ng/efcc/careers' },
+    { id: 'fcsc-entry-level', name: 'Federal Civil Service Commission (FCSC)', url: 'https://recruitment.fedcivilservice.gov.ng' },
+    { id: 'nnpc-graduate', name: 'NNPC Limited', url: 'https://careers.nnpcgroup.com' },
+    { id: 'cbn-entry-level', name: 'Central Bank of Nigeria (CBN)', url: 'https://www.cbn.gov.ng/Recruitment' },
+    { id: 'nimc-staff', name: 'NIMC', url: 'https://nimc.gov.ng/careers' },
+    { id: 'ncc-entry-level', name: 'Nigerian Communications Commission (NCC)', url: 'https://www.ncc.gov.ng/careers-ncc' },
+    { id: 'nitda-it-officer', name: 'NITDA', url: 'https://nitda.gov.ng' },
+    { id: 'faan-entry-level', name: 'Federal Airports Authority (FAAN)', url: 'https://faan.gov.ng/career' },
+    { id: 'nimasa-marine', name: 'NIMASA', url: 'https://nimasa.gov.ng' },
+    { id: 'nafdac-regulatory', name: 'NAFDAC', url: 'https://nafdac.gov.ng' },
 ];
 
 // ─── Recruitment seed data (mirrors mockFirebase IDs) ──────────────────────
 const RECRUITMENT_SEED = [
     // ── Military ──────────────────────────────────────────────────────────────
     {
-        id: '1', branch: 'Army', title: 'Nigerian Army DSSC 29 Recruitment',
+        id: 'army-dssc', branch: 'Army', title: 'Nigerian Army DSSC 29 Recruitment',
         status: 'Open' as const, deadline: '2026-04-30',
         portal: 'https://recruitment.army.mil.ng',
         description: 'Direct Short Service Commission (DSSC 29) for graduates. 5-year commission with possibility of conversion to Regular Commission.',
     },
     {
-        id: '2', branch: 'Navy', title: 'Nigerian Navy Batch 38 Recruitment',
+        id: 'navy-batch', branch: 'Navy', title: 'Nigerian Navy Batch 38 Recruitment',
         status: 'Shortlist Out' as const, deadline: '2026-01-31',
         portal: 'https://joinnigeriannavy.com',
         description: 'Batch 38 Regular Recruit Intake. Basic training at NNBTS Onne, Rivers State. Shortlist has been published — check the Shortlists section.',
     },
     {
-        id: '3', branch: 'Air Force', title: 'Nigerian Air Force BMTC 45 Recruitment',
+        id: 'naf-bmtc', branch: 'Air Force', title: 'Nigerian Air Force BMTC 45 Recruitment',
         status: 'Open' as const, deadline: '2026-05-15',
         portal: 'https://nafrecruitment.airforce.mil.ng',
         description: 'Basic Military Training Course (BMTC) 45. 12-week trade training at NAF Base Kaduna. Open to all 36 states + FCT.',
     },
     // ── Paramilitary & Security ───────────────────────────────────────────────
     {
-        id: '5', branch: 'Police', title: 'Nigeria Police Force Constable Recruitment 2026',
+        id: 'police-constable', branch: 'Police', title: 'Nigeria Police Force Constable Recruitment 2026',
         status: 'Open' as const, deadline: '2026-04-15',
         portal: 'https://policerecruitment.gov.ng',
         description: 'Enlistment as Police Constables. 6 months training at Police Colleges. State-quota based across all 36 states + FCT.',
     },
     {
-        id: '6', branch: 'Civil Defence', title: 'NSCDC 2026 General Recruitment',
+        id: 'nscdc-general', branch: 'Civil Defence', title: 'NSCDC 2026 General Recruitment',
         status: 'Open' as const, deadline: '2026-05-01',
         portal: 'https://recruitment.cdcfib.gov.ng',
         description: 'CDCFIB recruitment into the Nigeria Security and Civil Defence Corps. Paramilitary training at NSCDC Training College.',
     },
     {
-        id: '7', branch: 'FRSC', title: 'FRSC Cadet Corps Marshal Recruitment 2026',
+        id: 'frsc-recruitment', branch: 'FRSC', title: 'FRSC Cadet Corps Marshal Recruitment 2026',
         status: 'Open' as const, deadline: '2026-04-20',
         portal: 'https://www.frsc.gov.ng',
         description: 'Cadet Corps Marshal intake for university graduates and HND holders. Road traffic administration and safety management.',
     },
     {
-        id: '8', branch: 'Fire Service', title: 'Federal Fire Service Recruitment 2026',
+        id: 'fire-inspector', branch: 'Fire Service', title: 'Federal Fire Service Recruitment 2026',
         status: 'Open' as const, deadline: '2026-05-30',
         portal: 'https://recruitment.cdcfib.gov.ng',
         description: 'Junior (Firefighter) and Senior (Inspector) cadre recruitment via CDCFIB. Fire prevention, suppression, and rescue operations.',
     },
     {
-        id: '9', branch: 'Immigration', title: 'Nigeria Immigration Service Recruitment 2026',
+        id: 'immigration-inspector', branch: 'Immigration', title: 'Nigeria Immigration Service Recruitment 2026',
         status: 'Open' as const, deadline: '2026-06-01',
         portal: 'https://recruitment.cdcfib.gov.ng',
         description: 'CDCFIB recruitment into NIS. Inspector and Assistant Inspector cadres. Border management, anti-trafficking and passport issuance.',
     },
     {
-        id: '10', branch: 'Customs', title: 'Nigeria Customs Service Recruitment 2026',
+        id: 'customs-supplementary', branch: 'Customs', title: 'Nigeria Customs Service Recruitment 2026',
         status: 'Open' as const, deadline: '2026-04-30',
         portal: 'https://vacancy.customs.gov.ng',
         description: 'Customs Assistant and Inspector cadres plus professional/technical roles. Revenue assessment, border security, and anti-smuggling.',
     },
     // ── Law Enforcement ───────────────────────────────────────────────────────
     {
-        id: '11', branch: 'EFCC', title: 'EFCC Investigator / Analyst Recruitment 2026',
+        id: 'efcc-investigator', branch: 'EFCC', title: 'EFCC Investigator / Analyst Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-03-31',
         portal: 'https://efcc.gov.ng/efcc/careers',
         description: 'The Economic and Financial Crimes Commission (EFCC) recruits Investigators, Financial Analysts, Legal Officers, and ICT Officers. Positions require relevant degree and NYSC certificate.',
     },
     // ── Civil Service ─────────────────────────────────────────────────────────
     {
-        id: '12', branch: 'FCSC', title: 'Federal Civil Service Commission (FCSC) Recruitment 2026',
+        id: 'fcsc-entry-level', branch: 'FCSC', title: 'Federal Civil Service Commission (FCSC) Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-04-30',
         portal: 'https://recruitment.fedcivilservice.gov.ng',
         description: 'The FCSC conducts batch recruitment into Federal Ministries, Departments and Agencies (MDAs). Positions range from GL 07 to GL 14 across engineering, administration, science, health and social work.',
     },
     // ── Oil, Gas & Energy ─────────────────────────────────────────────────────
     {
-        id: '13', branch: 'NNPC', title: 'NNPC Limited Graduate Trainee Recruitment 2026',
+        id: 'nnpc-graduate', branch: 'NNPC', title: 'NNPC Limited Graduate Trainee Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-03-15',
         portal: 'https://careers.nnpcgroup.com',
         description: 'NNPC Limited invites applications from exceptional graduates for its Graduate Trainee Programme. Disciplines include Engineering, Geosciences, Finance, Law, IT, and HSE. Minimum 2:2 degree required.',
     },
     // ── Finance & Banking ─────────────────────────────────────────────────────
     {
-        id: '14', branch: 'CBN', title: 'Central Bank of Nigeria (CBN) Entry-Level Recruitment 2026',
+        id: 'cbn-entry-level', branch: 'CBN', title: 'Central Bank of Nigeria (CBN) Entry-Level Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-02-28',
         portal: 'https://www.cbn.gov.ng/Recruitment',
         description: 'The CBN recruits entry-level economists, accountants, IT specialists and legal officers annually. A minimum of Second Class Upper (2:1) from an accredited institution is required along with NYSC discharge.',
     },
     // ── Tech & Identity ───────────────────────────────────────────────────────
     {
-        id: '15', branch: 'NIMC', title: 'NIMC Staff Recruitment 2026',
+        id: 'nimc-staff', branch: 'NIMC', title: 'NIMC Staff Recruitment 2026',
         status: 'Unknown' as const, deadline: '2026-06-30',
         portal: 'https://nimc.gov.ng/careers',
         description: 'The National Identity Management Commission (NIMC) recruits IT officers, data analysts, registration officers, and administrative staff to support its national identity card and NIN management mandate.',
     },
     {
-        id: '16', branch: 'NCC', title: 'Nigerian Communications Commission (NCC) Recruitment 2026',
+        id: 'ncc-entry-level', branch: 'NCC', title: 'Nigerian Communications Commission (NCC) Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-03-30',
         portal: 'https://www.ncc.gov.ng/careers-ncc',
         description: 'The NCC recruits Telecom Engineers, Legal Officers, Economists, ICT Specialists and Administrative Officers for its regulatory functions in the Nigerian telecommunications sector.',
     },
     {
-        id: '17', branch: 'NITDA', title: 'NITDA IT Officer Recruitment 2026',
+        id: 'nitda-it-officer', branch: 'NITDA', title: 'NITDA IT Officer Recruitment 2026',
         status: 'Unknown' as const, deadline: '2026-06-30',
         portal: 'https://nitda.gov.ng',
         description: 'The National Information Technology Development Agency (NITDA) recruits software developers, cybersecurity analysts, data scientists and policy officers to drive Nigeria\'s digital economy agenda.',
     },
     // ── Transport & Maritime ──────────────────────────────────────────────────
     {
-        id: '18', branch: 'FAAN', title: 'Federal Airports Authority of Nigeria (FAAN) Recruitment 2026',
+        id: 'faan-entry-level', branch: 'FAAN', title: 'Federal Airports Authority of Nigeria (FAAN) Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-04-15',
         portal: 'https://faan.gov.ng/career',
         description: 'FAAN recruits Aviation Security Officers, Air Traffic Controllers, Engineers, Firefighters, and Administrative staff for operations across all international and domestic airports in Nigeria.',
     },
     {
-        id: '19', branch: 'NIMASA', title: 'NIMASA Marine Officer Recruitment 2026',
+        id: 'nimasa-marine', branch: 'NIMASA', title: 'NIMASA Marine Officer Recruitment 2026',
         status: 'Unknown' as const, deadline: '2026-05-31',
         portal: 'https://nimasa.gov.ng',
         description: 'The Nigerian Maritime Administration and Safety Agency (NIMASA) recruits Marine Surveyors, Safety Officers, Legal Professionals, and ICT Officers to enforce maritime laws and promote shipping.',
     },
     // ── Health & Food Safety ──────────────────────────────────────────────────
     {
-        id: '20', branch: 'NAFDAC', title: 'NAFDAC Regulatory Officer Recruitment 2026',
+        id: 'nafdac-regulatory', branch: 'NAFDAC', title: 'NAFDAC Regulatory Officer Recruitment 2026',
         status: 'Closed' as const, deadline: '2026-03-31',
         portal: 'https://nafdac.gov.ng',
         description: 'The National Agency for Food and Drug Administration and Control (NAFDAC) recruits Pharmacists, Food Scientists, Chemists, Microbiologists, and Administrative Officers to regulate food and drug safety.',
@@ -582,6 +582,8 @@ const AdminPanel: React.FC = () => {
             if (firebasePortals.length === 0) return;
             const fbMap: Record<string, any> = {};
             firebasePortals.forEach((fp: any) => { fbMap[fp.id] = fp; });
+
+            // Sync Portals tab
             setPortals(prev => prev.map(p => {
                 const fb = fbMap[p.id];
                 if (fb && !p.dirty) {
@@ -591,10 +593,27 @@ const AdminPanel: React.FC = () => {
                         recruitmentStatus: fb.recruitmentStatus || p.recruitmentStatus,
                         shortlistDetected: fb.shortlistDetected ?? p.shortlistDetected,
                         lastChecked: fb.lastChecked,
+                        url: fb.url || p.url, // Sync the URL field
                         notes: fb.notes || p.notes,
                     };
                 }
                 return p;
+            }));
+
+            // Sync Recruitments tab
+            setRecruitments(prev => prev.map(r => {
+                const fb = fbMap[r.id];
+                if (fb && !r.dirty) {
+                    return {
+                        ...r,
+                        title: fb.title || r.title,
+                        portal: fb.url || r.portal,
+                        deadline: fb.deadline_date || r.deadline,
+                        description: fb.description || r.description,
+                        status: fb.recruitmentStatus || r.status,
+                    };
+                }
+                return r;
             }));
         });
         return () => unsubscribe();
@@ -668,6 +687,7 @@ const AdminPanel: React.FC = () => {
             // Save to Firebase portal_monitor node (updates recruitmentStatus visible on dashboard)
             await updatePortalStatus(rec.id, {
                 title: rec.title,
+                url: rec.portal,
                 deadline_date: rec.deadline,
                 description: rec.description,
                 status: 'online',

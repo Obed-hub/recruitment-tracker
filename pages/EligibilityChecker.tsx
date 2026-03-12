@@ -3,6 +3,7 @@ import { Ruler, User, BookOpen, Check, XCircle, RefreshCw, ChevronRight, ArrowRi
 import { useNavigate } from 'react-router-dom';
 import { UserEligibility, Grade } from '../types';
 import SEO from '../components/SEO';
+import AdUnit from '../components/AdUnit';
 
 interface Result {
   qualified: boolean;
@@ -478,7 +479,7 @@ const EligibilityChecker: React.FC = () => {
         {result?.qualified ? 'Eligibility Confirmed' : 'Not Eligible'}
       </h3>
 
-      {/* Messages */}
+      {/* Analysis Report */}
       <div className={`p-5 rounded-xl text-left mb-8 border ${result?.qualified ? 'bg-green-50 border-green-100' : 'bg-red-50 border-red-100'}`}>
         <h4 className="font-bold mb-2 flex items-center gap-2">
           {result?.qualified ? <Stethoscope className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
@@ -493,6 +494,8 @@ const EligibilityChecker: React.FC = () => {
           ))}
         </ul>
       </div>
+
+      <AdUnit slot="ELIGIBILITY_RESULT_AD" />
 
       {result?.qualified && (
         <div className="mb-8">
@@ -588,6 +591,9 @@ const EligibilityChecker: React.FC = () => {
           )}
         </div>
       </div>
+
+      <AdUnit slot="ELIGIBILITY_FOOTER_AD" />
+
       <div className="mt-12 bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
           <Activity className="w-5 h-5 text-military-green" />

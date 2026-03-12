@@ -4,6 +4,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { subscribeToRecruitments } from '../services/firebase';
 import { RecruitmentUpdate, Branch, RecruitmentCategory } from '../types';
 import SEO from '../components/SEO';
+import AdUnit from '../components/AdUnit';
 
 const RecruitmentFilter: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -158,6 +159,9 @@ const RecruitmentFilter: React.FC = () => {
         </div>
       </div>
 
+      {/* Banner Ad below filters */}
+      <AdUnit slot="FILTER_PAGE_BANNER_AD" />
+
       {/* List */}
       <div className="space-y-4">
         {loading ? (
@@ -169,63 +173,67 @@ const RecruitmentFilter: React.FC = () => {
             <p className="text-gray-500">Try adjusting your filters.</p>
           </div>
         ) : (
-          filteredRecruitments.map((rec) => {
+          filteredRecruitments.map((rec, index) => {
             const daysLeft = getDaysRemaining(rec.deadline_date);
             return (
-              <div key={rec.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row">
-                <div className={`w-full md:w-2 ${getBranchColor(rec.branch)}`}></div>
+              <React.Fragment key={rec.id}>
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+                  <div className={`w-full md:w-2 ${getBranchColor(rec.branch)}`}></div>
 
-                <div className="p-6 flex-grow">
-                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className={`h-2.5 w-2.5 rounded-full ${getStatusColor(rec.status)}`}></span>
-                        <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">{rec.branch} • {rec.category}</span>
-                      </div>
-                      <Link to={`/recruitments/${rec.id}`} className="hover:text-military-blue transition-colors">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{rec.title}</h3>
-                      </Link>
-
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>Deadline: {new Date(rec.deadline_date).toLocaleDateString()}</span>
+                  <div className="p-6 flex-grow">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                      <div>
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className={`h-2.5 w-2.5 rounded-full ${getStatusColor(rec.status)}`}></span>
+                          <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">{rec.branch} • {rec.category}</span>
                         </div>
+                        <Link to={`/recruitments/${rec.id}`} className="hover:text-military-blue transition-colors">
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">{rec.title}</h3>
+                        </Link>
 
-                        {rec.status === 'Open' && daysLeft >= 0 && (
-                          <div className={`flex items-center gap-1 font-semibold px-2 py-0.5 rounded border ${daysLeft <= 7 ? 'text-red-700 bg-red-50 border-red-200 animate-pulse' : 'text-orange-700 bg-orange-50 border-orange-200'
-                            }`}>
-                            <Clock className="w-3.5 h-3.5" />
-                            <span>
-                              {daysLeft === 0 ? 'Deadline Today' : `${daysLeft} Days Remaining`}
-                            </span>
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <span>Deadline: {new Date(rec.deadline_date).toLocaleDateString()}</span>
                           </div>
-                        )}
-                      </div>
-                    </div>
 
-                    <div className="flex flex-col gap-2">
-                      <span className={`px-4 py-1.5 rounded text-center text-sm font-bold border ${rec.status === 'Open' ? 'bg-green-50 text-green-700 border-green-200' :
-                        rec.status === 'Shortlist Out' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 'bg-gray-100 text-gray-600'
-                        }`}>
-                        {rec.status}
-                      </span>
-                      <Link
-                        to={`/recruitments/${rec.id}`}
-                        className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors"
-                      >
-                        View Details <Info className="w-3 h-3" />
-                      </Link>
-                      <a
-                        href={rec.portal_url}
-                        className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
-                      >
-                        Visit Portal <ExternalLink className="w-3 h-3" />
-                      </a>
+                          {rec.status === 'Open' && daysLeft >= 0 && (
+                            <div className={`flex items-center gap-1 font-semibold px-2 py-0.5 rounded border ${daysLeft <= 7 ? 'text-red-700 bg-red-50 border-red-200 animate-pulse' : 'text-orange-700 bg-orange-50 border-orange-200'
+                              }`}>
+                              <Clock className="w-3.5 h-3.5" />
+                              <span>
+                                {daysLeft === 0 ? 'Deadline Today' : `${daysLeft} Days Remaining`}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-2">
+                        <span className={`px-4 py-1.5 rounded text-center text-sm font-bold border ${rec.status === 'Open' ? 'bg-green-50 text-green-700 border-green-200' :
+                          rec.status === 'Shortlist Out' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 'bg-gray-100 text-gray-600'
+                          }`}>
+                          {rec.status}
+                        </span>
+                        <Link
+                          to={`/recruitments/${rec.id}`}
+                          className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors"
+                        >
+                          View Details <Info className="w-3 h-3" />
+                        </Link>
+                        <a
+                          href={rec.portal_url}
+                          className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
+                        >
+                          Visit Portal <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
                     </div>
                   </div>
+                  {/* Insert Ad after the first 4 items */}
+                  {(index + 1) === 4 && <AdUnit slot="FILTER_PAGE_LIST_AD" />}
                 </div>
-              </div>
+              </React.Fragment>
             );
           })
         )}

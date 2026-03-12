@@ -20,8 +20,9 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
     const siteName = 'Nigeria Recruitment Tracker';
     const fullTitle = title ? `${title} | ${siteName}` : siteName;
-    const siteUrl = window.location.origin;
-    const fullCanonical = canonical ? `${siteUrl}${canonical}` : window.location.href;
+    const siteUrl = 'https://recruitmenttracker.com.ng';
+    const cleanPath = window.location.pathname.replace(/\/$/, '');
+    const fullCanonical = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${cleanPath}`;
 
     const defaultDescription = 'Track latest Nigeria recruitment updates, check eligibility, and prepare for exams.';
 
