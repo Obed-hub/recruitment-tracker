@@ -8,6 +8,8 @@ import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
 import { WebSiteSchema, OrganizationSchema, FAQPageSchema } from '../components/StructuredData';
 import { GUIDES } from '../services/mockGuides';
+import { BLOG_ARTICLES } from '../services/mockBlog';
+
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const getStyle = () => {
@@ -75,12 +77,39 @@ const Dashboard: React.FC = () => {
     return updates[0]; // Assuming sorted by relevance/date in backend
   };
 
+  const getHubLink = (branch: string, defaultId: string) => {
+    switch (branch) {
+      case 'Army': return '/army-recruitment';
+      case 'Navy': return '/navy-recruitment';
+      case 'Air Force': return '/airforce-recruitment';
+      case 'NDA': return '/nda-recruitment';
+      case 'Police': return '/police-recruitment';
+      case 'Civil Defence': return '/nscdc-recruitment';
+      case 'Fire Service': return '/fire-service-recruitment';
+      case 'Immigration': return '/nis-recruitment';
+      case 'Customs': return '/customs-recruitment';
+      case 'FRSC': return '/frsc-recruitment';
+      case 'NDLEA': return '/ndlea-recruitment';
+      case 'EFCC': return '/efcc-recruitment';
+      case 'FCSC': return '/fcsc-recruitment';
+      case 'NNPC': return '/nnpc-recruitment';
+      case 'CBN': return '/cbn-recruitment';
+      case 'NIMC': return '/nimc-recruitment';
+      case 'NCC': return '/ncc-recruitment';
+      case 'NITDA': return '/nitda-recruitment';
+      case 'FAAN': return '/faan-recruitment';
+      case 'NIMASA': return '/nimasa-recruitment';
+      case 'NAFDAC': return '/nafdac-recruitment';
+      default: return `/recruitments/${defaultId}`;
+    }
+  };
+
   // All agencies to display (military + paramilitary + federal)
   const branches: Branch[] = [
     // Military
     'Army', 'Navy', 'Air Force',
     // Paramilitary & Security
-    'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs',
+    'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs', 'NDLEA',
     // Law Enforcement
     'EFCC',
     // Civil Service
@@ -177,6 +206,7 @@ const Dashboard: React.FC = () => {
               else if (branch === 'FAAN') headerColor = 'bg-sky-700';
               else if (branch === 'NIMASA') headerColor = 'bg-slate-600';
               else if (branch === 'NAFDAC') headerColor = 'bg-pink-700';
+              else if (branch === 'NDLEA') headerColor = 'bg-emerald-800';
 
               // Check if portal is offline
               const isOffline = data?.site_status === 'offline';
@@ -234,7 +264,7 @@ const Dashboard: React.FC = () => {
                           </div>
                         ) : (
                           <Link
-                            to={`/recruitments/${data.id}`}
+                            to={getHubLink(branch, data.id)}
                             className={`w-full flex items-center justify-center py-2 px-4 rounded-lg text-sm font-semibold text-white transition-colors ${headerColor} hover:opacity-90`}
                           >
                             View Details <ArrowRight className="w-4 h-4 ml-2" />
@@ -427,8 +457,64 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* Latest News & Career Insights Section */}
+      <section className="mt-12">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-gray-900 flex items-center">
+            <span className="w-2 h-8 bg-military-green mr-3 rounded-sm"></span>
+            Latest News & Career Insights
+          </h2>
+          <Link to="/blog" className="text-sm font-semibold text-military-blue hover:underline">View All Articles</Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {BLOG_ARTICLES.slice(0, 3).map(article => (
+            <article key={article.slug} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all flex flex-col group">
+              <div className="relative h-32 overflow-hidden bg-gray-100">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-5 flex-grow flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="bg-green-50 text-green-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                      {article.category}
+                    </span>
+                    <span className="text-[10px] text-gray-400 flex items-center">
+                      <Clock className="w-3 h-3 mr-1" />
+                      {article.readTime}
+                    </span>
+                  </div>
+                  <Link to={`/blog/${article.slug}`} className="hover:text-military-blue transition-colors">
+                    <h3 className="text-base font-bold text-gray-800 mb-2 leading-tight group-hover:text-military-blue line-clamp-2">
+                      {article.title}
+                    </h3>
+                  </Link>
+                  <p className="text-xs text-gray-500 line-clamp-2 mb-4">
+                    {article.description}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-gray-100 mt-auto">
+                  <Link
+                    to={`/blog/${article.slug}`}
+                    className="inline-flex items-center text-xs font-bold text-military-blue hover:text-blue-900 group-hover:translate-x-0.5 transition-transform"
+                  >
+                    Read Article <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </div >
   );
 };
+
 
 export default Dashboard;

@@ -18,10 +18,35 @@ async function generateSitemap() {
             '/eligibility',
             '/past-questions',
             '/guides',
+            '/blog',
             '/about',
             '/contact',
             '/privacy',
             '/terms',
+            '/ncc-recruitment',
+            '/army-recruitment',
+            '/navy-recruitment',
+            '/airforce-recruitment',
+            '/customs-recruitment',
+            '/frsc-recruitment',
+            '/ndlea-recruitment',
+            '/nis-recruitment',
+            '/nda-recruitment',
+            '/police-recruitment',
+            '/civil-defence-recruitment',
+            '/nscdc-recruitment',
+            '/fire-service-recruitment',
+            '/fire-recruitment',
+            '/immigration-recruitment',
+            '/efcc-recruitment',
+            '/fcsc-recruitment',
+            '/nnpc-recruitment',
+            '/cbn-recruitment',
+            '/nimc-recruitment',
+            '/nitda-recruitment',
+            '/faan-recruitment',
+            '/nimasa-recruitment',
+            '/nafdac-recruitment',
         ];
 
         let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -83,6 +108,24 @@ async function generateSitemap() {
             xml += `    <priority>0.8</priority>\n`;
             xml += `  </url>\n`;
         });
+
+        // Dynamic blog routes
+        const blogSlugs = [
+            'top-10-high-paying-agencies-nigeria',
+            'how-to-prepare-pass-military-aptitude-tests',
+            'common-reasons-disqualification-military-physical-screening',
+            'paramilitary-vs-military-ranks-salaries-nigeria',
+            'nigeria-police-force-ranks-salary-structure'
+        ];
+
+        blogSlugs.forEach(slug => {
+            xml += `  <url>\n`;
+            xml += `    <loc>${SITE_URL}/blog/${slug}</loc>\n`;
+            xml += `    <changefreq>weekly</changefreq>\n`;
+            xml += `    <priority>0.8</priority>\n`;
+            xml += `  </url>\n`;
+        });
+
 
         // Mappings for recruitment slugs
         const slugMapping = {

@@ -11,6 +11,33 @@ const RecruitmentFilter: React.FC = () => {
   const [recruitments, setRecruitments] = useState<RecruitmentUpdate[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const getHubLink = (branch: Branch, defaultId: string) => {
+    switch (branch) {
+      case 'Army': return '/army-recruitment';
+      case 'Navy': return '/navy-recruitment';
+      case 'Air Force': return '/airforce-recruitment';
+      case 'NDA': return '/nda-recruitment';
+      case 'Police': return '/police-recruitment';
+      case 'Civil Defence': return '/nscdc-recruitment';
+      case 'Fire Service': return '/fire-service-recruitment';
+      case 'Immigration': return '/nis-recruitment';
+      case 'Customs': return '/customs-recruitment';
+      case 'FRSC': return '/frsc-recruitment';
+      case 'NDLEA': return '/ndlea-recruitment';
+      case 'EFCC': return '/efcc-recruitment';
+      case 'FCSC': return '/fcsc-recruitment';
+      case 'NNPC': return '/nnpc-recruitment';
+      case 'CBN': return '/cbn-recruitment';
+      case 'NIMC': return '/nimc-recruitment';
+      case 'NCC': return '/ncc-recruitment';
+      case 'NITDA': return '/nitda-recruitment';
+      case 'FAAN': return '/faan-recruitment';
+      case 'NIMASA': return '/nimasa-recruitment';
+      case 'NAFDAC': return '/nafdac-recruitment';
+      default: return `/recruitments/${defaultId}`;
+    }
+  };
+
   // Filter States - Initialize from URL params or default to 'All'
   const [selectedBranch, setSelectedBranch] = useState<Branch | 'All'>(
     (searchParams.get('branch') as Branch) || 'All'
@@ -200,7 +227,7 @@ const RecruitmentFilter: React.FC = () => {
                           <span className={`h-2.5 w-2.5 rounded-full ${getStatusColor(rec.status)}`}></span>
                           <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">{rec.branch} • {rec.category}</span>
                         </div>
-                        <Link to={`/recruitments/${rec.id}`} className="hover:text-military-blue transition-colors">
+                        <Link to={getHubLink(rec.branch, rec.id)} className="hover:text-military-blue transition-colors">
                           <h3 className="text-xl font-bold text-gray-900 mb-2">{rec.title}</h3>
                         </Link>
 
@@ -229,7 +256,7 @@ const RecruitmentFilter: React.FC = () => {
                           {rec.status}
                         </span>
                         <Link
-                          to={`/recruitments/${rec.id}`}
+                          to={getHubLink(rec.branch, rec.id)}
                           className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors"
                         >
                           View Details <Info className="w-3 h-3" />

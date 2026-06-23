@@ -17,6 +17,7 @@ const QuizHub: React.FC = () => {
     { branch: 'Customs', label: 'Customs', desc: 'Current Affairs, Import/Export rules and NCS duties', color: 'bg-slate-700' },
     { branch: 'FRSC', label: 'FRSC', desc: 'Current Affairs, Road signs, Highway Code, and Safety', color: 'bg-red-500' },
     { branch: 'Fire Service', label: 'Fire Service', desc: 'Current Affairs, Fire safety and Emergency response', color: 'bg-orange-600' },
+    { branch: 'NDLEA', label: 'NDLEA', desc: 'Current Affairs, Drug laws, and NDLEA history', color: 'bg-emerald-800' },
     { branch: 'General', label: 'General Knowledge', desc: 'Mixed questions from all sectors including Current Affairs', color: 'bg-gray-700' },
   ];
 

@@ -2,7 +2,7 @@ export type Branch =
   // Military
   | 'Army' | 'Navy' | 'Air Force' | 'NDA'
   // Paramilitary & Security
-  | 'Police' | 'Civil Defence' | 'Fire Service' | 'Immigration' | 'Customs' | 'FRSC'
+  | 'Police' | 'Civil Defence' | 'Fire Service' | 'Immigration' | 'Customs' | 'FRSC' | 'NDLEA'
   // Law Enforcement / Anti-Corruption
   | 'EFCC'
   // Civil Service & Federal Commissions
@@ -112,13 +112,16 @@ export const SLUG_TO_BRANCH: Record<string, Branch | 'General'> = {
   'army': 'Army',
   'navy': 'Navy',
   'air-force': 'Air Force',
+  'airforce': 'Air Force',
   'nda': 'NDA',
   'police': 'Police',
   'civil-defence': 'Civil Defence',
   'fire-service': 'Fire Service',
   'immigration': 'Immigration',
+  'nis': 'Immigration',
   'customs': 'Customs',
   'frsc': 'FRSC',
+  'ndlea': 'NDLEA',
   'efcc': 'EFCC',
   'fcsc': 'FCSC',
   'nnpc': 'NNPC',
@@ -143,6 +146,7 @@ export const BRANCH_TO_SLUG: Record<string, string> = {
   'Immigration': 'immigration',
   'Customs': 'customs',
   'FRSC': 'frsc',
+  'NDLEA': 'ndlea',
   'EFCC': 'efcc',
   'FCSC': 'fcsc',
   'NNPC': 'nnpc',

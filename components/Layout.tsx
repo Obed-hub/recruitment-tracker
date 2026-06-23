@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit } from 'lucide-react';
+import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit, Newspaper } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import InstallPrompt from './InstallPrompt';
 import AdSenseScript from './AdSenseScript';
@@ -19,6 +19,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: 'Eligibility', path: '/eligibility', icon: <CheckCircle className="w-5 h-5" /> },
     { label: 'Past Questions', path: '/past-questions', icon: <BrainCircuit className="w-5 h-5" /> },
     { label: 'Guides', path: '/guides', icon: <FileText className="w-5 h-5" /> },
+    { label: 'Blog', path: '/blog', icon: <Newspaper className="w-5 h-5" /> },
   ];
 
   return (
@@ -116,6 +117,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/recruitments" className="hover:text-yellow-400 transition-colors">All Recruitments</Link></li>
                 <li><Link to="/past-questions" className="hover:text-yellow-400 transition-colors">Past Questions</Link></li>
                 <li><Link to="/guides" className="hover:text-yellow-400 transition-colors">Guides & Tutorials</Link></li>
+                <li><Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog & News</Link></li>
               </ul>
             </div>
 

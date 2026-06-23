@@ -199,3 +199,53 @@ export const QuizSchema: React.FC<{
     };
     return <StructuredData type="Quiz" data={data} />;
 };
+
+interface ArticleSchemaProps {
+    title: string;
+    description: string;
+    url: string;
+    image?: string;
+    datePublished: string;
+    dateModified?: string;
+    authorName: string;
+    publisherName?: string;
+    publisherLogo?: string;
+}
+
+export const ArticleSchema: React.FC<ArticleSchemaProps> = ({
+    title,
+    description,
+    url,
+    image = 'https://recruitmenttracker.com.ng/assets/logo.png',
+    datePublished,
+    dateModified,
+    authorName,
+    publisherName = 'Nigeria Recruitment Tracker',
+    publisherLogo = 'https://recruitmenttracker.com.ng/assets/logo.png',
+}) => {
+    const data = {
+        headline: title,
+        description: description,
+        image: image,
+        datePublished: safeISODate(datePublished),
+        dateModified: safeISODate(dateModified || datePublished),
+        author: {
+            '@type': 'Person',
+            name: authorName,
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: publisherName,
+            logo: {
+                '@type': 'ImageObject',
+                url: publisherLogo,
+            },
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': url,
+        },
+    };
+    return <StructuredData type="NewsArticle" data={data} />;
+};
+

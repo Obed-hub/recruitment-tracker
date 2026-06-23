@@ -63,7 +63,8 @@ const SLUG_TO_LEGACY: Record<string, string> = {
     'nitda-it-officer': '17',
     'faan-entry-level': '18',
     'nimasa-marine': '19',
-    'nafdac-regulatory': '20'
+    'nafdac-regulatory': '20',
+    'ndlea-recruitment': '21'
 };
 
 export const LEGACY_TO_SLUG: Record<string, string> = Object.fromEntries(
@@ -193,6 +194,19 @@ const STATIC_DATA: RecruitmentUpdate[] = [
         description: 'Supplementary recruitment into the Nigeria Customs Service (NCS) to fill vacancies in various cadres including Superintendent and Customs Assistant.',
         requirements: ['Nigerian citizen.', 'Age 18-35 years.', 'Qualification matching the cadre (Degree/HND/SSCE).', 'Valid NIN.', 'Physical and medical fitness.'],
         application_process: ['Visit NCS portal.', 'Submit application and credentials.', 'Attend aptitude test if shortlisted.', 'Oral interview followed by training.']
+    },
+    {
+        id: 'ndlea-recruitment',
+        branch: 'NDLEA',
+        title: 'National Drug Law Enforcement Agency (NDLEA) Enlistment 2026',
+        category: 'Entry Level',
+        status: 'Closed',
+        deadline_date: '2026-05-15',
+        portal_url: 'https://ndlea.gov.ng/careers',
+        updated_at: '2026-02-20T10:00:00Z',
+        description: 'The National Drug Law Enforcement Agency (NDLEA) invites applications from suitably qualified Nigerians to fill vacancies in its Narcotic Officer and Narcotic Assistant cadres.',
+        requirements: ['Must be Nigerian by birth.', 'Narcotic Officer (Degree/HND) or Narcotic Assistant (SSCE).', 'Age: 18-30 years.', 'Height: 1.70m (M), 1.65m (F).', 'Must pass a drug screening test.', 'Valid NIN required.'],
+        application_process: ['Visit NDLEA portal.', 'Create a profile and upload documents.', 'Print acknowledgement slip.', 'Attend screening and drug test.']
     },
 
     // ── Law Enforcement ──────────────────────────────────────────────────────
@@ -515,6 +529,7 @@ function mapBranchName(name: string): string {
     if (name.includes('Fire')) return 'Fire Service';
     if (name.includes('Immigration')) return 'Immigration';
     if (name.includes('Customs')) return 'Customs';
+    if (name.includes('NDLEA')) return 'NDLEA';
     return 'Army';
 }
 

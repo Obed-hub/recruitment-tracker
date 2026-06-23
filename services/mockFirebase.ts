@@ -663,6 +663,40 @@ const RECRUITMENTS: RecruitmentUpdate[] = [
       { zone: 'South South', venue: 'NAFDAC Port Harcourt Zonal Office', address: 'Port Harcourt', coordinator_contact: '08000000104' },
     ]
   },
+  {
+    id: '21',
+    branch: 'NDLEA',
+    title: 'National Drug Law Enforcement Agency (NDLEA) Enlistment 2026',
+    category: 'Entry Level',
+    status: 'Closed',
+    deadline_date: '2026-05-15',
+    portal_url: 'https://ndlea.gov.ng/careers',
+    updated_at: '2026-02-20T10:00:00Z',
+    description: 'The National Drug Law Enforcement Agency (NDLEA) invites applications from suitably qualified Nigerians to fill vacancies in its Narcotic Officer and Narcotic Assistant cadres. The NDLEA is the premier agency responsible for eradicating illicit drug manufacturing, trafficking, and abuse in Nigeria. Candidates must pass drug tests, physical screenings, and a written aptitude test.',
+    requirements: [
+      'Must be a Nigerian citizen by birth.',
+      'Narcotic Officer (Graduate Cadre): Minimum of Second Class Lower degree or HND Upper Credit; NYSC discharge/exemption required.',
+      'Narcotic Assistant: Minimum of 5 credits in WAEC/NECO/GCE including English and Mathematics in not more than two sittings.',
+      'Age: 18 to 30 years.',
+      'Height: Not less than 1.70m for males and 1.65m for females.',
+      'Must be medically fit and free from any physical deformity.',
+      'Must pass a mandatory drug screening test.',
+      'Must possess a valid National Identity Number (NIN).'
+    ],
+    application_process: [
+      'Visit the NDLEA recruitment portal at ndlea.gov.ng.',
+      'Register a profile using your NIN, valid email, and phone number.',
+      'Select your target cadre (Narcotic Officer or Narcotic Assistant) and fill in educational details.',
+      'Upload academic transcripts, certificates, NIN slip, and a medical certificate of fitness.',
+      'Submit the application and print the reference slip.',
+      'Attend the designated zonal screening and drug test when invited.'
+    ],
+    exam_centers: [
+      { zone: 'FCT', venue: 'NDLEA HQ', address: 'Abuja', coordinator_contact: '08000000211' },
+      { zone: 'South West', venue: 'NDLEA Lagos Command', address: 'Ikoyi, Lagos', coordinator_contact: '08000000212' },
+      { zone: 'North West', venue: 'NDLEA Kano Command', address: 'Kano', coordinator_contact: '08000000213' }
+    ]
+  }
 ];
 
 // MOCK_NEWS removed as per user request to use real API data only.
@@ -1230,7 +1264,11 @@ const QUESTIONS: Question[] = [
   { id: 'm72', branch: 'General', question: 'Evaluate: 0.2 × 0.5:', options: ['0.01', '0.1', '1', '10'], correctAnswer: 1, explanation: '0.2 × 0.5 = 0.10.' },
   { id: 'm73', branch: 'General', question: 'What percentage of 200 is 50?', options: ['20%', '25%', '30%', '35%'], correctAnswer: 1, explanation: '50/200 × 100 = 25%.' },
   { id: 'm74', branch: 'General', question: 'Evaluate: 2⁰ + 3⁰:', options: ['0', '1', '2', '3'], correctAnswer: 2, explanation: 'Any number to the power 0 = 1. So 1 + 1 = 2.' },
-  { id: 'm75', branch: 'General', question: 'What is the distance between points (1,2) and (4,6)?', options: ['4', '5', '6', '7'], correctAnswer: 1, explanation: 'd = √((4-1)² + (6-2)²) = √(9+16) = √25 = 5.' }
+  { id: 'm75', branch: 'General', question: 'What is the distance between points (1,2) and (4,6)?', options: ['4', '5', '6', '7'], correctAnswer: 1, explanation: 'd = √((4-1)² + (6-2)²) = √(9+16) = √25 = 5.' },
+  { id: 'ndlea1', branch: 'NDLEA', question: 'The National Drug Law Enforcement Agency (NDLEA) was established by Decree No. 48 of which year?', options: ['1985', '1989', '1995', '2003'], correctAnswer: 1, explanation: 'The NDLEA was established by Decree No. 48 of 1989 to coordinate drug control efforts.' },
+  { id: 'ndlea2', branch: 'NDLEA', question: 'Who is the current Chairman and Chief Executive of NDLEA?', options: ['Brig. Gen. Buba Marwa (Rtd)', 'Ahmadu Giade', 'Mustapha Abdallah', 'Kemi Adeosun'], correctAnswer: 0, explanation: 'Brig. Gen. Mohamed Buba Marwa (Rtd) is the Chairman and Chief Executive of NDLEA.' },
+  { id: 'ndlea3', branch: 'NDLEA', question: 'NDLEA is a federal agency under the supervision of which government ministry?', options: ['Ministry of Interior', 'Ministry of Defence', 'Ministry of Justice', 'Ministry of Police Affairs'], correctAnswer: 2, explanation: 'The NDLEA operates under the Federal Ministry of Justice (Office of the Attorney General of the Federation).' },
+  { id: 'ndlea4', branch: 'NDLEA', question: 'Which of the following is a primary mandate of the NDLEA?', options: ['Extinguishing fires', 'Combating drug trafficking and abuse', 'Securing maritime boundaries', 'Managing land border passport checks'], correctAnswer: 1, explanation: 'NDLEA\'s primary mandate is to eliminate the manufacturing, processing, selling, exporting, and trafficking of hard drugs and psychotropic substances.' }
 ] as any;
 
 export const getRecruitments = async (): Promise<RecruitmentUpdate[]> => {
