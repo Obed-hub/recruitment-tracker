@@ -138,6 +138,7 @@ const SetupScreen: React.FC<{
         </div>
       </div>
     </div>
+    </>
   );
 };
 
