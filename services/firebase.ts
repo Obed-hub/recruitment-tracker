@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, get, child, set, update, remove } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
-import { RecruitmentUpdate, Question, NewsItem, ShortlistCandidate, Branch, RecruitmentCategory, ExamCenter } from "../types";
+import { RecruitmentUpdate, Question, NewsItem, ShortlistCandidate, Branch, RecruitmentCategory, ExamCenter, SLUG_TO_BRANCH } from "../types";
 
 // --- CONFIGURATION ---
 // TODO: Replace with your actual Firebase project configuration
@@ -65,6 +65,11 @@ const SLUG_TO_LEGACY: Record<string, string> = {
     'nimasa-marine': '19',
     'nafdac-regulatory': '20'
 };
+
+export const LEGACY_TO_SLUG: Record<string, string> = Object.fromEntries(
+    Object.entries(SLUG_TO_LEGACY).map(([slug, legacyId]) => [legacyId, slug])
+);
+
 
 // --- STATIC DATA FOR MERGING ---
 // We keep this here so the UI has rich content (descriptions, etc.) while status comes from Firebase.
@@ -522,6 +527,9 @@ function mapStatus(status: string): any {
 // --- OTHER COLLECTIONS ---
 
 export const getQuestions = async (branch?: string): Promise<Question[]> => {
+    // Translate slug branch using SLUG_TO_BRANCH before querying
+    const normalizedBranch = branch ? (SLUG_TO_BRANCH[branch.toLowerCase()] || branch) : undefined;
+    console.log('[Firebase] getQuestions called for branch slug:', branch, 'normalized to:', normalizedBranch);
     return [];
 };
 

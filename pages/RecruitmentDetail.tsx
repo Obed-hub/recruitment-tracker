@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight } from 'lucide-react';
-import { subscribeToRecruitmentById } from '../services/firebase';
-import { RecruitmentUpdate } from '../types';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, BookOpen, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight } from 'lucide-react';
+import { subscribeToRecruitmentById, LEGACY_TO_SLUG } from '../services/firebase';
+import { RecruitmentUpdate, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
 import { RecruitmentSchema } from '../components/StructuredData';
 import AdUnit from '../components/AdUnit';
+import { GUIDES } from '../services/mockGuides';
 
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [recruitment, setRecruitment] = useState<RecruitmentUpdate | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
+      // If the ID matches a legacy numeric ID, redirect to the slug equivalent
+      if (LEGACY_TO_SLUG[id]) {
+        navigate(`/recruitments/${LEGACY_TO_SLUG[id]}`, { replace: true });
+        return;
+      }
+
       const unsub = subscribeToRecruitmentById(id, (data) => {
         setRecruitment(data);
         setLoading(false);
       });
       return () => unsub();
     }
-  }, [id]);
+  }, [id, navigate]);
+
 
   if (loading) {
     return (
@@ -44,6 +53,10 @@ const RecruitmentDetail: React.FC = () => {
       </div>
     );
   }
+
+  const relatedGuides = GUIDES.filter(
+    g => g.branch.toLowerCase() === recruitment.branch.toLowerCase()
+  );
 
   const getBranchColor = () => {
     switch (recruitment.branch) {
@@ -163,6 +176,23 @@ const RecruitmentDetail: React.FC = () => {
               </div>
             </section>
 
+            {recruitment.branch === 'Army' && (
+              <section className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 text-gray-800 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
+                  <Shield className="w-6 h-6 mr-2 text-military-green" />
+                  Official Army Application Tracking Info
+                </h3>
+                <p className="text-sm leading-relaxed mb-3">
+                  Many applicants search for the <strong>tracking armynotification com ng</strong> portal (also known as <strong>tracking.armynotification.com.ng</strong>) to check their screening status, shortlist printouts, and examination venue allocations.
+                </p>
+                <div className="text-xs space-y-2 border-l-2 border-military-green pl-4 my-2 text-gray-700">
+                  <p><strong>Note 1:</strong> The <code>tracking.armynotification.com.ng</code> website is the official subdomain used by the Nigerian Army recruitment portal for verification of shortlisted candidates and printing of screening slips.</p>
+                  <p><strong>Note 2:</strong> Always log in using the exact credentials (email and password or application number) created during your initial registration on the primary <code>recruitment.army.mil.ng</code> portal.</p>
+                  <p><strong>Safety Warning:</strong> Do not submit your application details, passwords, or NIN to any third-party website claiming to track notifications.</p>
+                </div>
+              </section>
+            )}
+
             <section className="bg-gradient-to-br from-military-blue to-blue-900 rounded-xl p-6 text-white shadow-lg overflow-hidden relative">
               <div className="absolute right-0 top-0 opacity-10">
                 <BrainCircuit className="w-32 h-32" />
@@ -183,7 +213,7 @@ const RecruitmentDetail: React.FC = () => {
                   <p className="text-sm font-medium">Which of these is the primary role of the {recruitment.branch} in national security?</p>
                 </div>
                 <Link
-                  to={`/past-questions/${recruitment.branch}`}
+                  to={`/past-questions/${BRANCH_TO_SLUG[recruitment.branch] || recruitment.branch}`}
                   className="inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-military-blue font-bold rounded-lg transition-all transform hover:scale-105"
                 >
                   Start Practicing Now <ArrowRight className="w-4 h-4 ml-2" />
@@ -249,6 +279,27 @@ const RecruitmentDetail: React.FC = () => {
 
                 {/* Sidebar Ad Unit */}
                 <AdUnit slot="PSEO_SIDEBAR_AD" format="rectangle" />
+
+                {/* Related Guides Widget */}
+                {relatedGuides.length > 0 && (
+                  <div className="border-t border-gray-200 pt-6 mt-6">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4 flex items-center gap-1.5">
+                      <BookOpen className="w-4 h-4 text-military-green" /> Related Guides
+                    </h3>
+                    <div className="space-y-3">
+                      {relatedGuides.map(guide => (
+                        <Link
+                          key={guide.slug}
+                          to={`/guides/${guide.slug}`}
+                          className="block bg-white p-3 rounded-lg border border-gray-100 shadow-sm hover:border-military-blue hover:shadow transition-all group"
+                        >
+                          <h4 className="font-bold text-gray-800 text-xs group-hover:text-military-blue leading-tight">{guide.title}</h4>
+                          <span className="text-[10px] text-gray-400 mt-1 block uppercase font-semibold">{guide.category}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

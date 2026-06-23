@@ -162,6 +162,19 @@ const RecruitmentFilter: React.FC = () => {
       {/* Banner Ad below filters */}
       <AdUnit slot="FILTER_PAGE_BANNER_AD" />
 
+      {/* CDCFIB Board Info Alert */}
+      {['Civil Defence', 'Immigration', 'Fire Service'].includes(selectedBranch) && (
+        <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-gray-800 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">CDCFIB Central Paramilitary Portal (cdcfib.career)</h3>
+          <p className="text-sm leading-relaxed mb-3">
+            The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) conducts recruitment exercises for <strong>NSCDC (Civil Defence)</strong>, <strong>Nigeria Immigration Service (NIS)</strong>, and <strong>Federal Fire Service (FFS)</strong>.
+          </p>
+          <p className="text-xs text-emerald-800 font-medium">
+            Candidates must monitor the official portal at <strong>recruitment.cdcfib.gov.ng</strong> for shortlists, CBT exam notifications, and physical screening updates. Application and verification forms are completely free of charge.
+          </p>
+        </div>
+      )}
+
       {/* List */}
       <div className="space-y-4">
         {loading ? (

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserEligibility, Grade } from '../types';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
+import { FAQPageSchema } from '../components/StructuredData';
 
 interface Result {
   qualified: boolean;
@@ -530,6 +531,25 @@ const EligibilityChecker: React.FC = () => {
     </div>
   );
 
+  const eligibilityFAQs = [
+    {
+      question: "What is the minimum height for Nigerian military recruitment?",
+      answer: "The standard minimum height for most Nigerian military and paramilitary forces is 1.68 meters (5ft 6in) for males and 1.65 meters (5ft 5in) for females. For some specialized agencies like the Federal Fire Service and Immigration, the limits may be slightly lower (1.65m for males, 1.60m for females)."
+    },
+    {
+      question: "Can married persons apply for Nigerian military recruitment?",
+      answer: "Married persons can apply for Direct Short Service Commission (DSSC) and other officer-level cadres. However, regular recruit intakes (such as Army Regular Recruit or Navy Batch ratings) usually require candidates to be single."
+    },
+    {
+      question: "What are the academic qualifications for military recruitment?",
+      answer: "Regular recruitments require a minimum of 5 credits in WAEC/NECO/GCE/NABTEB including English Language and Mathematics in not more than two sittings. Officer cadres (DSSC/SSC) require a university degree (minimum of Second Class Lower Division) or HND (minimum of Upper Credit)."
+    },
+    {
+      question: "Are flat feet or tattoos disqualifying in military screening?",
+      answer: "Yes. In accordance with Nigerian Armed Forces standards, physical conditions such as flat feet, bow legs, knock knees (K-legs), visible tattoos, and body inscriptions are general grounds for medical disqualification."
+    }
+  ];
+
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
       <SEO
@@ -538,6 +558,7 @@ const EligibilityChecker: React.FC = () => {
         canonical="/eligibility"
         keywords={['eligibility checker', 'recruitment qualification', 'military requirements', 'Nigeria job eligibility', 'height requirement']}
       />
+      <FAQPageSchema faqs={eligibilityFAQs} />
       <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
         {/* Progress Bar Header */}
         <div className="bg-military-green p-6 text-white">
@@ -602,7 +623,7 @@ const EligibilityChecker: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">Physical Standards</h3>
+            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">What are the physical standards for military recruitment?</h3>
             <ul className="space-y-3 text-sm text-gray-600">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-military-green rounded-full mt-1.5 shrink-0" />
@@ -620,7 +641,7 @@ const EligibilityChecker: React.FC = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">Academic Baselines</h3>
+            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">What are the academic baseline requirements?</h3>
             <ul className="space-y-3 text-sm text-gray-600">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-military-blue rounded-full mt-1.5 shrink-0" />

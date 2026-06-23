@@ -17,6 +17,7 @@ async function generateSitemap() {
             '/recruitments',
             '/eligibility',
             '/past-questions',
+            '/guides',
             '/about',
             '/contact',
             '/privacy',
@@ -42,11 +43,44 @@ async function generateSitemap() {
             'Fire Service', 'General'
         ];
 
+        const branchSlugs = {
+            'Army': 'army',
+            'Navy': 'navy',
+            'Air Force': 'air-force',
+            'NDA': 'nda',
+            'Police': 'police',
+            'Civil Defence': 'civil-defence',
+            'Immigration': 'immigration',
+            'Customs': 'customs',
+            'FRSC': 'frsc',
+            'Fire Service': 'fire-service',
+            'General': 'general'
+        };
+
         branches.forEach(branch => {
+            const slug = branchSlugs[branch] || branch;
             xml += `  <url>\n`;
-            xml += `    <loc>${SITE_URL}/past-questions/${branch}</loc>\n`;
+            xml += `    <loc>${SITE_URL}/past-questions/${slug}</loc>\n`;
             xml += `    <changefreq>weekly</changefreq>\n`;
             xml += `    <priority>0.7</priority>\n`;
+            xml += `  </url>\n`;
+        });
+
+        // Dynamic guide routes
+        const guideSlugs = [
+            'nigerian-army-recruit-salary',
+            'nscdc-physical-screening-centers',
+            'print-army-screening-slip',
+            'navy-dssc-vs-bmtc',
+            'police-constable-subject-combinations',
+            'correct-cdcfib-portal-errors'
+        ];
+
+        guideSlugs.forEach(slug => {
+            xml += `  <url>\n`;
+            xml += `    <loc>${SITE_URL}/guides/${slug}</loc>\n`;
+            xml += `    <changefreq>weekly</changefreq>\n`;
+            xml += `    <priority>0.8</priority>\n`;
             xml += `  </url>\n`;
         });
 

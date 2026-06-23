@@ -107,3 +107,51 @@ export interface QuizResult {
   score: number;
   percentage: number;
 }
+
+export const SLUG_TO_BRANCH: Record<string, Branch | 'General'> = {
+  'army': 'Army',
+  'navy': 'Navy',
+  'air-force': 'Air Force',
+  'nda': 'NDA',
+  'police': 'Police',
+  'civil-defence': 'Civil Defence',
+  'fire-service': 'Fire Service',
+  'immigration': 'Immigration',
+  'customs': 'Customs',
+  'frsc': 'FRSC',
+  'efcc': 'EFCC',
+  'fcsc': 'FCSC',
+  'nnpc': 'NNPC',
+  'cbn': 'CBN',
+  'nimc': 'NIMC',
+  'ncc': 'NCC',
+  'nitda': 'NITDA',
+  'faan': 'FAAN',
+  'nimasa': 'NIMASA',
+  'nafdac': 'NAFDAC',
+  'general': 'General'
+};
+
+export const BRANCH_TO_SLUG: Record<string, string> = {
+  'Army': 'army',
+  'Navy': 'navy',
+  'Air Force': 'air-force',
+  'NDA': 'nda',
+  'Police': 'police',
+  'Civil Defence': 'civil-defence',
+  'Fire Service': 'fire-service',
+  'Immigration': 'immigration',
+  'Customs': 'customs',
+  'FRSC': 'frsc',
+  'EFCC': 'efcc',
+  'FCSC': 'fcsc',
+  'NNPC': 'nnpc',
+  'CBN': 'cbn',
+  'NIMC': 'nimc',
+  'NCC': 'ncc',
+  'NITDA': 'nitda',
+  'FAAN': 'faan',
+  'NIMASA': 'nimasa',
+  'NAFDAC': 'nafdac',
+  'General': 'general'
+};

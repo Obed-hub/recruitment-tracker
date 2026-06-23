@@ -7,6 +7,7 @@ import {
 import { getQuestions } from '../services/mockFirebase';
 import { Question } from '../types';
 import AdUnit from '../components/AdUnit';
+import { QuizSchema } from '../components/StructuredData';
 
 // ── Question count options ───────────────────────────────────────────────────
 const COUNT_OPTIONS = [
@@ -22,7 +23,8 @@ const SetupScreen: React.FC<{
   branch: string;
   maxQuestions: number;
   onStart: (count: number) => void;
-}> = ({ branch, maxQuestions, onStart }) => {
+  allQuestions: Question[];
+}> = ({ branch, maxQuestions, onStart, allQuestions }) => {
   const [selected, setSelected] = useState(20);
 
   const available = COUNT_OPTIONS.filter(o => o.value <= maxQuestions);
@@ -33,8 +35,21 @@ const SetupScreen: React.FC<{
     disabled: maxQuestions < o.value / 2, // hide if we can't fill even half
   })).filter(o => !o.disabled);
 
+  const schemaQuestions = allQuestions.slice(0, 15).map(q => ({
+    question: q.question,
+    options: q.options,
+    correctOptionIndex: q.correctAnswer,
+    explanation: q.explanation
+  }));
+
   return (
-    <div className="max-w-xl mx-auto py-10">
+    <>
+      <QuizSchema
+        quizName={`Nigerian ${branch} Aptitude Test Practice`}
+        description={`Practice official CBT exam questions for Nigerian ${branch} recruitment screening.`}
+        questions={schemaQuestions}
+      />
+      <div className="max-w-xl mx-auto py-10">
       <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-military-green to-green-700 p-8 text-white text-center">
@@ -221,6 +236,7 @@ const QuizInterface: React.FC = () => {
         branch={branch || 'General'}
         maxQuestions={allQuestions.length}
         onStart={handleStart}
+        allQuestions={allQuestions}
       />
     );
   }

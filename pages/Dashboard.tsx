@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, BookOpen, Image as ImageIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { subscribeToRecruitments, getNews } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
 import PortalMonitor from '../components/PortalMonitor';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
+import { WebSiteSchema, OrganizationSchema, FAQPageSchema } from '../components/StructuredData';
+import { GUIDES } from '../services/mockGuides';
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const getStyle = () => {
@@ -98,6 +100,25 @@ const Dashboard: React.FC = () => {
   // We will display all in a grid
   const displayBranches = branches;
 
+  const generalFAQs = [
+    {
+      question: "How do I check Nigerian military recruitment status?",
+      answer: "You can track the live status of Nigerian Army, Navy, and Air Force recruitment portals directly on our home dashboard. We monitor portal availability, status updates (Open, Closed, Shortlist Out), and application deadlines in real-time."
+    },
+    {
+      question: "Are military recruitment forms free in Nigeria?",
+      answer: "Yes, official recruitment forms for the Nigerian Army, Navy, Air Force, Police, and paramilitary agencies are completely free of charge. Avoid paying individuals claiming to represent these agencies."
+    },
+    {
+      question: "What is DSSC in Nigerian military recruitment?",
+      answer: "DSSC stands for Direct Short Service Commission. It is a commission type in the Nigerian military for university graduates and HND holders, allowing professionals (doctors, engineers, lawyers, teachers) to join as commissioned officers."
+    },
+    {
+      question: "How long does military recruitment screening last?",
+      answer: "The screening duration varies, but generally, physical screening, credential verification, and aptitude tests last between 1 to 2 weeks at designated zonal centers."
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <SEO
@@ -106,6 +127,9 @@ const Dashboard: React.FC = () => {
         canonical="/"
         keywords={['Nigeria recruitment updates', 'Latest job recruitment 2026', 'Recruitment tracker', 'CBT practice Nigeria']}
       />
+      <WebSiteSchema />
+      <OrganizationSchema />
+      <FAQPageSchema faqs={generalFAQs} />
 
       {/* Hero / Live Status Section */}
       <section>
@@ -358,6 +382,49 @@ const Dashboard: React.FC = () => {
               </React.Fragment>
             ))
           )}
+        </div>
+      </section>
+
+      {/* Latest Guides & Tutorials Section */}
+      <section className="mt-12">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-gray-900 flex items-center">
+            <span className="w-2 h-8 bg-military-green mr-3 rounded-sm"></span>
+            Latest Guides & Tutorials
+          </h2>
+          <Link to="/guides" className="text-sm font-semibold text-military-blue hover:underline">View All Guides</Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {GUIDES.slice(0, 3).map(guide => (
+            <article key={guide.slug} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all flex flex-col group p-5">
+              <div className="flex items-center justify-between mb-3">
+                <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                  {guide.category}
+                </span>
+                <span className="text-[10px] text-gray-400 flex items-center">
+                  <Clock className="w-3 h-3 mr-1" />
+                  {new Date(guide.date).toLocaleDateString()}
+                </span>
+              </div>
+              <Link to={`/guides/${guide.slug}`} className="hover:text-military-blue transition-colors flex-grow">
+                <h3 className="text-base font-bold text-gray-800 mb-2 leading-tight group-hover:text-military-blue line-clamp-2">
+                  {guide.title}
+                </h3>
+              </Link>
+              <p className="text-xs text-gray-500 line-clamp-2 mb-4">
+                {guide.description}
+              </p>
+              <div className="pt-3 border-t border-gray-100 mt-auto flex justify-between items-center">
+                <Link
+                  to={`/guides/${guide.slug}`}
+                  className="inline-flex items-center text-xs font-bold text-military-blue hover:text-blue-900 group-hover:translate-x-0.5 transition-transform"
+                >
+                  Read Article <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </div >

@@ -12,6 +12,8 @@ import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
+import GuidesHub from './pages/GuidesHub';
+import GuideDetail from './pages/GuideDetail';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +31,8 @@ const App: React.FC = () => {
         <Route path="/practice/:branch" element={<Navigate to="/past-questions/:branch" replace />} />
         <Route path="/past-questions" element={<Layout><QuizHub /></Layout>} />
         <Route path="/past-questions/:branch" element={<Layout><QuizInterface /></Layout>} />
+        <Route path="/guides" element={<Layout><GuidesHub /></Layout>} />
+        <Route path="/guides/:slug" element={<Layout><GuideDetail /></Layout>} />
         <Route path="/about" element={<Layout><AboutUs /></Layout>} />
         <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
         <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />

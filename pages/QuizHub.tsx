@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrainCircuit, BookOpen, Clock, Award, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Branch } from '../types';
+import { Branch, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
+import { FAQPageSchema } from '../components/StructuredData';
 
 const QuizHub: React.FC = () => {
   const practiceOptions: { branch: Branch | 'General', label: string, desc: string, color: string }[] = [
@@ -19,6 +20,21 @@ const QuizHub: React.FC = () => {
     { branch: 'General', label: 'General Knowledge', desc: 'Mixed questions from all sectors including Current Affairs', color: 'bg-gray-700' },
   ];
 
+  const quizFAQs = [
+    {
+      question: "Where can I get free Nigerian military past questions?",
+      answer: "Our Past Question Centre provides 100% free computer-based test (CBT) practice questions and answers for Nigerian Army, Navy, Air Force, Police, and Civil Defence examinations."
+    },
+    {
+      question: "What subjects are tested in Nigerian military recruitment exams?",
+      answer: "The screening examinations usually cover English Language, Mathematics, General Knowledge (Current Affairs, history of Nigeria, and agency-specific knowledge), and logical reasoning."
+    },
+    {
+      question: "How do I prepare for a military CBT aptitude test?",
+      answer: "The best preparation is regular practice under timed conditions. Get familiar with national and international current affairs, study the history and ranks of the agency you applied to, and take mock tests."
+    }
+  ];
+
   return (
     <div className="max-w-6xl mx-auto">
       <SEO
@@ -27,6 +43,7 @@ const QuizHub: React.FC = () => {
         canonical="/past-questions"
         keywords={['past question', 'Nigeria recruitment test', 'aptitude test practice', 'Army past questions', 'Police past questions']}
       />
+      <FAQPageSchema faqs={quizFAQs} />
       <div className="text-center py-12">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Past Question Centre</h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -51,7 +68,7 @@ const QuizHub: React.FC = () => {
               </div>
 
               <Link
-                to={`/past-questions/${opt.branch}`}
+                to={`/past-questions/${BRANCH_TO_SLUG[opt.branch] || opt.branch}`}
                 className={`w-full block text-center py-3 rounded-lg font-semibold text-white transition-opacity hover:opacity-90 ${opt.color}`}
               >
                 Start Test
@@ -125,6 +142,25 @@ const QuizHub: React.FC = () => {
               <p>After each test, use our "Review Answers" feature. Understanding why you missed a question is more valuable than just getting a high score.</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* PDF Past Questions Download Section */}
+      <div className="mt-12 bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl p-8 text-white shadow-lg overflow-hidden relative">
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Download Offline Past Questions PDF</h2>
+            <p className="text-indigo-200 text-sm max-w-xl leading-relaxed">
+              Prefer studying offline? Get the comprehensive Nigerian Army, Navy, Air Force, and Police recruitment past questions and answers PDF study packs for offline preparation.
+            </p>
+          </div>
+          <a
+            href="#"
+            className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold rounded-xl transition-all shadow-md flex-shrink-0 text-center animate-pulse"
+            onClick={(e) => { e.preventDefault(); alert("Offline PDF study packs will be available for download shortly. Continue practicing with our free online CBT simulator!"); }}
+          >
+            Download PDF Study Pack
+          </a>
         </div>
       </div>
     </div>

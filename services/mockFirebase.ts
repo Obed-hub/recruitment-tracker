@@ -1,4 +1,4 @@
-import { RecruitmentUpdate, NewsItem, ShortlistCandidate, Question, Branch } from '../types';
+import { RecruitmentUpdate, NewsItem, ShortlistCandidate, Question, Branch, SLUG_TO_BRANCH } from '../types';
 
 // Mock Data Seeding
 const RECRUITMENTS: RecruitmentUpdate[] = [
@@ -1316,10 +1316,11 @@ export const searchShortlist = async (query: string): Promise<ShortlistCandidate
 export const getQuestions = async (branch?: string): Promise<Question[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      if (!branch || branch === 'General') {
+      const normalizedBranch = branch ? (SLUG_TO_BRANCH[branch.toLowerCase()] || branch) : undefined;
+      if (!normalizedBranch || normalizedBranch === 'General') {
         resolve(QUESTIONS);
       } else {
-        const specific = QUESTIONS.filter((q: Question) => q.branch === branch);
+        const specific = QUESTIONS.filter((q: Question) => q.branch === normalizedBranch);
         const general = QUESTIONS.filter((q: Question) => q.branch === 'General');
         // Shuffle the array to mix general and specific questions
         const mixed = [...specific, ...general].sort(() => Math.random() - 0.5);
