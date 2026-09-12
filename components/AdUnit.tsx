@@ -20,12 +20,12 @@ const AdUnit: React.FC<AdUnitProps> = ({
             // @ts-ignore
             (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (e) {
-            console.error('AdSense error:', e);
+            console.warn('AdSense notice:', e);
         }
     }, []);
 
     return (
-        <div className={`ad-container my-8 overflow-hidden ${className}`}>
+        <div className={`ad-container my-6 overflow-hidden min-h-[90px] sm:min-h-[250px] flex items-center justify-center bg-gray-50/50 rounded-lg border border-gray-100/60 ${className}`}>
             <ins
                 className="adsbygoogle"
                 style={style}

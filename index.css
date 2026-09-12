@@ -1,0 +1,7 @@
+/* Global CSS entry point */
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

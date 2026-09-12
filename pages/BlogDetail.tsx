@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, Calendar, BookOpen, Share2, Copy, Check, Twitter } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, BookOpen, Share2, Copy, Check, Twitter, MessageCircle } from 'lucide-react';
 import { getBlogBySlug, getBlogArticles, BlogArticle } from '../services/mockBlog';
 import SEO from '../components/SEO';
 import { ArticleSchema, FAQPageSchema } from '../components/StructuredData';
 import AdUnit from '../components/AdUnit';
+import NextStepInterstitial from '../components/NextStepInterstitial';
+import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import { getDailyUpdatedBadge, getTodayISODate } from '../services/dateUtils';
 
 const BlogDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -70,7 +73,7 @@ const BlogDetail: React.FC = () => {
       </Link>
 
       <SEO
-        title={article.title}
+        title={article.seoTitle || `${article.title} [Updated 2026/2027 Guide]`}
         description={article.description}
         canonical={`/blog/${article.slug}`}
         keywords={[...article.keywords, 'Nigeria recruitment news', 'federal government guidelines']}
@@ -84,6 +87,7 @@ const BlogDetail: React.FC = () => {
         url={`https://recruitmenttracker.com.ng/blog/${article.slug}`}
         image={article.image}
         datePublished={article.date}
+        dateModified={getTodayISODate()}
         authorName="Recruitment Tracker Editorial"
       />
 
@@ -112,9 +116,9 @@ const BlogDetail: React.FC = () => {
                     {article.category}
                   </span>
                   <span>•</span>
-                  <span className="flex items-center">
-                    <Calendar className="w-3.5 h-3.5 mr-1" />
-                    {new Date(article.date).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  <span className="flex items-center text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                    <Calendar className="w-3.5 h-3.5 mr-1 text-emerald-600" />
+                    {getDailyUpdatedBadge()}
                   </span>
                   <span>•</span>
                   <span className="flex items-center">
@@ -234,6 +238,13 @@ const BlogDetail: React.FC = () => {
 
               {/* Ad Unit after content */}
               <AdUnit slot="BLOG_CONTENT_BOTTOM_AD" />
+
+              {/* Re-circulation Next Step Interstitial */}
+              <NextStepInterstitial
+                currentBranch="Army"
+                cbtSlug="army"
+                currentType="blog"
+              />
             </div>
           </div>
         </div>
@@ -275,8 +286,34 @@ const BlogDetail: React.FC = () => {
               Start Free CBT Practice
             </Link>
           </div>
+
+          {/* Official WhatsApp Channel Card */}
+          <div className="bg-gradient-to-br from-emerald-950 via-slate-900 to-green-950 border border-emerald-500/40 text-white rounded-xl p-6 shadow-md space-y-3">
+            <div className="flex items-center gap-2">
+              <MessageCircle className="w-5 h-5 text-emerald-400 fill-current" />
+              <span className="text-[11px] font-black uppercase tracking-wider text-emerald-300">Official Channel</span>
+            </div>
+            <h4 className="font-bold text-sm text-white leading-snug">
+              NIGERIA RECRUITMENT UPDATE
+            </h4>
+            <p className="text-xs text-emerald-100/80 leading-relaxed">
+              Join over 150,000+ candidates getting direct shortlist PDFs and portal updates on WhatsApp.
+            </p>
+            <a
+              href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-lg text-xs transition-all shadow-sm active:scale-95"
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              Follow on WhatsApp
+            </a>
+          </div>
         </div>
       </div>
+
+      {/* Floating Sticky Recommended Bar on Scroll */}
+      <StickyRecommendedBar branch="Armed Forces" cbtSlug="army" />
     </div>
   );
 };

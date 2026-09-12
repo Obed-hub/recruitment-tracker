@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowRight, ArrowLeft, CheckCircle, XCircle,
-  Clock, RotateCcw, BookOpen, Play, ListChecks
+  Clock, RotateCcw, BookOpen, Play, ListChecks,
+  MessageCircle, Share2, Check
 } from 'lucide-react';
 import { getQuestions } from '../services/mockFirebase';
-import { Question } from '../types';
+import { Question, SLUG_TO_BRANCH, BRANCH_TO_SLUG } from '../types';
 import AdUnit from '../components/AdUnit';
+import SEO from '../components/SEO';
 import { QuizSchema } from '../components/StructuredData';
 
 // ── Question count options ───────────────────────────────────────────────────
@@ -42,8 +44,21 @@ const SetupScreen: React.FC<{
     explanation: q.explanation
   }));
 
+  const canonicalBranchSlug = BRANCH_TO_SLUG[branch] || branch.toLowerCase();
+
   return (
     <>
+      <SEO
+        title={`Nigerian ${branch} Past Questions & Answers 2026/2027 [Free CBT Practice & Scoring]`}
+        description={`Free online CBT practice test for Nigerian ${branch} recruitment screening. Real exam questions with instant scoring, timer, and detailed explanations.`}
+        canonical={`/past-questions/${canonicalBranchSlug}`}
+        keywords={[
+          `${branch} past questions 2026`,
+          `${branch} aptitude test`,
+          `${branch} CBT questions and answers`,
+          'Nigerian recruitment past questions'
+        ]}
+      />
       <QuizSchema
         quizName={`Nigerian ${branch} Aptitude Test Practice`}
         description={`Practice official CBT exam questions for Nigerian ${branch} recruitment screening.`}
@@ -145,6 +160,7 @@ const SetupScreen: React.FC<{
 // ── Main Quiz Interface ───────────────────────────────────────────────────────
 const QuizInterface: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
+  const normalizedBranch = branch ? (SLUG_TO_BRANCH[branch.toLowerCase()] || branch) : 'General';
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -224,7 +240,7 @@ const QuizInterface: React.FC = () => {
   if (allQuestions.length === 0) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-gray-800">No questions available for {branch} yet.</h2>
+        <h2 className="text-2xl font-bold text-gray-800">No questions available for {normalizedBranch} yet.</h2>
         <Link to="/past-questions" className="text-military-blue underline mt-4 inline-block">Back to Past Questions Centre</Link>
       </div>
     );
@@ -234,7 +250,7 @@ const QuizInterface: React.FC = () => {
   if (!started) {
     return (
       <SetupScreen
-        branch={branch || 'General'}
+        branch={normalizedBranch}
         maxQuestions={allQuestions.length}
         onStart={handleStart}
         allQuestions={allQuestions}
@@ -261,6 +277,29 @@ const QuizInterface: React.FC = () => {
               <span className="text-sm text-gray-500 uppercase tracking-wide font-bold">Your Score</span>
               <div className="text-6xl font-extrabold text-gray-900 mt-2">{percentage}%</div>
               <p className="text-gray-500 mt-2">{score} out of {questions.length} questions correct</p>
+            </div>
+
+            {/* 1-Click Viral WhatsApp Score Share Engine */}
+            <div className="my-6 p-4 sm:p-5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-center space-y-3 shadow-sm">
+              <div className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center justify-center gap-1.5">
+                <MessageCircle className="w-4 h-4 text-emerald-600" /> Challenge Your Friends & Study Groups
+              </div>
+              <p className="text-xs text-emerald-800 max-w-md mx-auto">
+                Post your verified CBT score to your WhatsApp status or military/police study group and challenge others!
+              </p>
+              <div className="flex justify-center">
+                <a
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                    `🎯 *I just scored ${percentage}% (${score}/${questions.length}) on the Nigerian ${branch} 2026 CBT Aptitude Mock Exam!* 🇳🇬\n\nCan you beat my score? Practice authentic past questions with instant answers and scoring here:\nhttps://recruitmenttracker.com.ng/past-questions/${BRANCH_TO_SLUG[branch] || branch.toLowerCase()}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Share My Score on WhatsApp</span>
+                </a>
+              </div>
             </div>
 
             <AdUnit slot="QUIZ_RESULT_AD" />

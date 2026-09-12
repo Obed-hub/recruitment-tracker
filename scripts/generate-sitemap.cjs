@@ -3,12 +3,23 @@ const path = require('path');
 
 const DATABASE_URL = 'https://recruitment-be456-default-rtdb.firebaseio.com/portal_monitor.json';
 const SITE_URL = 'https://recruitmenttracker.com.ng';
+const TODAY = new Date().toISOString().split('T')[0];
 
 async function generateSitemap() {
+    let data = null;
     try {
-        const response = await fetch(DATABASE_URL);
-        const data = await response.json();
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+        const response = await fetch(DATABASE_URL, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (response.ok) {
+            data = await response.json();
+        }
+    } catch (fetchErr) {
+        console.warn('Could not fetch portal_monitor live data; using fallback static list:', fetchErr.message);
+    }
 
+    try {
         const ids = data ? Object.keys(data) : [];
 
         // Static routes
@@ -19,6 +30,29 @@ async function generateSitemap() {
             '/past-questions',
             '/guides',
             '/blog',
+            '/army-salary',
+            '/police-salary',
+            '/customs-salary',
+            '/salary-comparison',
+            '/shortlist-hub',
+            '/which-recruitment-form-is-out-now',
+            // High-Value 2026 Content Expansion Package
+            '/is-nigerian-army-form-out',
+            '/is-nigerian-navy-batch-39-form-out',
+            '/is-police-recruitment-form-out',
+            '/is-cdcfib-recruitment-form-out',
+            '/how-to-apply-nigerian-navy-batch',
+            '/how-to-apply-cdcfib-portal',
+            '/how-to-apply-police-constable',
+            '/print-army-screening-slip',
+            '/nigerian-army-shortlisted-candidates-pdf',
+            '/police-shortlisted-candidates-cbt-date',
+            '/military-physical-standards-height-requirements',
+            '/police-recruitment-requirements-age-limit',
+            '/ndlea-recruitment-requirements-qualifications',
+            '/cdcfib-cbt-past-questions-free-practice',
+            '/nigerian-navy-past-questions-bmtc-exam',
+            '/police-recruitment-cbt-past-questions',
             '/about',
             '/contact',
             '/privacy',
@@ -27,6 +61,7 @@ async function generateSitemap() {
             '/army-recruitment',
             '/navy-recruitment',
             '/airforce-recruitment',
+            '/air-force-recruitment',
             '/customs-recruitment',
             '/frsc-recruitment',
             '/ndlea-recruitment',
@@ -34,8 +69,10 @@ async function generateSitemap() {
             '/nda-recruitment',
             '/police-recruitment',
             '/civil-defence-recruitment',
+            '/civildefence-recruitment',
             '/nscdc-recruitment',
             '/fire-service-recruitment',
+            '/fireservice-recruitment',
             '/fire-recruitment',
             '/immigration-recruitment',
             '/efcc-recruitment',
@@ -47,6 +84,8 @@ async function generateSitemap() {
             '/faan-recruitment',
             '/nimasa-recruitment',
             '/nafdac-recruitment',
+            '/navy-batch-recruitment',
+            '/navy-dssc-recruitment',
         ];
 
         let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -54,8 +93,10 @@ async function generateSitemap() {
 
         // Add static routes
         staticRoutes.forEach(route => {
+            const loc = route === '' ? `${SITE_URL}/` : `${SITE_URL}${route}`;
             xml += `  <url>\n`;
-            xml += `    <loc>${SITE_URL}${route}</loc>\n`;
+            xml += `    <loc>${loc}</loc>\n`;
+            xml += `    <lastmod>${TODAY}</lastmod>\n`;
             xml += `    <changefreq>daily</changefreq>\n`;
             xml += `    <priority>${route === '' ? '1.0' : '0.8'}</priority>\n`;
             xml += `  </url>\n`;
@@ -65,7 +106,7 @@ async function generateSitemap() {
         const branches = [
             'Army', 'Navy', 'Air Force', 'NDA', 'Police',
             'Civil Defence', 'Immigration', 'Customs', 'FRSC',
-            'Fire Service', 'General'
+            'Fire Service', 'NDLEA', 'General'
         ];
 
         const branchSlugs = {
@@ -79,6 +120,7 @@ async function generateSitemap() {
             'Customs': 'customs',
             'FRSC': 'frsc',
             'Fire Service': 'fire-service',
+            'NDLEA': 'ndlea',
             'General': 'general'
         };
 
@@ -86,6 +128,7 @@ async function generateSitemap() {
             const slug = branchSlugs[branch] || branch;
             xml += `  <url>\n`;
             xml += `    <loc>${SITE_URL}/past-questions/${slug}</loc>\n`;
+            xml += `    <lastmod>${TODAY}</lastmod>\n`;
             xml += `    <changefreq>weekly</changefreq>\n`;
             xml += `    <priority>0.7</priority>\n`;
             xml += `  </url>\n`;
@@ -93,19 +136,37 @@ async function generateSitemap() {
 
         // Dynamic guide routes
         const guideSlugs = [
+            'is-nigerian-army-form-out',
+            'is-nigerian-navy-batch-39-form-out',
+            'is-police-recruitment-form-out',
+            'is-cdcfib-recruitment-form-out',
+            'how-to-apply-nigerian-navy-batch',
+            'how-to-apply-cdcfib-portal',
+            'how-to-apply-police-constable',
+            'print-army-screening-slip',
+            'nigerian-army-shortlisted-candidates-pdf',
+            'police-shortlisted-candidates-cbt-date',
+            'military-physical-standards-height-requirements',
+            'police-recruitment-requirements-age-limit',
+            'ndlea-recruitment-requirements-qualifications',
+            'cdcfib-cbt-past-questions-free-practice',
+            'nigerian-navy-past-questions-bmtc-exam',
+            'police-recruitment-cbt-past-questions',
             'nigerian-army-recruit-salary',
             'nscdc-physical-screening-centers',
-            'print-army-screening-slip',
             'navy-dssc-vs-bmtc',
             'police-constable-subject-combinations',
             'correct-cdcfib-portal-errors'
         ];
 
         guideSlugs.forEach(slug => {
+            const priority = slug === 'print-army-screening-slip' ? '0.9' : '0.8';
+            const changefreq = slug === 'print-army-screening-slip' ? 'daily' : 'weekly';
             xml += `  <url>\n`;
             xml += `    <loc>${SITE_URL}/guides/${slug}</loc>\n`;
-            xml += `    <changefreq>weekly</changefreq>\n`;
-            xml += `    <priority>0.8</priority>\n`;
+            xml += `    <lastmod>${TODAY}</lastmod>\n`;
+            xml += `    <changefreq>${changefreq}</changefreq>\n`;
+            xml += `    <priority>${priority}</priority>\n`;
             xml += `  </url>\n`;
         });
 
@@ -115,17 +176,22 @@ async function generateSitemap() {
             'how-to-prepare-pass-military-aptitude-tests',
             'common-reasons-disqualification-military-physical-screening',
             'paramilitary-vs-military-ranks-salaries-nigeria',
-            'nigeria-police-force-ranks-salary-structure'
+            'nigeria-police-force-ranks-salary-structure',
+            'nigerian-army-shortlisted-candidates-pdf-checker',
+            'nigerian-navy-batch-39-recruitment-guide-portal',
+            'police-constable-cbt-exam-date-screening-centers',
+            'cdcfib-reprint-application-slip-guarantor-form',
+            'military-medical-screening-test-disqualifications'
         ];
 
         blogSlugs.forEach(slug => {
             xml += `  <url>\n`;
             xml += `    <loc>${SITE_URL}/blog/${slug}</loc>\n`;
+            xml += `    <lastmod>${TODAY}</lastmod>\n`;
             xml += `    <changefreq>weekly</changefreq>\n`;
             xml += `    <priority>0.8</priority>\n`;
             xml += `  </url>\n`;
         });
-
 
         // Mappings for recruitment slugs
         const slugMapping = {
@@ -151,13 +217,14 @@ async function generateSitemap() {
         };
 
         // Add dynamic recruitment routes
-        ids.forEach(id => {
-            // Skip if no data for this index (e.g. null in array)
-            if (!data[id]) return;
-            
-            const slug = slugMapping[id] || id;
+        const recruitmentSlugsToInclude = ids.length > 0
+            ? ids.filter(id => data[id]).map(id => slugMapping[id] || id)
+            : Object.values(slugMapping);
+
+        recruitmentSlugsToInclude.forEach(slug => {
             xml += `  <url>\n`;
             xml += `    <loc>${SITE_URL}/recruitments/${slug}</loc>\n`;
+            xml += `    <lastmod>${TODAY}</lastmod>\n`;
             xml += `    <changefreq>weekly</changefreq>\n`;
             xml += `    <priority>0.7</priority>\n`;
             xml += `  </url>\n`;

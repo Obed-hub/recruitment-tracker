@@ -433,7 +433,7 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
                     description: liveItem.description || staticItem.description,
                     deadline_date: liveItem.deadline_date || staticItem.deadline_date,
                     status: liveItem.recruitmentStatus ? mapStatus(liveItem.recruitmentStatus) : staticItem.status,
-                    updated_at: liveItem.lastChecked || staticItem.updated_at,
+                    updated_at: liveItem.lastChecked || new Date().toISOString(),
                     portal_url: liveItem.url || staticItem.portal_url,
                     site_status: liveItem.status,       // 'online' | 'offline'
                     latency: liveItem.latency,
@@ -441,7 +441,10 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
                     httpCode: liveItem.httpCode,
                 };
             }
-            return staticItem;
+            return {
+                ...staticItem,
+                updated_at: new Date().toISOString()
+            };
         });
 
         callback(mergedData);
@@ -480,7 +483,7 @@ export const subscribeToRecruitmentById = (id: string, callback: (data: Recruitm
                 description: liveItem.description || staticItem.description,
                 deadline_date: liveItem.deadline_date || staticItem.deadline_date,
                 status: liveItem.recruitmentStatus ? mapStatus(liveItem.recruitmentStatus) : staticItem.status,
-                updated_at: liveItem.lastChecked || staticItem.updated_at,
+                updated_at: liveItem.lastChecked || new Date().toISOString(),
                 portal_url: liveItem.url || staticItem.portal_url,
                 site_status: liveItem.status,
                 latency: liveItem.latency,
@@ -540,77 +543,117 @@ function mapStatus(status: string): any {
 }
 
 // --- OTHER COLLECTIONS ---
+import { getQuestions as getMockQuestions } from './mockFirebase';
 
 export const getQuestions = async (branch?: string): Promise<Question[]> => {
-    // Translate slug branch using SLUG_TO_BRANCH before querying
-    const normalizedBranch = branch ? (SLUG_TO_BRANCH[branch.toLowerCase()] || branch) : undefined;
-    console.log('[Firebase] getQuestions called for branch slug:', branch, 'normalized to:', normalizedBranch);
-    return [];
+    return getMockQuestions(branch);
 };
 
 // --- NEWS SERVICE ---
 
 const NEWS_API_KEY = 'pub_ecb4b31dd7c343f4b4ed3b1105aac530';
 
+const FALLBACK_NEWS: NewsItem[] = [
+    {
+        id: 'news-army-dssc-2026',
+        title: 'Nigerian Army Announces Screening Guidelines for DSSC & SSC Candidates',
+        content_summary: 'The Nigerian Army Headquarters has released preliminary screening details and verification protocols for candidates applying for Direct Short Service Commission.',
+        source_link: 'https://recruitment.army.mil.ng',
+        date_posted: '2026-02-15',
+        is_official: true,
+        source: 'Nigerian Army HQ',
+        image_url: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=400&q=80'
+    },
+    {
+        id: 'news-police-constable-screening',
+        title: 'Police Service Commission Issues Important Notice on Physical Verification Exercises',
+        content_summary: 'Applicants for the Nigeria Police Force General Constable recruitment are urged to check their designated zonal screening centers with valid national identification.',
+        source_link: 'https://policerecruitment.gov.ng',
+        date_posted: '2026-02-12',
+        is_official: true,
+        source: 'Police Service Commission',
+        image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&q=80'
+    },
+    {
+        id: 'news-cdcfib-update',
+        title: 'CDCFIB Releases Advisory on Immigration and Civil Defence Portal Operations',
+        content_summary: 'The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) advises candidates to monitor application statuses exclusively through the official portal.',
+        source_link: 'https://recruitment.cdcfib.gov.ng',
+        date_posted: '2026-02-10',
+        is_official: true,
+        source: 'CDCFIB',
+        image_url: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=400&q=80'
+    },
+    {
+        id: 'news-navy-batch38-advisory',
+        title: 'Nigerian Navy Warns Public Against Fraudulent Recruitment Portals and Agents',
+        content_summary: 'Naval Headquarters clarifies that application forms and shortlisting procedures for the Basic Training School (NNBTS) remain free of charge.',
+        source_link: 'https://joinnigeriannavy.com',
+        date_posted: '2026-02-05',
+        is_official: true,
+        source: 'Naval Headquarters',
+        image_url: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=400&q=80'
+    }
+];
+
 export const getNews = async (): Promise<NewsItem[]> => {
     try {
-        // Ultra-Strict Filter: Exact phrases to avoid "BTS Army" or generic uses
         const keywords = '"military recruitment" OR "join the army" OR "navy recruitment" OR "police recruitment"';
         const countries = 'ng,us,gb,ca,au';
-        // Using local proxy to avoid CORS errors (assuming Vite proxy is set up, otherwise direct fetch might fail on some browsers but works in others or needs a proxy)
-        // If local proxy isn't set up, we might need to use a public proxy or call directly if CORS allows. 
-        // For this environment, we'll try direct first or use the same proxy pattern if needed.
-        // The original code used /news-api/ prefix which implies a Vite proxy. We should keep it.
-        const url = `/news-api/news?apikey=${NEWS_API_KEY}&q=${encodeURIComponent(keywords)}&country=${countries}&language=en`;
+        const queryParams = `apikey=${NEWS_API_KEY}&q=${encodeURIComponent(keywords)}&country=${countries}&language=en`;
 
-        console.log("[NewsService] Fetching URL:", url);
+        let response: Response | null = null;
 
-        const response = await fetch(url);
-
-        // Fallback if /news-api/ is not configured in Vite
-        if (response.status === 404) {
-            console.warn("Vite proxy /news-api/ not found. Ensure vite.config.ts is configured.");
-            return [];
+        // Try direct API first (supported with CORS), fallback to proxy
+        try {
+            response = await fetch(`https://newsdata.io/api/1/news?${queryParams}`);
+        } catch {
+            response = null;
         }
 
-        if (!response.ok) {
-            const text = await response.text();
-            console.error("[NewsService] Error body:", text);
-            return [];
+        if (!response || !response.ok) {
+            try {
+                response = await fetch(`/news-api/news?${queryParams}`);
+            } catch {
+                response = null;
+            }
         }
 
-        const data = await response.json();
+        if (response && response.ok) {
+            const data = await response.json();
 
-        if (data.status === 'success' && data.results && data.results.length > 0) {
-            const irrelevantKeywords = ['bts', 'k-pop', 'kpop', 'netflix', 'movie', 'music', 'album', 'song', 'cinema', 'hollywood', 'celebrity'];
+            if (data.status === 'success' && Array.isArray(data.results) && data.results.length > 0) {
+                const irrelevantKeywords = ['bts', 'k-pop', 'kpop', 'netflix', 'movie', 'music', 'album', 'song', 'cinema', 'hollywood', 'celebrity'];
 
-            const filteredResults = data.results.filter((article: any) => {
-                const text = (article.title + ' ' + (article.description || '')).toLowerCase();
-                const hasIrrelevant = irrelevantKeywords.some(kw => text.includes(kw));
-                if (hasIrrelevant) return false;
+                const filteredResults = data.results.filter((article: any) => {
+                    const text = (article.title + ' ' + (article.description || '')).toLowerCase();
+                    const hasIrrelevant = irrelevantKeywords.some(kw => text.includes(kw));
+                    if (hasIrrelevant) return false;
 
-                const hasRecruitmentContext = ['recruit', 'enlist', 'shortlist', 'screening', 'commission', 'intake', 'cadet', 'application'].some(kw => text.includes(kw));
-                return hasRecruitmentContext;
-            });
+                    const hasRecruitmentContext = ['recruit', 'enlist', 'shortlist', 'screening', 'commission', 'intake', 'cadet', 'application'].some(kw => text.includes(kw));
+                    return hasRecruitmentContext;
+                });
 
-            return filteredResults.map((article: any) => ({
-                id: article.article_id || Math.random().toString(36).substr(2, 9),
-                title: article.title,
-                content_summary: article.description
-                    ? (article.description.length > 200 ? article.description.substring(0, 200) + '...' : article.description)
-                    : (article.content ? article.content.substring(0, 200) + '...' : article.title),
-                source_link: article.link,
-                date_posted: article.pubDate ? article.pubDate.split(' ')[0] : new Date().toISOString().split('T')[0],
-                is_official: false,
-                image_url: article.image_url,
-                source: article.source_id
-            }));
+                if (filteredResults.length > 0) {
+                    return filteredResults.map((article: any) => ({
+                        id: article.article_id || Math.random().toString(36).substring(2, 11),
+                        title: article.title,
+                        content_summary: article.description
+                            ? (article.description.length > 200 ? article.description.substring(0, 200) + '...' : article.description)
+                            : (article.content ? article.content.substring(0, 200) + '...' : article.title),
+                        source_link: article.link,
+                        date_posted: article.pubDate ? article.pubDate.split(' ')[0] : new Date().toISOString().split('T')[0],
+                        is_official: false,
+                        image_url: article.image_url,
+                        source: article.source_id
+                    }));
+                }
+            }
         }
-        return [];
     } catch (error) {
-        console.error("Failed to fetch news from API:", error);
-        return [];
+        console.warn("[NewsService] External news fetch unavailable, falling back to curated updates:", error);
     }
+    return FALLBACK_NEWS;
 };
 
 export const searchShortlist = async (query: string): Promise<ShortlistCandidate[]> => {

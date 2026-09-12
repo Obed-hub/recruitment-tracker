@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrainCircuit, BookOpen, Clock, Award, Shield } from 'lucide-react';
+import { BrainCircuit, BookOpen, Clock, Award, Shield, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Branch, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
-import { FAQPageSchema } from '../components/StructuredData';
+import { FAQPageSchema, BreadcrumbListSchema } from '../components/StructuredData';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 const QuizHub: React.FC = () => {
   const practiceOptions: { branch: Branch | 'General', label: string, desc: string, color: string }[] = [
@@ -39,13 +40,23 @@ const QuizHub: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto">
       <SEO
-        title="Past Question Centre - Nigeria Recruitment Preparation"
-        description="Prepare for Nigerian recruitment aptitude tests with our professional Past Question CBT tests. Practice with real exam questions from Army, Navy, Police, and more."
+        title="Recruitment Past Questions & CBT Exam Practice 2026/2027 [Free Mock Tests & Answers]"
+        description="Prepare for Nigerian military and paramilitary aptitude tests with real CBT past questions. Practice timed mock exams with instant answers for Army, Navy, Police, NSCDC & Immigration."
         canonical="/past-questions"
-        keywords={['past question', 'Nigeria recruitment test', 'aptitude test practice', 'Army past questions', 'Police past questions']}
+        keywords={['recruitment past questions', 'Nigeria military CBT practice', 'police exam questions and answers', 'army aptitude test questions', 'free recruitment mock exam']}
       />
       <FAQPageSchema faqs={quizFAQs} />
-      <div className="text-center py-12">
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Past Questions & CBT Practice', url: '/past-questions' }
+        ]}
+      />
+      <div className="text-center py-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold mb-4">
+          <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+          <span>{getDailyUpdatedBadge()} • CBT Question Bank</span>
+        </div>
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Past Question Centre</h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment. We provide real past questions from previous recruitment exercises to help you understand the pattern, timing, and difficulty level of the official exams.

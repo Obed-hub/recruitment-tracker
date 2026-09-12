@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       host: '0.0.0.0',
+      port: 3000,
+      allowedHosts: true,
       proxy: {
         '/news-api': {
           target: 'https://newsdata.io/api/1',

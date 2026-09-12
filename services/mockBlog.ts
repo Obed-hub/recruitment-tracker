@@ -7,6 +7,7 @@ export interface BlogContentBlock {
 export interface BlogArticle {
   slug: string;
   title: string;
+  seoTitle?: string;
   description: string;
   category: 'Career Advice' | 'Exam Prep' | 'Salaries' | 'Guides';
   date: string;
@@ -24,6 +25,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: 'top-10-high-paying-agencies-nigeria',
     title: 'Top 10 High-Paying Federal Government Agencies in Nigeria (2026)',
+    seoTitle: 'Top 10 High-Paying Federal Agencies in Nigeria 2026/2027 [Full Salary Scale & Allowances]',
     description: 'Discover the top 10 highest-paying federal government agencies in Nigeria for 2026. Explore their salary structures, benefits, and how to apply.',
     category: 'Salaries',
     date: '2026-06-20',
@@ -108,6 +110,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: 'how-to-prepare-pass-military-aptitude-tests',
     title: 'How to Prepare and Pass Military Aptitude Tests: A Comprehensive Guide',
+    seoTitle: 'How to Pass Military Aptitude Tests 2026/2027 [CBT Exam Format & Study Tips]',
     description: 'A complete preparation guide for the Nigerian Army, Navy, and Air Force CBT exam. Get past questions, topic break-downs, and screening day tips.',
     category: 'Exam Prep',
     date: '2026-06-18',
@@ -179,6 +182,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: 'common-reasons-disqualification-military-physical-screening',
     title: 'Common Reasons for Disqualification During Military Physical Screening',
+    seoTitle: 'Reasons for Disqualification at Military Screening 2026/2027 [Avoid These Mistakes]',
     description: 'Don\'t get disqualified! Learn the medical, physical, and credential reasons why candidates fail Nigerian military and paramilitary screenings.',
     category: 'Guides',
     date: '2026-06-15',
@@ -267,6 +271,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: 'paramilitary-vs-military-ranks-salaries-nigeria',
     title: 'Paramilitary vs Military: Ranks, Salaries, and Career Paths in Nigeria',
+    seoTitle: 'Paramilitary vs Military Ranks & Salaries in Nigeria 2026/2027 [Comparison Table]',
     description: 'Compare careers in the Nigerian Armed Forces (Army, Navy, Air Force) versus paramilitary agencies (Customs, NIS, NSCDC, NDLEA).',
     category: 'Career Advice',
     date: '2026-06-10',
@@ -351,6 +356,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: 'nigeria-police-force-ranks-salary-structure',
     title: 'Nigeria Police Force Ranks and Salary Structure: A Detailed Breakdown',
+    seoTitle: 'Nigeria Police Force Ranks & Salary Structure 2026/2027 [Constable to IGP Monthly Pay]',
     description: 'Comprehensive overview of the Nigeria Police Force (NPF) ranking system and monthly salary structure from Constable to Inspector General.',
     category: 'Salaries',
     date: '2026-06-05',
@@ -419,6 +425,353 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       {
         question: 'What is the entry rank for a university graduate in the police?',
         answer: 'University graduates (BSc/HND) who enter through Cadet ASP recruitment start at the rank of Assistant Superintendent of Police (ASP) on Grade Level 08.'
+      }
+    ]
+  },
+  {
+    slug: 'nigerian-army-shortlisted-candidates-pdf-checker',
+    title: 'Nigerian Army Shortlisted Candidates 2026/2027 PDF List (State-by-State 88 RRI Screening Centers)',
+    seoTitle: 'Nigerian Army Shortlist 2026 PDF Download (State-by-State 88 RRI Screening Centers)',
+    description: 'Download official Nigerian Army shortlisted candidates PDF for 88 RRI and DSSC. Find state screening venues, required kits, and interview dates.',
+    category: 'Guides',
+    date: '2026-09-08',
+    readTime: '7 min read',
+    keywords: [
+      'nigerian army shortlisted candidates 2026 pdf',
+      'army 88 rri shortlist download',
+      'nigerian army screening venue 2026',
+      'how to check army shortlist online',
+      'army screening date and center'
+    ],
+    image: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=800',
+    content: [
+      {
+        type: 'p',
+        text: 'The Nigerian Army has published the official shortlist of successful candidates for the 88 Regular Recruit Intake (RRI) and Direct Short Service Commission (DSSC). Candidates who completed their online applications can now check their names on the state-by-state PDF lists and prepare for the mandatory physical and credentials screening exercise.'
+      },
+      {
+        type: 'h2',
+        text: 'How to Check Your Name on the Army Shortlist PDF'
+      },
+      {
+        type: 'p',
+        text: 'Checking the shortlist on your mobile phone or computer is straightforward. Follow these steps to verify your application status without paying cyber cafe operators:'
+      },
+      {
+        type: 'ol',
+        items: [
+          'Visit the official recruitment portal (recruitment.army.mil.ng) or our dedicated Shortlist Hub (recruitmenttracker.com.ng/shortlist-hub).',
+          'Select your State of Origin to download the verified PDF document for your state.',
+          'Open the downloaded PDF using Adobe Acrobat Reader, Google Drive, or WPS Office.',
+          'Use the Search function (Ctrl + F on laptop, or tap the magnifying glass icon on mobile).',
+          'Enter your full Application ID (e.g., 88RRI/KN/10492) or your surname to locate your screening center and reporting date.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'State-by-State Screening Venues and Barracks'
+      },
+      {
+        type: 'p',
+        text: 'Candidates are required to report strictly to the screening center designated for their state of origin. Major state centers include: Lagos State at 9 Brigade Ikeja Military Cantonment; Kaduna State at 1 Division Ribadu Cantonment; Kano State at 3 Brigade Bukavu Barracks; Rivers State at 6 Division Bori Camp; and Oyo State at 2 Division Adekunle Fajuyi Cantonment, Odogbo Ibadan.'
+      },
+      {
+        type: 'h2',
+        text: 'Mandatory Items and Dress Code for Screening'
+      },
+      {
+        type: 'ul',
+        items: [
+          'White round-neck vest and plain white shorts (no logos or colored stripes).',
+          'Pure white canvas shoes and plain white socks.',
+          'Original and photocopies of educational certificates (FSLC, WAEC/NECO/NABTEB).',
+          'Original LGA Indigene / State of Origin Certificate.',
+          'National Identity Management Commission (NIMC) NIN Slip.',
+          'Two pairs of completed and endorsed guarantor forms with authentic passport photographs.',
+          'Scratch card for online O-Level result verification (WAEC or NECO).'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Stay Updated on WhatsApp'
+      },
+      {
+        type: 'p',
+        text: 'Screening timetables are batched by Local Government Areas. To ensure you do not miss your batch reporting date, follow the official NIGERIA RECRUITMENT UPDATE WhatsApp channel (https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10) for instant PDF drops and real-time alerts.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is the Nigerian Army 88 RRI shortlist completely free to download?',
+        answer: 'Yes, downloading the shortlist PDF and attending the state screening exercise is 100% free of charge. Never pay any recruitment agent claiming to insert your name on the supplementary list.'
+      },
+      {
+        question: 'What happens if my name is on the list but I missed my state screening date?',
+        answer: 'Candidates who miss their designated LGA screening date are generally disqualified, as military boards adhere to strict daily quotas. Occasionally, mop-up screening is held on the final two days of the exercise.'
+      },
+      {
+        question: 'Can I attend screening in Lagos if my state of origin is Kano or Enugu?',
+        answer: 'No. Candidates are screened exclusively in their official state of origin to preserve constitutional federal character quotas.'
+      }
+    ]
+  },
+  {
+    slug: 'nigerian-navy-batch-39-recruitment-guide-portal',
+    title: 'Nigerian Navy Batch 39 Recruitment 2026: Application Portal, Requirements & Registration Guide',
+    seoTitle: 'Nigerian Navy Batch 39 Recruitment 2026/2027 Portal Form & Requirements',
+    description: 'Complete guide to Nigerian Navy Batch 39 Basic Maritime Training Course (BMTC) recruitment 2026. Portal link, age limits, height rules, and CBT tips.',
+    category: 'Guides',
+    date: '2026-09-07',
+    readTime: '6 min read',
+    keywords: [
+      'nigerian navy batch 39 recruitment 2026',
+      'joinnigeriannavy portal closing date',
+      'navy bmtc entry requirements',
+      'how to apply for navy batch 39',
+      'navy recruitment height and age requirements'
+    ],
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
+    content: [
+      {
+        type: 'p',
+        text: 'The Nigerian Navy has announced the opening of the official registration portal for the Basic Maritime Training Course (Batch 39 BMTC). This recruitment is open to Nigerian citizens seeking enlistment into the naval service as ratings across general duties, technical departments, medical ratings, and maritime engineering branches.'
+      },
+      {
+        type: 'h2',
+        text: 'Official Portal and Application Fee'
+      },
+      {
+        type: 'p',
+        text: 'The only authentic website for Batch 39 registration is joinnigeriannavy.com. Application is 100% free. Any third-party blog or social media account asking for form purchase fees or scratch card payments is completely fraudulent.'
+      },
+      {
+        type: 'h2',
+        text: 'Statutory Eligibility Requirements'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Nationality: Must be a Nigerian citizen by birth with a valid National Identity Number (NIN).',
+          'Age Limits: Between 18 and 22 years for Secondary School Certificate holders (SSCE/GCE/NECO); up to 26 years for diploma holders (ND, NCE, Nursing, Technical certificates).',
+          'Height Requirements: Minimum height of 1.69 meters (5ft 6in) for male candidates, and 1.65 meters (5ft 5in) for female candidates.',
+          'Educational Qualifications: Minimum of 5 credits in SSCE, NECO, or GCE in not more than 2 sittings, including English Language and Mathematics.',
+          'Marital Status: Applicants must be single and remain unmarried throughout the 9-month training period at the Basic Maritime Training College, Onne, Port Harcourt.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Passport Photograph Upload Rule (Avoid Portal Error)'
+      },
+      {
+        type: 'p',
+        text: 'A common reason why candidates are locked out of the naval portal is uploading images larger than 20KB. The naval portal requires a recent passport photo with a clean white background, compressed to between 10KB and 20KB with 200x200 pixel dimensions. Ensure your image is resized to standard dimensions before uploading.'
+      },
+      {
+        type: 'h2',
+        text: 'Naval Aptitude Test & CBT Preparation'
+      },
+      {
+        type: 'p',
+        text: 'Shortlisted candidates will sit for an electronic Computer-Based Test (CBT) covering Mathematics, English Language, and General Knowledge (Nigerian history, naval traditions, and current affairs). Candidates should practice authentic naval past questions at recruitmenttracker.com.ng/past-questions/navy.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I apply for Navy Batch 39 with awaiting result?',
+        answer: 'No. The Nigerian Navy does not accept awaiting results. All academic qualifications (WAEC, NECO, NABTEB, ND) must be fully certified at the time of submission.'
+      },
+      {
+        question: 'How long does Navy basic training last?',
+        answer: 'BMTC training at the Nigerian Naval Basic Training School (NNBTS) Onne, Rivers State lasts approximately 9 months.'
+      }
+    ]
+  },
+  {
+    slug: 'police-constable-cbt-exam-date-screening-centers',
+    title: 'NPF Police Constable CBT Exam Date & Screening Venues 2026: What to Expect & Passing Score',
+    seoTitle: 'NPF Police Constable CBT Exam Date 2026 & Nationwide Screening Centers',
+    description: 'Everything you need to know about the 2026 Nigeria Police Force (NPF) Constable computer-based test (CBT), JAMB testing centers, and passing cut-off marks.',
+    category: 'Exam Prep',
+    date: '2026-09-06',
+    readTime: '6 min read',
+    keywords: [
+      'police constable cbt exam date 2026',
+      'npf screening date and centers',
+      'jamb police recruitment cbt test',
+      'police recruitment cut off mark',
+      'npf constable interview date'
+    ],
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800',
+    content: [
+      {
+        type: 'p',
+        text: 'The Police Service Commission (PSC) and the Nigeria Police Force (NPF) have finalized arrangements for the nationwide Computer-Based Test (CBT) for shortlisted General Duty and Specialist Police Constable candidates. The examination is conducted in accredited JAMB CBT centers across all 36 states and the Federal Capital Territory.'
+      },
+      {
+        type: 'h2',
+        text: 'Structure of the Police CBT Examination'
+      },
+      {
+        type: 'p',
+        text: 'The NPF aptitude test is composed of 60 to 100 objective questions delivered via the JAMB e-testing engine. Candidates are evaluated across four key sections:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Use of English (Grammar, comprehension, antonyms/synonyms): 25 questions.',
+          'General Mathematics & Quantitative Reasoning: 20 questions.',
+          'General Studies & Current Affairs (History of Nigeria, constitution, police hierarchy): 25 questions.',
+          'Basic Verbal & Abstract Reasoning: 20 questions.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Passing Score and Selection Criteria'
+      },
+      {
+        type: 'p',
+        text: 'While the PSC does not declare a uniform national cut-off score in advance, historical recruitment data indicates that scoring 50% and above significantly boosts your placement on the state quota allocation. Scores are ranked per Local Government Area (LGA), ensuring that every local council gets fair representation.'
+      },
+      {
+        type: 'h2',
+        text: 'What Candidates Must Bring to the JAMB Center'
+      },
+      {
+        type: 'ol',
+        items: [
+          'Printed CBT Examination Slip showing your examination center, date, seat number, and scheduled session.',
+          'Original National Identity Number (NIN) slip.',
+          'Valid photo ID card (Voter card, Driver license, or International Passport).',
+          'Two clean HB pencils (electronic devices, smart watches, bags, and calculators are strictly banned inside the hall).'
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: 'When will the 2026 Police Constable CBT examination hold?',
+        answer: 'Dates are batched by state commands and transmitted directly via SMS and email to shortlisted candidates. Verified date announcements are also published on the NIGERIA RECRUITMENT UPDATE WhatsApp channel.'
+      },
+      {
+        question: 'Are specialist police candidates tested on the same questions as general duty?',
+        answer: 'Specialist applicants (drivers, mechanics, medics, band officers) sit for an abbreviated general paper followed by practical trade tests at the Police Colleges.'
+      }
+    ]
+  },
+  {
+    slug: 'cdcfib-reprint-application-slip-guarantor-form',
+    title: 'How to Reprint CDCFIB Application Slip & Guarantor Form (Civil Defence, NIS, Fire & Corrections)',
+    seoTitle: 'How to Reprint CDCFIB Application Slip & Guarantor Form 2026 [cdcfib.career]',
+    description: 'Step-by-step guide to reprinting your CDCFIB registration slip, referee forms, and screening invitations for NSCDC, NIS, Federal Fire Service, and NCoS.',
+    category: 'Guides',
+    date: '2026-09-05',
+    readTime: '5 min read',
+    keywords: [
+      'how to reprint cdcfib application slip',
+      'cdcfib career guarantor form download',
+      'reprint civil defence screening slip',
+      'nis recruitment portal slip reprint',
+      'cdcfib referee endorsement'
+    ],
+    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&q=80&w=800',
+    content: [
+      {
+        type: 'p',
+        text: 'During recruitment exercises conducted by the Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB), thousands of candidates misplace their initial registration confirmation slips. If you applied for the Nigeria Security and Civil Defence Corps (NSCDC), Nigeria Immigration Service (NIS), Federal Fire Service (FFS), or Nigerian Correctional Service (NCoS), having your printed slip and completed guarantor form is compulsory at the screening gate.'
+      },
+      {
+        type: 'h2',
+        text: 'Step-by-Step Guide to Reprinting from cdcfib.career'
+      },
+      {
+        type: 'ol',
+        items: [
+          'Navigate to the official portal: cdcfib.career.',
+          'Click on the "Reprint Slip" or "Application Status" button on the portal menu.',
+          'Enter the Email Address and Phone Number used during your original submission.',
+          'Input your unique Application Reference Number (e.g., NSCDC-2026-XXXXX or NIS-2026-XXXXX).',
+          'Click "Generate Slip" to download the official PDF containing your personal details, biometric barcode, and designated screening center.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Who Can Endorse the CDCFIB Guarantor Form?'
+      },
+      {
+        type: 'p',
+        text: 'The CDCFIB board requires every applicant to present two endorsed guarantor forms. Eligible guarantors include: Traditional Rulers (Oba, Emir, Obi, Baale), Magistrates or High Court Judges, Civil Servants not below Grade Level 12, or Senior Police/Military Officers not below the rank of Superintendent of Police or Major. Ensure the guarantor signs, dates, and attaches an official stamp.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I reprint my slip if I forgot my Application ID?',
+        answer: 'Yes. Use the "Forgot Reference" tool on cdcfib.career by entering your registered NIN and date of birth to retrieve your application credentials.'
+      },
+      {
+        question: 'Does the CDCFIB application slip need to be printed in color?',
+        answer: 'Yes. It is strongly recommended to print your screening slip in high-resolution color so that your photograph and barcode scan properly during biometric gate vetting.'
+      }
+    ]
+  },
+  {
+    slug: 'military-medical-screening-test-disqualifications',
+    title: 'Complete Military Medical Screening Disqualification List: Tattoos, Flat Feet, BP, Vision & Tests',
+    seoTitle: 'Military Medical Test Disqualification List Nigeria 2026 [Army, Navy, Air Force]',
+    description: 'Discover the medical conditions that lead to disqualification in Nigerian Army, Navy, Air Force, and Police screenings: eye defects, flat feet, tattoos, and blood pressure.',
+    category: 'Career Advice',
+    date: '2026-09-04',
+    readTime: '7 min read',
+    keywords: [
+      'military medical test disqualifications nigeria',
+      'can someone with tattoo join nigerian army',
+      'army physical medical examination rules',
+      'flat feet disqualification military',
+      'medical tests done in military screening'
+    ],
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800',
+    content: [
+      {
+        type: 'p',
+        text: 'Passing the academic aptitude test and running the 3.2km endurance run are major milestones, but medical screening remains the single highest point of candidate elimination in Nigerian Armed Forces recruitment. Over 40% of candidates who reach the state screening centers are turned back by the military medical board for conditions they were previously unaware of.'
+      },
+      {
+        type: 'h2',
+        text: 'Top Conditions That Cause Immediate Disqualification'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Visible Body Tattoos and Deep Body Scarifications: Military regulations prohibit tattoos anywhere on the body, as well as cult-related branding or non-traditional deep marks.',
+          'Severe Flat Feet (Pes Planus): The military requires a natural foot arch for tactical stamina and load-bearing marches; severe fallen arches cause chronic fatigue and joint damage.',
+          'Visual Impairments & Color Blindness: Recruits must have 6/6 uncorrected visual acuity without glasses. Color blindness is an automatic disqualifier because combatants must identify military navigation markers and signal flares.',
+          'Hypertension & Cardiac Murmurs: Resting blood pressure exceeding 140/90 mmHg poses grave risk under intensive boot camp drills at depot.',
+          'Knock Knees (Genu Valgum) and Bow Legs (Genu Varum): Severe skeletal misalignments that impede standard parade marching or cause persistent knee degeneration under tactical gear.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Laboratory Tests Conducted at the Zonal Screening Center'
+      },
+      {
+        type: 'p',
+        text: 'Candidates undergo comprehensive clinical diagnostics including: Complete Blood Count (CBC), Hepatitis B and C screening, HIV 1 & 2 serology, Urinalysis (checking for kidney pathology or diabetes mellitus), Chest X-Ray for active tuberculosis or pulmonary lesions, and Pregnancy testing for all female candidates (pregnancy at any stage leads to immediate deferral).'
+      },
+      {
+        type: 'h2',
+        text: 'How to Prepare Before Your Medical Date'
+      },
+      {
+        type: 'p',
+        text: 'Visit a reputable government hospital or primary health center 3 to 4 weeks prior to your screening date. Run a basic urinalysis, check your blood pressure, and undergo a simple eye acuity test. Treating mild ear wax impactions, infections, or transient blood pressure spikes beforehand can save your military career.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I join the Nigerian military if I have sickle cell trait (Hb AS)?',
+        answer: 'Candidates with sickle cell trait (AS) are generally accepted if asymptomatic and organ function is normal. However, candidates with homozygous sickle cell disease (SS or SC) cannot be accepted due to high-altitude and physical stress hazards.'
+      },
+      {
+        question: 'Are surgical scars like appendectomy disqualifying?',
+        answer: 'Clean, fully healed surgical scars (such as an uncomplicated appendectomy or hernia repair performed more than 12 months prior) are acceptable, provided there is no chronic pain or abdominal wall herniation.'
       }
     ]
   }

@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, BookOpen, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, BookOpen, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight, FileCheck2, MessageCircle, Share2, Check } from 'lucide-react';
 import { subscribeToRecruitmentById, LEGACY_TO_SLUG } from '../services/firebase';
 import { RecruitmentUpdate, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
-import { RecruitmentSchema } from '../components/StructuredData';
+import { RecruitmentSchema, BreadcrumbListSchema } from '../components/StructuredData';
 import AdUnit from '../components/AdUnit';
 import { GUIDES } from '../services/mockGuides';
+import FastActionCard from '../components/FastActionCard';
+import ScreeningChecklist from '../components/ScreeningChecklist';
+import NextStepInterstitial from '../components/NextStepInterstitial';
+import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [recruitment, setRecruitment] = useState<RecruitmentUpdate | null>(null);
   const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,6 +86,28 @@ const RecruitmentDetail: React.FC = () => {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   })();
 
+  const getDynamicHook = () => {
+    if (recruitment.status === 'Open') {
+      if (daysRemaining > 0 && daysRemaining <= 7) {
+        return `[Closing in ${daysRemaining} Days - Apply Now]`;
+      }
+      return '[Application Portal Open - Apply Now]';
+    }
+    if (recruitment.status === 'Shortlist Out') {
+      return '[Shortlist PDF Out - Check Screening Centers]';
+    }
+    if (recruitment.status === 'Upcoming') {
+      return '[Announced - Opening Soon]';
+    }
+    if (recruitment.status === 'Closed') {
+      return '[Application Closed - Screening Slip & CBT Questions]';
+    }
+    return `[${recruitment.status.toUpperCase()} - Official Portal]`;
+  };
+
+  const dynamicHook = getDynamicHook();
+  const pageTitle = `${recruitment.title} 2026/2027 ${dynamicHook}`;
+
   return (
     <div className="max-w-5xl mx-auto">
       <Link to="/recruitments" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors">
@@ -87,12 +115,31 @@ const RecruitmentDetail: React.FC = () => {
       </Link>
 
       <SEO
-        title={`${recruitment.title} ${new Date().getFullYear()} - Application Guide`}
-        description={`Wondering how to apply for ${recruitment.title}? Check current status (${recruitment.status}), requirements, application deadline (${new Date(recruitment.deadline_date).toLocaleDateString()}), and access the official portal for ${recruitment.branch} recruitment.`}
-        canonical={`/recruitments/${id}`}
-        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'tracker', recruitment.category, `${recruitment.branch} recruitment 2026`, 'job application Nigeria']}
+        title={pageTitle}
+        description={`Official ${recruitment.title} application guide for 2026/2027. Portal Status: ${recruitment.status}. Deadline: ${new Date(recruitment.deadline_date).toLocaleDateString()}. Check requirements, exam centers, CBT questions & official portal link.`}
+        canonical={`/recruitments/${recruitment.id}`}
+        keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'tracker', recruitment.category, `${recruitment.branch} recruitment 2026`, 'job application Nigeria', `${recruitment.title} screening date`, 'portal login']}
       />
       <RecruitmentSchema recruitment={recruitment} />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', item: '/' },
+        { name: 'Recruitments', item: '/recruitments' },
+        { name: recruitment.title, item: `/recruitments/${recruitment.id}` }
+      ]} />
+
+      {/* Above-the-fold Fast-Action Strip for Instant Gratification & 0-Bounce Access */}
+      <FastActionCard
+        branch={recruitment.branch}
+        title={recruitment.title}
+        portalUrl={recruitment.portal_url}
+        status={recruitment.status}
+        deadlineDate={recruitment.deadline_date}
+        cbtSlug={BRANCH_TO_SLUG[recruitment.branch] || recruitment.branch.toLowerCase()}
+        onOpenChecklist={() => {
+          const el = document.getElementById('screening-checklist');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+      />
 
       <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
         {/* Header Banner */}
@@ -108,10 +155,15 @@ const RecruitmentDetail: React.FC = () => {
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold mb-4">{recruitment.title}</h1>
 
-            <div className="flex flex-wrap gap-6 text-sm font-medium">
+            <div className="flex flex-wrap gap-4 text-sm font-medium">
               <div className="flex items-center bg-black/20 px-3 py-1.5 rounded-lg">
                 <Calendar className="w-4 h-4 mr-2 opacity-80" />
                 <span>Deadline: {new Date(recruitment.deadline_date).toLocaleDateString()}</span>
+              </div>
+
+              <div className="flex items-center bg-black/20 px-3 py-1.5 rounded-lg">
+                <CheckCircle className="w-4 h-4 mr-2 text-emerald-400" />
+                <span>Portal Checked: {getDailyUpdatedBadge(false)}</span>
               </div>
 
               {recruitment.status === 'Open' && daysRemaining >= 0 && (
@@ -244,6 +296,20 @@ const RecruitmentDetail: React.FC = () => {
                 </div>
               )}
             </section>
+
+            {/* Interactive Screening Day Preparation Checklist */}
+            <section id="screening-checklist">
+              <ScreeningChecklist
+                branch={recruitment.branch}
+                title={`${recruitment.title} Physical Screening Document Checklist`}
+              />
+            </section>
+
+            {/* Re-circulation Next Step Interstitial */}
+            <NextStepInterstitial
+              currentBranch={recruitment.branch}
+              cbtSlug={BRANCH_TO_SLUG[recruitment.branch] || recruitment.branch.toLowerCase()}
+            />
           </div>
 
           {/* Sidebar */}
@@ -277,6 +343,84 @@ const RecruitmentDetail: React.FC = () => {
                   By clicking "Apply on Portal", you will be redirected to the official {recruitment.branch} website.
                 </p>
 
+                {/* 1-Click WhatsApp Viral Share & Copy Link Engine */}
+                <div className="p-3.5 bg-emerald-50/80 border border-emerald-200 rounded-xl space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-emerald-900 uppercase tracking-wider flex items-center gap-1">
+                      <MessageCircle className="w-3.5 h-3.5 text-emerald-600" /> Share with Friends
+                    </span>
+                    <span className="text-[10px] bg-emerald-200/60 text-emerald-800 font-bold px-1.5 py-0.5 rounded">
+                      WhatsApp
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-emerald-800 leading-snug">
+                    Share this verified recruitment alert with your NYSC CDS group, alumni, or family chats.
+                  </p>
+                  <div className="flex gap-2">
+                    <a
+                      href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                        `🚨 *${recruitment.title} (2026)* 🚨\n\n📌 *Status:* ${recruitment.status.toUpperCase()}\n📅 *Deadline:* ${new Date(recruitment.deadline_date).toLocaleDateString()}\n🎓 *Category:* ${recruitment.category}\n\nCheck requirements, CBT questions & official portal:\nhttps://recruitmenttracker.com.ng/recruitments/${recruitment.id}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-colors shadow-sm"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>Share on WhatsApp</span>
+                    </a>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 2500);
+                      }}
+                      className="p-2 bg-white hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-lg transition-colors flex items-center justify-center"
+                      title="Copy link"
+                      aria-label="Copy link"
+                    >
+                      {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-emerald-700" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Eligibility Checker CTA */}
+                <Link
+                  to="/eligibility"
+                  className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl hover:border-emerald-400 transition-all group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
+                      ✓
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-emerald-900 group-hover:text-emerald-700">Check Your Eligibility</div>
+                      <div className="text-[10px] text-emerald-700">Verify Age, Height & O'Level</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform" />
+                </Link>
+
+                {/* Screening Document Preparation Quick Card */}
+                <div className="p-4 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-xl shadow-sm border border-emerald-500/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span className="text-[11px] font-bold text-emerald-300 uppercase tracking-wider">Screening Prep</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-white mb-1">Document Readiness Checklist</h4>
+                  <p className="text-xs text-gray-300 mb-3 leading-relaxed">
+                    Verify all 9 mandatory credentials (Indigene cert, FSLC, WAEC credits, NIN & slip) before screening day.
+                  </p>
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById('screening-checklist');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full flex items-center justify-center py-2 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-lg text-xs font-bold transition-colors"
+                  >
+                    Open Interactive Checklist
+                  </button>
+                </div>
+
                 {/* Sidebar Ad Unit */}
                 <AdUnit slot="PSEO_SIDEBAR_AD" format="rectangle" />
 
@@ -306,7 +450,13 @@ const RecruitmentDetail: React.FC = () => {
 
         </div>
       </div>
-    </div >
+
+      {/* Floating Sticky Recommended Bar on Scroll */}
+      <StickyRecommendedBar
+        branch={recruitment.branch}
+        cbtSlug={BRANCH_TO_SLUG[recruitment.branch] || recruitment.branch.toLowerCase()}
+      />
+    </div>
   );
 };
 

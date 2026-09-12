@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Search, Clock, ArrowRight } from 'lucide-react';
+import { BookOpen, Search, Clock, ArrowRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getGuides, GuideArticle } from '../services/mockGuides';
 import SEO from '../components/SEO';
+import { BreadcrumbListSchema } from '../components/StructuredData';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 const GuidesHub: React.FC = () => {
   const [guides, setGuides] = useState<GuideArticle[]>([]);
@@ -17,7 +19,18 @@ const GuidesHub: React.FC = () => {
     });
   }, []);
 
-  const categories = ['All', 'Salary', 'Screening', 'Tutorial', 'Comparison', 'Requirements'];
+  const categories = [
+    'All',
+    'Live Status',
+    'How-to-Apply',
+    'Shortlist',
+    'Requirements',
+    'Past Questions',
+    'Salary',
+    'Screening',
+    'Tutorial',
+    'Comparison'
+  ];
 
   const filteredGuides = guides.filter(g => {
     const matchesSearch = g.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -29,11 +42,15 @@ const GuidesHub: React.FC = () => {
 
   const getCategoryColor = (cat: string) => {
     switch (cat) {
+      case 'Live Status': return 'bg-rose-100 text-rose-800 border-rose-200';
+      case 'How-to-Apply': return 'bg-cyan-100 text-cyan-800 border-cyan-200';
+      case 'Shortlist': return 'bg-amber-100 text-amber-800 border-amber-200';
+      case 'Requirements': return 'bg-indigo-100 text-indigo-800 border-indigo-200';
+      case 'Past Questions': return 'bg-teal-100 text-teal-800 border-teal-200';
       case 'Salary': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
       case 'Screening': return 'bg-orange-100 text-orange-800 border-orange-200';
       case 'Tutorial': return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'Comparison': return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'Requirements': return 'bg-indigo-100 text-indigo-800 border-indigo-200';
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
@@ -41,13 +58,24 @@ const GuidesHub: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto py-6">
       <SEO
-        title="Recruitment Guides & Tutorials - Official Screening Resources"
-        description="Access free guides on Nigerian military and paramilitary recruitments. Read about salaries, screening centers, O'level subject requirements, and portal login procedures."
+        title="Recruitment Guides & Screening Tutorials 2026/2027 [Official Salary & Slip Guides]"
+        description="Step-by-step guides for Nigerian military & paramilitary screenings. Access official salary structures, screening center venues, O'level requirements, and portal reprint procedures."
         canonical="/guides"
-        keywords={['military guides', 'recruitment salary Nigeria', 'screening center locations', 'CBT tutorials', 'print screening slip']}
+        keywords={['military guides', 'recruitment salary Nigeria 2026', 'screening center locations', 'CBT tutorials', 'print screening slip']}
+      />
+
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Recruitment Guides & Tutorials', url: '/guides' }
+        ]}
       />
 
       <div className="text-center py-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold mb-4">
+          <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+          <span>{getDailyUpdatedBadge()} • All 16 Screening & Portal Guides Verified</span>
+        </div>
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Guides & Screening Tutorials</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Get verified, step-by-step guides, salary details, and tutorial walk-throughs to help you navigate your recruitment screening successfully.

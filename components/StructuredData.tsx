@@ -140,6 +140,60 @@ interface FAQItem {
     answer: string;
 }
 
+interface JobPostingSchemaProps {
+    title: string;
+    description: string;
+    organization: string;
+    location?: string;
+    datePosted: string;
+    validThrough?: string;
+    employmentType?: string;
+    directApply?: boolean;
+    url?: string;
+}
+
+export const JobPostingSchema: React.FC<JobPostingSchemaProps> = ({
+    title,
+    description,
+    organization,
+    location = 'Nigeria',
+    datePosted,
+    validThrough,
+    employmentType = 'FULL_TIME',
+    directApply = true,
+    url,
+}) => {
+    const jobData: Record<string, any> = {
+        title,
+        description,
+        datePosted: safeISODate(datePosted),
+        employmentType,
+        directApply,
+        hiringOrganization: {
+            '@type': 'Organization',
+            name: organization,
+            logo: 'https://recruitmenttracker.com.ng/assets/logo.png',
+        },
+        jobLocation: {
+            '@type': 'Place',
+            address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'NG',
+                addressLocality: location,
+            },
+        },
+    };
+
+    if (validThrough) {
+        jobData.validThrough = safeISODate(validThrough);
+    }
+    if (url) {
+        jobData.url = url;
+    }
+
+    return <StructuredData type="JobPosting" data={jobData} />;
+};
+
 export const FAQPageSchema: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
     if (!faqs || faqs.length === 0) return null;
     const data = {
@@ -248,4 +302,48 @@ export const ArticleSchema: React.FC<ArticleSchemaProps> = ({
     };
     return <StructuredData type="NewsArticle" data={data} />;
 };
+
+export const HowToSchema: React.FC<{
+    name: string;
+    description: string;
+    steps: { name: string; text: string }[];
+    totalTime?: string;
+}> = ({ name, description, steps, totalTime = 'PT5M' }) => {
+    const data = {
+        name,
+        description,
+        totalTime,
+        step: steps.map((s, idx) => ({
+            '@type': 'HowToStep',
+            position: idx + 1,
+            name: s.name,
+            text: s.text,
+        }))
+    };
+    return <StructuredData type="HowTo" data={data} />;
+};
+
+export interface BreadcrumbItem {
+    name: string;
+    item?: string;
+    url?: string;
+}
+
+export const BreadcrumbListSchema: React.FC<{ items: BreadcrumbItem[] }> = ({ items }) => {
+    if (!items || items.length === 0) return null;
+    const data = {
+        itemListElement: items.map((crumb, idx) => {
+            const rawUrl = crumb.item || crumb.url || '/';
+            const fullUrl = rawUrl.startsWith('http') ? rawUrl : `https://recruitmenttracker.com.ng${rawUrl.startsWith('/') ? rawUrl : `/${rawUrl}`}`;
+            return {
+                '@type': 'ListItem',
+                position: idx + 1,
+                name: crumb.name,
+                item: fullUrl,
+            };
+        }),
+    };
+    return <StructuredData type="BreadcrumbList" data={data} />;
+};
+
 

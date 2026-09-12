@@ -5,6 +5,8 @@ import { subscribeToRecruitments } from '../services/firebase';
 import { RecruitmentUpdate, Branch, RecruitmentCategory } from '../types';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
+import { BreadcrumbListSchema } from '../components/StructuredData';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 const RecruitmentFilter: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -135,12 +137,22 @@ const RecruitmentFilter: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto">
       <SEO
-        title="Recruitment Portal - Browse All Active Openings"
-        description="Search and filter through all active Nigerian recruitment exercises. Track application deadlines and portal links for Army, Navy, Police, and Civil Service."
+        title="Latest Nigeria Recruitment 2026/2027 [Browse 20+ Active Portals & Deadlines]"
+        description="Search and filter through all active Nigerian recruitment exercises for 2026/2027. Track official portal links, closing dates, and entry requirements for Army, Navy, Police, and Paramilitary."
         canonical="/recruitments"
-        keywords={['recruitment portal', 'job openings Nigeria', 'active recruitments', 'Army recruitment', 'Police recruitment']}
+        keywords={['recruitment portal 2026', 'job openings Nigeria', 'active military recruitments', 'Army recruitment portal', 'Police recruitment 2026']}
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Recruitment Portals & Openings', url: '/recruitments' }
+        ]}
       />
       <div className="mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold mb-3">
+          <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+          <span>{getDailyUpdatedBadge()} • All Portals Monitored</span>
+        </div>
         <h1 className="text-3xl font-bold text-gray-900">Recruitment Portal</h1>
         <p className="text-gray-600 mt-2">Browse active and past recruitment exercises across all branches.</p>
       </div>

@@ -6,6 +6,7 @@ import {
     Upload, FileText, Trash2, Eye, X, ClipboardList,
     Briefcase, ExternalLink, Edit3, Calendar, Tag, Mail
 } from 'lucide-react';
+import SEO from '../components/SEO';
 import {
     subscribeToPortalMonitor, updatePortalStatus, updateAllPortals,
     adminSignIn, adminSignOut, onAdminAuthStateChanged
@@ -230,6 +231,7 @@ const LoginScreen: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
+            <SEO title="Admin Login | Nigeria Recruitment Tracker" noindex={true} canonical="/admin" />
             <div className={`w-full max-w-md ${shaking ? 'animate-bounce' : ''}`}>
                 <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 shadow-2xl">
                     <div className="flex flex-col items-center mb-8">
@@ -730,6 +732,7 @@ const AdminPanel: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <SEO title="Admin Dashboard | Nigeria Recruitment Tracker" noindex={true} canonical="/admin" />
             {/* Top Bar */}
             <div className="bg-gray-900 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-lg">
                 <div className="flex items-center gap-3">
