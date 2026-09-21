@@ -74,7 +74,7 @@ const GuidesHub: React.FC = () => {
       <div className="text-center py-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold mb-4">
           <Calendar className="w-3.5 h-3.5 text-emerald-600" />
-          <span>{getDailyUpdatedBadge()} • All 16 Screening & Portal Guides Verified</span>
+          <span>{getDailyUpdatedBadge()} • All 24 Screening & Portal Guides Verified</span>
         </div>
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Guides & Screening Tutorials</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">

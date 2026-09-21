@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit, Newspaper, CircleDollarSign, MapPin, MessageCircle } from 'lucide-react';
+import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit, Newspaper, CircleDollarSign, MapPin, MessageCircle, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import InstallPrompt from './InstallPrompt';
 import AdSenseScript from './AdSenseScript';
@@ -23,6 +23,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: 'Salaries (2026)', path: '/salary-comparison', icon: <CircleDollarSign className="w-5 h-5" /> },
     { label: 'Past Questions', path: '/past-questions', icon: <BrainCircuit className="w-5 h-5" /> },
     { label: 'Eligibility', path: '/eligibility', icon: <CheckCircle className="w-5 h-5" /> },
+    { label: 'FAQs', path: '/faqs', icon: <HelpCircle className="w-5 h-5" /> },
   ];
 
   return (
@@ -162,6 +163,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <div>
               <h4 className="text-white font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm">
+                <li><Link to="/faqs" className="text-amber-300 hover:text-amber-200 font-bold transition-colors">Recruitment FAQs (35+ Answers)</Link></li>
                 <li><Link to="/which-recruitment-form-is-out-now" className="text-emerald-300 hover:text-emerald-200 font-bold transition-colors">Which Form is Out (2026)?</Link></li>
                 <li><Link to="/about" className="hover:text-yellow-400 transition-colors">About Us</Link></li>
                 <li><Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link></li>
@@ -183,7 +185,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/cdcfib-cbt-past-questions-free-practice" className="text-emerald-300 hover:text-emerald-200 transition-colors">Free CDCFIB CBT Practice</Link></li>
                 <li><Link to="/nigerian-army-shortlisted-candidates-pdf" className="hover:text-yellow-400 transition-colors">Army Shortlisted PDF</Link></li>
                 <li><Link to="/army-salary" className="hover:text-yellow-400 transition-colors">Nigerian Army Salary (CONAFSS)</Link></li>
+                <li><Link to="/navy-salary" className="text-blue-300 hover:text-blue-200 transition-colors">Nigerian Navy Salary</Link></li>
+                <li><Link to="/airforce-salary" className="text-sky-300 hover:text-sky-200 transition-colors">Air Force (NAF) Salary</Link></li>
                 <li><Link to="/police-salary" className="hover:text-yellow-400 transition-colors">Nigeria Police Salary (CONPOSS)</Link></li>
+                <li><Link to="/customs-salary" className="hover:text-yellow-400 transition-colors">Nigeria Customs Salary (CONPASS)</Link></li>
+                <li><Link to="/civil-defence-salary" className="text-amber-300 hover:text-amber-200 transition-colors">Civil Defence (NSCDC) Salary</Link></li>
+                <li><Link to="/immigration-salary" className="text-teal-300 hover:text-teal-200 transition-colors">Immigration (NIS) Salary</Link></li>
+                <li><Link to="/nnpc-salary" className="text-emerald-300 hover:text-emerald-200 transition-colors">NNPC Limited Salary</Link></li>
+                <li><Link to="/cbn-salary" className="text-cyan-300 hover:text-cyan-200 transition-colors">CBN Salary Structure</Link></li>
                 <li><Link to="/salary-comparison" className="hover:text-yellow-400 transition-colors">Military vs Paramilitary Matrix</Link></li>
               </ul>
             </div>
@@ -204,7 +213,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </li>
                 <li><Link to="/privacy" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/terms" className="hover:text-yellow-400 transition-colors">Terms & Conditions</Link></li>
-                <li><Link to="/terms" className="hover:text-yellow-400 transition-colors">Disclaimer</Link></li>
+                <li><Link to="/disclaimer" className="hover:text-yellow-400 transition-colors">Disclaimer & Anti-Fraud</Link></li>
               </ul>
             </div>
           </div>

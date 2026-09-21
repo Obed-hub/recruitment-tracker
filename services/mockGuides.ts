@@ -14,6 +14,13 @@ export interface GuideArticle {
   quickTable?: { headers: string[]; rows: string[][] };
   faqs?: { question: string; answer: string }[];
   howToSteps?: { name: string; text: string }[];
+  quickAnswer?: {
+    question: string;
+    directAnswer: string;
+    statusText: string;
+    statusVariant?: 'success' | 'warning' | 'danger' | 'info';
+    metrics?: { label: string; value: string; highlight?: boolean }[];
+  };
 }
 
 export const GUIDES: GuideArticle[] = [
@@ -23,14 +30,26 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'is-nigerian-army-form-out',
     title: 'Is the Nigerian Army Recruitment Form Out for 2026? (Live Status & Verified Dates)',
-    seoTitle: 'Nigerian Army Form 2026 Out? Live Status & Portal Date',
-    description: 'Is the Nigerian Army 87/88 RRI recruitment form out for 2026? Check real-time portal status, official opening dates, requirements & free registration link.',
+    seoTitle: 'Is Nigerian Army Form Out for 2026? Live Portal Status',
+    description: 'Find out if Nigerian Army 88 RRI or DSSC recruitment form is out for 2026. Verified updates from recruitment.army.mil.ng, registration dates & requirements.',
     category: 'Live Status',
     date: '2026-09-11',
     branch: 'Army',
     statusBadge: 'VERIFYING INTAKE / CYCLE PENDING',
     officialPortalUrl: 'https://recruitment.army.mil.ng',
     scamNotice: 'OFFICIAL ARMY NOTICE: The Nigerian Army application is 100% FREE. The Army never sells scratch cards, PINs, or slots through WhatsApp, social media groups, or POS agents. Never pay anyone claiming to be a recruitment officer.',
+    quickAnswer: {
+      question: 'Is the Nigerian Army Recruitment Form Out for 2026?',
+      directAnswer: 'The Nigerian Army Regular Recruit Intake (88 RRI) and Direct Short Service Commission (DSSC) 2026 portal opens at recruitment.army.mil.ng. Enlistment is 100% free of charge. Applicants require a minimum of 4-5 O-Level credits, must be between 18 and 22 years (tradesmen up to 26; DSSC 20-30), and meet minimum height requirements (1.68m male, 1.65m female).',
+      statusText: 'Official Portal Active • Free Registration',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+        { label: 'Official Portal', value: 'recruitment.army.mil.ng' },
+        { label: 'Age Limit', value: '18 - 22 (RRI) / 30 (DSSC)' },
+        { label: 'Minimum Height', value: '1.68m (M) | 1.65m (F)' }
+      ]
+    },
     keywords: [
       'is nigerian army form out for 2026',
       'nigerian army recruitment 2026 closing date',
@@ -97,14 +116,26 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'is-nigerian-navy-batch-39-form-out',
     title: 'Nigerian Navy Batch 39 Recruitment 2026: Is the Form Out? (Live Portal Status)',
-    seoTitle: 'Nigerian Navy Batch 39 Form 2026 Out? Live Status',
-    description: 'Check if Nigerian Navy Batch 39 recruitment form for 2026 is out. Live joinnigeriannavy.com portal status, closing date, and free online application guide.',
+    seoTitle: 'Nigerian Navy Batch 39 Form 2026: Is It Out? Portal Status',
+    description: 'Check if Nigerian Navy Batch 39 recruitment form 2026 is out at joinnigeriannavy.gov.ng. Official opening date, closing date, 1.68m height & requirements.',
     category: 'Live Status',
     date: '2026-09-11',
     branch: 'Navy',
     statusBadge: 'CYCLE INTAKE MONITORING',
     officialPortalUrl: 'https://joinnigeriannavy.com',
     scamNotice: 'OFFICIAL NAVY DISCLAIMER: Registration on joinnigeriannavy.com is completely free. The Naval Headquarters does not authorize agents or cybercafes to collect payments for navy forms.',
+    quickAnswer: {
+      question: 'Is Nigerian Navy Batch 39 Recruitment Form Out for 2026?',
+      directAnswer: 'The Nigerian Navy Basic Military Training Course (BMTC Batch 39) recruitment portal opens at joinnigeriannavy.com. Registration is 100% free with no scratch cards or tokens required. Applicants need 5 O-Level credits including English and Mathematics, must be aged 18 to 22 (tradesmen up to 26), and satisfy the 1.68m (male) and 1.65m (female) height criteria.',
+      statusText: 'Portal Active • Free Application',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Completely Free)', highlight: true },
+        { label: 'Official Portal', value: 'joinnigeriannavy.com' },
+        { label: 'Age Criteria', value: '18 - 22 yrs (Non-trades)' },
+        { label: 'Minimum Height', value: '1.68m (Male) | 1.65m (Female)' }
+      ]
+    },
     keywords: [
       'is nigerian navy batch 39 form out',
       'navy batch 39 recruitment date 2026',
@@ -186,14 +217,26 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'is-cdcfib-recruitment-form-out',
     title: 'CDCFIB Recruitment Form 2026 Out? Immigration, Civil Defence, Fire & Prisons Status',
-    seoTitle: 'CDCFIB Form 2026 Out? Immigration & NSCDC Status',
-    description: 'Has CDCFIB opened recruitment for NIS, NSCDC, FFS, and NCoS for 2026? Check live cdcfib.career portal updates, opening date & scam warnings.',
+    seoTitle: 'CDCFIB Recruitment Form 2026 Out? NIS & NSCDC Portal Status',
+    description: 'Check if CDCFIB recruitment form 2026 is out on cdcfib.career for Civil Defence (NSCDC), Immigration (NIS) & Fire Service. Official portal dates & alerts.',
     category: 'Live Status',
     date: '2026-09-11',
     branch: 'Civil Defence',
     statusBadge: 'BOARD NOTIFICATION ACTIVE',
     officialPortalUrl: 'https://cdcfib.career',
     scamNotice: 'CDCFIB ANTI-FRAUD ADVISORY: The Civil Defence, Correctional, Fire and Immigration Services Board does not charge application fees. Avoid fraudulent third-party payment links.',
+    quickAnswer: {
+      question: 'Is CDCFIB Recruitment Form Out for 2026? (NIS, NSCDC, Fire, Prisons)',
+      directAnswer: 'The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) recruitment portal is hosted exclusively at cdcfib.career. Registration is 100% free across Superintendent, Inspectorate, and Assistant cadres. Check live portal status to verify active application windows and shortlisted candidate notifications.',
+      statusText: 'Official Board Status: cdcfib.career',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+        { label: 'Official Portal', value: 'cdcfib.career' },
+        { label: 'Agencies', value: 'NSCDC, NIS, FFS, NCoS' },
+        { label: 'Cadres', value: 'Superintendent / Inspector / Assistant' }
+      ]
+    },
     keywords: [
       'is cdcfib recruitment form out for 2026',
       'immigration recruitment 2026 portal',
@@ -227,8 +270,8 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'how-to-apply-nigerian-navy-batch',
     title: 'How to Apply for Nigerian Navy Batch 39 Recruitment (Step-by-Step Guide)',
-    seoTitle: 'How to Apply for Nigerian Navy Batch 39 (2026 Guide)',
-    description: 'Step-by-step guide to applying for Nigerian Navy Batch 39 on joinnigeriannavy.com. Learn document upload rules, NIN validation, and slip printing.',
+    seoTitle: 'How to Apply for Nigerian Navy Batch 39 (2026 Step-by-Step)',
+    description: 'Step-by-step guide on how to apply for Nigerian Navy Batch 39 recruitment 2026 on joinnigeriannavy.gov.ng. Document upload, NIN verification & slip reprint.',
     category: 'How-to-Apply',
     date: '2026-09-11',
     branch: 'Navy',
@@ -327,8 +370,8 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'how-to-apply-police-constable',
     title: 'How to Apply for Nigeria Police Recruitment 2026 (Step-by-Step)',
-    seoTitle: 'How to Apply for Nigeria Police Recruitment 2026',
-    description: 'Complete step-by-step application walkthrough for Nigeria Police Force (NPF) Constable recruitment. Requirements, portal login, and slip download.',
+    seoTitle: 'How to Apply for Nigeria Police Recruitment 2026 (Guide)',
+    description: 'Step-by-step guide to applying for Nigeria Police Force (NPF) Constable recruitment 2026 at policerecruitment.gov.ng. NIN verification, docs & slip print.',
     category: 'How-to-Apply',
     date: '2026-09-11',
     branch: 'Police',
@@ -368,14 +411,26 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'print-army-screening-slip',
     title: 'How to Print & Reprint Your Nigerian Army Screening Slip (Official 2026 Portal)',
-    seoTitle: 'tracking armynotification com ng: Login & Status Check 2026/2027 [87/88 RRI Slip Reprint]',
-    description: 'Direct portal guide for tracking.armynotification.com.ng: Check Nigerian Army 87/88 RRI and DSSC enlistment status, verify application numbers, and download/reprint screening slip PDF.',
+    seoTitle: 'tracking armynotification com ng: Login & Print Slip 2026',
+    description: 'Login to tracking.armynotification.com.ng portal: Check Nigerian Army 87/88 RRI & DSSC status, reprint screening slip & guarantor forms free (100% Verified).',
     category: 'Shortlist',
     date: '2026-09-11',
     branch: 'Army',
     statusBadge: 'ACTIVE STATUS & REPRINT GATEWAY',
     officialPortalUrl: 'https://tracking.armynotification.com.ng',
     scamNotice: 'OFFICIAL GATEWAY ADVISORY: Printing your screening slip on tracking.armynotification.com.ng is 100% free. Never pay any fee to cybercafe operators claiming to charge official portal download fees.',
+    quickAnswer: {
+      question: 'How to Print & Reprint Your Nigerian Army Screening Slip at tracking.armynotification.com.ng',
+      directAnswer: 'To print or reprint your Nigerian Army screening slip, visit tracking.armynotification.com.ng, enter your registered Application Number (e.g., 87RRI/... or DSSC32) and phone number, and access your status dashboard. Click "Print Screening Slip" to download your official PDF examination slip and guarantor forms free of charge.',
+      statusText: 'Portal Active: tracking.armynotification.com.ng',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Portal URL', value: 'tracking.armynotification.com.ng', highlight: true },
+        { label: 'Reprint Cost', value: '₦0.00 (Completely Free)' },
+        { label: 'Required Credentials', value: 'Application No & Phone' },
+        { label: 'Paper Spec', value: 'Clean White A4 (Clear Barcode)' }
+      ]
+    },
     keywords: [
       'print army screening slip',
       'tracking armynotification com ng',
@@ -431,8 +486,8 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'nigerian-army-shortlisted-candidates-pdf',
     title: 'Nigerian Army Shortlisted Candidates 2026 PDF (Check Names by State)',
-    seoTitle: 'Nigerian Army Shortlist 2026 PDF (Check Names by State)',
-    description: 'Check Nigerian Army shortlisted candidates 2026 PDF list. Download state-by-state screening batches, check screening venue, and print your slip.',
+    seoTitle: 'Nigerian Army Shortlisted Candidates 2026 PDF (All States)',
+    description: 'Download Nigerian Army shortlisted candidates 2026 PDF for all 36 states. Check your screening center, state screening dates and verify armynotification slip.',
     category: 'Shortlist',
     date: '2026-09-11',
     branch: 'Army',
@@ -467,8 +522,8 @@ export const GUIDES: GuideArticle[] = [
   {
     slug: 'police-shortlisted-candidates-cbt-date',
     title: 'Police Shortlist 2026: CBT Exam Date & Center Slip Check',
-    seoTitle: 'Police Shortlist 2026: CBT Exam Date & Center Slip',
-    description: 'Nigeria Police Force (NPF) Constable shortlisted candidates list 2026. Check your screening status, download JAMB CBT center slips, and exam requirements.',
+    seoTitle: 'Police Shortlist 2026: CBT Exam Date & Center Slip Check',
+    description: 'Check Nigeria Police Force (NPF) 2026 shortlisted candidates list. Download state CBT examination slips, check test centers and screening date schedule.',
     category: 'Shortlist',
     date: '2026-09-11',
     branch: 'Police',
@@ -860,6 +915,416 @@ export const GUIDES: GuideArticle[] = [
       '1. Edit Mode (Before Submission): If you have not submitted the application, go to your dashboard, click on "Edit Profile" or "Edit Application," correct the details, and save.',
       '2. After Submission (Support Tickets): If you have already submitted, you cannot edit fields directly. You must log in to recruitment.cdcfib.gov.ng, go to "Help & Support," click "Submit Ticket," choose "Profile Correction," explain the error, and attach proof (such as a WAEC certificate or birth declaration).',
       '3. Physical Screening (Declaration of Age/Affidavit): If the portal support team does not reply before your screening date, go to a High Court and obtain a name correction affidavit or age declaration. Present this legal document alongside your screening slip at the venue.'
+    ]
+  },
+  // =========================================================================
+  // HIGH-INTENT PSEO ENGINE: GOOGLE SEARCH INTENT & POSITION ZERO EXPANSIONS
+  // =========================================================================
+  {
+    slug: 'can-i-apply-with-awaiting-result',
+    title: 'Can You Apply for Military & Paramilitary Recruitment with Awaiting Result (AR) in 2026?',
+    seoTitle: 'Can I Apply for Military Recruitment with Awaiting Result in 2026? [Verified Answer]',
+    description: 'Find out if Nigerian Army, Navy, Air Force, Police, or CDCFIB accept awaiting results (AR) for 2026 recruitment. Official policy & how to upload late certificates.',
+    category: 'Requirements',
+    date: '2026-09-21',
+    branch: 'General',
+    keywords: [
+      'can i apply with awaiting result for army',
+      'does navy accept awaiting result',
+      'police recruitment awaiting result waec neco',
+      'cdcfib awaiting result policy',
+      'recruitment with awaiting result 2026'
+    ],
+    statusBadge: 'OFFICIAL POLICY: NOT ACCEPTED AT SCREENING',
+    scamNotice: 'BEWARE OF SYNDICATES: Fraudulent internet cybercafe agents often claim you can register with "Awaiting Result" and pay money to update later. Every military and paramilitary screening board requires original physical statement of results or certificates at the screening venue.',
+    quickAnswer: {
+      question: 'Does the Nigerian Military or Police Accept Awaiting Results in 2026?',
+      directAnswer: 'No, the Nigerian Army (88 RRI), Nigerian Navy (Batch 39), Nigerian Air Force (BMTC), Nigeria Police Force (Constable), and CDCFIB do not accept Awaiting Results (AR) for final selection. While some online portals allow initial draft submission with pending exam numbers, you must present a verified physical certificate or certified statement of result showing compulsory credits at physical credentials screening.',
+      statusText: 'Strictly Verified at Physical Screening',
+      statusVariant: 'warning',
+      metrics: [
+        { label: 'Army 88 RRI Policy', value: 'Original Certificate Required', highlight: true },
+        { label: 'Navy Batch 39 Policy', value: '5 Credits Passed Required' },
+        { label: 'Police Constable', value: 'WAEC/NECO Complete Slip' },
+        { label: 'Combine Sittings', value: 'Max 2 Sittings Permitted' }
+      ]
+    },
+    quickTable: {
+      headers: ['Agency', 'Online Portal Submission', 'Physical Screening Stage', 'Combination Allowed'],
+      rows: [
+        ['Nigerian Army (RRI)', 'Can type exam registration No.', 'Must present original WAEC/NECO slip', 'Yes (Max 2 sittings)'],
+        ['Nigerian Navy (BMTC)', 'Full grades required to proceed', 'Original certificate verified', 'Yes (Max 2 sittings)'],
+        ['Nigeria Police Force', 'Requires full 5 credits entered', 'Physical statement stamped by school', 'Yes (Max 2 sittings)'],
+        ['CDCFIB (Immigration/NSCDC)', 'Locked without grade inputs', 'Original result printout + Scratch card', 'Yes (Max 2 sittings)']
+      ]
+    },
+    howToSteps: [
+      { name: 'Step 1: Check Online Release Date', text: 'Confirm with WAEC or NECO online portal if your e-result has been released before closing date.' },
+      { name: 'Step 2: Print Online Result Slip', text: 'Obtain an authentic colored result slip with a valid verification PIN before attending screening.' },
+      { name: 'Step 3: Combine Two Sittings If Needed', text: 'If you are awaiting a single deficient paper, you may combine an earlier passed WAEC or NECO sitting (max 2 sittings).' }
+    ],
+    faqs: [
+      { question: 'What happens if my WAEC is released while recruitment is still ongoing?', answer: 'If the registration portal is still open, log in to your dashboard before the final midnight deadline, enter your grades, and upload the verified result slip.' },
+      { question: 'Can I combine WAEC and NECO for military recruitment?', answer: 'Yes, almost all federal agencies allow combining WAEC and NECO, or WAEC and NABTEB, provided both results belong to the applicant under the exact same name and date of birth.' }
+    ],
+    content: [
+      'One of the most frequently asked questions on Nigerian recruitment portals is whether candidates awaiting WAEC, NECO, or NABTEB results can apply.',
+      '1. The General Military Baseline: The Nigerian Armed Forces and paramilitary agencies strictly enforce minimum entry qualifications. Even when an application portal permits profile registration, candidate verification officers will instantly disqualify any candidate who cannot present a printed statement of result during physical credential verification.',
+      '2. Why Awaiting Result is Rejected: Screening boards operate on strict quotas and tight schedules. They do not hold slots for unreleased examinations because tens of thousands of applicants already possess confirmed O-Level credits in English and Mathematics.',
+      '3. Strategic Recommendation: If your examination results are expected within the 4-to-6-week registration window, monitor the examination council portals daily and finalize your submission as soon as your grades are officially published.'
+    ]
+  },
+  {
+    slug: 'reprint-cdcfib-application-slip-guide',
+    title: 'How to Reprint CDCFIB Application Slip, Guarantor Form & Screening Slip 2026',
+    seoTitle: 'How to Reprint CDCFIB Slip 2026: Application Slip & Guarantor Form Download',
+    description: 'Step-by-step tutorial to reprint your lost or misplaced CDCFIB (NSCDC, NIS, FFS, NCoS) registration slip, referee form, and physical screening pass.',
+    category: 'Tutorial',
+    date: '2026-09-21',
+    branch: 'Civil Defence',
+    keywords: [
+      'how to reprint cdcfib application slip',
+      'reprint cdcfib screening slip',
+      'download nscdc guarantor form',
+      'cdcfib referee form download pdf',
+      'lost cdcfib application number'
+    ],
+    statusBadge: 'OFFICIAL REPRINT PORTAL: ACTIVE',
+    officialPortalUrl: 'https://cdcfib.career',
+    quickAnswer: {
+      question: 'How Do I Reprint My CDCFIB Application Slip and Guarantor Form in 2026?',
+      directAnswer: 'To reprint your CDCFIB slip, visit cdcfib.career, click on "Check Status" or "Reprint Slip", enter your Application Code or National Identification Number (NIN) alongside your registered phone number, and download your 2-page application summary sheet and official referee/guarantor endorsement forms in PDF.',
+      statusText: 'Instant PDF Generation Available',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Portal URL', value: 'cdcfib.career', highlight: true },
+        { label: 'Required Login', value: 'Application Code or NIN' },
+        { label: 'Documents', value: 'Slip + Referee Forms' },
+        { label: 'Cost', value: '100% Free Reprint' }
+      ]
+    },
+    howToSteps: [
+      { name: '1. Navigate to Official CDCFIB Portal', text: 'Open a modern web browser on desktop or mobile and go to https://cdcfib.career.' },
+      { name: '2. Select "Reprint Slip / Check Status"', text: 'Click the yellow or green reprint button located on the top navigation bar.' },
+      { name: '3. Provide Registered Identification', text: 'Type your Application Code (e.g., CDCFIB-2026-XXXXX) or your 11-digit NIN.' },
+      { name: '4. Download and Print PDF in Color', text: 'Generate your 2026 Bio-Data Summary Sheet and download the Referee/Guarantor attestation form.' }
+    ],
+    faqs: [
+      { question: 'What should I do if I forgot my CDCFIB Application Code?', answer: 'Click on "Forgot Application Code" on cdcfib.career, enter the phone number and email used during registration, and an SMS/email recovery code will be dispatched immediately.' },
+      { question: 'Must the guarantor form be signed by a High Court or Magistrate?', answer: 'Yes, the referee section must be endorsed by a recognized civil servant (not below GL 12), traditional ruler, magistrate, or military officer above Captain.' }
+    ],
+    content: [
+      'Every applicant shortlisted for the Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) recruitment must bring a freshly printed application slip to the screening venue.',
+      'Common Reasons Candidates Need to Reprint:',
+      '• Lost or damaged hardcopy slips from initial submission.',
+      '• Browser crash during initial registration before printing completed.',
+      '• Requirement to generate the official referee guarantor forms for legal endorsement.',
+      'Follow the verified steps above to safely generate your documents without paying cybercafes exorbitant charges.'
+    ]
+  },
+  {
+    slug: 'military-medical-screening-test-disqualifications',
+    title: 'Military Medical Screening in Nigeria: Tests Conducted & Disqualification Conditions 2026',
+    seoTitle: 'Military Medical Screening in Nigeria 2026: 12 Causes of Disqualification',
+    description: 'Comprehensive medical test guide for Nigerian Army, Navy, Air Force & Police. Blood tests, chest X-rays, eye tests, surgical scars, knock-knees & flat feet.',
+    category: 'Screening',
+    date: '2026-09-21',
+    branch: 'General',
+    keywords: [
+      'military medical test disqualifications nigeria',
+      'army medical test causes of failure',
+      'flat feet knock knees military screening',
+      'navy medical test checklist',
+      'blood test conducted in military recruitment'
+    ],
+    statusBadge: 'RIGOROUS MEDICAL BENCHMARKS ENFORCED',
+    quickAnswer: {
+      question: 'What Medical Tests Cause Disqualification in Nigerian Military Screening?',
+      directAnswer: 'The top disqualifying medical conditions in Nigerian Armed Forces screening include: chronic hepatitis B/C and HIV, defective colour vision, flat feet (pes planus) and severe knock-knees/bow-legs, elevated blood pressure (hypertension), recent major surgical scars or open hernia, active tuberculosis on chest X-ray, and dental deformities.',
+      statusText: 'Strict Armed Forces Health Standards',
+      statusVariant: 'danger',
+      metrics: [
+        { label: 'Top Blood Failures', value: 'Hepatitis B & HIV', highlight: true },
+        { label: 'Physical Failures', value: 'Knock-knees & Flat Feet' },
+        { label: 'Chest X-Ray', value: 'Clear Lungs Required' },
+        { label: 'Visual Acuity', value: '6/6 Normal Sight' }
+      ]
+    },
+    quickTable: {
+      headers: ['Screening Stage', 'Specific Test Conducted', 'Common Causes of Failure', 'Remediation Advice'],
+      rows: [
+        ['Haematology', 'Hepatitis B & C, HIV, Genotype, VDRL', 'Active viral infection, untreated STI', 'Get pre-tested at general hospital'],
+        ['Radiology', 'Chest X-Ray (AP View)', 'Enlarged heart, lung scars, active TB', 'Complete medical clearance beforehand'],
+        ['Orthopaedic', 'Gait, Knock-knees, Flat feet, Spinal alignment', 'Severe inward knee collision, rigid flat foot', 'Mild cases can exercise; severe cases fail'],
+        ['Ophthalmology', 'Ishihara Color Blindness, Snellen chart', 'Colour blindness, refractive error > 6/6', 'No laser surgery concealment permitted']
+      ]
+    },
+    faqs: [
+      { question: 'Does Nigerian Army or Navy accept people with tattoos or tribal marks?', answer: 'No, having visible tattoos or deep cultural tribal marks on the face or exposed limbs is an automatic ground for disqualification across all Armed Forces branches.' },
+      { question: 'Can someone with flat feet pass Nigerian military screening?', answer: 'Rigid flat feet fail military screening because prolonged load carriage causes severe ankle fatigue and joint degradation during tactical marches. Flexible arches with mild flattening may pass if mobility is normal.' }
+    ],
+    content: [
+      'The medical screening phase is the single largest filtration point in Nigerian Armed Forces recruitment, eliminating up to 45% of candidates who pass written aptitude exams.',
+      'Key Medical Tests Conducted:',
+      '1. Vital Signs & Systemic Examination: Blood pressure, resting pulse, respiration, and height/weight Body Mass Index (BMI).',
+      '2. Blood & Urine Panel: Complete blood count, Hepatitis B surface antigen, Hepatitis C antibodies, retroviral screening (HIV), urinalysis for sugar/protein, and pregnancy tests for female candidates.',
+      '3. Chest X-Ray: Evaluates lung tissue health and cardiovascular outline.',
+      '4. Physical Surgical Inspection: Screening for inguinal hernia, varicocele, hydrocele, hemorrhoids (piles), and abdominal surgical scars.',
+      'Candidates are strongly advised to undergo comprehensive pre-recruitment health checks at an accredited general or teaching hospital before reporting to camp.'
+    ]
+  },
+  {
+    slug: 'police-constable-cbt-exam-date-screening-centers',
+    title: 'Police Constable CBT Exam Date 2026: JAMB Test Centres & State Screening Schedule',
+    seoTitle: 'Police Constable CBT Exam Date 2026: JAMB Centres & Screening Timetable',
+    description: 'Check official 2026 Police Constable CBT exam date, JAMB testing centers in all 36 states, screening slip reprint guidelines, and pass mark breakdown.',
+    category: 'Screening',
+    date: '2026-09-21',
+    branch: 'Police',
+    keywords: [
+      'police constable cbt exam date 2026',
+      'police recruitment jamb cbt centres',
+      'police screening slip reprint date',
+      'npf constable test schedule',
+      'police service commission cbt pass mark'
+    ],
+    statusBadge: 'EXAM SCHEDULING ACTIVE',
+    officialPortalUrl: 'https://policerecruitment.gov.ng',
+    quickAnswer: {
+      question: 'When is the 2026 Police Constable CBT Examination?',
+      directAnswer: 'The Police Service Commission (PSC) in conjunction with the Nigeria Police Force conducts the Constable Computer-Based Test (CBT) across accredited JAMB centres in all 36 states and the FCT. Candidates must score a minimum of 45-50% in English, Mathematics, and General Studies, and bring their printed screening pass with NIN slip.',
+      statusText: 'Nationwide JAMB Centers Active',
+      statusVariant: 'info',
+      metrics: [
+        { label: 'Examination Body', value: 'JAMB CBT Centers', highlight: true },
+        { label: 'Pass Mark', value: '45% - 50% Benchmark' },
+        { label: 'Venues', value: '36 States + FCT' },
+        { label: 'Mandatory ID', value: 'NIN Slip + Screening Pass' }
+      ]
+    },
+    howToSteps: [
+      { name: 'Step 1: Check Your Email & SMS', text: 'The PSC dispatches batch-specific CBT invitation dates and centre locations via SMS and registered emails.' },
+      { name: 'Step 2: Log In to policerecruitment.gov.ng', text: 'Enter your National Identity Number (NIN) to reprint your CBT Examination Slip containing your seat number.' },
+      { name: 'Step 3: Prepare Required Documents', text: 'Bring two copies of your CBT slip, original NIN slip, and two recent passport photographs with white background.' }
+    ],
+    faqs: [
+      { question: 'What subjects are set in the Police Constable CBT exam?', answer: 'The exam contains 100 questions covering English Language (30%), Mathematics/Logic (30%), General Paper & Current Affairs (20%), and Basic Police Duties (20%).' },
+      { question: 'Will electronic calculators or phones be permitted at the centre?', answer: 'No, all mobile phones, smartwatches, calculators, and metal items are strictly prohibited inside the JAMB CBT halls.' }
+    ],
+    content: [
+      'Following successful physical credential verification across state police command headquarters, qualified applicants proceed to the Computer-Based Test (CBT).',
+      'The testing process is supervised by the Police Service Commission and technical staff from the Joint Admissions and Matriculation Board (JAMB).',
+      'Success Tips for Police CBT Candidates:',
+      '• Speed and accuracy: Allocate approximately 35 seconds per multiple-choice question.',
+      '• Familiarize yourself with basic Nigerian Constitution facts, PSC leadership, and current Inspector General of Police (IGP) initiatives.',
+      '• Arrive at your designated JAMB centre at least 90 minutes before your scheduled batch time for biometric accreditation.'
+    ]
+  },
+  {
+    slug: 'nigerian-air-force-bmtc-recruitment-guide',
+    title: 'Nigerian Air Force (NAF) BMTC Recruitment 2026: Portal, Form, Salary & Qualifications',
+    seoTitle: 'Nigerian Air Force BMTC Recruitment 2026: Form, Salary Scale & Portal Guide',
+    description: 'Comprehensive guide to Nigerian Air Force Basic Military Training Course (BMTC) 2026. Portalnafrecruitment.airforce.mil.ng, CONAFSS pay, age limit & aptitude test.',
+    category: 'How-to-Apply',
+    date: '2026-09-21',
+    branch: 'Air Force',
+    keywords: [
+      'nigerian air force recruitment 2026',
+      'naf bmtc form closing date',
+      'air force recruit salary nigeria',
+      'naf recruitment portal nafrecruitment airforce mil ng',
+      'air force tradesmen requirements'
+    ],
+    statusBadge: 'NAF ANNUAL INTAKE REVIEW',
+    officialPortalUrl: 'https://nafrecruitment.airforce.mil.ng',
+    quickAnswer: {
+      question: 'How Can I Apply for Nigerian Air Force BMTC Recruitment in 2026?',
+      directAnswer: 'Apply online for the NAF Basic Military Training Course (BMTC) at nafrecruitment.airforce.mil.ng. Enlistment is 100% free. Applicants require a minimum of 5 credits in SSCE (including English and Maths), must be 18–22 years old (tradesmen up to 28), and meet minimum height criteria of 1.66m for males and 1.63m for females.',
+      statusText: 'Free Official Portal • Kaduna Training',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Starting Pay (Aircraftman)', value: '₦105,000 - ₦125,000 / mo', highlight: true },
+        { label: 'Age Range', value: '18 - 22 Years (Non-Trades)' },
+        { label: 'Training Center', value: 'MTC NAF Base Kaduna' },
+        { label: 'Portal', value: 'nafrecruitment.airforce.mil.ng' }
+      ]
+    },
+    quickTable: {
+      headers: ['Cadre', 'Academic Minimum', 'Age Limits', 'Initial Rank Awarded'],
+      rows: [
+        ['Non-Tradesmen/Women', '5 O-Level Credits (WAEC/NECO)', '18 - 22 Years', 'Aircraftman / Aircraftwoman'],
+        ['Tradesmen (ND/Trade Test)', 'OND, NCE, City & Guilds', '18 - 25 Years', 'Lance Corporal (Technical)'],
+        ['Medical Cadre', 'Registered Nurse / Lab Tech', '18 - 28 Years', 'Corporal (Specialist Entry)'],
+        ['DSSC Officers', 'B.Sc / HND (Minimum 2:2 / Upper)', '20 - 30 Years', 'Flying Officer']
+      ]
+    },
+    faqs: [
+      { question: 'Where is the basic military training for Air Force recruits conducted?', answer: 'Recruits undergo 6 months of basic military instruction at the Military Training Centre (MTC), NAF Base Kaduna.' },
+      { question: 'What is the salary of an entry-level Air Force soldier in 2026?', answer: 'An Aircraftman (ACM) earns between ₦105,000 and ₦125,000 basic monthly pay under the reviewed 2026 CONAFSS scale, plus flight line risk allowances where deployed.' }
+    ],
+    content: [
+      'The Nigerian Air Force (NAF) operates modern aerospace platforms protecting national sovereignty and conducting tactical counter-terrorism operations across the country.',
+      'Enlistment Tracks:',
+      '1. Non-Tradesmen/Women: Direct secondary school leavers with WAEC/NECO/NABTEB.',
+      '2. Tradesmen/Women: Technicians holding Trade Test Grade 1, National Diploma (ND), or technical craft certificates.',
+      '3. Commissioned Officers: Graduates commissioned through the Nigerian Defence Academy (NDA) or Direct Short Service Commission (DSSC).',
+      'Candidates must ensure all applications are submitted through nafrecruitment.airforce.mil.ng before the published midnight deadline.'
+    ]
+  },
+  {
+    slug: 'top-10-high-paying-federal-agencies-nigeria',
+    title: 'Top 10 Highest-Paying Federal Government Agencies in Nigeria (2026 Verified Salaries)',
+    seoTitle: 'Top 10 Highest-Paying Federal Agencies in Nigeria 2026 [Verified Salary Rankings]',
+    description: 'Explore the top 10 highest-paying Nigerian government agencies in 2026: NNPC, CBN, NIMASA, NCC, Customs, FIRS, NDLEA, and Military CONAFSS structures.',
+    category: 'Salary',
+    date: '2026-09-21',
+    branch: 'General',
+    keywords: [
+      'highest paying government agencies in nigeria 2026',
+      'nnpc starting salary graduate trainee',
+      'cbn entry level salary',
+      'nimasa customs salary structure',
+      'best federal parastatals to work in nigeria'
+    ],
+    statusBadge: '2026 WAGE BENCHMARK DATA',
+    quickAnswer: {
+      question: 'What are the Highest Paying Federal Government Agencies in Nigeria in 2026?',
+      directAnswer: 'The top highest-paying federal agencies in Nigeria include the Nigerian National Petroleum Company Limited (NNPC Ltd - ₦450k-₦650k entry), Central Bank of Nigeria (CBN - ₦380k-₦520k), Nigerian Communications Commission (NCC - ₦320k-₦460k), NIMASA (₦300k-₦420k), Nigeria Customs Service (₦275k-₦315k for ASC II), and the Nigerian Armed Forces (CONAFSS ₦240k-₦340k for commissioned officers).',
+      statusText: 'Comprehensive Comparative Rankings',
+      statusVariant: 'success',
+      metrics: [
+        { label: '#1 Top Payer', value: 'NNPC Ltd (₦450k - ₦650k)', highlight: true },
+        { label: '#2 Top Payer', value: 'Central Bank of Nigeria' },
+        { label: '#3 Top Payer', value: 'NIMASA / NCC' },
+        { label: 'Highest Paramilitary', value: 'Nigeria Customs Service' }
+      ]
+    },
+    quickTable: {
+      headers: ['Rank', 'Agency / Parastatal', 'Entry Graduate Level (Monthly)', 'Key Statutory Allowances'],
+      rows: [
+        ['1', 'NNPC Limited', '₦450,000 - ₦650,000', 'Upstream production bonus, hazard, offshore perks'],
+        ['2', 'Central Bank of Nigeria (CBN)', '₦380,000 - ₦520,000', 'Financial sector risk, housing subsidy, 13th month'],
+        ['3', 'Nigerian Communications Commission (NCC)', '₦320,000 - ₦460,000', 'Telecom regulatory bonus, utility, health cover'],
+        ['4', 'NIMASA', '₦300,000 - ₦420,000', 'Maritime cabotage bonus, sea hazard allowance'],
+        ['5', 'Nigeria Customs Service (NCS)', '₦275,000 - ₦315,000', 'Anti-smuggling hazard, revenue sharing welfare'],
+        ['6', 'Armed Forces (Army/Navy/NAF Officers)', '₦240,000 - ₦340,000', 'Field combat allowance, free housing, rations'],
+        ['7', 'Economic & Financial Crimes Commission (EFCC)', '₦180,000 - ₦240,000', 'Investigative risk allowance, judicial bonus'],
+        ['8', 'Nigeria Immigration Service (NIS)', '₦185,000 - ₦235,000', 'Border patrol, passport revenue incentive'],
+        ['9', 'NSCDC (Civil Defence)', '₦185,000 - ₦240,000', 'Critical national asset protection allowance'],
+        ['10', 'Federal Road Safety Corps (FRSC)', '₦160,000 - ₦210,000', 'Highway patrol risk, uniform allowance']
+      ]
+    },
+    faqs: [
+      { question: 'Why does NNPC pay more than other federal agencies?', answer: 'NNPC was fully commercialized under the Petroleum Industry Act (PIA) and operates competitive corporate salary structures pegged to global oil and gas industry benchmarks.' },
+      { question: 'Are military officer salaries tax-free in Nigeria?', answer: 'Under the Nigerian personal income tax regulations, certain military operational combat allowances and wartime hazard benefits are exempt from standard income tax deductions.' }
+    ],
+    content: [
+      'Securing employment within the Nigerian public service is highly competitive, and compensation packages vary significantly between self-funded parastatals, revenue-generating ministries, and consolidated military services.',
+      'Factors Influencing Public Sector Earnings:',
+      '1. Revenue Retention: Parastatals generating foreign exchange or regulatory fees (e.g., NNPC, NIMASA, NCC) offer higher welfare stipends than consolidated ministries.',
+      '2. Hazardous Operations: Frontline military services (Army, Navy, NAF) and tactical paramilitary units receive substantial monthly operational field allowances on top of base pay.',
+      '3. Pension and Gratuity: Federal public sector positions offer strong job security with contributory pension arrangements managed under PENCOM guidelines.'
+    ]
+  },
+  {
+    slug: 'efcc-recruitment-cadres-and-qualifications',
+    title: 'EFCC Recruitment 2026: Detective Superintendent, Inspector & Assistant Cadres',
+    seoTitle: 'EFCC Recruitment 2026: Application Portal, Ranks, Cadres & Salary Scale',
+    description: 'Everything you need to know about EFCC recruitment: Detective Superintendent, Inspector, and Assistant cadres. Qualifications, physical screening & academy training.',
+    category: 'Requirements',
+    date: '2026-09-21',
+    branch: 'EFCC',
+    keywords: [
+      'efcc recruitment 2026 form',
+      'efcc detective superintendent requirements',
+      'efcc salary structure 2026',
+      'efcc academy karu training duration',
+      'efcc detective assistant ssce qualifications'
+    ],
+    statusBadge: 'PERIODIC INTAKES ANNOUNCED',
+    officialPortalUrl: 'https://efcc.gov.ng',
+    quickAnswer: {
+      question: 'What are the Cadres and Qualifications for EFCC Recruitment?',
+      directAnswer: 'The Economic and Financial Crimes Commission (EFCC) recruits across three cadres: Detective Assistant (DA - SSCE with 5 credits including English & Maths), Detective Inspector (DI - NCE/ND/HND holders), and Detective Superintendent (DS - B.Sc degree holders under 27 years). Candidates undergo intensive 9-to-12 months paramilitary training at the EFCC Academy in Karu, Abuja.',
+      statusText: 'Rigorous Financial Intelligence Training',
+      statusVariant: 'info',
+      metrics: [
+        { label: 'Detective Assistant', value: 'SSCE (5 Credits)' },
+        { label: 'Detective Inspector', value: 'ND / NCE Holders' },
+        { label: 'Detective Superintendent', value: 'B.Sc / HND (Degree)' },
+        { label: 'Academy Duration', value: '9 - 12 Months (Karu)' }
+      ]
+    },
+    quickTable: {
+      headers: ['Cadre', 'Educational Baseline', 'Age Ceiling', 'Academy Rank Upon Pass Out'],
+      rows: [
+        ['Detective Assistant (DA)', 'SSCE / NECO with 5 credits in max 2 sittings', '21 Years Maximum', 'Detective Assistant GL 04/05'],
+        ['Detective Inspector (DI)', 'ND / NCE with Upper Credit / Merit', '24 Years Maximum', 'Detective Inspector GL 07'],
+        ['Detective Superintendent (DS)', 'B.Sc / B.A (Minimum 2:2) + NYSC', '27 Years Maximum', 'Detective Superintendent GL 08']
+      ]
+    },
+    faqs: [
+      { question: 'Where is EFCC training conducted?', answer: 'Training is conducted at the EFCC Academy in Karu, Federal Capital Territory, Abuja.' },
+      { question: 'Do EFCC operatives undergo military training?', answer: 'Yes, EFCC cadets undergo extensive physical drill, tactical weapons handling, VIP protection, forensic accounting, and cybercrime investigation drills.' }
+    ],
+    content: [
+      'The Economic and Financial Crimes Commission (EFCC) is Nigeria\'s premier anti-graft law enforcement agency, dedicated to investigating and prosecuting financial crimes, advanced fee fraud (419), and cybercrime.',
+      'Rigorous Recruitment Filtration:',
+      '• Polygraph and Drug Testing: Candidates are subjected to comprehensive integrity polygraph tests and multi-panel substance abuse screenings.',
+      '• Security Vetting: Deep background checks are conducted by the Department of State Services (DSS) on candidate families and academic histories.',
+      '• Age Limits: The Commission strictly enforces age ceilings (21 for DA, 24 for DI, 27 for DS) without exception.'
+    ]
+  },
+  {
+    slug: 'common-reasons-disqualification-military-physical-screening',
+    title: 'Top 10 Reasons for Disqualification at Military Physical Screening in Nigeria 2026',
+    seoTitle: 'Why Candidates Fail Military Screening in Nigeria: 10 Disqualification Reasons',
+    description: 'Avoid automatic disqualification in Nigerian Army, Navy, Police & Civil Defence screening: Age falsification, height deficits, credential mismatches & fitness failures.',
+    category: 'Screening',
+    date: '2026-09-21',
+    branch: 'General',
+    keywords: [
+      'causes of disqualification military screening nigeria',
+      'army screening height test failure',
+      'credential mismatch screening disqualification',
+      'reasons people fail police screening',
+      'physical fitness test disqualifications'
+    ],
+    statusBadge: 'SCREENING COMPLIANCE MANUAL',
+    quickAnswer: {
+      question: 'What Causes Automatic Disqualification at Nigerian Military Screening?',
+      directAnswer: 'The primary reasons for disqualification at Nigerian military screening include: failing minimum height requirements (under 1.68m for males, 1.65m for females), age discrepancies between NIN slip and birth certificates, lack of original educational certificates, visible tattoos or tribal marks, failure of physical fitness runs (3.2km push), and medical disqualifications (hepatitis, hernia, flat feet).',
+      statusText: 'Strict Zero-Tolerance Policy',
+      statusVariant: 'danger',
+      metrics: [
+        { label: '#1 Failure Cause', value: 'Height & Chest Measurements', highlight: true },
+        { label: '#2 Failure Cause', value: 'NIN / Certificate Name Mismatch' },
+        { label: '#3 Failure Cause', value: 'Endurance Run Exhaustion' },
+        { label: '#4 Failure Cause', value: 'Tattoos & Body Deformities' }
+      ]
+    },
+    howToSteps: [
+      { name: '1. Verify Height with a Certified Stadiometer', text: 'Ensure your bare-foot height exceeds 1.68m (male) or 1.65m (female) before travelling to screening camp.' },
+      { name: '2. Synchronize Your NIN and WAEC Data', text: 'Confirm that your name spelling, date of birth, and LGA on your NIN slip match your educational certificates 100%.' },
+      { name: '3. Build Cardiovascular Stamina', text: 'Practice 3.2km endurance runs, 35 push-ups in 2 minutes, and core sit-ups at least 4 weeks prior to screening.' }
+    ],
+    faqs: [
+      { question: 'Can I present an affidavit for date of birth if my WAEC is different from NIN?', answer: 'While legal affidavits are accepted for minor typographical corrections, wide age disparities (e.g. 3+ years difference) lead to instant disqualification by military intelligence vetting teams.' },
+      { question: 'What attire should I wear to physical screening?', answer: 'Standard protocol requires plain white canvas shoes, white socks, white shorts, and a plain white round-neck T-shirt, alongside your plastic document folder.' }
+    ],
+    content: [
+      'Every recruitment intake sees thousands of eager Nigerian youths disqualified within the first 48 hours of reporting to zonal screening camps.',
+      'The 10 Most Common Disqualifying Factors:',
+      '1. Height Measurement Deficits: The stadiometer does not lie; slouching or standing on toes is instantly caught by instructors.',
+      '2. Name and Birthday Mismatches: Discrepancies between WAEC records, local government origin certificates, and National Identification Numbers (NIN).',
+      '3. Missing Original Certificates: Presenting uncertified photocopies or phone screenshots instead of physical documents.',
+      '4. Physical Markings: Tattoos, ritual keloids, or excessive facial scars.',
+      '5. Medical Failures: Undetected Hepatitis B, high blood pressure, or past limb fractures.',
+      '6. Poor Physical Conditioning: Inability to complete the mandatory 3.2km timed run within the cutoff time.',
+      '7. Knock-Knees and Severe Flat Feet: Impairing march posture and rapid tactical movement.',
+      '8. Age Exceedance: Being older than 22 (for military non-tradesmen) or 28 (for officer cadets).',
+      '9. Criminal Records or Court Convictions.',
+      '10. Forged Documents or Impersonation.'
     ]
   }
 ];

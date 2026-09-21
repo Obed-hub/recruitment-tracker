@@ -30,7 +30,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Trainee (NNBTS Onne)',
     airForceRank: 'Recruit (BTC Kaduna)',
     cadre: 'Basic Training',
-    monthlyRange: '₦35,000 - ₦40,000',
+    monthlyRange: '₦45,000 - ₦55,000',
     specialAllowances: 'Free feeding, kitting, barracks accommodation & medicals during 6 months basic training.'
   },
   {
@@ -39,8 +39,8 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Ordinary Seaman',
     airForceRank: 'Aircraftman / Aircraftwoman',
     cadre: 'Non-Commissioned (Enlisted)',
-    monthlyRange: '₦77,000 - ₦86,000',
-    specialAllowances: 'Army: Combat duty allowance (₦30k-₦60k). Navy: Sea duty allowance (₦25k-₦50k). NAF: Flight line allowance (₦20k-₦45k).'
+    monthlyRange: '₦105,000 - ₦125,000',
+    specialAllowances: 'Army: Combat duty allowance (₦30k-₦60k). Navy: Sea duty allowance (₦35k-₦75k). NAF: Flight line allowance (₦35k-₦70k).'
   },
   {
     rankLevel: 'Junior Enlisted (Grade 2)',
@@ -48,7 +48,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Able Seaman',
     airForceRank: 'Leading Aircraftman',
     cadre: 'Non-Commissioned (Enlisted)',
-    monthlyRange: '₦92,000 - ₦100,000',
+    monthlyRange: '₦125,000 - ₦145,000',
     specialAllowances: 'Uniform kit allowance, subsidized ration pack, free barracks housing.'
   },
   {
@@ -57,7 +57,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Leading Seaman',
     airForceRank: 'Corporal',
     cadre: 'Non-Commissioned (Enlisted)',
-    monthlyRange: '₦104,000 - ₦115,000',
+    monthlyRange: '₦145,000 - ₦168,000',
     specialAllowances: 'Junior supervisory responsibility allowance, duty post hazard stipend.'
   },
   {
@@ -66,7 +66,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Petty Officer',
     airForceRank: 'Sergeant',
     cadre: 'Senior Non-Commissioned',
-    monthlyRange: '₦120,000 - ₦135,000',
+    monthlyRange: '₦175,000 - ₦205,000',
     specialAllowances: 'Senior leadership allowance, quarterly uniform maintenance bonus.'
   },
   {
@@ -75,7 +75,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Chief Petty Officer',
     airForceRank: 'Flight Sergeant',
     cadre: 'Senior Non-Commissioned',
-    monthlyRange: '₦140,000 - ₦158,000',
+    monthlyRange: '₦210,000 - ₦245,000',
     specialAllowances: 'Senior technical rating allowance, command supervisory stipend.'
   },
   {
@@ -84,7 +84,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Warrant Officer (WO)',
     airForceRank: 'Warrant Officer (WO)',
     cadre: 'Warrant Officers',
-    monthlyRange: '₦175,000 - ₦195,000',
+    monthlyRange: '₦250,000 - ₦290,000',
     specialAllowances: 'Regimental duties allowance, domestic quarters allocation.'
   },
   {
@@ -93,25 +93,25 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Master Warrant Officer (MWO)',
     airForceRank: 'Master Warrant Officer (MWO)',
     cadre: 'Warrant Officers',
-    monthlyRange: '₦210,000 - ₦235,000',
+    monthlyRange: '₦295,000 - ₦340,000',
     specialAllowances: 'RSM command advisory allowance, official transport privilege.'
   },
   {
     rankLevel: 'Commissioned Entry (Graduates)',
     armyRank: 'Second Lieutenant (DSSC/NDA)',
     navyRank: 'Sub-Lieutenant (DSSC/NDA)',
-    airForceRank: 'Pilot Officer (DSSC/NDA)',
+    airForceRank: 'Pilot / Flying Officer (DSSC/NDA)',
     cadre: 'Commissioned Officers',
-    monthlyRange: '₦240,000 - ₦275,000',
+    monthlyRange: '₦280,000 - ₦340,000',
     specialAllowances: 'Officers mess allowance, field command stipend, hazard & specialist allowance.'
   },
   {
     rankLevel: 'Junior Officer',
     armyRank: 'Lieutenant',
     navyRank: 'Sub-Lieutenant (Promoted)',
-    airForceRank: 'Flying Officer',
+    airForceRank: 'Flying Officer (Confirmed)',
     cadre: 'Commissioned Officers',
-    monthlyRange: '₦290,000 - ₦330,000',
+    monthlyRange: '₦340,000 - ₦410,000',
     specialAllowances: 'Platoon / flight / naval watchkeeping executive command allowance.'
   },
   {
@@ -120,7 +120,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Lieutenant (NN)',
     airForceRank: 'Flight Lieutenant',
     cadre: 'Commissioned Officers',
-    monthlyRange: '₦360,000 - ₦420,000',
+    monthlyRange: '₦420,000 - ₦510,000',
     specialAllowances: 'Company / naval vessel department head command allowance.'
   },
   {
@@ -129,7 +129,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Lieutenant Commander',
     airForceRank: 'Squadron Leader',
     cadre: 'Commissioned Officers',
-    monthlyRange: '₦450,000 - ₦530,000',
+    monthlyRange: '₦540,000 - ₦660,000',
     specialAllowances: 'Battalion 2IC / flight squadron commander executive stipend.'
   },
   {
@@ -138,7 +138,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Commander',
     airForceRank: 'Wing Commander',
     cadre: 'Commissioned Officers',
-    monthlyRange: '₦580,000 - ₦670,000',
+    monthlyRange: '₦680,000 - ₦820,000',
     specialAllowances: 'Commanding Officer (CO) of warship / combat battalion / air wing.'
   },
   {
@@ -147,7 +147,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Captain (NN)',
     airForceRank: 'Group Captain',
     cadre: 'Commissioned Officers',
-    monthlyRange: '₦750,000 - ₦880,000',
+    monthlyRange: '₦880,000 - ₦1,050,000',
     specialAllowances: 'Brigade chief of staff / naval base commander executive package.'
   },
   {
@@ -156,7 +156,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Commodore',
     airForceRank: 'Air Commodore',
     cadre: 'General Officers',
-    monthlyRange: '₦1,100,000 - ₦1,350,000',
+    monthlyRange: '₦1,250,000 - ₦1,550,000',
     specialAllowances: 'Flag officer brigade command package, security detail, staff cars.'
   },
   {
@@ -165,7 +165,7 @@ const TRI_SERVICE_DATA: TriServiceComparisonRow[] = [
     navyRank: 'Rear Admiral',
     airForceRank: 'Air Vice Marshal',
     cadre: 'General Officers',
-    monthlyRange: '₦1,600,000 - ₦1,950,000',
+    monthlyRange: '₦1,800,000 - ₦2,250,000',
     specialAllowances: 'General Officer Commanding (GOC) / Naval Command Flag Officer package.'
   }
 ];
@@ -185,8 +185,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Armed Forces (Land)',
     agency: 'Nigerian Army',
     salaryScale: 'CONAFSS',
-    recruitStartingPay: '₦77,000 - ₦85,000',
-    graduateEntryPay: '₦240,000 - ₦270,000 (2nd Lt)',
+    recruitStartingPay: '₦105,000 - ₦125,000 (Private)',
+    graduateEntryPay: '₦280,000 - ₦340,000 (2nd Lt)',
     riskProfile: 'High (Ground combat, territorial defence, counter-terrorism)',
     officialPortal: 'recruitment.army.mil.ng'
   },
@@ -194,8 +194,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Armed Forces (Sea)',
     agency: 'Nigerian Navy',
     salaryScale: 'CONAFSS',
-    recruitStartingPay: '₦78,000 - ₦86,000',
-    graduateEntryPay: '₦245,000 - ₦275,000 (Sub-Lt)',
+    recruitStartingPay: '₦105,000 - ₦125,000 (Ordinary Seaman)',
+    graduateEntryPay: '₦280,000 - ₦340,000 (Sub-Lt)',
     riskProfile: 'High (Maritime security, anti-piracy, oil platform defence)',
     officialPortal: 'joinnigeriannavy.com'
   },
@@ -203,8 +203,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Armed Forces (Air)',
     agency: 'Nigerian Air Force',
     salaryScale: 'CONAFSS',
-    recruitStartingPay: '₦77,000 - ₦85,000',
-    graduateEntryPay: '₦245,000 - ₦275,000 (Pilot Off.)',
+    recruitStartingPay: '₦105,000 - ₦125,000 (Aircraftman)',
+    graduateEntryPay: '₦280,000 - ₦350,000 (Flying Off.)',
     riskProfile: 'High (Aerial surveillance, close air support, flight missions)',
     officialPortal: 'nafrecruitment.airforce.mil.ng'
   },
@@ -212,8 +212,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Law Enforcement',
     agency: 'Nigeria Police Force (NPF)',
     salaryScale: 'CONPOSS',
-    recruitStartingPay: '₦65,000 - ₦75,000 (Constable)',
-    graduateEntryPay: '₦150,000 - ₦185,000 (Cadet ASP)',
+    recruitStartingPay: '₦86,000 - ₦98,000 (Constable PC II)',
+    graduateEntryPay: '₦260,000 - ₦295,000 (Cadet ASP)',
     riskProfile: 'Medium-High (Internal policing, criminal investigation, public order)',
     officialPortal: 'policerecruitment.gov.ng'
   },
@@ -221,8 +221,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Border & Revenue Security',
     agency: 'Nigeria Customs Service (NCS)',
     salaryScale: 'CONPASS / Special',
-    recruitStartingPay: '₦75,000 - ₦88,000 (Customs Assistant)',
-    graduateEntryPay: '₦160,000 - ₦200,000 (ASC II)',
+    recruitStartingPay: '₦82,000 - ₦94,000 (Customs Asst. III)',
+    graduateEntryPay: '₦275,000 - ₦315,000 (ASC II)',
     riskProfile: 'Medium (Border patrol, anti-smuggling, port duty)',
     officialPortal: 'customs.gov.ng'
   },
@@ -230,8 +230,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Border & Migration',
     agency: 'Nigeria Immigration Service (NIS)',
     salaryScale: 'CONPASS',
-    recruitStartingPay: '₦70,000 - ₦82,000 (Immigration Asst.)',
-    graduateEntryPay: '₦155,000 - ₦190,000 (ASI II)',
+    recruitStartingPay: '₦78,000 - ₦95,000 (Immigration Asst. III)',
+    graduateEntryPay: '₦185,000 - ₦240,000 (ASI II)',
     riskProfile: 'Medium (Border control, visa processing, passport surveillance)',
     officialPortal: 'cdcfib.gov.ng'
   },
@@ -239,8 +239,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Civil Infrastructure & Protection',
     agency: 'Civil Defence (NSCDC)',
     salaryScale: 'CONPASS',
-    recruitStartingPay: '₦65,000 - ₦75,000 (Assistant Cadre)',
-    graduateEntryPay: '₦150,000 - ₦185,000 (ASCII)',
+    recruitStartingPay: '₦78,000 - ₦95,000 (Civil Defence Asst. III)',
+    graduateEntryPay: '₦185,000 - ₦240,000 (ASCII)',
     riskProfile: 'Medium (Pipeline security, school protection, disaster management)',
     officialPortal: 'cdcfib.gov.ng'
   },
@@ -248,8 +248,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Road Safety & Traffic',
     agency: 'Federal Road Safety Corps (FRSC)',
     salaryScale: 'CONPASS',
-    recruitStartingPay: '₦60,000 - ₦70,000 (Road Marshal)',
-    graduateEntryPay: '₦145,000 - ₦175,000 (ARC)',
+    recruitStartingPay: '₦76,000 - ₦88,000 (RMA III)',
+    graduateEntryPay: '₦180,000 - ₦220,000 (ARC)',
     riskProfile: 'Low-Medium (Highway patrol, traffic enforcement, crash rescue)',
     officialPortal: 'frsc.gov.ng'
   },
@@ -257,8 +257,8 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
     sector: 'Anti-Narcotics',
     agency: 'NDLEA',
     salaryScale: 'Special Security Scale',
-    recruitStartingPay: '₦72,000 - ₦85,000 (Narcotic Assistant)',
-    graduateEntryPay: '₦155,000 - ₦195,000 (Narcotic Officer)',
+    recruitStartingPay: '₦85,000 - ₦98,000 (Narcotic Assistant)',
+    graduateEntryPay: '₦195,000 - ₦250,000 (Narcotic Officer)',
     riskProfile: 'High (Drug raids, border interdiction, syndicate prosecution)',
     officialPortal: 'ndlea.gov.ng'
   }
@@ -267,15 +267,15 @@ const MILITARY_VS_PARAMILITARY_DATA: MilitaryVsParamilitaryRow[] = [
 const COMPARISON_FAQS = [
   {
     question: 'Which pays higher between the Nigerian Army, Navy, and Air Force?',
-    answer: 'Basic salaries across the Nigerian Army, Navy, and Air Force are identical because all three service branches are paid under the Consolidated Armed Forces Salary Structure (CONAFSS). However, overall take-home pay differs depending on specialized operational allowances: Nigerian Navy personnel on sea missions receive sea duty allowances (₦25,000 - ₦50,000/mo), Air Force flight crews earn aviation risk allowances, and Army soldiers in combat zones receive ground combat duty allowances (₦30,000 - ₦60,000/mo).'
+    answer: 'Basic salaries across the Nigerian Army, Navy, and Air Force are identical because all three service branches are paid under the Consolidated Armed Forces Salary Structure (CONAFSS). However, overall take-home pay differs depending on specialized operational allowances: Nigerian Navy personnel on sea missions receive sea duty allowances (₦35,000 - ₦75,000/mo), Air Force flight crews earn aviation risk allowances (₦60,000 - ₦180,000/mo), and Army soldiers in combat zones receive ground combat duty allowances (₦30,000 - ₦60,000/mo).'
   },
   {
     question: 'Does the Nigeria Police earn more than the Nigerian Army in 2026?',
-    answer: 'No. The Nigerian Armed Forces (Army, Navy, Air Force) earn higher base pay under CONAFSS than the Nigeria Police Force under CONPOSS. An entry-level Army recruit (Private) earns ₦77,000 - ₦85,000 plus combat allowances, whereas a Police Constable earns approximately ₦65,000 - ₦75,000. At officer level, a Second Lieutenant in the Army earns ₦240,000 - ₦270,000, while a Cadet Assistant Superintendent of Police (ASP) earns ₦150,000 - ₦185,000.'
+    answer: 'No. The Nigerian Armed Forces (Army, Navy, Air Force) earn higher base pay under CONAFSS than the Nigeria Police Force under CONPOSS. An entry-level Army recruit (Private) earns ₦105,000 - ₦125,000 plus combat allowances, whereas a Police Constable earns approximately ₦86,000 - ₦98,000. At officer level, a Second Lieutenant in the Army earns ₦280,000 - ₦340,000, while a Cadet Assistant Superintendent of Police (ASP) earns ₦260,000 - ₦295,000.'
   },
   {
     question: 'Which paramilitary agency pays the highest salary in Nigeria?',
-    answer: 'The Nigeria Customs Service (NCS) and the National Drug Law Enforcement Agency (NDLEA) offer the highest overall remuneration packages among paramilitary bodies. Customs personnel benefit from revenue collection incentives and anti-smuggling allowances, bringing a new graduate officer (ASC II) starting pay to ₦160,000 - ₦200,000 monthly.'
+    answer: 'The Nigeria Customs Service (NCS) and the National Drug Law Enforcement Agency (NDLEA) offer the highest overall remuneration packages among paramilitary bodies. Customs personnel benefit from revenue collection incentives and anti-smuggling allowances, bringing a new graduate officer (ASC II) starting pay to ₦275,000 - ₦315,000 monthly.'
   },
   {
     question: 'What is the difference between CONAFSS and CONPASS salary scales?',
@@ -389,24 +389,24 @@ const SalaryComparison: React.FC = () => {
               Which pays higher between Nigerian Military and Paramilitary forces?
             </h2>
             <p className="text-slate-800 text-sm md:text-base leading-relaxed bg-white/80 p-4 rounded-xl border border-blue-200">
-              <strong>The Nigerian Military (Army, Navy, Air Force) pays higher basic salaries than paramilitary forces.</strong> Military personnel are remunerated under the Consolidated Armed Forces Salary Structure (CONAFSS), where a recruit starts at ₦77,000 - ₦85,000/month and a graduate Second Lieutenant starts at ₦240,000 - ₦270,000/month. By comparison, paramilitary agencies under CONPASS start recruits at ₦65,000 - ₦75,000/month and graduate officers at ₦150,000 - ₦185,000/month.
+              <strong>The Nigerian Military (Army, Navy, Air Force) pays higher basic salaries than paramilitary forces.</strong> Military personnel are remunerated under the Consolidated Armed Forces Salary Structure (CONAFSS), where an entry-level recruit starts at ₦105,000 - ₦125,000/month and a graduate Second Lieutenant starts at ₦280,000 - ₦340,000/month. By comparison, paramilitary agencies under CONPASS start entry assistants at ₦78,000 - ₦95,000/month and graduate officers at ₦185,000 - ₦240,000/month (Customs: ₦275,000 - ₦315,000).
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
               <div className="bg-white p-3 rounded-xl border border-blue-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Military Recruit (CONAFSS)</span>
-                <span className="font-bold text-blue-700 text-sm">₦77,000 - ₦86,000</span>
+                <span className="font-bold text-blue-700 text-sm">₦105,000 - ₦125,000</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-blue-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Paramilitary Recruit (CONPASS)</span>
-                <span className="font-bold text-blue-700 text-sm">₦65,000 - ₦75,000</span>
+                <span className="font-bold text-blue-700 text-sm">₦78,000 - ₦95,000</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-blue-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Military Officer (2nd Lt)</span>
-                <span className="font-bold text-blue-700 text-sm">₦240,000 - ₦270,000</span>
+                <span className="font-bold text-blue-700 text-sm">₦280,000 - ₦340,000</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-blue-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Paramilitary Officer (ASP / ASC)</span>
-                <span className="font-bold text-blue-700 text-sm">₦150,000 - ₦190,000</span>
+                <span className="font-bold text-blue-700 text-sm">₦185,000 - ₦275,000</span>
               </div>
             </div>
           </div>
@@ -642,6 +642,81 @@ const SalaryComparison: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* Dedicated Standalone Salary Hub Directory */}
+      <div className="bg-white rounded-3xl border border-gray-200 p-6 md:p-8 shadow-sm">
+        <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+          <CircleDollarSign className="w-5 h-5 text-military-green" /> Official Individual Agency Salary & Rank Tables (2026)
+        </h3>
+        <p className="text-xs md:text-sm text-gray-600 mb-6">
+          Access standalone, rank-by-rank salary breakdowns with complete CONAFSS, CONPOSS, CONPASS, and corporate energy scales.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Link to="/army-salary" className="p-4 rounded-2xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-emerald-950 text-sm group-hover:text-military-green transition-colors">Nigerian Army Salary</h4>
+              <p className="text-xs text-emerald-800 mt-0.5">Recruits to Generals (CONAFSS)</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/navy-salary" className="p-4 rounded-2xl border border-blue-200 bg-blue-50/50 hover:bg-blue-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-blue-950 text-sm group-hover:text-military-blue transition-colors">Nigerian Navy Salary</h4>
+              <p className="text-xs text-blue-800 mt-0.5">Seaman to Admiral & Sea Duty Pay</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-blue-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/airforce-salary" className="p-4 rounded-2xl border border-sky-200 bg-sky-50/50 hover:bg-sky-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-sky-950 text-sm group-hover:text-sky-700 transition-colors">Nigerian Air Force (NAF) Salary</h4>
+              <p className="text-xs text-sky-800 mt-0.5">Aircraftman to Air Marshal & Flight Pay</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-sky-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/police-salary" className="p-4 rounded-2xl border border-indigo-200 bg-indigo-50/50 hover:bg-indigo-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-indigo-950 text-sm group-hover:text-indigo-700 transition-colors">Nigeria Police (NPF) Salary</h4>
+              <p className="text-xs text-indigo-800 mt-0.5">Constable to IGP (CONPOSS)</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-indigo-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/customs-salary" className="p-4 rounded-2xl border border-amber-200 bg-amber-50/50 hover:bg-amber-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-amber-950 text-sm group-hover:text-amber-800 transition-colors">Nigeria Customs (NCS) Salary</h4>
+              <p className="text-xs text-amber-800 mt-0.5">Customs Assistant to CGC (CONPASS)</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-amber-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/civil-defence-salary" className="p-4 rounded-2xl border border-red-200 bg-red-50/50 hover:bg-red-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-red-950 text-sm group-hover:text-red-700 transition-colors">Civil Defence (NSCDC) Salary</h4>
+              <p className="text-xs text-red-800 mt-0.5">Corps Assistant to CG & Agro-Rangers</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-red-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/immigration-salary" className="p-4 rounded-2xl border border-teal-200 bg-teal-50/50 hover:bg-teal-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-teal-950 text-sm group-hover:text-teal-700 transition-colors">Nigeria Immigration (NIS) Salary</h4>
+              <p className="text-xs text-teal-800 mt-0.5">Assistant to CGI & Border Hazard Pay</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/nnpc-salary" className="p-4 rounded-2xl border border-emerald-300 bg-emerald-100/40 hover:bg-emerald-100/70 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-emerald-950 text-sm group-hover:text-emerald-800 transition-colors">NNPC Limited Salary</h4>
+              <p className="text-xs text-emerald-900 mt-0.5">Graduate Trainee, Senior Staff & Upstream</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/cbn-salary" className="p-4 rounded-2xl border border-cyan-200 bg-cyan-50/50 hover:bg-cyan-50 transition-colors flex items-center justify-between group">
+            <div>
+              <h4 className="font-bold text-cyan-950 text-sm group-hover:text-cyan-800 transition-colors">Central Bank of Nigeria (CBN)</h4>
+              <p className="text-xs text-cyan-800 mt-0.5">Executive Trainee to Director Pay</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-cyan-600 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
 

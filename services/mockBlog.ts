@@ -517,72 +517,149 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     slug: 'nigerian-navy-batch-39-recruitment-guide-portal',
-    title: 'Nigerian Navy Batch 39 Recruitment 2026: Application Portal, Requirements & Registration Guide',
-    seoTitle: 'Nigerian Navy Batch 39 Recruitment 2026/2027 Portal Form & Requirements',
-    description: 'Complete guide to Nigerian Navy Batch 39 Basic Maritime Training Course (BMTC) recruitment 2026. Portal link, age limits, height rules, and CBT tips.',
+    title: 'Nigerian Navy Batch 39 Recruitment 2026: Application Portal, Requirements & Closing Date (www.joinnigeriannavy.gov.ng)',
+    seoTitle: 'Nigerian Navy Batch 39 Recruitment 2026 Portal, Requirements, Age Limit & Closing Date',
+    description: 'Official Nigerian Navy Batch 39 recruitment 2026 guidelines. Portal opens 2 October 2026, closes 31 October 2026. Detailed requirements, age limits, salary scale & step-by-step registration.',
     category: 'Guides',
-    date: '2026-09-07',
-    readTime: '6 min read',
+    date: '2026-09-20',
+    readTime: '8 min read',
     keywords: [
       'nigerian navy batch 39 recruitment 2026',
-      'joinnigeriannavy portal closing date',
-      'navy bmtc entry requirements',
-      'how to apply for navy batch 39',
-      'navy recruitment height and age requirements'
+      'joinnigeriannavy gov ng recruitment portal',
+      'nigerian navy recruitment closing date 2026',
+      'nigerian navy age limit and requirements',
+      'how to apply for nigerian navy batch 39',
+      'nigerian navy salary structure for ratings',
+      'nnbts onne rivers state recruitment'
     ],
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
     content: [
       {
         type: 'p',
-        text: 'The Nigerian Navy has announced the opening of the official registration portal for the Basic Maritime Training Course (Batch 39 BMTC). This recruitment is open to Nigerian citizens seeking enlistment into the naval service as ratings across general duties, technical departments, medical ratings, and maritime engineering branches.'
+        text: 'The Naval Headquarters (NHQ), Abuja has officially announced the commencement of the Nigerian Navy Batch 39 Recruitment Exercise for the 2026/2027 intake. Qualified Nigerian youths seeking a maritime military career are invited to apply across Seaman / Naval Ratings, Non-Commissioned Officers (NCOs), and Commissioned Officers. The online application portal officially opens on 2 October 2026 and closes on 31 October 2026.'
       },
       {
         type: 'h2',
-        text: 'Official Portal and Application Fee'
-      },
-      {
-        type: 'p',
-        text: 'The only authentic website for Batch 39 registration is joinnigeriannavy.com. Application is 100% free. Any third-party blog or social media account asking for form purchase fees or scratch card payments is completely fraudulent.'
-      },
-      {
-        type: 'h2',
-        text: 'Statutory Eligibility Requirements'
+        text: 'Key Recruitment Dates & Official Application Portals'
       },
       {
         type: 'ul',
         items: [
-          'Nationality: Must be a Nigerian citizen by birth with a valid National Identity Number (NIN).',
-          'Age Limits: Between 18 and 22 years for Secondary School Certificate holders (SSCE/GCE/NECO); up to 26 years for diploma holders (ND, NCE, Nursing, Technical certificates).',
-          'Height Requirements: Minimum height of 1.69 meters (5ft 6in) for male candidates, and 1.65 meters (5ft 5in) for female candidates.',
-          'Educational Qualifications: Minimum of 5 credits in SSCE, NECO, or GCE in not more than 2 sittings, including English Language and Mathematics.',
-          'Marital Status: Applicants must be single and remain unmarried throughout the 9-month training period at the Basic Maritime Training College, Onne, Port Harcourt.'
+          'Application Portal Opens: Friday, 2 October 2026 (12:00 AM)',
+          'Application Deadline: Saturday, 31 October 2026 (11:59 PM)',
+          'Primary Application Portal: www.joinnigeriannavy.gov.ng',
+          'Alternative Mirror Portal: www.joinnigeriannavy.com',
+          'Application Cost: 100% FREE (The Nigerian Navy does not charge any processing fee or sell scratch cards)'
         ]
       },
       {
         type: 'h2',
-        text: 'Passport Photograph Upload Rule (Avoid Portal Error)'
+        text: 'Statutory Eligibility Requirements (Age, Height & Academics)'
       },
       {
         type: 'p',
-        text: 'A common reason why candidates are locked out of the naval portal is uploading images larger than 20KB. The naval portal requires a recent passport photo with a clean white background, compressed to between 10KB and 20KB with 200x200 pixel dimensions. Ensure your image is resized to standard dimensions before uploading.'
+        text: 'To be considered eligible for Nigerian Navy Batch 39, applicants must satisfy strict statutory, academic, medical, and physical standards:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Nationality: Must be a Nigerian citizen by birth, verifiable by a recognized Local Government Certificate of Origin.',
+          'Age Limits (Non-Tradesmen / SSCE): Between 18 and 22 years of age at the time of enlistment.',
+          'Age Limits (Tradesmen / Diploma Holders): Between 18 and 26 years for applicants with ND, NCE, Registered Nurse (RN/RM), Motor Mechanics, Drivers, and Artisans.',
+          'Height Standards: Minimum of 1.69 metres (5ft 6.5in) for male candidates, and 1.65 metres (5ft 5in) for female candidates.',
+          'Educational Qualifications: Minimum of five (5) credits in WASSCE / NECO / GCE / NABTEB in not more than two (2) sittings, which MUST include English Language and Mathematics.',
+          'Marital Status: Candidates must be single and have no children at the time of enlistment.',
+          'National Identification: Valid 11-digit National Identification Number (NIN) and Bank Verification Number (BVN) linked to active telephone lines are mandatory.',
+          'Physical & Medical Standards: Must be free from orthopedic deformities, flat feet, visual impairments, speech impediments, and bodily tattoos.'
+        ]
       },
       {
         type: 'h2',
-        text: 'Naval Aptitude Test & CBT Preparation'
+        text: 'Available Cadres and Intake Categories'
       },
       {
         type: 'p',
-        text: 'Shortlisted candidates will sit for an electronic Computer-Based Test (CBT) covering Mathematics, English Language, and General Knowledge (Nigerian history, naval traditions, and current affairs). Candidates should practice authentic naval past questions at recruitmenttracker.com.ng/past-questions/navy.'
+        text: 'The Nigerian Navy Batch 39 intake accommodates various educational and professional backgrounds:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Category A (General Service - Seaman): Deck hands, helmsmen, quartermasters, and general sea duty ratings.',
+          'Category B (Artificers & Technical Rates): Marine Engineering, Weapon Electrical, Hull Maintenance, and Ship Propulsion Technicians (ND / Technical Certificate required).',
+          'Category C (Special Services & Medical): Registered Nurses, Medical Laboratory Technicians, Pharmacy Technicians, Physical Training Instructors, and Military Band Musicians.',
+          'Category D (Clerical, ICT & Communications): Writers, Radio Communicators, IT Specialists, Storekeepers, and Catering Attendants.',
+          'Commissioned Cadre: Direct Short Service Commission (DSSC) and Regular Officer pathways for degree and HND holders.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Step-by-Step Guide: How to Apply on joinnigeriannavy.gov.ng'
+      },
+      {
+        type: 'ol',
+        items: [
+          'Step 1: Visit the verified portal at www.joinnigeriannavy.gov.ng once the window opens on 2 October 2026.',
+          'Step 2: Enter your 11-digit NIN and verify personal biodata (Full Name, Date of Birth, State of Origin).',
+          'Step 3: Select your preferred entry category (e.g., Non-Tradesman Rating or Tradesman Artificer).',
+          'Step 4: Upload your white-background passport photograph. It must be compressed to between 10KB and 20KB in JPEG format to prevent portal upload timeout errors.',
+          'Step 5: Fill in your secondary school / tertiary education grades and upload scanned copies of WAEC/NECO certificates.',
+          'Step 6: Review all information carefully before final submission. Multiple applications using different emails or NINs will trigger automatic blacklisting.',
+          'Step 7: Print out your completed Application Acknowledgement Slip, Parent/Guardian Consent Form, and Local Government Attestation Slip.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Salary Structure for Recruits (CONAFSS Scale)'
+      },
+      {
+        type: 'p',
+        text: 'Naval ratings are compensated under the Consolidated Armed Forces Salary Structure (CONAFSS). In addition to monthly basic pay, personnel receive free kitting, comprehensive healthcare, subsidized quarters, and sea duty / operational hazard allowances:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Trainee (during 6 months at NNBTS Onne): ₦35,000 - ₦40,000 monthly stipend + full accommodation and feeding',
+          'Ordinary Seaman (Fresh Recruit upon passing out): ₦78,000 - ₦86,000 / month',
+          'Able Seaman: ₦92,000 - ₦100,000 / month',
+          'Leading Seaman: ₦104,000 - ₦115,000 / month',
+          'Petty Officer: ₦125,000 - ₦140,000 / month',
+          'Chief Petty Officer: ₦148,000 - ₦165,000 / month',
+          'Warrant Officer: ₦175,000 - ₦205,000 / month'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'CBT Exam Syllabus & Screening Preparation'
+      },
+      {
+        type: 'p',
+        text: 'Shortlisted candidates will be invited for a Computer-Based Test (CBT) across designated command centers in all 36 states. The aptitude test comprises Mathematics, English Language, and General Knowledge (Nigerian history, naval traditions, and current affairs). Practice authentic CBT questions directly on our interactive quiz simulator to maximize your speed and accuracy.'
       }
     ],
     faqs: [
       {
+        question: 'When is the Nigerian Navy Batch 39 recruitment form opening?',
+        answer: 'The portal officially opens on 2 October 2026. The registration period runs until 31 October 2026.'
+      },
+      {
+        question: 'What is the official closing date for Nigerian Navy Batch 39?',
+        answer: 'Registration closes at 11:59 PM on 31 October 2026. No late extensions are granted.'
+      },
+      {
+        question: 'What is the authentic portal to apply for Nigerian Navy?',
+        answer: 'The authentic recruitment portals are www.joinnigeriannavy.gov.ng and www.joinnigeriannavy.com. Registration is 100% free of charge.'
+      },
+      {
+        question: 'What are the age limits for Nigerian Navy Batch 39?',
+        answer: 'Candidates with SSCE must be between 18 and 22 years old. Candidates with higher qualifications (ND, NCE, Nursing, technical certificates) may apply up to age 26.'
+      },
+      {
         question: 'Can I apply for Navy Batch 39 with awaiting result?',
-        answer: 'No. The Nigerian Navy does not accept awaiting results. All academic qualifications (WAEC, NECO, NABTEB, ND) must be fully certified at the time of submission.'
+        answer: 'No. The Nigerian Navy does not accept awaiting results. All academic qualifications (WAEC, NECO, NABTEB) must be finalized with certificates or statement of results available.'
       },
       {
         question: 'How long does Navy basic training last?',
-        answer: 'BMTC training at the Nigerian Naval Basic Training School (NNBTS) Onne, Rivers State lasts approximately 9 months.'
+        answer: 'Basic military and maritime training at the Nigerian Navy Basic Training School (NNBTS), Onne, Rivers State lasts approximately 6 months.'
       }
     ]
   },

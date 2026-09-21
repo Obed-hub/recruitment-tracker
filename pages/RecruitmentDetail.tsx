@@ -11,6 +11,7 @@ import FastActionCard from '../components/FastActionCard';
 import ScreeningChecklist from '../components/ScreeningChecklist';
 import NextStepInterstitial from '../components/NextStepInterstitial';
 import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import { PositionZeroQuickAnswer } from '../components/PositionZeroQuickAnswer';
 import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 const RecruitmentDetail: React.FC = () => {
@@ -86,27 +87,99 @@ const RecruitmentDetail: React.FC = () => {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   })();
 
+  const RECRUITMENT_CUSTOM_SEO: Record<string, { title: string; description: string }> = {
+    'army-dssc': {
+      title: 'Nigerian Army DSSC Recruitment 2026: Portal & Requirements',
+      description: 'Apply for Nigerian Army DSSC 29/30 recruitment 2026 at recruitment.army.mil.ng. Check requirements, degree cut-off, screening dates, salary & tracking portal.'
+    },
+    'navy-batch': {
+      title: 'Nigerian Navy Batch 39 Recruitment 2026: Portal & Requirements',
+      description: 'Official Nigerian Navy Batch 39 recruitment 2026 guide: Portal opens at joinnigeriannavy.gov.ng. Check age, 1.68m height criteria, screening dates & salary.'
+    },
+    'nnpc-graduate': {
+      title: 'NNPC Recruitment 2026: Graduate Trainee Portal & Requirements',
+      description: 'NNPC Limited graduate trainee recruitment 2026 portal at careers.nnpcgroup.com. Check 28-yr age limit, 2:2 degree criteria, aptitude test format & salary.'
+    },
+    'ncc-entry-level': {
+      title: 'NCC Recruitment 2026: Entry-Level Portal & Application Guide',
+      description: 'Nigerian Communications Commission (NCC) recruitment 2026 portal status at ncc.gov.ng/careers-ncc. Check degree criteria, salary scale & test updates.'
+    },
+    'cbn-entry-level': {
+      title: 'CBN Recruitment 2026: Entry-Level Portal, Salary & Scam Notice',
+      description: 'Central Bank of Nigeria (CBN) entry-level recruitment 2026 portal at cbn.gov.ng. Check 2:1 degree criteria, graduate trainee salary & anti-fraud warning.'
+    },
+    'police-constable': {
+      title: 'Nigeria Police Recruitment 2026: Constable Form & Portal Login',
+      description: 'Apply for Nigeria Police Force (NPF) Constable recruitment 2026 at policerecruitment.gov.ng. Check 18-25 age limit, O-Level requirements, CBT dates & salary.'
+    },
+    'naf-bmtc': {
+      title: 'NAF BMTC 45 Recruitment 2026: Air Force Portal & Requirements',
+      description: 'Nigerian Air Force (NAF) BMTC 45 airmen/airwomen recruitment 2026 at nafrecruitment.airforce.mil.ng. Check trade/non-trade criteria, height & screening.'
+    },
+    'nscdc-general': {
+      title: 'CDCFIB Recruitment 2026: Civil Defence & Immigration Portal',
+      description: 'Apply on cdcfib.career for NSCDC, NIS & Fire Service recruitment 2026. Check shortlisted candidate lists, screening dates, requirements & official login.'
+    },
+    'customs-supplementary': {
+      title: 'Nigeria Customs Recruitment 2026: NCS Portal & Requirements',
+      description: 'Nigeria Customs Service (NCS) recruitment 2026 at customs.gov.ng. Check Superintendent & Inspector cadre requirements, salary structure & CBT screening.'
+    },
+    'immigration-inspector': {
+      title: 'Nigeria Immigration Recruitment 2026: NIS CDCFIB Portal Guide',
+      description: 'Apply for Nigeria Immigration Service (NIS) recruitment 2026 at cdcfib.career. Check Superintendent & Inspector cadre requirements, screening dates & salary.'
+    },
+    'fire-inspector': {
+      title: 'Federal Fire Service Recruitment 2026: CDCFIB Portal Guide',
+      description: 'Apply for Federal Fire Service (FFS) recruitment 2026 at cdcfib.career. Check Inspector & Assistant cadre requirements, screening dates & CONPASS salary.'
+    },
+    'frsc-recruitment': {
+      title: 'FRSC Recruitment 2026: Road Safety Corps Portal & Requirements',
+      description: 'Federal Road Safety Corps (FRSC) recruitment 2026 portal at frsc.gov.ng. Check Officer, Marshal & Inspector cadre criteria, physical screening & salary.'
+    },
+    'ndlea-recruitment': {
+      title: 'NDLEA Recruitment 2026: Application Portal & Cadre Requirements',
+      description: 'National Drug Law Enforcement Agency (NDLEA) recruitment 2026 at ndlea.gov.ng. Check Narcotic Officer & Assistant cadre requirements, CBT dates & salary.'
+    },
+    'efcc-investigator': {
+      title: 'EFCC Recruitment 2026: Detective Cadre Portal & Requirements',
+      description: 'Economic and Financial Crimes Commission (EFCC) recruitment 2026 at efcc.gov.ng. Check Detective Superintendent & Assistant qualifications & CBT screening.'
+    },
+    'fcsc-entry-level': {
+      title: 'FCSC Recruitment 2026: Federal Civil Service Portal & Vacancies',
+      description: 'Federal Civil Service Commission (FCSC) recruitment 2026 at recruitment.fedcivilservice.gov.ng. Check GL 08 graduate vacancies, MDA postings & exam guide.'
+    },
+    'nimc-staff': {
+      title: 'NIMC Recruitment 2026: Enrolment Officer Portal & Requirements',
+      description: 'National Identity Management Commission (NIMC) recruitment 2026 at nimc.gov.ng/careers. Check IT officer & enrolment staff requirements, dates & salary.'
+    }
+  };
+
   const getDynamicHook = () => {
     if (recruitment.status === 'Open') {
       if (daysRemaining > 0 && daysRemaining <= 7) {
-        return `[Closing in ${daysRemaining} Days - Apply Now]`;
+        return `[Closing in ${daysRemaining} Days]`;
       }
-      return '[Application Portal Open - Apply Now]';
+      return '[Official Portal Open]';
     }
     if (recruitment.status === 'Shortlist Out') {
-      return '[Shortlist PDF Out - Check Screening Centers]';
+      return '[Shortlist PDF Out]';
     }
     if (recruitment.status === 'Upcoming') {
-      return '[Announced - Opening Soon]';
+      return '[Opening Soon]';
     }
     if (recruitment.status === 'Closed') {
-      return '[Application Closed - Screening Slip & CBT Questions]';
+      return '[Screening & CBT Updates]';
     }
-    return `[${recruitment.status.toUpperCase()} - Official Portal]`;
+    return `[${recruitment.status.toUpperCase()}]`;
   };
 
+  const customSeo = RECRUITMENT_CUSTOM_SEO[recruitment.id];
+  const cleanedTitle = recruitment.title.replace(/\s*202[4-9](\/202[4-9])?\s*/g, ' ').trim();
   const dynamicHook = getDynamicHook();
-  const pageTitle = `${recruitment.title} 2026/2027 ${dynamicHook}`;
+  
+  const pageTitle = customSeo?.title || `${cleanedTitle} Recruitment 2026: Portal & Guide ${dynamicHook}`;
+  const pageDescription = customSeo?.description || 
+    `Official ${cleanedTitle} recruitment 2026 application guide. Status: ${recruitment.status}. Verify requirements, portal at ${recruitment.portal_url.replace(/^https?:\/\//, '')}, screening dates & CBT questions.`;
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -116,7 +189,7 @@ const RecruitmentDetail: React.FC = () => {
 
       <SEO
         title={pageTitle}
-        description={`Official ${recruitment.title} application guide for 2026/2027. Portal Status: ${recruitment.status}. Deadline: ${new Date(recruitment.deadline_date).toLocaleDateString()}. Check requirements, exam centers, CBT questions & official portal link.`}
+        description={pageDescription}
         canonical={`/recruitments/${recruitment.id}`}
         keywords={[recruitment.branch, 'recruitment', 'Nigeria', 'tracker', recruitment.category, `${recruitment.branch} recruitment 2026`, 'job application Nigeria', `${recruitment.title} screening date`, 'portal login']}
       />
@@ -180,6 +253,25 @@ const RecruitmentDetail: React.FC = () => {
         <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
 
           <div className="lg:col-span-2 space-y-8">
+            {/* Position-Zero "Quick Answer" Box (Top 100 Words) for Google Featured Snippets */}
+            <PositionZeroQuickAnswer
+              question={`Is ${recruitment.title} Recruitment Form Out for 2026?`}
+              directAnswer={`${recruitment.title} application status is currently [${recruitment.status}]. Official enlistment is conducted exclusively via ${recruitment.portal_url}. Registration is 100% free with ₦0 fee. General qualifications require WAEC/NECO (or degree for officer cadres), valid National Identification Number (NIN), and compliance with federal physical & medical standards.`}
+              statusBadge={{
+                text: recruitment.status === 'Open' ? 'Portal Active • Accepting Submissions' : (recruitment.status === 'Shortlist Out' ? 'Shortlisted Candidates List Out' : `Status: ${recruitment.status}`),
+                variant: recruitment.status === 'Open' ? 'success' : (recruitment.status === 'Shortlist Out' ? 'info' : 'warning')
+              }}
+              metrics={[
+                { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+                { label: 'Official Portal', value: recruitment.portal_url.replace(/^https?:\/\//, '') },
+                { label: 'Category', value: recruitment.category },
+                { label: 'Deadline', value: new Date(recruitment.deadline_date).toLocaleDateString() }
+              ]}
+              portalUrl={recruitment.portal_url}
+              portalName={recruitment.portal_url.replace(/^https?:\/\//, '')}
+              lastVerified={getDailyUpdatedBadge(false)}
+            />
+
             <section>
               <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Description</h3>
               <p className="text-gray-700 leading-relaxed text-lg">

@@ -10,7 +10,9 @@ import { WebSiteSchema, OrganizationSchema, FAQPageSchema } from '../components/
 import { GUIDES } from '../services/mockGuides';
 import { BLOG_ARTICLES } from '../services/mockBlog';
 import ViralCommunityWidget from '../components/ViralCommunityWidget';
+import NavyBatch39Banner from '../components/NavyBatch39Banner';
 import { getDailyUpdatedBadge, formatCardUpdateDate } from '../services/dateUtils';
+import SearchableFAQSection from '../components/SearchableFAQSection';
 
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
@@ -131,25 +133,6 @@ const Dashboard: React.FC = () => {
   // We will display all in a grid
   const displayBranches = branches;
 
-  const generalFAQs = [
-    {
-      question: "How do I check Nigerian military recruitment status?",
-      answer: "You can track the live status of Nigerian Army, Navy, and Air Force recruitment portals directly on our home dashboard. We monitor portal availability, status updates (Open, Closed, Shortlist Out), and application deadlines in real-time."
-    },
-    {
-      question: "Are military recruitment forms free in Nigeria?",
-      answer: "Yes, official recruitment forms for the Nigerian Army, Navy, Air Force, Police, and paramilitary agencies are completely free of charge. Avoid paying individuals claiming to represent these agencies."
-    },
-    {
-      question: "What is DSSC in Nigerian military recruitment?",
-      answer: "DSSC stands for Direct Short Service Commission. It is a commission type in the Nigerian military for university graduates and HND holders, allowing professionals (doctors, engineers, lawyers, teachers) to join as commissioned officers."
-    },
-    {
-      question: "How long does military recruitment screening last?",
-      answer: "The screening duration varies, but generally, physical screening, credential verification, and aptitude tests last between 1 to 2 weeks at designated zonal centers."
-    }
-  ];
-
   return (
     <div className="space-y-8">
       <SEO
@@ -160,7 +143,6 @@ const Dashboard: React.FC = () => {
       />
       <WebSiteSchema />
       <OrganizationSchema />
-      <FAQPageSchema faqs={generalFAQs} />
 
       {/* Hero / Live Status Section */}
       <section>
@@ -176,6 +158,9 @@ const Dashboard: React.FC = () => {
           </div>
           <Link to="/recruitments" className="text-sm font-semibold text-military-blue hover:underline">View All Agencies</Link>
         </div>
+
+        {/* High-Impact Announcement: Nigerian Navy Batch 39 Recruitment 2026 */}
+        <NavyBatch39Banner />
 
         {/* Featured Query Banner: Which Recruitment Form is Out Now (2026)? */}
         <div className="mb-4 p-4 bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-blue-500/30">
@@ -749,6 +734,17 @@ const Dashboard: React.FC = () => {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* Recruitment FAQs & Fast Answers (Searchable & Schema-Enabled) */}
+      <section className="mt-12">
+        <SearchableFAQSection
+          limit={6}
+          showAllLink={true}
+          enableStructuredData={true}
+          title="Recruitment FAQs & Quick Answers"
+          subtitle="Search verified answers to common questions about ongoing military & paramilitary recruitments, portal slips, and screening."
+        />
       </section>
     </div >
   );

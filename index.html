@@ -110,6 +110,40 @@
 }
 </script>
   <link rel="stylesheet" href="/index.css">
+  <script>
+    (function() {
+      function isAdSenseTagError(err) {
+        var str = (err && (err.message || err.name || String(err))) || '';
+        return str.indexOf('adsbygoogle') !== -1 ||
+               str.indexOf('TagError') !== -1 ||
+               str.indexOf('availableWidth') !== -1 ||
+               str.indexOf('already have ads') !== -1 ||
+               str.indexOf('No slot size') !== -1;
+      }
+      window.addEventListener('error', function(event) {
+        if (isAdSenseTagError(event.message) || isAdSenseTagError(event.error)) {
+          event.preventDefault();
+          if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+          return true;
+        }
+      }, true);
+      window.addEventListener('unhandledrejection', function(event) {
+        if (isAdSenseTagError(event.reason)) {
+          event.preventDefault();
+          if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+          return true;
+        }
+      }, true);
+      var origOnError = window.onerror;
+      window.onerror = function(msg, url, line, col, error) {
+        if (isAdSenseTagError(msg) || isAdSenseTagError(error)) {
+          return true;
+        }
+        if (origOnError) return origOnError.apply(this, arguments);
+        return false;
+      };
+    })();
+  </script>
 </head>
 
 <body>

@@ -11,6 +11,7 @@ import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
 import { FAQPageSchema, BreadcrumbListSchema } from '../components/StructuredData';
 import { getDailyUpdatedBadge } from '../services/dateUtils';
+import NavyBatch39Banner from '../components/NavyBatch39Banner';
 
 interface UpcomingAgency {
   name: string;
@@ -24,6 +25,16 @@ interface UpcomingAgency {
 }
 
 const UPCOMING_2026_AGENCIES: UpcomingAgency[] = [
+  {
+    name: 'Nigerian Navy Recruitment 2026 (Batch 39)',
+    category: 'Military',
+    expectedDate: 'Opens 2 Oct 2026 • Closes 31 Oct 2026',
+    cadres: 'Seaman / Naval Ratings, NCOs, Commissioned Officers',
+    status: 'Announced',
+    portalUrl: 'https://www.joinnigeriannavy.gov.ng',
+    hubUrl: '/navy-batch-recruitment',
+    warning: 'Official announcement released: registration begins 2 October 2026 on www.joinnigeriannavy.gov.ng. Registration is 100% free of charge.',
+  },
   {
     name: 'Nigeria Immigration Service (NIS)',
     category: 'Paramilitary',
@@ -285,6 +296,9 @@ const WhichFormIsOut: React.FC = () => {
           All Nigerian Military (Army, Navy, Air Force), Police (PSC), and Paramilitary (NIS, NSCDC, Fire Service, NCoS) registration forms are <strong>100% FREE OF CHARGE</strong>. Never purchase scratch cards, PIN codes, or make bank transfers to individuals claiming to guarantee shortlisted slots.
         </div>
       </div>
+
+      {/* Breaking Navy Batch 39 Announcement & Countdown */}
+      <NavyBatch39Banner />
 
       {/* Interactive Filter & Search Controls */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6 space-y-4">

@@ -12,6 +12,8 @@ import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
+import Disclaimer from './pages/Disclaimer';
+import ScrollToTop from './components/ScrollToTop';
 import GuidesHub from './pages/GuidesHub';
 import GuideDetail from './pages/GuideDetail';
 import BlogHub from './pages/BlogHub';
@@ -21,8 +23,11 @@ import ArmySalary from './pages/ArmySalary';
 import SalaryComparison from './pages/SalaryComparison';
 import PoliceSalary from './pages/PoliceSalary';
 import CustomsSalary from './pages/CustomsSalary';
+import StandaloneSalaryPage from './pages/StandaloneSalaryPage';
 import ShortlistHub from './pages/ShortlistHub';
 import WhichFormIsOut from './pages/WhichFormIsOut';
+import NavyRecruitmentBatch39 from './pages/NavyRecruitmentBatch39';
+import FAQHub from './pages/FAQHub';
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -32,6 +37,7 @@ const PracticeBranchRedirect: React.FC = () => {
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Admin panel — full page, outside the main Layout */}
         <Route path="/admin" element={<AdminPanel />} />
@@ -47,6 +53,19 @@ const App: React.FC = () => {
         <Route path="/past-questions/:branch" element={<Layout><QuizInterface /></Layout>} />
         <Route path="/guides" element={<Layout><GuidesHub /></Layout>} />
         <Route path="/guides/:slug" element={<Layout><GuideDetail /></Layout>} />
+
+        {/* Dedicated Ranking Page: Nigerian Navy Batch 39 Recruitment 2026 */}
+        <Route path="/nigerian-navy-recruitment-2026" element={<Layout><NavyRecruitmentBatch39 /></Layout>} />
+        <Route path="/navy-batch-39" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/navy-batch-39-recruitment" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/joinnigeriannavy-portal" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+
+        {/* Dedicated Searchable FAQ Hub */}
+        <Route path="/faqs" element={<Layout><FAQHub /></Layout>} />
+        <Route path="/faq" element={<Navigate to="/faqs" replace />} />
+        <Route path="/recruitment-faqs" element={<Navigate to="/faqs" replace />} />
+        <Route path="/recruitment-faq" element={<Navigate to="/faqs" replace />} />
+        <Route path="/frequently-asked-questions" element={<Navigate to="/faqs" replace />} />
 
         {/* TOPIC 1: Live Status & "Is the Form Out?" Pages */}
         <Route path="/which-recruitment-form-is-out-now" element={<Layout><WhichFormIsOut /></Layout>} />
@@ -71,6 +90,8 @@ const App: React.FC = () => {
         <Route path="/tracking-armynotification" element={<Navigate to="/print-army-screening-slip" replace />} />
         <Route path="/tracking-armynotification-com-ng" element={<Navigate to="/print-army-screening-slip" replace />} />
         <Route path="/armynotification" element={<Navigate to="/print-army-screening-slip" replace />} />
+        <Route path="/army-notification" element={<Navigate to="/print-army-screening-slip" replace />} />
+        <Route path="/army-dssc" element={<Navigate to="/recruitments/army-dssc" replace />} />
 
         {/* TOPIC 4: Eligibility, Requirements & Physical Standards */}
         <Route path="/military-physical-standards-height-requirements" element={<Layout><GuideDetail slugOverride="military-physical-standards-height-requirements" /></Layout>} />
@@ -96,6 +117,36 @@ const App: React.FC = () => {
         <Route path="/customs-salary" element={<Layout><CustomsSalary /></Layout>} />
         <Route path="/nigeria-customs-salary" element={<Layout><CustomsSalary /></Layout>} />
         <Route path="/ncs-salary" element={<Layout><CustomsSalary /></Layout>} />
+
+        {/* High-Intent Standalone pSEO Salary Pages */}
+        <Route path="/navy-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="navy-salary" /></Layout>} />
+        <Route path="/nigerian-navy-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="navy-salary" /></Layout>} />
+        <Route path="/nigerian-navy-salary-structure" element={<Layout><StandaloneSalaryPage agencyKeyOverride="navy-salary" /></Layout>} />
+        
+        <Route path="/airforce-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="airforce-salary" /></Layout>} />
+        <Route path="/air-force-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="airforce-salary" /></Layout>} />
+        <Route path="/nigerian-airforce-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="airforce-salary" /></Layout>} />
+        <Route path="/naf-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="airforce-salary" /></Layout>} />
+
+        <Route path="/civil-defence-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="civil-defence-salary" /></Layout>} />
+        <Route path="/civildefence-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="civil-defence-salary" /></Layout>} />
+        <Route path="/nscdc-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="civil-defence-salary" /></Layout>} />
+
+        <Route path="/immigration-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="immigration-salary" /></Layout>} />
+        <Route path="/nigeria-immigration-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="immigration-salary" /></Layout>} />
+        <Route path="/nis-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="immigration-salary" /></Layout>} />
+
+        <Route path="/nnpc-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="nnpc-salary" /></Layout>} />
+        <Route path="/nnpc-salary-structure" element={<Layout><StandaloneSalaryPage agencyKeyOverride="nnpc-salary" /></Layout>} />
+        <Route path="/nnpc-graduate-trainee-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="nnpc-salary" /></Layout>} />
+
+        <Route path="/cbn-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="cbn-salary" /></Layout>} />
+        <Route path="/cbn-salary-structure" element={<Layout><StandaloneSalaryPage agencyKeyOverride="cbn-salary" /></Layout>} />
+        <Route path="/cbn-entry-level-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="cbn-salary" /></Layout>} />
+
+        {/* Dynamic catch-all for programmatic salary slugs */}
+        <Route path="/salary/:agencySlug" element={<Layout><StandaloneSalaryPage /></Layout>} />
+
         <Route path="/salary-comparison" element={<Layout><SalaryComparison /></Layout>} />
         <Route path="/military-vs-paramilitary-salary" element={<Layout><SalaryComparison /></Layout>} />
         <Route path="/army-vs-navy-salary" element={<Layout><SalaryComparison /></Layout>} />
@@ -119,6 +170,7 @@ const App: React.FC = () => {
         <Route path="/navy-dssc" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
         <Route path="/dssc-recruitment" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
 
+        <Route path="/ncc" element={<Navigate to="/ncc-recruitment" replace />} />
         <Route path="/ncc-recruitment" element={<Layout><AgencyHub agencySlug="ncc" /></Layout>} />
         <Route path="/army-recruitment" element={<Layout><AgencyHub agencySlug="army" /></Layout>} />
         <Route path="/navy-recruitment" element={<Layout><AgencyHub agencySlug="navy" /></Layout>} />
@@ -139,11 +191,14 @@ const App: React.FC = () => {
         <Route path="/immigration-recruitment" element={<Layout><AgencyHub agencySlug="immigration" /></Layout>} />
         <Route path="/efcc-recruitment" element={<Layout><AgencyHub agencySlug="efcc" /></Layout>} />
         <Route path="/fcsc-recruitment" element={<Layout><AgencyHub agencySlug="fcsc" /></Layout>} />
+        <Route path="/nnpc" element={<Navigate to="/nnpc-recruitment" replace />} />
         <Route path="/nnpc-recruitment" element={<Layout><AgencyHub agencySlug="nnpc" /></Layout>} />
         <Route path="/nnpc-graduate-trainee" element={<Layout><AgencyHub agencySlug="nnpc" /></Layout>} />
         <Route path="/nnpc-graduate-trainee-2026" element={<Layout><AgencyHub agencySlug="nnpc" /></Layout>} />
+        <Route path="/cbn" element={<Navigate to="/cbn-recruitment" replace />} />
         <Route path="/cbn-recruitment" element={<Layout><AgencyHub agencySlug="cbn" /></Layout>} />
         <Route path="/cbn-recruitment-2026" element={<Layout><AgencyHub agencySlug="cbn" /></Layout>} />
+        <Route path="/nimc" element={<Navigate to="/nimc-recruitment" replace />} />
         <Route path="/nimc-recruitment" element={<Layout><AgencyHub agencySlug="nimc" /></Layout>} />
         <Route path="/nitda-recruitment" element={<Layout><AgencyHub agencySlug="nitda" /></Layout>} />
         <Route path="/faan-recruitment" element={<Layout><AgencyHub agencySlug="faan" /></Layout>} />
@@ -153,6 +208,7 @@ const App: React.FC = () => {
         <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
         <Route path="/privacy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms" element={<Layout><TermsConditions /></Layout>} />
+        <Route path="/disclaimer" element={<Layout><Disclaimer /></Layout>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

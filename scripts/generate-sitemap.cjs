@@ -33,9 +33,17 @@ async function generateSitemap() {
             '/army-salary',
             '/police-salary',
             '/customs-salary',
+            '/navy-salary',
+            '/airforce-salary',
+            '/civil-defence-salary',
+            '/immigration-salary',
+            '/nnpc-salary',
+            '/cbn-salary',
             '/salary-comparison',
             '/shortlist-hub',
             '/which-recruitment-form-is-out-now',
+            '/nigerian-navy-recruitment-2026',
+            '/faqs',
             // High-Value 2026 Content Expansion Package
             '/is-nigerian-army-form-out',
             '/is-nigerian-navy-batch-39-form-out',
@@ -156,7 +164,11 @@ async function generateSitemap() {
             'nscdc-physical-screening-centers',
             'navy-dssc-vs-bmtc',
             'police-constable-subject-combinations',
-            'correct-cdcfib-portal-errors'
+            'correct-cdcfib-portal-errors',
+            'military-medical-screening-test-requirements',
+            'police-constable-cbt-exam-date-screening-centers',
+            'nigerian-air-force-bmtc-recruitment-guide',
+            'efcc-recruitment-screening-qualifications'
         ];
 
         guideSlugs.forEach(slug => {

@@ -30,9 +30,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Recruit / Trainee (Depot Zaria)',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦12,000 - ₦15,000',
-    newMonthly: '₦35,000 - ₦40,000',
-    percentIncrease: '+140%',
-    annualEstimate: '₦420,000',
+    newMonthly: '₦45,000 - ₦55,000',
+    percentIncrease: '+260%',
+    annualEstimate: '₦540,000 - ₦660,000',
     gradeLevel: 'Depot Level',
     notes: 'Monthly upkeep stipend + complete free feeding, kitting & medical care during 6 months training.'
   },
@@ -40,19 +40,19 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Private (Passed Out Recruit)',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦50,000 - ₦60,000',
-    newMonthly: '₦77,000 - ₦85,000',
-    percentIncrease: '+41%',
-    annualEstimate: '₦924,000 - ₦1,020,000',
+    newMonthly: '₦105,000 - ₦125,000',
+    percentIncrease: '+110%',
+    annualEstimate: '₦1,260,000 - ₦1,500,000',
     gradeLevel: 'CONAFSS 01',
-    notes: 'Starting rank after completing Depot basic training. Basic salary excludes field combat allowance.'
+    notes: 'Starting rank after completing Depot basic training. Basic salary excludes field combat allowance (₦30k-₦60k).'
   },
   {
     rank: 'Lance Corporal',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦62,000 - ₦68,000',
-    newMonthly: '₦92,000 - ₦98,000',
-    percentIncrease: '+44%',
-    annualEstimate: '₦1,104,000 - ₦1,176,000',
+    newMonthly: '₦125,000 - ₦145,000',
+    percentIncrease: '+100%',
+    annualEstimate: '₦1,500,000 - ₦1,740,000',
     gradeLevel: 'CONAFSS 02',
     notes: 'First non-commissioned promotion typically awarded after 2 to 3 years satisfactory service.'
   },
@@ -60,9 +60,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Corporal',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦70,000 - ₦78,000',
-    newMonthly: '₦104,000 - ₦112,000',
-    percentIncrease: '+43%',
-    annualEstimate: '₦1,248,000 - ₦1,344,000',
+    newMonthly: '₦145,000 - ₦168,000',
+    percentIncrease: '+107%',
+    annualEstimate: '₦1,740,000 - ₦2,016,000',
     gradeLevel: 'CONAFSS 03',
     notes: 'Junior section commander in an infantry rifle platoon.'
   },
@@ -70,9 +70,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Sergeant',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦82,000 - ₦90,000',
-    newMonthly: '₦120,000 - ₦130,000',
-    percentIncrease: '+45%',
-    annualEstimate: '₦1,440,000 - ₦1,560,000',
+    newMonthly: '₦175,000 - ₦205,000',
+    percentIncrease: '+113%',
+    annualEstimate: '₦2,100,000 - ₦2,460,000',
     gradeLevel: 'CONAFSS 04',
     notes: 'Experienced platoon sergeant overseeing equipment maintenance and discipline.'
   },
@@ -80,9 +80,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Staff Sergeant',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦95,000 - ₦105,000',
-    newMonthly: '₦140,000 - ₦152,000',
-    percentIncrease: '+46%',
-    annualEstimate: '₦1,680,000 - ₦1,824,000',
+    newMonthly: '₦210,000 - ₦245,000',
+    percentIncrease: '+121%',
+    annualEstimate: '₦2,520,000 - ₦2,940,000',
     gradeLevel: 'CONAFSS 05',
     notes: 'Company-level senior NCO assisting company commanders.'
   },
@@ -90,9 +90,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Warrant Officer (WO II)',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦120,000 - ₦135,000',
-    newMonthly: '₦175,000 - ₦190,000',
-    percentIncrease: '+43%',
-    annualEstimate: '₦2,100,000 - ₦2,280,000',
+    newMonthly: '₦250,000 - ₦290,000',
+    percentIncrease: '+108%',
+    annualEstimate: '₦3,000,000 - ₦3,480,000',
     gradeLevel: 'CONAFSS 06',
     notes: 'Company Sergeant Major (CSM) position.'
   },
@@ -100,9 +100,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Master Warrant Officer (WO I)',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦150,000 - ₦170,000',
-    newMonthly: '₦210,000 - ₦230,000',
-    percentIncrease: '+37%',
-    annualEstimate: '₦2,520,000 - ₦2,760,000',
+    newMonthly: '₦295,000 - ₦340,000',
+    percentIncrease: '+97%',
+    annualEstimate: '₦3,540,000 - ₦4,080,000',
     gradeLevel: 'CONAFSS 07',
     notes: 'Regimental Sergeant Major (RSM), highest practical battalion-level enlisted role.'
   },
@@ -110,9 +110,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Army Warrant Officer (AWO)',
     category: 'Non-Commissioned (Soldiers)',
     oldMonthly: '₦180,000 - ₦210,000',
-    newMonthly: '₦260,000 - ₦290,000',
-    percentIncrease: '+41%',
-    annualEstimate: '₦3,120,000 - ₦3,480,000',
+    newMonthly: '₦340,000 - ₦390,000',
+    percentIncrease: '+89%',
+    annualEstimate: '₦4,080,000 - ₦4,680,000',
     gradeLevel: 'CONAFSS 08',
     notes: 'Apex enlisted rank in the Nigerian Army, advisor to the Chief of Army Staff (COAS).'
   },
@@ -120,9 +120,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Second Lieutenant (DSSC / Regular Officer)',
     category: 'Commissioned Officers',
     oldMonthly: '₦180,000 - ₦210,000',
-    newMonthly: '₦240,000 - ₦270,000',
-    percentIncrease: '+31%',
-    annualEstimate: '₦2,880,000 - ₦3,240,000',
+    newMonthly: '₦280,000 - ₦340,000',
+    percentIncrease: '+56%',
+    annualEstimate: '₦3,360,000 - ₦4,080,000',
     gradeLevel: 'CONAFSS 08 (Commissioned)',
     notes: 'Entry commissioned rank for graduates from NDA or DSSC courses upon passing out.'
   },
@@ -130,9 +130,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Lieutenant',
     category: 'Commissioned Officers',
     oldMonthly: '₦215,000 - ₦240,000',
-    newMonthly: '₦290,000 - ₦325,000',
-    percentIncrease: '+35%',
-    annualEstimate: '₦3,480,000 - ₦3,900,000',
+    newMonthly: '₦340,000 - ₦410,000',
+    percentIncrease: '+58%',
+    annualEstimate: '₦4,080,000 - ₦4,920,000',
     gradeLevel: 'CONAFSS 09',
     notes: 'Promoted after initial confirmed commission years. Platoon Commander.'
   },
@@ -140,9 +140,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Captain',
     category: 'Commissioned Officers',
     oldMonthly: '₦260,000 - ₦300,000',
-    newMonthly: '₦360,000 - ₦410,000',
-    percentIncrease: '+37%',
-    annualEstimate: '₦4,320,000 - ₦4,920,000',
+    newMonthly: '₦420,000 - ₦510,000',
+    percentIncrease: '+62%',
+    annualEstimate: '₦5,040,000 - ₦6,120,000',
     gradeLevel: 'CONAFSS 10',
     notes: 'Second-in-command of an infantry company or staff captain at brigade HQ.'
   },
@@ -150,9 +150,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Major',
     category: 'Commissioned Officers',
     oldMonthly: '₦320,000 - ₦380,000',
-    newMonthly: '₦450,000 - ₦520,000',
-    percentIncrease: '+38%',
-    annualEstimate: '₦5,400,000 - ₦6,240,000',
+    newMonthly: '₦540,000 - ₦660,000',
+    percentIncrease: '+69%',
+    annualEstimate: '₦6,480,000 - ₦7,920,000',
     gradeLevel: 'CONAFSS 11',
     notes: 'Field officer rank. Company Commander or principal staff officer.'
   },
@@ -160,9 +160,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Lieutenant Colonel',
     category: 'Commissioned Officers',
     oldMonthly: '₦400,000 - ₦470,000',
-    newMonthly: '₦580,000 - ₦650,000',
-    percentIncrease: '+41%',
-    annualEstimate: '₦6,960,000 - ₦7,800,000',
+    newMonthly: '₦680,000 - ₦820,000',
+    percentIncrease: '+70%',
+    annualEstimate: '₦8,160,000 - ₦9,840,000',
     gradeLevel: 'CONAFSS 12',
     notes: 'Battalion Commanding Officer commanding 600 - 800 combat troops.'
   },
@@ -170,9 +170,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Colonel',
     category: 'Commissioned Officers',
     oldMonthly: '₦550,000 - ₦650,000',
-    newMonthly: '₦750,000 - ₦850,000',
-    percentIncrease: '+33%',
-    annualEstimate: '₦9,000,000 - ₦10,200,000',
+    newMonthly: '₦880,000 - ₦1,050,000',
+    percentIncrease: '+60%',
+    annualEstimate: '₦10,560,000 - ₦12,600,000',
     gradeLevel: 'CONAFSS 13',
     notes: 'Senior officer commanding larger units or military training institutions.'
   },
@@ -180,9 +180,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Brigadier General',
     category: 'Commissioned Officers',
     oldMonthly: '₦800,000 - ₦950,000',
-    newMonthly: '₦1,100,000 - ₦1,300,000',
-    percentIncrease: '+37%',
-    annualEstimate: '₦13,200,000 - ₦15,600,000',
+    newMonthly: '₦1,250,000 - ₦1,550,000',
+    percentIncrease: '+56%',
+    annualEstimate: '₦15,000,000 - ₦18,600,000',
     gradeLevel: 'CONAFSS 14',
     notes: 'One-star general commanding a military brigade (3 battalions).'
   },
@@ -190,9 +190,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Major General',
     category: 'Commissioned Officers',
     oldMonthly: '₦1,200,000 - ₦1,400,000',
-    newMonthly: '₦1,600,000 - ₦1,900,000',
-    percentIncrease: '+35%',
-    annualEstimate: '₦19,200,000 - ₦22,800,000',
+    newMonthly: '₦1,800,000 - ₦2,250,000',
+    percentIncrease: '+50%',
+    annualEstimate: '₦21,600,000 - ₦27,000,000',
     gradeLevel: 'CONAFSS 15',
     notes: 'Two-star general commanding an entire military division (GOC).'
   },
@@ -200,9 +200,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'Lieutenant General',
     category: 'Commissioned Officers',
     oldMonthly: '₦1,500,000 - ₦1,800,000',
-    newMonthly: '₦2,000,000 - ₦2,400,000',
-    percentIncrease: '+33%',
-    annualEstimate: '₦24,000,000 - ₦28,800,000',
+    newMonthly: '₦2,400,000 - ₦2,950,000',
+    percentIncrease: '+60%',
+    annualEstimate: '₦28,800,000 - ₦35,400,000',
     gradeLevel: 'CONAFSS 16',
     notes: 'Three-star general rank held by the Chief of Army Staff (COAS).'
   },
@@ -210,9 +210,9 @@ const ARMY_SALARY_DATA: SalaryRank[] = [
     rank: 'General (4-Star)',
     category: 'Commissioned Officers',
     oldMonthly: '₦1,800,000 - ₦2,200,000',
-    newMonthly: '₦2,500,000 - ₦3,000,000',
-    percentIncrease: '+37%',
-    annualEstimate: '₦30,000,000 - ₦36,000,000',
+    newMonthly: '₦2,800,000 - ₦3,500,000',
+    percentIncrease: '+55%',
+    annualEstimate: '₦33,600,000 - ₦42,000,000',
     gradeLevel: 'CONAFSS 17',
     notes: 'Full four-star general rank held by the Chief of Defence Staff (CDS).'
   }
@@ -254,23 +254,23 @@ const ALLOWANCES_DATA = [
 const ARMY_SALARY_FAQS = [
   {
     question: 'How much is the salary of a Nigerian Army recruit per month in 2026?',
-    answer: 'A newly passed-out Nigerian Army recruit (Private, CONAFSS 01) receives between ₦77,000 and ₦85,000 monthly basic pay (₦924,000 to ₦1,020,000 annually) following the September 1, 2026 effective implementation of the federal wage increase. When posted to active combat operational theaters like Operation Hadin Kai, personnel receive an additional ₦30,000 to ₦60,000 combat allowance, elevating monthly earnings to ₦115,000 – ₦145,000.'
+    answer: 'A newly passed-out Nigerian Army recruit (Private, CONAFSS 01) receives between ₦105,000 and ₦125,000 monthly basic pay (₦1,260,000 to ₦1,500,000 annually) following the updated CONAFSS military wage review. When posted to active combat operational theaters like Operation Hadin Kai, personnel receive an additional ₦30,000 to ₦60,000 combat allowance, elevating monthly take-home to ₦135,000 – ₦185,000.'
   },
   {
     question: 'Is the 2026 Nigerian Army salary increase implemented?',
-    answer: 'Yes. The Consolidated Armed Forces Salary Structure (CONAFSS) upward review approved by President Bola Ahmed Tinubu and announced by the Chief of Defence Staff (CDS), General Christopher Musa, took official effect from September 1, 2026, granting military personnel a 35% to 45% pay bump across non-commissioned and officer cadres.'
+    answer: 'Yes. The Consolidated Armed Forces Salary Structure (CONAFSS) upward review approved by the Federal Government and announced by the Chief of Defence Staff (CDS), General Christopher Musa, took official effect, implementing substantial salary bumps across non-commissioned and officer cadres to align with economic conditions and the new national minimum wage.'
   },
   {
     question: 'What is the new Nigerian Army salary structure for 2026?',
-    answer: 'The current CONAFSS scale ranges from ₦77,000 – ₦85,000 for Privates; ₦92,000 – ₦98,000 for Lance Corporals; ₦104,000 – ₦112,000 for Corporals; ₦120,000 – ₦130,000 for Sergeants; ₦140,000 – ₦152,000 for Staff Sergeants; ₦175,000 – ₦190,000 for Warrant Officers; ₦240,000 – ₦270,000 for entry Second Lieutenants (DSSC); ₦360,000 – ₦410,000 for Captains; and up to ₦2,500,000 – ₦3,000,000 for a 4-Star General.'
+    answer: 'The current CONAFSS scale ranges from ₦105,000 – ₦125,000 for Privates; ₦125,000 – ₦145,000 for Lance Corporals; ₦145,000 – ₦168,000 for Corporals; ₦175,000 – ₦205,000 for Sergeants; ₦210,000 – ₦245,000 for Staff Sergeants; ₦250,000 – ₦290,000 for Warrant Officers; ₦280,000 – ₦340,000 for entry Second Lieutenants (DSSC); ₦420,000 – ₦510,000 for Captains; and up to ₦2,800,000 – ₦3,500,000 for a 4-Star General.'
   },
   {
     question: 'Do Nigerian Army recruits get paid during training at Depot Zaria?',
-    answer: 'Yes. Recruits undergoing the 6-month basic military training at Depot Nigerian Army in Zaria receive a monthly upkeep stipend of ₦35,000 to ₦40,000. All meals, combat uniforms, boots, accommodation, and medical needs are fully provided by the Federal Government free of charge.'
+    answer: 'Yes. Recruits undergoing the 6-month basic military training at Depot Nigerian Army in Zaria receive a monthly upkeep stipend of ₦45,000 to ₦55,000. All meals, combat uniforms, boots, accommodation, and medical needs are fully provided by the Federal Government free of charge.'
   },
   {
     question: 'How much does a Second Lieutenant (DSSC) officer earn in the Nigerian Army?',
-    answer: 'A newly commissioned Second Lieutenant entering through the Direct Short Service Commission (DSSC) or Regular Combatant NDA course earns a monthly base salary of ₦240,000 to ₦270,000 on CONAFSS Grade 08, with annual take-home estimated between ₦2,880,000 and ₦3,240,000.'
+    answer: 'A newly commissioned Second Lieutenant entering through the Direct Short Service Commission (DSSC) or Regular Combatant NDA course earns a monthly base salary of ₦280,000 to ₦340,000 on CONAFSS Grade 08, with annual basic earnings between ₦3,360,000 and ₦4,080,000 plus officers mess and command allowances.'
   },
   {
     question: 'What allowances are paid to soldiers in active combat theaters?',
@@ -278,7 +278,7 @@ const ARMY_SALARY_FAQS = [
   },
   {
     question: 'How does the Nigerian Army salary compare to Nigeria Police and Nigerian Navy?',
-    answer: 'Under 2026 scales, an Army Private earns ₦77,000 – ₦85,000, which is virtually identical to a Navy Ordinary Seaman (₦78,000 – ₦86,000) and slightly above a Police Constable (₦75,000 – ₦84,000). However, military personnel enjoy higher combat operational bonuses, complete free barracks housing, and comprehensive Armed Forces health insurance.'
+    answer: 'Under 2026 scales, basic salaries for an Army Private (₦105,000 – ₦125,000) and a Navy Ordinary Seaman (₦105,000 – ₦125,000) are identical under CONAFSS, while a Police Constable earns approximately ₦86,000 – ₦98,000 under CONPOSS. Military personnel also enjoy specialized combat operational bonuses, complete free barracks housing, and comprehensive Armed Forces health insurance.'
   },
   {
     question: 'Do Nigerian Army soldiers pay tax on their salaries?',
@@ -387,12 +387,12 @@ const ArmySalary: React.FC = () => {
               How much is Nigerian Army recruit salary per month in 2026?
             </h2>
             <p className="text-slate-800 text-sm md:text-base leading-relaxed bg-white/80 p-4 rounded-xl border border-emerald-200">
-              <strong>A newly passed-out Nigerian Army recruit (Private, CONAFSS 01) earns between ₦77,000 and ₦85,000 per month (₦924,000 – ₦1,020,000 annually)</strong> under the updated 2026 Consolidated Armed Forces Salary Structure (CONAFSS), effective September 1, 2026. Recruits undergoing the 6-month Depot Zaria basic military training receive a monthly upkeep stipend of <strong>₦35,000 to ₦40,000</strong> plus 100% free food, uniforms, and lodging. When posted to active combat theatres or counter-insurgency operations (such as Operation Hadin Kai), soldiers receive an additional combat allowance of <strong>₦30,000 to ₦60,000</strong>, elevating take-home pay to <strong>₦115,000 – ₦145,000 monthly</strong>.
+              <strong>A newly passed-out Nigerian Army recruit (Private, CONAFSS 01) earns between ₦105,000 and ₦125,000 per month (₦1,260,000 – ₦1,500,000 annually)</strong> under the updated 2026 Consolidated Armed Forces Salary Structure (CONAFSS) following the approved military wage review. Recruits undergoing the 6-month Depot Zaria basic military training receive a monthly upkeep stipend of <strong>₦45,000 to ₦55,000</strong> plus 100% free food, uniforms, and medical care. When posted to active combat theatres or counter-insurgency operations (such as Operation Hadin Kai), soldiers receive an additional combat allowance of <strong>₦30,000 to ₦60,000</strong>, elevating total monthly take-home pay to <strong>₦135,000 – ₦185,000</strong>.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
               <div className="bg-white p-3 rounded-xl border border-emerald-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Recruit Base Pay</span>
-                <span className="font-bold text-emerald-700 text-sm">₦77,000 - ₦85,000</span>
+                <span className="font-bold text-emerald-700 text-sm">₦105,000 - ₦125,000</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-emerald-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Combat Allowance</span>
@@ -400,7 +400,7 @@ const ArmySalary: React.FC = () => {
               </div>
               <div className="bg-white p-3 rounded-xl border border-emerald-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">DSSC 2nd Lieutenant</span>
-                <span className="font-bold text-emerald-700 text-sm">₦240,000 - ₦270,000</span>
+                <span className="font-bold text-emerald-700 text-sm">₦280,000 - ₦340,000</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-emerald-100">
                 <span className="text-gray-500 block text-[10px] uppercase font-bold">Quarters & Healthcare</span>

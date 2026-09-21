@@ -14,6 +14,8 @@ import FastActionCard from '../components/FastActionCard';
 import ScreeningChecklist from '../components/ScreeningChecklist';
 import NextStepInterstitial from '../components/NextStepInterstitial';
 import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import NavyBatch39Banner from '../components/NavyBatch39Banner';
+import { PositionZeroQuickAnswer } from '../components/PositionZeroQuickAnswer';
 import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 interface AgencyStaticData {
@@ -62,15 +64,19 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-green-200',
     textCol: 'text-green-800',
     bgLight: 'bg-green-50/50',
+    officialPortalUrl: 'https://recruitment.army.mil.ng',
+    customSeoTitle: 'Nigerian Army Recruitment 2026: Portal, 88 RRI & DSSC Form',
+    customSeoDescription: 'Official Nigerian Army recruitment portal 2026 at recruitment.army.mil.ng. Verified 88 RRI & DSSC requirements, salary scale, screening dates & slip reprint.',
+    scamWarning: 'OFFICIAL NIGERIAN ARMY ANTI-FRAUD WARNING: The Nigerian Army application is strictly 100% FREE. The Army does not sell scratch cards, pin codes, or screening passes. Official enlistment forms and status verification are hosted solely on recruitment.army.mil.ng and tracking.armynotification.com.ng. Disregard fraudulent cybercafe operators demanding payment.',
     description: 'The Nigerian Army (NA) is the land branch of the Nigerian Armed Forces. Founded in 1863, it is the largest of the three service branches. It regularly recruits young Nigerians through the Regular Recruit Intake (RRI) for non-commissioned soldiers, and the Direct Short Service Commission (DSSC) / Short Service Commission (SSC) for university and HND graduates.',
     generalSalaryDesc: 'Soldiers and officers are paid according to the 2026 updated Consolidated Armed Forces Salary Structure (CONAFSS), which guarantees competitive salaries, combat allowances, free medical care, and housing within military barracks.',
     ranks: [
-      { rank: 'Private (Passed Out Recruit)', salary: '₦77,000 - ₦85,000 / month', description: 'Starting rank after completing 6 months of basic military training at Depot Zaria. Excludes operational combat allowance.' },
-      { rank: 'Lance Corporal', salary: '₦92,000 - ₦98,000 / month', description: 'Junior non-commissioned rank awarded after initial service years and exams.' },
-      { rank: 'Corporal', salary: '₦104,000 - ₦112,000 / month', description: 'Section leader awarded with advanced military experience and tactical training.' },
-      { rank: 'Sergeant', salary: '₦120,000 - ₦130,000 / month', description: 'Platoon senior non-commissioned officer.' },
-      { rank: 'Second Lieutenant (DSSC / Regular Officer)', salary: '₦240,000 - ₦270,000 / month', description: 'Entry commissioned officer rank for university/HND graduates.' },
-      { rank: 'Lieutenant', salary: '₦290,000 - ₦325,000 / month', description: 'Confirmed commissioned officer after initial probationary tenure.' }
+      { rank: 'Private (Passed Out Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'Starting rank after completing 6 months of basic military training at Depot Zaria. Excludes operational combat allowance (₦30k-₦60k).' },
+      { rank: 'Lance Corporal', salary: '₦125,000 - ₦145,000 / month', description: 'Junior non-commissioned rank awarded after initial service years and trade tests.' },
+      { rank: 'Corporal', salary: '₦145,000 - ₦168,000 / month', description: 'Section leader awarded with advanced military experience and tactical training.' },
+      { rank: 'Sergeant', salary: '₦175,000 - ₦205,000 / month', description: 'Platoon senior non-commissioned officer.' },
+      { rank: 'Second Lieutenant (DSSC / Regular Officer)', salary: '₦280,000 - ₦340,000 / month', description: 'Entry commissioned officer rank for university/HND graduates.' },
+      { rank: 'Lieutenant', salary: '₦340,000 - ₦410,000 / month', description: 'Confirmed commissioned officer after initial probationary tenure.' }
     ],
     dates: {
       portalOpen: 'Annually (Check live portal for 88 RRI & DSSC)',
@@ -117,7 +123,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     faqs: [
       { question: 'Is the Nigerian Army recruitment form out for 2026?', answer: 'The Nigerian Army conducts regular recruitment intakes annually. Candidates should verify the live status badge on this tracker or check recruitment.army.mil.ng for active registration dates.' },
       { question: 'What is the official closing date for Nigerian Army recruitment?', answer: 'The application portal typically remains active for 4 to 6 weeks from flag-off. Always print your application summary and guarantor forms before the announced midnight closing deadline.' },
-      { question: 'How much is the salary of a Nigerian Army recruit in 2026?', answer: 'Under the updated CONAFSS pay scale, a newly passed-out recruit (Private) earns between ₦77,000 and ₦85,000 monthly basic pay, plus combat allowances ranging from ₦30,000 to ₦60,000 when deployed to active operations.' },
+      { question: 'How much is the salary of a Nigerian Army recruit in 2026?', answer: 'Under the updated CONAFSS pay scale, a newly passed-out recruit (Private) earns between ₦105,000 and ₦125,000 monthly basic pay, plus combat allowances ranging from ₦30,000 to ₦60,000 when deployed to active operations.' },
       { question: 'Is the Nigerian Army application form free?', answer: 'Yes, the official application form is 100% free of charge. Do not pay any portal coordinators or third parties.' },
       { question: 'What is the age limit for Army recruitment?', answer: 'For RRI recruits, the age limit is 18–22 years (up to 26 for tradesmen). For DSSC officers, the limit is 30 years (35 for medical officers).' }
     ]
@@ -131,15 +137,17 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
     officialPortalUrl: 'https://joinnigeriannavy.com',
+    customSeoTitle: 'Nigerian Navy Recruitment 2026: Batch 39 & DSSC Portal Guide',
+    customSeoDescription: 'Official Nigerian Navy recruitment 2026 portal at joinnigeriannavy.gov.ng. Batch 39 ratings & DSSC officer requirements, CONAFSS salary scale & CBT updates.',
     scamWarning: 'CRITICAL NAVY ANTI-FRAUD ADVISORY: The Nigerian Navy does NOT sell scratch cards or charge registration fees for Batch ratings or DSSC officers. All authentic enlistment portals operate exclusively on joinnigeriannavy.com and navy.mil.ng. Do not pay money to anyone claiming to offer shortlisted slots or physical screening assistance.',
     description: 'The Nigerian Navy (NN) is the maritime branch of the Nigerian Armed Forces. It is tasked with protecting Nigeria\'s territorial waters, oil installations, and combating maritime crimes such as sea piracy and crude oil theft. Recruitment is conducted via the Basic Military Training Course (BMTC) for ratings and the Direct Short Service Commission (DSSC) for officer cadets.',
     generalSalaryDesc: 'Naval personnel are paid in accordance with the 2026 updated CONAFSS structure, with additional sea duty allowances, diving bonuses, and standard armed forces medical and housing packages.',
     ranks: [
-      { rank: 'Ordinary Seaman (Passed Out Recruit)', salary: '₦78,000 - ₦86,000 / month', description: 'Entry-level rating rank after completing basic training at NNBTS Onne, plus sea allowances.' },
-      { rank: 'Able Seaman', salary: '₦92,000 - ₦100,000 / month', description: 'Awarded after initial service years and marine technical certifications.' },
-      { rank: 'Leading Seaman', salary: '₦104,000 - ₦115,000 / month', description: 'Junior naval section commander.' },
-      { rank: 'Sub-Lieutenant (DSSC Officer)', salary: '₦245,000 - ₦275,000 / month', description: 'Commissioned officer entry rank for university and HND graduates.' },
-      { rank: 'Lieutenant', salary: '₦290,000 - ₦330,000 / month', description: 'Regular commissioned rank above Sub-Lieutenant.' }
+      { rank: 'Ordinary Seaman (Passed Out Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'Entry-level rating rank after completing basic training at NNBTS Onne, plus sea allowances (₦35k-₦55k).' },
+      { rank: 'Able Seaman', salary: '₦125,000 - ₦145,000 / month', description: 'Awarded after initial service years and marine technical certifications.' },
+      { rank: 'Leading Seaman', salary: '₦145,000 - ₦168,000 / month', description: 'Junior naval section commander.' },
+      { rank: 'Sub-Lieutenant (DSSC Officer)', salary: '₦280,000 - ₦340,000 / month', description: 'Commissioned officer entry rank for university and HND graduates.' },
+      { rank: 'Lieutenant', salary: '₦340,000 - ₦410,000 / month', description: 'Regular commissioned rank above Sub-Lieutenant.' }
     ],
     dates: {
       portalOpen: 'Annually (Batch 38/39 & DSSC 30)',
@@ -187,45 +195,45 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       { question: 'Is the Nigerian Navy recruitment form out for 2026?', answer: 'The Nigerian Navy opens registration periodically for BMTC ratings and DSSC officer cadets. Track the active status on joinnigeriannavy.com and on this portal.' },
       { question: 'What is the official closing date for the Nigerian Navy recruitment exercise?', answer: 'Naval registration portals typically stay open for 4 to 6 weeks. Candidates should submit applications at least 3 days before the deadline to prevent portal congestion.' },
       { question: 'What is the official portal to apply for Nigerian Navy recruitment?', answer: 'The only official portal for all Nigerian Navy enlistment exercises is joinnigeriannavy.com (and navy.mil.ng). Any other URL requesting application fees or PIN purchases is fraudulent.' },
-      { question: 'How much does a Nigerian Navy recruit earn per month?', answer: 'An Ordinary Seaman in the Nigerian Navy earns between ₦78,000 and ₦86,000 monthly basic pay under the 2026 CONAFSS scale. When embarked on naval vessels or maritime anti-piracy operations, personnel receive additional sea duty allowances of ₦25,000 to ₦50,000.' },
+      { question: 'How much does a Nigerian Navy recruit earn per month?', answer: 'An Ordinary Seaman in the Nigerian Navy earns between ₦105,000 and ₦125,000 monthly basic pay under the 2026 CONAFSS scale. When embarked on naval vessels or maritime anti-piracy operations, personnel receive additional sea duty allowances of ₦35,000 to ₦55,000.' },
       { question: 'Where is the Navy screening center?', answer: 'Physical screening is typically conducted at the Nigerian Navy Basic Training School (NNBTS) in Onne, Rivers State.' },
       { question: 'What is the training duration for Navy recruits?', answer: 'Ratings undergo 6 months of training at NNBTS Onne, while DSSC officers undergo 9 months of cadet training.' }
     ]
   },
   'navy-batch': {
-    name: 'Nigerian Navy Basic Training School (Batch 38 & 39 Regular Intake)',
+    name: 'Nigerian Navy Recruitment 2026 (Batch 39 Regular Intake & Officers)',
     branch: 'Navy',
     color: 'bg-military-blue',
     gradient: 'from-blue-900 via-military-blue to-slate-900',
     borderCol: 'border-blue-200',
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
-    officialPortalUrl: 'https://joinnigeriannavy.com',
-    customSeoTitle: 'Nigerian Navy Recruitment 2026 Batch 39: Portal, Closing Date & Slip Reprint',
-    customSeoDescription: 'Nigerian Navy Batch 38/39 recruitment guide 2026. Official joinnigeriannavy.com portal status, closing dates, NNBTS Onne screening requirements, salary scale & slip reprint.',
-    scamWarning: 'CRITICAL NAVAL RECRUITMENT WARNING: The Nigerian Navy does NOT sell scratch cards or request money through bank transfers, POS, or recruitment agents for Batch 38/39 enlistment. The only official registration portal is joinnigeriannavy.com. Disregard fake websites or WhatsApp syndicate numbers claiming to provide guaranteed shortlisting.',
-    description: 'The Nigerian Navy Basic Military Training Course (BMTC Batch Intake) is the official enlistment channel for non-commissioned ratings (sailors, tradesmen, and artisans). Recruits undergo rigorous 6-month naval instruction at the Nigerian Navy Basic Training School (NNBTS), Onne, Rivers State, receiving military drill, seamanship, naval weapons training, and maritime firefighting.',
-    generalSalaryDesc: 'Naval ratings are compensated under the Consolidated Armed Forces Salary Structure (CONAFSS), starting at ₦78,000 - ₦86,000 monthly upon passing out, plus free barracks housing, medical cover, and sea allowances.',
+    officialPortalUrl: 'https://www.joinnigeriannavy.gov.ng',
+    customSeoTitle: 'Nigerian Navy Recruitment 2026 Batch 39: Portal Opens Oct 2, Closing Date, Requirements',
+    customSeoDescription: 'Nigerian Navy Batch 39 recruitment 2026 officially announced. Opens 2 October 2026, closes 31 October 2026 on www.joinnigeriannavy.gov.ng. Requirements, age limit & PDF slip.',
+    scamWarning: 'CRITICAL NAVAL RECRUITMENT WARNING: The Nigerian Navy does NOT sell scratch cards or request money through bank transfers, POS, or recruitment agents for Batch 39 enlistment. The only official registration portal is www.joinnigeriannavy.gov.ng. Disregard fake websites or WhatsApp syndicate numbers claiming to provide guaranteed shortlisting.',
+    description: 'The Nigerian Navy has announced the 2026 Batch 39 enlistment exercise. Applications are open for Seaman / Naval Ratings, Non-Commissioned Officers (NCOs), and Commissioned Officers (Regular Combatant & Non-Combatant). Recruits undergo rigorous 6-month naval instruction at the Nigerian Navy Basic Training School (NNBTS), Onne, Rivers State, receiving military drill, seamanship, naval weapons training, and maritime firefighting.',
+    generalSalaryDesc: 'Naval ratings are compensated under the Consolidated Armed Forces Salary Structure (CONAFSS), starting at ₦105,000 - ₦125,000 monthly upon passing out, plus free barracks housing, medical cover, and sea allowances.',
     ranks: [
-      { rank: 'Trainee Rating (NNBTS Onne)', salary: '₦35,000 - ₦40,000 / month', description: 'Monthly upkeep stipend during 6 months basic training, including free meals, kitting, and accommodation.' },
-      { rank: 'Ordinary Seaman (Pass-out Recruit)', salary: '₦78,000 - ₦86,000 / month', description: 'First official rank upon graduation from NNBTS Onne. Eligible for sea duty allowance.' },
-      { rank: 'Able Seaman', salary: '₦92,000 - ₦100,000 / month', description: 'Awarded after completion of specialized technical maritime ratings.' },
-      { rank: 'Leading Seaman', salary: '₦104,000 - ₦115,000 / month', description: 'Junior naval rating supervisor and section leader.' }
+      { rank: 'Trainee Rating (NNBTS Onne)', salary: '₦45,000 - ₦55,000 / month', description: 'Monthly upkeep stipend during 6 months basic training, including free meals, kitting, and accommodation.' },
+      { rank: 'Ordinary Seaman (Pass-out Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'First official rank upon graduation from NNBTS Onne. Eligible for sea duty allowance (₦35k-₦55k).' },
+      { rank: 'Able Seaman', salary: '₦125,000 - ₦145,000 / month', description: 'Awarded after completion of specialized technical maritime ratings.' },
+      { rank: 'Leading Seaman', salary: '₦145,000 - ₦168,000 / month', description: 'Junior naval rating supervisor and section leader.' }
     ],
     dates: {
-      portalOpen: 'Open Annually (Batch 38 / 39 Streams)',
-      portalClose: 'Refer to live countdown on tracker',
+      portalOpen: '2 October 2026 (Portal Opens)',
+      portalClose: '31 October 2026 (Midnight Deadline)',
       screeningDate: 'NNBTS Onne, Rivers State (Zonal Screening Phase)',
       examDate: 'CBT examination across 36 state naval command centers',
-      shortlistDate: 'Official PDF shortlist published on joinnigeriannavy.com'
+      shortlistDate: 'Official PDF shortlist published on www.joinnigeriannavy.gov.ng'
     },
     stepByStep: [
-      'Step 1: Access the official recruitment portal at joinnigeriannavy.com.',
+      'Step 1: Access the official recruitment portal at www.joinnigeriannavy.gov.ng when it opens on 2 October 2026.',
       'Step 2: Validate your National Identification Number (NIN) to ensure personal names and birth dates match your SSCE credentials.',
-      'Step 3: Select your rating category (e.g. Seaman, Marine Engineering, Communications, Medical, or Stores).',
+      'Step 3: Select your category: Seaman/Naval Ratings, Non-Commissioned Officers (NCOs), or Commissioned Officers.',
       'Step 4: Upload clear scans of your O-Level results (WAEC/NECO/NABTEB) and passport photograph.',
       'Step 5: Print out the completed Application Form, Parent/Guardian Consent Form, and Local Government Attestation Slip.',
-      'Step 6: Check the official shortlist PDF on joinnigeriannavy.com and report to your designated CBT and screening center.'
+      'Step 6: Check the official shortlist PDF on www.joinnigeriannavy.gov.ng and report to your designated CBT and screening center.'
     ],
     requirements: {
       academic: [
@@ -255,9 +263,9 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       ]
     },
     faqs: [
-      { question: 'Is the Nigerian Navy Batch 39 recruitment form out for 2026?', answer: 'The Nigerian Navy opens applications for its Regular Recruit Intake annually. Active batches and portal links are tracked in real-time at joinnigeriannavy.com and on this dashboard.' },
-      { question: 'What is the official closing date for Nigerian Navy Batch recruitment?', answer: 'Portals generally stay open for 4 to 6 weeks. Candidates should submit applications and print all guarantor and consent slips well before the stated midnight deadline.' },
-      { question: 'What is the official portal to apply for Nigerian Navy recruitment?', answer: 'The authentic website is joinnigeriannavy.com. Candidates must never submit credentials or payments on third-party job boards.' },
+      { question: 'Is the Nigerian Navy Batch 39 recruitment form out for 2026?', answer: 'YES! The Nigerian Navy has officially scheduled Batch 39 recruitment. The application portal (www.joinnigeriannavy.gov.ng) opens on 2 October 2026 and closes on 31 October 2026.' },
+      { question: 'What is the official closing date for Nigerian Navy Batch 39 recruitment?', answer: 'The official closing date announced on the recruitment notice is 31 October 2026. All candidates must complete their online registration and print their slips before this date.' },
+      { question: 'What is the official portal to apply for Nigerian Navy recruitment?', answer: 'The authentic website is www.joinnigeriannavy.gov.ng. Registration is 100% free of charge. Disregard fraudulent third-party portals.' },
       { question: 'How much is the salary of a Navy recruit at NNBTS Onne?', answer: 'Trainees receive a monthly upkeep stipend of ₦35,000 to ₦40,000 with complete feeding and housing. Upon passing out, an Ordinary Seaman receives ₦78,000 to ₦86,000 monthly basic pay, plus sea allowances when deployed.' },
       { question: 'How do I download and print my Nigerian Navy screening slip?', answer: 'Log into joinnigeriannavy.com with your registered email and password or application number, click on "Print Slip/Status", and generate your screening pass, guarantor endorsement form, and consent slip.' },
       { question: 'What are the physical and academic requirements for Navy Batch 39?', answer: 'Candidates must be 18 to 22 years old (up to 26 for tradesmen), have a minimum height of 1.68m for males and 1.65m for females, possess at least 5 O-Level credits including English and Mathematics in no more than 2 sittings, and be single.' },
@@ -325,7 +333,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     faqs: [
       { question: 'Is the Nigerian Navy DSSC Course 30 form out for 2026?', answer: 'The Nigerian Navy announces DSSC enlistment cycles once annually. Active status and portal access are verified live on joinnigeriannavy.com and on this tracking hub.' },
       { question: 'What is the official closing date for Navy DSSC recruitment?', answer: 'The online registration window for DSSC lasts for approximately 4 weeks from flag-off. Late submissions or incomplete uploads are automatically invalidated.' },
-      { question: 'What rank and salary does a Navy DSSC officer receive?', answer: 'DSSC graduates are commissioned with the rank of Sub-Lieutenant on CONAFSS Grade 08, earning between ₦245,000 and ₦275,000 per month, plus allowances for hazard, officers mess, and sea duties.' },
+      { question: 'What rank and salary does a Navy DSSC officer receive?', answer: 'DSSC graduates are commissioned with the rank of Sub-Lieutenant on CONAFSS Grade 08, earning between ₦280,000 and ₦340,000 per month (total take-home up to ₦365,000 with sea duty and command allowances).' },
       { question: 'Can married people apply for Nigerian Navy DSSC?', answer: 'No. All applicants must be single and unmarried at the time of application and throughout the 9 months of training at the Nigerian Naval College.' },
       { question: 'What is the training duration for Navy DSSC officer cadets?', answer: 'Navy DSSC cadets undergo 9 months of intensive military leadership, navigation, and maritime combat training at the Nigerian Naval College, Onne, Rivers State.' }
     ]
@@ -338,12 +346,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-sky-200',
     textCol: 'text-sky-800',
     bgLight: 'bg-sky-50/50',
+    officialPortalUrl: 'https://nafrecruitment.airforce.mil.ng',
+    customSeoTitle: 'Nigerian Air Force Recruitment 2026: NAF BMTC & DSSC Portal',
+    customSeoDescription: 'Official Nigerian Air Force recruitment 2026 portal at nafrecruitment.airforce.mil.ng. Airmen/Airwomen BMTC criteria, officer cadet ranks, salary & CBT tips.',
+    scamWarning: 'OFFICIAL NAF ANTI-FRAUD NOTICE: Nigerian Air Force recruitment into BMTC (airmen/airwomen) or DSSC is completely FREE. NAF does not authorize any recruitment agents, private phone lines, or commercial cybercafes to collect payments. Disregard fake social media groups.',
     description: 'The Nigerian Air Force (NAF) was established in 1964 and is responsible for defense of Nigeria\'s airspace. It conducts regular recruitment through the Basic Military Training Course (BMTC) for airmen/airwomen and the Direct Short Service Commission (DSSC) for professional officers.',
-    generalSalaryDesc: 'NAF personnel receive base pay according to CONAFSS alongside specialized flying allowances, hazard pay, and subsidized housing.',
+    generalSalaryDesc: 'NAF personnel receive base pay according to CONAFSS, updated in 2026 alongside specialized flying line pay, aeronautical hazard allowances, and subsidized air base housing.',
     ranks: [
-      { rank: 'Aircraftman/woman (Recruit)', salary: '₦51,000 - ₦61,000 / month', description: 'Starting rank after completing basic training at NAF Base Kaduna.' },
-      { rank: 'Corporal', salary: '₦72,000 - ₦80,000 / month', description: 'Non-commissioned officer rank.' },
-      { rank: 'Flying Officer (DSSC Entry)', salary: '₦190,000 - ₦220,000 / month', description: 'Officer entry rank for DSSC commission.' }
+      { rank: 'Aircraftman/woman (BMTC Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'Starting rank after completing 6 months basic training at NAF Base Kaduna.' },
+      { rank: 'Corporal (NAF)', salary: '₦145,000 - ₦168,000 / month', description: 'Junior non-commissioned officer rank supervising aircraft turnaround teams.' },
+      { rank: 'Flying Officer (DSSC Entry)', salary: '₦280,000 - ₦350,000 / month', description: 'Officer entry rank for DSSC commission (takes home ₦340,000 - ₦420,000 with flight bonuses).' }
     ],
     dates: {
       portalOpen: 'Annually (Check live tracker)',
@@ -392,7 +404,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     generalSalaryDesc: 'NDA cadets receive a monthly pocket allowance (cadet stipend) during training. Upon graduation and commissioning as Second Lieutenants / Midshipmen, they start earning full military officer salaries.',
     ranks: [
       { rank: 'Officer Cadet (Year 1-5)', salary: 'Stipend provided / month', description: 'Pocket money and full academic/military sponsorship during training.' },
-      { rank: 'Second Lieutenant / Midshipman', salary: '₦180,000 - ₦215,000 / month', description: 'Commissioned officer starting salary upon graduation with a degree (BSc/BEng).' }
+      { rank: 'Second Lieutenant / Midshipman / Pilot Officer', salary: '₦280,000 - ₦340,000 / month', description: 'Commissioned officer starting salary upon graduation with a degree (BSc/BEng) under 2026 CONAFSS.' }
     ],
     dates: {
       portalOpen: 'Typically November to March annually',
@@ -438,14 +450,18 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-blue-200',
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
+    officialPortalUrl: 'https://policerecruitment.gov.ng',
+    customSeoTitle: 'Nigeria Police Recruitment 2026: NPF Constable Portal & Dates',
+    customSeoDescription: 'Official Nigeria Police Force recruitment 2026 portal at policerecruitment.gov.ng. Constable form status, screening centers, CONPOSS salary & shortlist news.',
+    scamWarning: 'CRITICAL NPF ANTI-CORRUPTION WARNING: Police Constable enlistment is 100% FREE. The Police Service Commission (PSC) and NPF do not collect money for application forms, CBT test center allocation, or medical fitness screening. Report extortion to the nearest police command or PSC monitoring desk.',
     description: 'The Nigeria Police Force (NPF) is the principal law enforcement agency in Nigeria. It is responsible for maintaining public safety, preventing and detecting crime, and preserving peace nationwide. Recruitment is managed by the Police Service Commission (PSC) and includes intakes for Police Constables (SSCE) and Cadet Inspectors / Cadet ASPs (Graduates).',
-    generalSalaryDesc: 'Police personnel are paid according to the Consolidated Police Salary Structure (CONPOSS), which was recently upgraded to enhance officer welfare and allowances.',
+    generalSalaryDesc: 'Police personnel are paid according to the Consolidated Police Salary Structure (CONPOSS), adjusted in 2026 in line with national minimum wage benchmarks and enhanced duty allowances.',
     ranks: [
-      { rank: 'Police Constable', salary: '₦48,000 - ₦55,000 / month', description: 'Starting rank for O\'Level recruits after completing college training.' },
-      { rank: 'Corporal', salary: '₦58,000 - ₦65,000 / month', description: 'Junior non-commissioned officer rank.' },
-      { rank: 'Sergeant', salary: '₦68,000 - ₦75,000 / month', description: 'Rank above Corporal, overseeing constable shifts.' },
-      { rank: 'Cadet Inspector (Graduate Entry)', salary: '₦85,000 - ₦100,000 / month', description: 'Starting officer rank for diploma/NCE holders.' },
-      { rank: 'Assistant Superintendent of Police (ASP)', salary: '₦120,000 - ₦140,000 / month', description: 'Starting rank for university graduates after Police Academy training.' }
+      { rank: 'Police Constable', salary: '₦84,000 - ₦98,000 / month', description: 'Starting rank for O\'Level recruits after completing 6 months police college training.' },
+      { rank: 'Corporal', salary: '₦105,000 - ₦120,000 / month', description: 'Junior non-commissioned officer rank.' },
+      { rank: 'Sergeant', salary: '₦125,000 - ₦145,000 / month', description: 'Rank above Corporal, overseeing station duty shifts.' },
+      { rank: 'Cadet Inspector (Graduate Entry)', salary: '₦165,000 - ₦195,000 / month', description: 'Starting officer rank for diploma/NCE holders.' },
+      { rank: 'Assistant Superintendent of Police (ASP)', salary: '₦215,000 - ₦265,000 / month', description: 'Starting rank for university graduates after Police Academy training.' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -492,12 +508,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-red-200',
     textCol: 'text-red-800',
     bgLight: 'bg-red-50/50',
+    officialPortalUrl: 'https://cdcfib.career',
+    customSeoTitle: 'CDCFIB Recruitment 2026: NSCDC, NIS & Fire Service Portal Guide',
+    customSeoDescription: 'Official CDCFIB recruitment portal 2026 at cdcfib.career. Civil Defence (NSCDC), Immigration (NIS) & Fire Service application form, CBT dates & CONPASS salary.',
+    scamWarning: 'CDCFIB ANTI-FRAUD DIRECTIVE: The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) does not charge any registration fees or partner with third-party agents. The authentic registration and status check portal is exclusively cdcfib.career.',
     description: 'The Nigeria Security and Civil Defence Corps (NSCDC) is a paramilitary agency of the Federal Government of Nigeria. Officially established in 2003, the NSCDC is mandated to protect critical national infrastructure (pipelines, electrical installations), license and monitor private security companies, and assist in disaster management. Recruitment is managed by the CDCFIB.',
-    generalSalaryDesc: 'NSCDC officers are paid under the Consolidated Para-Paramilitary Salary Structure (CONPASS), with benefits including hazard allowances, uniform allowances, and travel bonuses.',
+    generalSalaryDesc: 'NSCDC officers are paid under the Consolidated Paramilitary Salary Structure (CONPASS), updated in 2026 with critical asset hazard allowances and housing stipends.',
     ranks: [
-      { rank: 'Corps Assistant III (SSCE)', salary: '₦43,000 - ₦49,000 / month', description: 'Entry-level paramilitary rank for O\'Level certificate holders.' },
-      { rank: 'Inspector of Corps (ND/NCE)', salary: '₦72,000 - ₦85,000 / month', description: 'Entry rank for National Diploma or NCE graduates.' },
-      { rank: 'Assistant Superintendent II (Degree)', salary: '₦95,000 - ₦115,000 / month', description: 'Officer entry rank for university degree holders.' }
+      { rank: 'Corps Assistant III (SSCE GL 03)', salary: '₦78,000 - ₦95,000 / month', description: 'Entry-level paramilitary rank for O\'Level certificate holders.' },
+      { rank: 'Inspector of Corps (ND/NCE GL 07)', salary: '₦145,000 - ₦175,000 / month', description: 'Entry rank for National Diploma or NCE graduates.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦185,000 - ₦240,000 / month', description: 'Officer entry rank for university degree holders.' }
     ],
     dates: {
       portalOpen: 'Periodic via CDCFIB portal',
@@ -544,11 +564,11 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     textCol: 'text-orange-800',
     bgLight: 'bg-orange-50/50',
     description: 'The Federal Fire Service (FFS) is the apex agency responsible for fire safety, emergency rescue, and disaster mitigation in Nigeria. Established in 1963, the FFS works to minimize loss of lives and property from fire outbreaks. Recruitment is managed by the CDCFIB across SSCE, ND/NCE, and HND/Degree cadres.',
-    generalSalaryDesc: 'Firefighters are paid according to the CONPASS scale. They receive risk and hazard allowances, medical benefits, and specialized rescue gear allowances.',
+    generalSalaryDesc: 'Firefighters are paid according to the CONPASS scale, updated in 2026 to include risk and hazard allowances, medical benefits, and specialized rescue gear allowances.',
     ranks: [
-      { rank: 'Fire Assistant III (SSCE)', salary: '₦42,000 - ₦48,000 / month', description: 'Starting rank for O\'Level recruits.' },
-      { rank: 'Inspector (ND/NCE)', salary: '₦70,000 - ₦82,000 / month', description: 'Entry level rank for diploma holders.' },
-      { rank: 'Assistant Superintendent II (Degree)', salary: '₦95,000 - ₦112,000 / month', description: 'Officer entry rank for university graduates.' }
+      { rank: 'Fire Assistant III (SSCE GL 03)', salary: '₦78,000 - ₦94,000 / month', description: 'Starting rank for O\'Level recruits.' },
+      { rank: 'Inspector of Fire (ND/NCE GL 07)', salary: '₦142,000 - ₦170,000 / month', description: 'Entry level rank for diploma holders.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦185,000 - ₦235,000 / month', description: 'Officer entry rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -593,12 +613,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-emerald-200',
     textCol: 'text-emerald-800',
     bgLight: 'bg-emerald-50/50',
+    officialPortalUrl: 'https://cdcfib.career',
+    customSeoTitle: 'Nigeria Immigration Recruitment 2026: NIS Portal & Shortlist',
+    customSeoDescription: 'Official Nigeria Immigration Service (NIS) recruitment 2026 portal at cdcfib.career. Officer cadre requirements, physical screening dates & CONPASS salary.',
+    scamWarning: 'CRITICAL NIS ANTI-FRAUD NOTICE: Nigeria Immigration Service recruitment is conducted exclusively through the CDCFIB online portal at cdcfib.career. The NIS does not appoint private agents or sell application forms.',
     description: 'The Nigeria Immigration Service (NIS) is the agency responsible for border patrol, passport issuance, visa administration, and expatriate monitoring in Nigeria. Established in 1963, it has pioneered digital border management solutions in Africa, including the e-Passport. Recruitment is conducted state-by-state under the CDCFIB.',
-    generalSalaryDesc: 'Immigration personnel are compensated under the CONPASS structure. Ranks and allowances are aligned with other paramilitary agencies under the Ministry of Interior.',
+    generalSalaryDesc: 'Immigration personnel are compensated under the CONPASS structure, revised in 2026 to include border patrol risks and passport revenue generation allowances.',
     ranks: [
-      { rank: 'Immigration Assistant III (SSCE)', salary: '₦48,000 - ₦56,000 / month', description: 'Starting rank for O\'Level applicants.' },
-      { rank: 'Assistant Inspector (ND/NCE)', salary: '₦76,000 - ₦88,000 / month', description: 'Entry level rank for ND or NCE holders.' },
-      { rank: 'Assistant Superintendent II (Degree)', salary: '₦108,000 - ₦125,000 / month', description: 'Entry officer rank for university graduates.' }
+      { rank: 'Immigration Assistant III (SSCE GL 03)', salary: '₦80,000 - ₦96,000 / month', description: 'Starting rank for O\'Level applicants.' },
+      { rank: 'Assistant Inspector (ND/NCE GL 06)', salary: '₦130,000 - ₦150,000 / month', description: 'Entry level rank for ND or NCE holders.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦185,000 - ₦240,000 / month', description: 'Entry officer rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Periodic via CDCFIB portal',
@@ -643,12 +667,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-slate-200',
     textCol: 'text-slate-800',
     bgLight: 'bg-slate-50/50',
+    officialPortalUrl: 'https://customs.gov.ng',
+    customSeoTitle: 'Nigeria Customs Recruitment 2026: NCS Cadres, Portal & Salary',
+    customSeoDescription: 'Official Nigeria Customs Service recruitment 2026 portal at customs.gov.ng. General duty & support staff requirements, CONPASS salary scale & CBT updates.',
+    scamWarning: 'CRITICAL NCS ANTI-FRAUD ADVISORY: The Nigeria Customs Service (NCS) recruitment is 100% free of charge. Do not pay money into personal bank accounts for job placement or auction officer slots.',
     description: 'The Nigeria Customs Service (NCS) is a paramilitary organization under the Federal Ministry of Finance. It is responsible for the collection of customs revenue, border security, prevention of smuggling, and trade facilitation. NCS recruits periodically across three main cadres: Customs Assistant (SSCE), Customs Inspector (ND/NCE), and Superintendent (HND/Degree).',
-    generalSalaryDesc: 'Customs officers are paid in accordance with the Consolidated Para-Paramilitary Salary Structure (CONPASS), which includes duty tour allowances, hazard allowances, and transport bonuses.',
+    generalSalaryDesc: 'Customs officers are paid in accordance with the Consolidated Paramilitary Salary Structure (CONPASS), which includes duty tour allowances, anti-smuggling hazard allowances, and revenue welfare packages.',
     ranks: [
-      { rank: 'Customs Assistant III (SSCE)', salary: '₦45,000 - ₦55,000 / month', description: 'Entry-level grade for O\'level result holders.' },
-      { rank: 'Customs Inspector (HND/Degree)', salary: '₦80,000 - ₦95,000 / month', description: 'Officer cadre starting point for HND or ND holders.' },
-      { rank: 'Assistant Superintendent II', salary: '₦105,000 - ₦125,000 / month', description: 'Starting rank for university degree holders.' }
+      { rank: 'Customs Assistant III (SSCE GL 03)', salary: '₦88,000 - ₦105,000 / month', description: 'Entry-level grade for O\'level result holders.' },
+      { rank: 'Customs Inspector (ND/HND GL 07)', salary: '₦175,000 - ₦215,000 / month', description: 'Officer cadre starting point for HND or ND holders.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦240,000 - ₦295,000 / month', description: 'Starting rank for university degree holders (takes home ₦275,000 - ₦315,000 with hazard allowances).' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -682,7 +710,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       ]
     },
     faqs: [
-      { question: 'What does a Customs Assistant earn?', answer: 'A starting Customs Assistant earns between ₦45,000 and ₦55,000 base salary plus allowances.' }
+      { question: 'What does a Customs Assistant earn?', answer: 'Under the 2026 CONPASS scale, a Customs Assistant III (SSCE entry) earns between ₦88,000 and ₦105,000 base salary plus allowances.' }
     ]
   },
   frsc: {
@@ -694,11 +722,11 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     textCol: 'text-red-800',
     bgLight: 'bg-red-50/50',
     description: 'The Federal Road Safety Corps (FRSC) is a paramilitary agency founded in 1988. It is responsible for road traffic management, prevention of highway accidents, clearance of obstructions, and registration of vehicles and driver\'s licenses in Nigeria. FRSC recruits Officer Cadets, Marshal Inspectors, and Road Marshal Assistants.',
-    generalSalaryDesc: 'FRSC personnel are paid under the CONPASS structure. Ranks and pay increase with academic qualifications and years of active service.',
+    generalSalaryDesc: 'FRSC personnel are paid under the CONPASS structure, revised in 2026 to reflect the new minimum wage benchmark and highway patrol hazard bonuses.',
     ranks: [
-      { rank: 'Road Marshal Assistant III (SSCE)', salary: '₦40,000 - ₦48,000 / month', description: 'Starting rank for O\'Level certificate holders.' },
-      { rank: 'Marshal Inspector (HND/NCE)', salary: '₦72,000 - ₦85,000 / month', description: 'Starting rank for NCE or National Diploma holders.' },
-      { rank: 'ARC / Officer Cadet (Degree)', salary: '₦100,000 - ₦115,000 / month', description: 'Assistant Route Commander rank for university graduates.' }
+      { rank: 'Road Marshal Assistant III (SSCE GL 03)', salary: '₦78,000 - ₦92,000 / month', description: 'Starting rank for O\'Level certificate holders.' },
+      { rank: 'Marshal Inspector (HND/NCE GL 07)', salary: '₦145,000 - ₦172,000 / month', description: 'Starting rank for NCE or National Diploma holders.' },
+      { rank: 'ARC / Officer Cadet (Degree GL 08)', salary: '₦185,000 - ₦230,000 / month', description: 'Assistant Route Commander rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Check portal announcements',
@@ -746,9 +774,9 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     description: 'The National Drug Law Enforcement Agency (NDLEA) is a federal agency responsible for eradicating the cultivation, processing, manufacturing, trafficking, and abuse of illicit drugs in Nigeria. It recruits Narcotic Officers (for HND/Degree holders) and Narcotic Assistants (for SSCE/OND holders).',
     generalSalaryDesc: 'NDLEA personnel receive salary packages under the CONPASS structure, along with specialized narcotic risk allowances and medical insurance.',
     ranks: [
-      { rank: 'Narcotic Assistant III (SSCE)', salary: '₦45,000 - ₦55,000 / month', description: 'Starting rank for O\'Level recruits.' },
-      { rank: 'Narcotic Inspector (HND/NCE)', salary: '₦78,000 - ₦90,000 / month', description: 'Starting rank for diploma holders.' },
-      { rank: 'Narcotic Officer (Degree)', salary: '₦90,000 - ₦115,000 / month', description: 'Starting officer rank for university graduates.' }
+      { rank: 'Narcotic Assistant III (SSCE GL 03)', salary: '₦80,000 - ₦96,000 / month', description: 'Starting rank for O\'Level recruits.' },
+      { rank: 'Narcotic Inspector (HND/NCE GL 07)', salary: '₦145,000 - ₦175,000 / month', description: 'Starting rank for diploma holders.' },
+      { rank: 'Narcotic Officer (Degree GL 08)', salary: '₦185,000 - ₦240,000 / month', description: 'Starting officer rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -883,6 +911,10 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-green-200',
     textCol: 'text-green-800',
     bgLight: 'bg-green-50/50',
+    officialPortalUrl: 'https://careers.nnpcgroup.com',
+    customSeoTitle: 'NNPC Limited Recruitment 2026: Graduate Trainee Careers Portal',
+    customSeoDescription: 'Official NNPC Limited recruitment 2026 portal at careers.nnpcgroup.com. Verified Graduate Trainee criteria, 28-yr age limit, psychometric test tips & salary.',
+    scamWarning: 'CRITICAL NNPC ANTI-FRAUD WARNING: NNPC Limited recruitment is strictly 100% FREE. NNPC does not sell scratch cards or request money into any private bank accounts. All valid vacancies are posted only at careers.nnpcgroup.com.',
     description: 'NNPC Limited (formerly Nigerian National Petroleum Corporation) is the state-owned oil corporation of Nigeria. It manages the country\'s petroleum exploration, refining, joint ventures, and distribution. NNPC regularly conducts highly competitive recruitment for Graduate Trainees and Experienced Professionals.',
     generalSalaryDesc: 'NNPC offers premium compensation packages including basic salary, housing allowances, medical coverage, and performance bonuses.',
     ranks: [
@@ -990,6 +1022,10 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-blue-200',
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
+    officialPortalUrl: 'https://nimc.gov.ng/careers',
+    customSeoTitle: 'NIMC Recruitment 2026: Staff Careers Portal & NIN Enrolment',
+    customSeoDescription: 'Official National Identity Management Commission (NIMC) recruitment 2026 at nimc.gov.ng/careers. Enrolment officer vacancies, salary scale & test dates.',
+    scamWarning: 'OFFICIAL NIMC WARNING: Enrolment officer recruitment is free. NIMC does not charge any processing fees for job applications or NIN verification staff screening.',
     description: 'The National Identity Management Commission (NIMC) is the federal agency responsible for creating, managing, and maintaining the National Identity Database and issuing National Identification Numbers (NIN) in Nigeria. It recruits IT Officers, Data Analysts, Registration Officers, and Admin Staff.',
     generalSalaryDesc: 'NIMC staff are compensated under the CONPSS structure, with specialized tech allowances.',
     ranks: [
@@ -1029,8 +1065,8 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     textCol: 'text-indigo-800',
     bgLight: 'bg-indigo-50/50',
     officialPortalUrl: 'https://www.ncc.gov.ng/careers-ncc',
-    customSeoTitle: 'NCC Recruitment 2026: Application Portal, Requirements & Exam Date',
-    customSeoDescription: 'Nigerian Communications Commission (NCC) recruitment 2026 at ncc.gov.ng/careers-ncc. Officer entry requirements, salary scale, CBT aptitude dates, and official guidelines.',
+    customSeoTitle: 'NCC Recruitment 2026: Application Portal, Requirements & Exam',
+    customSeoDescription: 'Nigerian Communications Commission (NCC) recruitment 2026 at ncc.gov.ng/careers-ncc. Officer entry requirements, salary scale, CBT aptitude dates & guidelines.',
     scamWarning: 'OFFICIAL NCC NOTICE & DISCLAIMER: The Nigerian Communications Commission (NCC) is Nigeria\'s federal independent telecommunications regulatory authority. NCC recruitment is strictly competitive, merit-based, and completely free of charge. No payment is required for application forms, screening exams, or placement. Never send money to recruiters claiming to offer insider commission slots.',
     description: 'The Nigerian Communications Commission (NCC) is the independent regulatory authority for the telecommunications industry in Nigeria. Established under the Nigerian Communications Act 2003, it regulates service providers, manages spectrum allocation, protects consumer rights, and advances broadband rollout. Recruitment is conducted periodically for Telecom Engineers, Spectrum Analysts, IT Specialists, and Legal Officers.',
     generalSalaryDesc: 'NCC is an autonomous federal commission offering premium public service remuneration, health maintenance coverage, foreign training programs, and performance-based allowances.',
@@ -1377,6 +1413,13 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
         />
       )}
 
+      {/* If viewing Navy branch, render the dedicated Navy Batch 39 Announcement & Countdown Banner */}
+      {staticData.branch === 'Navy' && (
+        <div className="mb-6">
+          <NavyBatch39Banner />
+        </div>
+      )}
+
       {/* Hero Header Banner */}
       <div className={`rounded-3xl shadow-xl overflow-hidden mb-8 text-white relative bg-gradient-to-r ${staticData.gradient}`}>
         <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
@@ -1469,6 +1512,26 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
             {/* TAB: OVERVIEW */}
             {activeTab === 'overview' && (
               <div className="space-y-6">
+                {/* Position-Zero "Quick Answer" Box (Top 100 Words) for Google Featured Snippets */}
+                <PositionZeroQuickAnswer
+                  question={`Is ${staticData.name} Recruitment Form Out for 2026?`}
+                  directAnswer={`${staticData.name} 2026 recruitment exercise is verified with live status: [${activeRecruitment?.status || 'Active Board Cycle'}]. Official registration is conducted exclusively via ${staticData.officialPortalUrl || 'the designated federal portal'}. Application is 100% free of charge. Applicants require O-Level or relevant tertiary certificates, valid National Identification Number (NIN), and must satisfy federal statutory age and physical standards.`}
+                  statusBadge={{
+                    text: activeRecruitment?.status === 'Open' ? 'Portal Active • Free Application' : (activeRecruitment?.status === 'Shortlist Out' ? 'Shortlist PDF Published' : 'Verified Official Status'),
+                    variant: activeRecruitment?.status === 'Open' ? 'success' : (activeRecruitment?.status === 'Shortlist Out' ? 'info' : 'warning')
+                  }}
+                  metrics={[
+                    { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+                    { label: 'Official Portal', value: staticData.officialPortalUrl ? staticData.officialPortalUrl.replace(/^https?:\/\//, '') : 'Official Portal' },
+                    { label: 'Closing Date', value: activeRecruitment?.deadline_date ? new Date(activeRecruitment.deadline_date).toLocaleDateString() : 'See portal schedule' },
+                    { label: 'Aptitude Test', value: staticData.examInfo?.duration ? `${staticData.examInfo.duration} (${staticData.examInfo.format})` : 'Computer Based (CBT)' }
+                  ]}
+                  portalUrl={staticData.officialPortalUrl}
+                  portalName={staticData.officialPortalUrl ? staticData.officialPortalUrl.replace(/^https?:\/\//, '') : staticData.name}
+                  lastVerified={getDailyUpdatedBadge(false)}
+                  scamNotice={staticData.scamWarning}
+                />
+
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
                     <Info className="w-5 h-5 text-military-blue" /> Agency Overview
@@ -1719,6 +1782,38 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
                         className="px-4 py-2.5 bg-military-green hover:bg-green-800 text-white font-bold rounded-xl text-xs transition-colors whitespace-nowrap shadow-sm flex items-center gap-1.5"
                       >
                         Open Full Army Salary Page <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Contextual Link for other dedicated salary pages */}
+                  {(agencySlug === 'navy' || agencySlug === 'navy-batch' || agencySlug === 'airforce' || agencySlug === 'police' || agencySlug === 'customs' || agencySlug === 'civildefence' || agencySlug === 'immigration' || agencySlug === 'nnpc' || agencySlug === 'cbn') && (
+                    <div className="p-4 sm:p-5 mb-5 bg-gradient-to-r from-amber-50 to-orange-100/70 border border-amber-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div>
+                        <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-200 text-amber-900 mb-1">
+                          Standalone Rank-by-Rank Breakdown
+                        </span>
+                        <h4 className="font-bold text-amber-950 text-sm sm:text-base">
+                          Official 2026 {staticData.name} Salary & Allowances
+                        </h4>
+                        <p className="text-xs text-amber-800 mt-0.5">
+                          View monthly net take-home, qualification entry requirements, and hazard allowances.
+                        </p>
+                      </div>
+                      <Link
+                        to={
+                          agencySlug.startsWith('navy') ? '/navy-salary' :
+                          agencySlug === 'airforce' ? '/airforce-salary' :
+                          agencySlug === 'police' ? '/police-salary' :
+                          agencySlug === 'customs' ? '/customs-salary' :
+                          agencySlug === 'civildefence' ? '/civil-defence-salary' :
+                          agencySlug === 'immigration' ? '/immigration-salary' :
+                          agencySlug === 'nnpc' ? '/nnpc-salary' :
+                          agencySlug === 'cbn' ? '/cbn-salary' : '/salary-comparison'
+                        }
+                        className="px-4 py-2.5 bg-amber-700 hover:bg-amber-800 text-white font-bold rounded-xl text-xs transition-colors whitespace-nowrap shadow-sm flex items-center gap-1.5"
+                      >
+                        Open Full {staticData.name} Salary Guide <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
                   )}

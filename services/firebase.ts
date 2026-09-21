@@ -93,15 +93,27 @@ const STATIC_DATA: RecruitmentUpdate[] = [
     {
         id: 'navy-batch',
         branch: 'Navy',
-        title: 'Nigerian Navy Batch 38 Recruitment',
+        title: 'Nigerian Navy Batch 39 Recruitment 2026',
         category: 'Regular Recruit',
-        status: 'Shortlist Out',
-        deadline_date: '2025-12-20',
-        portal_url: 'https://joinnigeriannavy.com',
-        updated_at: '2026-01-10T08:30:00Z',
-        description: 'The Nigerian Navy invites applications for enlistment through the Basic Training School.',
-        requirements: ['Age 18-22.', '5 Credits SSCE.'],
-        application_process: ['Register online.', 'Submit form.'],
+        status: 'Open',
+        deadline_date: '2026-10-31',
+        portal_url: 'https://www.joinnigeriannavy.gov.ng',
+        updated_at: new Date().toISOString(),
+        description: 'The Nigerian Navy has announced Batch 39 Recruitment 2026 for Seaman/Naval Ratings, Non-Commissioned Officers (NCOs), and Commissioned Officers. Portal opens 2 October 2026 and closes 31 October 2026.',
+        requirements: [
+            'Nigerian citizen by birth (Male and Female).',
+            'Minimum qualification: SSCE / WAEC / NECO / NABTEB with 5 credits including English Language and Mathematics.',
+            'Age: 18 - 22 years for non-trades / secondary school leavers, up to 26 for diploma/specialists.',
+            'Height requirement: Not less than 1.68m for males and 1.65m for females.',
+            'Registration is 100% free on www.joinnigeriannavy.gov.ng. Opens 2 October 2026, closes 31 October 2026.'
+        ],
+        application_process: [
+            'Visit the official portal at www.joinnigeriannavy.gov.ng starting 2 October 2026.',
+            'Authenticate your 11-digit National Identity Number (NIN).',
+            'Select your category: Seaman/Naval Ratings, NCOs, or Commissioned Officers.',
+            'Upload credentials (O-Level results) and recent white-background passport photo.',
+            'Submit before the deadline (31 October 2026) and print your Application and Guarantor Slips.'
+        ],
         exam_centers: []
     },
     {

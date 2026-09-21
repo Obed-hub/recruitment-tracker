@@ -9,6 +9,7 @@ import { FAQPageSchema, ArticleSchema, HowToSchema } from '../components/Structu
 import AdUnit from '../components/AdUnit';
 import ScreeningChecklist from '../components/ScreeningChecklist';
 import NextStepInterstitial from '../components/NextStepInterstitial';
+import { PositionZeroQuickAnswer } from '../components/PositionZeroQuickAnswer';
 import { getDailyUpdatedBadge, getTodayISODate } from '../services/dateUtils';
 
 interface GuideDetailProps {
@@ -163,6 +164,34 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ slugOverride }) => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
               {guide.title}
             </h1>
+
+            {/* Position-Zero "Quick Answer" Box (Top 100 Words) for Google Featured Snippets */}
+            {guide.quickAnswer ? (
+              <PositionZeroQuickAnswer
+                question={guide.quickAnswer.question}
+                directAnswer={guide.quickAnswer.directAnswer}
+                statusBadge={{
+                  text: guide.quickAnswer.statusText,
+                  variant: guide.quickAnswer.statusVariant || 'success'
+                }}
+                metrics={guide.quickAnswer.metrics}
+                portalUrl={guide.officialPortalUrl}
+                lastVerified={getDailyUpdatedBadge(false)}
+                scamNotice={guide.scamNotice}
+              />
+            ) : (
+              <PositionZeroQuickAnswer
+                question={`What You Need to Know: ${guide.title}`}
+                directAnswer={`${guide.description} Official guidance, requirements, free application instructions and screening verification.`}
+                statusBadge={{
+                  text: guide.statusBadge || 'Official Guide Verified',
+                  variant: 'success'
+                }}
+                portalUrl={guide.officialPortalUrl}
+                lastVerified={getDailyUpdatedBadge(false)}
+                scamNotice={guide.scamNotice}
+              />
+            )}
 
             {/* Real-time Status Card Badge */}
             {guide.statusBadge && (
