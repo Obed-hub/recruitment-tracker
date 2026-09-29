@@ -68,6 +68,22 @@ const SALARY_RANKS = [
 
 const FAQS = [
   {
+    question: 'Is Navy form out for 2026? (Is Nigerian Navy recruitment form out?)',
+    answer: 'YES! The Nigerian Navy has officially scheduled the 2026 Batch 39 enlistment exercise. The application portal officially opens on 2 October 2026 and closes on 31 October 2026.'
+  },
+  {
+    question: 'What is the official Navy registration portal (www joinnigeriannavy com portal)?',
+    answer: 'The official authentic portals are www.joinnigeriannavy.gov.ng and www.joinnigeriannavy.com (Nigeria Navy portal 2026). Registration is 100% free of charge.'
+  },
+  {
+    question: 'How do I access the Navy recruitment portal login (Navy portal login / Login Nigerian Navy portal)?',
+    answer: 'To log into the Nigerian Navy recruitment portal, visit www.joinnigeriannavy.gov.ng, click "Candidate Login", and enter your registered email address or Application ID and password to access your dashboard, reprint confirmation slips, and check screening venues.'
+  },
+  {
+    question: 'Where can I access the www joinnigeriannavy com application form?',
+    answer: 'The official Nigerian Navy application form is completed exclusively online at www.joinnigeriannavy.gov.ng or www.joinnigeriannavy.com once the registration window opens on 2 October 2026. Hard-copy forms sold by third parties are fraudulent.'
+  },
+  {
     question: 'When is the Nigerian Navy Batch 39 recruitment form opening for 2026?',
     answer: 'The Nigerian Navy Batch 39 online recruitment portal officially opens on Friday, 2 October 2026 at 12:00 AM. Registration closes on Saturday, 31 October 2026 at 11:59 PM.'
   },
@@ -102,14 +118,14 @@ const FAQS = [
 ];
 
 export const NavyRecruitmentBatch39: React.FC = () => {
-  // Live Countdown logic to Portal Opening: October 2, 2026 00:00:00 GMT+1
+  // Automated 3-Phase Lifecycle: Upcoming -> Live (Deadline Countdown) -> Closed (Shortlist Stage)
+  const [phase, setPhase] = useState<'upcoming' | 'live' | 'closed'>('upcoming');
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
   });
-  const [isLive, setIsLive] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // Interactive Eligibility Calculator State
@@ -122,23 +138,38 @@ export const NavyRecruitmentBatch39: React.FC = () => {
   const [selectedCadre, setSelectedCadre] = useState<string>('CAT-A');
 
   useEffect(() => {
-    const targetDate = new Date('2026-10-02T00:00:00+01:00').getTime();
+    // Official Opening: 2 October 2026 00:00:00 WAT
+    // Official Closing: 31 October 2026 23:59:59 WAT
+    const openDate = new Date('2026-10-02T00:00:00+01:00').getTime();
+    const closeDate = new Date('2026-10-31T23:59:59+01:00').getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
-      const difference = targetDate - now;
 
-      if (difference <= 0) {
-        setIsLive(true);
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      } else {
-        setIsLive(false);
+      if (now < openDate) {
+        // Phase 1: Countdown to Opening
+        const diff = openDate - now;
+        setPhase('upcoming');
         setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000)
         });
+      } else if (now <= closeDate) {
+        // Phase 2: Live Registration - Countdown to Closing Deadline
+        const diff = closeDate - now;
+        setPhase('live');
+        setTimeLeft({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000)
+        });
+      } else {
+        // Phase 3: Registration Closed - Screening & Shortlist Stage
+        setPhase('closed');
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     };
 
@@ -147,8 +178,10 @@ export const NavyRecruitmentBatch39: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const SITE_NAVY_BATCH_39_URL = 'https://recruitmenttracker.com.ng/nigerian-navy-recruitment-2026';
+
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(SITE_NAVY_BATCH_39_URL);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -160,8 +193,8 @@ export const NavyRecruitmentBatch39: React.FC = () => {
       `⏰ Deadline: 31 October 2026\n` +
       `🌐 Official Portal: www.joinnigeriannavy.gov.ng\n` +
       `💰 Cost: 100% FREE (Beware of scammers)\n\n` +
-      `Check requirements, salary scale, age limits & practice CBT past questions here:\n` +
-      window.location.href
+      `Check requirements, salary scale, age limits & practice CBT past questions on Recruitment Tracker:\n` +
+      `${SITE_NAVY_BATCH_39_URL}`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
@@ -181,6 +214,14 @@ export const NavyRecruitmentBatch39: React.FC = () => {
         canonical="/nigerian-navy-recruitment-2026"
         keywords={[
           'nigerian navy recruitment 2026 batch 39',
+          'navy registration portal',
+          'login nigerian navy portal',
+          'www joinnigeriannavy com portal',
+          'nigeria navy portal 2026',
+          'navy recruitment portal login',
+          'navy portal login',
+          'www joinnigeriannavy com application form',
+          'is navy form out',
           'joinnigeriannavy gov ng recruitment portal',
           'nigerian navy batch 39 requirements',
           'nigerian navy closing date 2026',
@@ -243,21 +284,17 @@ export const NavyRecruitmentBatch39: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-emerald-400 animate-pulse" />
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                  {isLive ? 'Application Window Live' : 'Portal Opens In:'}
+                  {phase === 'upcoming' && 'Portal Opens In:'}
+                  {phase === 'live' && 'Portal Live • Application Closing In:'}
+                  {phase === 'closed' && 'Registration Concluded:'}
                 </span>
               </div>
               <span className="text-xs text-blue-300 font-semibold">
-                Opening Date: 2 Oct 2026 • Closes: 31 Oct 2026
+                Opening: 2 Oct 2026 • Deadline: 31 Oct 2026
               </span>
             </div>
 
-            {isLive ? (
-              <div className="p-3 bg-emerald-500/20 border border-emerald-400/40 rounded-xl text-center">
-                <span className="text-base sm:text-lg font-black text-emerald-300">
-                  PORTAL IS CURRENTLY ACTIVE AND ACCEPTING APPLICATIONS
-                </span>
-              </div>
-            ) : (
+            {phase === 'upcoming' && (
               <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
                 <div className="bg-slate-800/90 rounded-xl p-2 sm:p-3 border border-slate-700">
                   <div className="text-xl sm:text-3xl font-black text-white">{timeLeft.days}</div>
@@ -277,6 +314,54 @@ export const NavyRecruitmentBatch39: React.FC = () => {
                 </div>
               </div>
             )}
+
+            {phase === 'live' && (
+              <div className="space-y-3">
+                <div className="p-3 bg-emerald-500/20 border border-emerald-400/40 rounded-xl text-center">
+                  <span className="text-sm sm:text-base font-black text-emerald-300 block">
+                    PORTAL IS LIVE & ACCEPTING APPLICATIONS
+                  </span>
+                  <span className="text-xs text-emerald-200">
+                    Apply online at joinnigeriannavy.gov.ng before the deadline expires.
+                  </span>
+                </div>
+                <div className="grid grid-cols-4 gap-2 text-center">
+                  <div className="bg-slate-800/90 rounded-xl p-2 border border-slate-700">
+                    <div className="text-lg sm:text-2xl font-black text-amber-300">{timeLeft.days}</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Days Left</div>
+                  </div>
+                  <div className="bg-slate-800/90 rounded-xl p-2 border border-slate-700">
+                    <div className="text-lg sm:text-2xl font-black text-amber-300">{timeLeft.hours}</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Hours Left</div>
+                  </div>
+                  <div className="bg-slate-800/90 rounded-xl p-2 border border-slate-700">
+                    <div className="text-lg sm:text-2xl font-black text-amber-300">{timeLeft.minutes}</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Mins Left</div>
+                  </div>
+                  <div className="bg-slate-800/90 rounded-xl p-2 border border-slate-700">
+                    <div className="text-lg sm:text-2xl font-black text-emerald-400 animate-pulse">{timeLeft.seconds}</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Secs Left</div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {phase === 'closed' && (
+              <div className="p-4 bg-slate-800/90 border border-blue-500/40 rounded-xl text-center space-y-2">
+                <div className="text-sm sm:text-base font-black text-amber-300">
+                  BATCH 39 ONLINE REGISTRATION HAS CLOSED
+                </div>
+                <p className="text-xs text-slate-300">
+                  The Nigerian Navy is processing submitted applications for NNBTS screening. Check shortlisted candidates & state screening centers below.
+                </p>
+                <Link
+                  to="/shortlist-hub"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-lg text-xs transition-colors"
+                >
+                  Check Navy Shortlist PDF & Venues
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Action CTAs */}
@@ -287,7 +372,7 @@ export const NavyRecruitmentBatch39: React.FC = () => {
               rel="noopener noreferrer"
               className="px-5 py-3 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 text-xs sm:text-sm font-black transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20"
             >
-              Open Official Navy Portal <ExternalLink className="w-4 h-4" />
+              {phase === 'closed' ? 'Visit Navy Portal' : 'Open Official Navy Portal'} <ExternalLink className="w-4 h-4" />
             </a>
 
             <button
@@ -719,6 +804,67 @@ export const NavyRecruitmentBatch39: React.FC = () => {
           <span>
             <strong>Note:</strong> Personnel deploying on operational sea warships receive supplementary Sea Duty Allowance, hazard duty allowances, and subsidized barracks accommodation.
           </span>
+        </div>
+      </div>
+
+      {/* People Also Search For (PAA Google Query Box) */}
+      <div className="bg-slate-900 border border-blue-500/30 rounded-3xl p-6 sm:p-8 text-white space-y-5 shadow-lg">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
+            <Search className="w-4 h-4" />
+          </div>
+          <div>
+            <h3 className="text-base sm:text-lg font-black text-white">
+              People Also Search For: Quick Portal Directory
+            </h3>
+            <p className="text-xs text-slate-400">
+              Direct, verified answers to top Google search queries for the 2026 Nigerian Navy intake.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
+          <div className="p-3.5 bg-slate-800/80 rounded-2xl border border-slate-700/80 space-y-1.5">
+            <span className="font-bold text-amber-300 block">
+              1. Is Navy form out?
+            </span>
+            <p className="text-slate-300 leading-relaxed">
+              <strong>YES.</strong> The Nigerian Navy Batch 39 enlistment exercise is officially scheduled. The online portal opens <strong>2 October 2026</strong> and closes <strong>31 October 2026</strong>.
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-800/80 rounded-2xl border border-slate-700/80 space-y-1.5">
+            <span className="font-bold text-amber-300 block">
+              2. Navy registration portal (www joinnigeriannavy com portal)
+            </span>
+            <p className="text-slate-300 leading-relaxed">
+              The only authentic registration portal is <strong className="text-white">www.joinnigeriannavy.gov.ng</strong> (also accessible via joinnigeriannavy.com). Registration is 100% free.
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-800/80 rounded-2xl border border-slate-700/80 space-y-1.5">
+            <span className="font-bold text-amber-300 block">
+              3. Navy portal login / Login Nigerian Navy portal
+            </span>
+            <p className="text-slate-300 leading-relaxed">
+              To sign in, visit the portal, click <strong>"Candidate Login"</strong>, and enter your email/Application ID with password to print your examination slip or check screening venues.
+            </p>
+            <Link to="/navy-recruitment-portal-login" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-bold mt-1">
+              Read Navy Portal Login Guide <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+
+          <div className="p-3.5 bg-slate-800/80 rounded-2xl border border-slate-700/80 space-y-1.5">
+            <span className="font-bold text-amber-300 block">
+              4. Www joinnigeriannavy com application form & Slips
+            </span>
+            <p className="text-slate-300 leading-relaxed">
+              Application forms are submitted digitally. After submission, candidates must download and print the <em>Application Acknowledgement Slip</em> and <em>Guarantor / Consent Forms</em>.
+            </p>
+            <Link to="/navy-print-confirmation-slip" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-bold mt-1">
+              Reprint Confirmation Slip <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
         </div>
       </div>
 

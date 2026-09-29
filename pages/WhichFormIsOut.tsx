@@ -589,7 +589,7 @@ const WhichFormIsOut: React.FC = () => {
       </div>
 
       {/* High-Converting Secondary Gateways */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           to="/past-questions"
           className="p-5 bg-gradient-to-br from-purple-900 to-indigo-950 text-white rounded-2xl shadow-sm hover:shadow-md transition-all group"
@@ -632,6 +632,21 @@ const WhichFormIsOut: React.FC = () => {
           </h3>
           <p className="text-xs text-emerald-200/80 leading-relaxed">
             Compare monthly allowances and CONAFSS salary scales for all military & paramilitary ranks.
+          </p>
+        </Link>
+
+        <Link
+          to="/police-print-confirmation-slip"
+          className="p-5 bg-gradient-to-br from-blue-900 to-slate-950 text-white rounded-2xl shadow-sm hover:shadow-md transition-all group"
+        >
+          <div className="w-9 h-9 rounded-xl bg-blue-500/30 flex items-center justify-center text-blue-300 mb-3">
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
+          <h3 className="font-black text-sm mb-1 text-white group-hover:text-blue-200 transition-colors">
+            Reprint Confirmation Slips
+          </h3>
+          <p className="text-xs text-blue-200/80 leading-relaxed">
+            Direct action guides to reprint slips, guarantor forms, and update documents across all portals.
           </p>
         </Link>
       </div>

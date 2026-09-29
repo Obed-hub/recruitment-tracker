@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { MessageCircle, Bell, CheckCircle2, Users, ShieldAlert, Sparkles, ArrowRight } from 'lucide-react';
+import TelegramIcon from './TelegramIcon';
 
 const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10';
+const TELEGRAM_CHANNEL_URL = 'https://t.me/recruitmenttracker';
 
 interface ViralCommunityWidgetProps {
   agencyName?: string;
@@ -52,12 +54,21 @@ const ViralCommunityWidget: React.FC<ViralCommunityWidgetProps> = ({ agencyName,
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-2 shrink-0 w-full sm:w-auto">
+            <a
+              href={TELEGRAM_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-md active:scale-95"
+            >
+              <TelegramIcon className="w-4 h-4" />
+              Telegram Discussion
+            </a>
             <a
               href={WHATSAPP_CHANNEL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-black rounded-xl transition-all shadow-md active:scale-95 animate-bounce-short"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-black rounded-xl transition-all shadow-md active:scale-95"
             >
               <MessageCircle className="w-4 h-4 fill-current text-slate-950" />
               Follow on WhatsApp
@@ -113,15 +124,24 @@ const ViralCommunityWidget: React.FC<ViralCommunityWidgetProps> = ({ agencyName,
           </div>
 
           <div className="lg:col-span-5 bg-white/5 backdrop-blur-sm p-5 sm:p-6 rounded-2xl border border-white/10 space-y-4">
-            <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <a
+                href={TELEGRAM_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-1.5 py-3 px-3 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow-md text-center"
+              >
+                <TelegramIcon className="w-4 h-4" />
+                Telegram Group
+              </a>
               <a
                 href={WHATSAPP_CHANNEL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-xs sm:text-sm transition-all shadow-md text-center"
+                className="w-full flex items-center justify-center gap-1.5 py-3 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-xs sm:text-sm transition-all shadow-md text-center"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
-                Follow on WhatsApp
+                WhatsApp Channel
               </a>
             </div>
 

@@ -66,6 +66,19 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
     { name: `${agencyData.agencyName} Salary Structure`, url: `https://recruitmenttracker.com.ng/${agencyData.slug}` }
   ];
 
+  const recruitmentCtaUrl = (() => {
+    if (activeSlug.includes('navy')) return '/navy-batch-recruitment';
+    if (activeSlug.includes('army')) return '/army-recruitment';
+    if (activeSlug.includes('police')) return '/police-recruitment';
+    if (activeSlug.includes('airforce') || activeSlug.includes('air-force')) return '/airforce-recruitment';
+    if (activeSlug.includes('civil-defence') || activeSlug.includes('nscdc')) return '/civil-defence-recruitment';
+    if (activeSlug.includes('immigration') || activeSlug.includes('nis')) return '/immigration-recruitment';
+    if (activeSlug.includes('customs')) return '/customs-recruitment';
+    if (activeSlug.includes('nnpc')) return '/nnpc-recruitment';
+    if (activeSlug.includes('cbn')) return '/cbn-recruitment';
+    return '/recruitments';
+  })();
+
   return (
     <div className="min-h-screen bg-slate-50 text-gray-900 pb-16">
       {/* Dynamic SEO Meta */}
@@ -80,17 +93,8 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
       <FAQPageSchema faqs={agencyData.faqs} />
 
       {/* Header Banner */}
-      <header className={`bg-gradient-to-r ${agencyData.gradient} text-white pt-10 pb-12 px-4 sm:px-6 lg:px-8 border-b border-white/10 shadow-lg`}>
+      <header className={`bg-gradient-to-r ${agencyData.gradient} text-white pt-8 pb-10 px-4 sm:px-6 lg:px-8 border-b border-white/10 shadow-lg rounded-2xl mb-6`}>
         <div className="max-w-6xl mx-auto">
-          {/* Breadcrumb nav */}
-          <nav className="flex items-center gap-2 text-xs text-white/80 mb-4 overflow-x-auto whitespace-nowrap">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-white/50" />
-            <Link to="/salary-comparison" className="hover:text-white transition-colors">Salary Guides</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-white/50" />
-            <span className="text-white font-semibold">{agencyData.agencyName}</span>
-          </nav>
-
           <div className="flex flex-wrap items-center gap-2.5 mb-3">
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-white/15 text-white border border-white/20 backdrop-blur-xs">
               <CircleDollarSign className="w-3.5 h-3.5 text-amber-300" /> {agencyData.salaryScale}
@@ -395,7 +399,7 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
         subtitle="Official requirements, closing dates & application portal."
         badgeText="Verified Guide"
         ctaText="View Recruitment"
-        ctaLink={`/recruitments`}
+        ctaLink={recruitmentCtaUrl}
         variant="navy"
       />
     </div>

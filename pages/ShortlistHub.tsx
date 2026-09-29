@@ -287,6 +287,89 @@ const ShortlistHub: React.FC = () => {
         </div>
       </div>
 
+      {/* Pre-Screening Fast Action Matrix */}
+      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-white shadow-xl space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div>
+            <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-0.5">
+              ⚡ Compulsory Screening Hall Credentials
+            </span>
+            <h3 className="text-lg sm:text-xl font-black text-white">
+              Reprint Confirmation Slips & Download Guarantor Forms
+            </h3>
+          </div>
+          <span className="text-xs bg-emerald-950 text-emerald-300 font-semibold px-2.5 py-1 rounded-full border border-emerald-800">
+            100% Free Reprint
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <Link
+            to="/police-print-confirmation-slip"
+            className="p-3.5 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-blue-500 rounded-2xl transition-all group block"
+          >
+            <span className="text-[10px] text-blue-400 font-bold block uppercase tracking-wider mb-1">Police Force</span>
+            <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+              NPF Screening Slip
+            </span>
+            <span className="text-[10px] text-slate-400 block pt-0.5">Reprint with Barcode</span>
+          </Link>
+
+          <Link
+            to="/army-print-confirmation-slip"
+            className="p-3.5 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500 rounded-2xl transition-all group block"
+          >
+            <span className="text-[10px] text-emerald-400 font-bold block uppercase tracking-wider mb-1">Nigerian Army</span>
+            <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+              Army Tracking Slip
+            </span>
+            <span className="text-[10px] text-slate-400 block pt-0.5">RRI & DSSC Slip</span>
+          </Link>
+
+          <Link
+            to="/navy-print-confirmation-slip"
+            className="p-3.5 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-blue-500 rounded-2xl transition-all group block"
+          >
+            <span className="text-[10px] text-sky-400 font-bold block uppercase tracking-wider mb-1">Nigerian Navy</span>
+            <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+              Navy Batch 39 Slip
+            </span>
+            <span className="text-[10px] text-slate-400 block pt-0.5">Candidate Summary</span>
+          </Link>
+
+          <Link
+            to="/cdcfib-print-confirmation-slip"
+            className="p-3.5 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-red-500 rounded-2xl transition-all group block"
+          >
+            <span className="text-[10px] text-rose-400 font-bold block uppercase tracking-wider mb-1">CDCFIB (NSCDC/NIS)</span>
+            <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+              CDCFIB Slip Reprint
+            </span>
+            <span className="text-[10px] text-slate-400 block pt-0.5">Civil Defence / NIS</span>
+          </Link>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs border-t border-slate-800/80 text-slate-300">
+          <div className="flex items-center gap-4">
+            <Link to="/police-guarantor-form" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+              <span>Police Guarantor Form</span> →
+            </Link>
+            <Link to="/army-guarantor-form" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+              <span>Army Guarantor Form</span> →
+            </Link>
+            <Link to="/navy-guarantor-form" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+              <span>Navy Guarantor Form</span> →
+            </Link>
+          </div>
+          <Link
+            to="/past-questions"
+            className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors flex items-center gap-1"
+          >
+            Practice CBT Questions Before Venue →
+          </Link>
+        </div>
+      </div>
+
       {/* Search and Geopolitical Filter */}
       <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between">
         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto items-stretch sm:items-center">

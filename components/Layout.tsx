@@ -3,8 +3,11 @@ import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit, New
 import { Link, useLocation } from 'react-router-dom';
 import InstallPrompt from './InstallPrompt';
 import AdSenseScript from './AdSenseScript';
+import TelegramIcon from './TelegramIcon';
+import BreadcrumbNav from './BreadcrumbNav';
 
 const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10';
+const TELEGRAM_CHANNEL_URL = 'https://t.me/recruitmenttracker';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -30,8 +33,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <AdSenseScript />
 
-      {/* Official WhatsApp Channel Sticky Alert Bar */}
-      <div className="bg-emerald-800 text-white text-xs py-2 px-4 shadow-sm border-b border-emerald-700">
+      {/* Official Community Sticky Alert Bar */}
+      <div className="bg-emerald-900 text-white text-xs py-2 px-4 shadow-sm border-b border-emerald-700">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <span className="flex h-2 w-2 relative">
@@ -39,18 +42,29 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-300"></span>
             </span>
             <span>
-              Follow the <strong className="text-emerald-200 font-bold">NIGERIA RECRUITMENT UPDATE</strong> channel on WhatsApp for verified 2026 Shortlists & Alerts!
+              Follow <strong className="text-emerald-200 font-bold">NIGERIA RECRUITMENT UPDATE</strong> on WhatsApp & join our active <strong className="text-sky-300 font-bold">Telegram Discussion</strong> for verified 2026 Shortlists!
             </span>
           </div>
-          <a
-            href={WHATSAPP_CHANNEL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black rounded-full text-[11px] transition-colors shadow-sm shrink-0"
-          >
-            <MessageCircle className="w-3.5 h-3.5 fill-current" />
-            Follow on WhatsApp
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={TELEGRAM_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-sky-500 hover:bg-sky-400 text-white font-black rounded-full text-[11px] transition-colors shadow-sm shrink-0"
+            >
+              <TelegramIcon className="w-3 h-3" />
+              Telegram Channel
+            </a>
+            <a
+              href={WHATSAPP_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black rounded-full text-[11px] transition-colors shadow-sm shrink-0"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
+              Follow on WhatsApp
+            </a>
+          </div>
         </div>
       </div>
 
@@ -68,12 +82,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-5">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive(item.path)
+                  className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-md text-xs lg:text-sm font-medium transition-colors ${isActive(item.path)
                     ? 'bg-military-blue text-white shadow-md'
                     : 'hover:bg-green-800 text-gray-100'
                     }`}
@@ -83,16 +97,29 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </Link>
               ))}
 
-              {/* Direct WhatsApp Channel Button in Desktop Nav */}
-              <a
-                href={WHATSAPP_CHANNEL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-lg transition-all shadow-sm active:scale-95"
-              >
-                <MessageCircle className="w-3.5 h-3.5 fill-current" />
-                <span>WhatsApp</span>
-              </a>
+              {/* Direct Telegram & WhatsApp Channel Buttons in Desktop Nav */}
+              <div className="flex items-center space-x-2 pl-1 border-l border-green-700">
+                <a
+                  href={TELEGRAM_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs rounded-lg transition-all shadow-sm active:scale-95"
+                  title="Join Telegram Discussion Channel"
+                >
+                  <TelegramIcon className="w-3.5 h-3.5" />
+                  <span>Telegram</span>
+                </a>
+                <a
+                  href={WHATSAPP_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-lg transition-all shadow-sm active:scale-95"
+                  title="Follow WhatsApp Channel"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -111,16 +138,27 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {isMenuOpen && (
           <div className="md:hidden bg-green-900 border-t border-green-800">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {/* WhatsApp mobile button */}
-              <a
-                href={WHATSAPP_CHANNEL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center space-x-2 px-3 py-2.5 rounded-xl text-sm font-black bg-emerald-500 text-slate-950 mb-2 shadow-sm"
-              >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>Follow NIGERIA RECRUITMENT UPDATE</span>
-              </a>
+              {/* Community Mobile Buttons */}
+              <div className="grid grid-cols-2 gap-2 mb-2">
+                <a
+                  href={TELEGRAM_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-1.5 px-2 py-2.5 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-white shadow-sm"
+                >
+                  <TelegramIcon className="w-3.5 h-3.5" />
+                  <span>Telegram Discussion</span>
+                </a>
+                <a
+                  href={WHATSAPP_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-1.5 px-2 py-2.5 rounded-xl text-xs font-black bg-emerald-500 text-slate-950 shadow-sm"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                  <span>WhatsApp Alerts</span>
+                </a>
+              </div>
 
               {navItems.map((item) => (
                 <Link
@@ -142,7 +180,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </nav>
 
       {/* Main Content */}
-      <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <BreadcrumbNav />
         {children}
       </main>
 
@@ -202,16 +241,27 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
+                    href={TELEGRAM_CHANNEL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sky-300 hover:text-sky-200 font-bold flex items-center justify-center sm:justify-start gap-1.5 transition-colors"
+                  >
+                    <TelegramIcon className="w-4 h-4 text-sky-400 shrink-0" />
+                    <span>Telegram Discussion Channel</span>
+                  </a>
+                </li>
+                <li>
+                  <a
                     href={WHATSAPP_CHANNEL_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-emerald-300 hover:text-emerald-200 font-bold flex items-center gap-1.5 transition-colors"
+                    className="text-emerald-300 hover:text-emerald-200 font-bold flex items-center justify-center sm:justify-start gap-1.5 transition-colors"
                   >
-                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <MessageCircle className="w-4 h-4 fill-current shrink-0" />
                     <span>WhatsApp: NIGERIA RECRUITMENT UPDATE</span>
                   </a>
                 </li>
-                <li><Link to="/privacy" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link></li>
+                <li className="pt-2"><Link to="/privacy" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/terms" className="hover:text-yellow-400 transition-colors">Terms & Conditions</Link></li>
                 <li><Link to="/disclaimer" className="hover:text-yellow-400 transition-colors">Disclaimer & Anti-Fraud</Link></li>
               </ul>
@@ -225,21 +275,33 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </footer>
 
-      {/* Floating Direct WhatsApp Channel Button */}
-      <a
-        href={WHATSAPP_CHANNEL_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Follow NIGERIA RECRUITMENT UPDATE on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95 border-2 border-white/30 font-bold text-xs sm:text-sm group"
-      >
-        <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-        </span>
-        <MessageCircle className="w-5 h-5 fill-current text-white" />
-        <span className="hidden sm:inline font-black tracking-wide">Follow WhatsApp Channel</span>
-      </a>
+      {/* Floating Direct Community Channels Action Buttons */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2.5">
+        <a
+          href={TELEGRAM_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Join Telegram Discussion Channel"
+          className="flex items-center gap-2 px-3.5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-full shadow-xl transition-all hover:scale-105 active:scale-95 border-2 border-white/40 font-bold text-xs group"
+        >
+          <TelegramIcon className="w-4 h-4 text-white" />
+          <span className="hidden sm:inline font-bold tracking-wide">Telegram Discussion</span>
+        </a>
+        <a
+          href={WHATSAPP_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow NIGERIA RECRUITMENT UPDATE on WhatsApp"
+          className="flex items-center gap-2.5 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95 border-2 border-white/40 font-bold text-xs sm:text-sm group"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+          </span>
+          <MessageCircle className="w-4 h-4 fill-current text-white" />
+          <span className="hidden sm:inline font-black tracking-wide">WhatsApp Channel</span>
+        </a>
+      </div>
 
       <InstallPrompt />
     </div>

@@ -13,6 +13,7 @@ import {
   RecruitmentFAQ,
   searchFAQs
 } from '../services/recruitmentFAQs';
+import TelegramIcon from './TelegramIcon';
 import { FAQPageSchema } from './StructuredData';
 
 interface SearchableFAQSectionProps {
@@ -429,26 +430,37 @@ export const SearchableFAQSection: React.FC<SearchableFAQSectionProps> = ({
       )}
 
       {/* Community / Still Need Help Banner */}
-      <div className="bg-gradient-to-r from-emerald-900 to-slate-900 text-white rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
-        <div className="space-y-1 text-center sm:text-left">
-          <h4 className="text-sm sm:text-base font-bold text-white flex items-center justify-center sm:justify-start gap-2">
+      <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-slate-900 text-white rounded-2xl p-5 sm:p-6 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-md">
+        <div className="space-y-1 text-center lg:text-left">
+          <h4 className="text-sm sm:text-base font-bold text-white flex items-center justify-center lg:justify-start gap-2">
             <MessageCircle className="w-4 h-4 text-emerald-400" />
             Didn't find what you are looking for?
           </h4>
           <p className="text-xs text-slate-300 max-w-xl">
-            Join the <strong>NIGERIA RECRUITMENT UPDATE</strong> WhatsApp channel to ask recruitment questions, get verification on rumors, and receive daily breaking shortlist notifications.
+            Join the <strong>NIGERIA RECRUITMENT UPDATE</strong> channels on WhatsApp and Telegram to ask recruitment questions, get verification on rumors, and discuss exam tips with thousands of applicants.
           </p>
         </div>
 
-        <a
-          href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="shrink-0 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm transition-all flex items-center gap-2 shadow-md active:scale-95"
-        >
-          <MessageCircle className="w-4 h-4 fill-current" />
-          Join WhatsApp Channel
-        </a>
+        <div className="flex flex-col sm:flex-row items-center gap-2 shrink-0 w-full sm:w-auto">
+          <a
+            href="https://t.me/recruitmenttracker"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
+          >
+            <TelegramIcon className="w-4 h-4" />
+            Telegram Discussion
+          </a>
+          <a
+            href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
+          >
+            <MessageCircle className="w-4 h-4 fill-current" />
+            WhatsApp Channel
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -27,6 +27,19 @@ export const FastActionCard: React.FC<FastActionCardProps> = ({
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   })();
 
+  const getActionSlug = (b: string) => {
+    const lower = b.toLowerCase();
+    if (lower.includes('police')) return 'police';
+    if (lower.includes('army')) return 'army';
+    if (lower.includes('navy')) return 'navy';
+    if (lower.includes('civil') || lower.includes('nscdc') || lower.includes('defence')) return 'civil-defence';
+    if (lower.includes('immigration') || lower.includes('nis')) return 'immigration';
+    if (lower.includes('customs')) return 'customs';
+    return null;
+  };
+
+  const actionSlug = getActionSlug(branch);
+
   const cleanDomain = (() => {
     try {
       const url = new URL(portalUrl);
@@ -164,6 +177,39 @@ export const FastActionCard: React.FC<FastActionCardProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Candidate Direct Action Sitelinks (Internal Linking) */}
+        {actionSlug && (
+          <div className="pt-2 border-t border-gray-800/80 flex flex-wrap items-center gap-2">
+            <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider shrink-0 mr-1">
+              Direct Actions:
+            </span>
+            <Link
+              to={`/${actionSlug}-print-confirmation-slip`}
+              className="px-2.5 py-1 bg-gray-800/90 hover:bg-gray-700 text-gray-200 hover:text-white rounded-md text-[11px] font-medium border border-gray-700 transition-colors"
+            >
+              📄 Print Slip
+            </Link>
+            <Link
+              to={`/${actionSlug}-guarantor-form`}
+              className="px-2.5 py-1 bg-gray-800/90 hover:bg-gray-700 text-gray-200 hover:text-white rounded-md text-[11px] font-medium border border-gray-700 transition-colors"
+            >
+              ✍️ Guarantor Form
+            </Link>
+            <Link
+              to={`/${actionSlug}-recruitment-portal-login`}
+              className="px-2.5 py-1 bg-gray-800/90 hover:bg-gray-700 text-gray-200 hover:text-white rounded-md text-[11px] font-medium border border-gray-700 transition-colors"
+            >
+              🔐 Portal Login
+            </Link>
+            <Link
+              to={`/${actionSlug}-update-documents`}
+              className="px-2.5 py-1 bg-gray-800/90 hover:bg-gray-700 text-gray-200 hover:text-white rounded-md text-[11px] font-medium border border-gray-700 transition-colors"
+            >
+              🔄 Update Documents
+            </Link>
+          </div>
+        )}
 
         {/* Anti-Scam Bottom Trust Note */}
         <div className="pt-3 border-t border-gray-800/80 flex items-center justify-between gap-3 text-[11px] text-gray-400">

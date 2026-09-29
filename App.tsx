@@ -14,6 +14,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
 import Disclaimer from './pages/Disclaimer';
 import ScrollToTop from './components/ScrollToTop';
+import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker';
 import GuidesHub from './pages/GuidesHub';
 import GuideDetail from './pages/GuideDetail';
 import BlogHub from './pages/BlogHub';
@@ -28,6 +29,7 @@ import ShortlistHub from './pages/ShortlistHub';
 import WhichFormIsOut from './pages/WhichFormIsOut';
 import NavyRecruitmentBatch39 from './pages/NavyRecruitmentBatch39';
 import FAQHub from './pages/FAQHub';
+import PortalActionPage from './pages/PortalActionPage';
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -38,6 +40,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <GoogleAnalyticsTracker />
       <Routes>
         {/* Admin panel — full page, outside the main Layout */}
         <Route path="/admin" element={<AdminPanel />} />
@@ -58,7 +61,15 @@ const App: React.FC = () => {
         <Route path="/nigerian-navy-recruitment-2026" element={<Layout><NavyRecruitmentBatch39 /></Layout>} />
         <Route path="/navy-batch-39" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
         <Route path="/navy-batch-39-recruitment" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/navy-batch-recruitment" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/navy-batch" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/navy-registration-portal" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/is-navy-form-out" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/nigeria-navy-portal-2026" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/www-joinnigeriannavy-com-portal" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
         <Route path="/joinnigeriannavy-portal" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/joinnigeriannavy-application-form" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
+        <Route path="/login-nigerian-navy-portal" element={<Navigate to="/navy-recruitment-portal-login" replace />} />
 
         {/* Dedicated Searchable FAQ Hub */}
         <Route path="/faqs" element={<Layout><FAQHub /></Layout>} />
@@ -154,9 +165,93 @@ const App: React.FC = () => {
 
         {/* Shortlist & Screening Venues Hub */}
         <Route path="/shortlist-hub" element={<Layout><ShortlistHub /></Layout>} />
+        <Route path="/shortlist" element={<Navigate to="/shortlist-hub" replace />} />
         <Route path="/screening-venues" element={<Layout><ShortlistHub /></Layout>} />
         <Route path="/shortlisted-candidates" element={<Layout><ShortlistHub /></Layout>} />
         <Route path="/army-screening-venue" element={<Layout><ShortlistHub /></Layout>} />
+
+        {/* ======================================================== */}
+        {/* PROGRAMMATIC SEO (pSEO): CANDIDATE ACTIONS & SITELINKS  */}
+        {/* (Print Confirmation Slip, Guarantor Form, Portal Login, Update Documents) */}
+        {/* ======================================================== */}
+
+        {/* Dynamic Programmatic Catch-All Route */}
+        <Route path="/portal/:agencySlug/:actionType" element={<Layout><PortalActionPage /></Layout>} />
+
+        {/* 1. NIGERIA POLICE FORCE (NPF / PSC) */}
+        <Route path="/police-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="police" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/police-confirmation-slip" element={<Navigate to="/police-print-confirmation-slip" replace />} />
+        <Route path="/print-your-confirmation-slip" element={<Navigate to="/police-print-confirmation-slip" replace />} />
+        <Route path="/police-guarantor-form" element={<Layout><PortalActionPage agencyOverride="police" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/download-guarantor-form" element={<Navigate to="/police-guarantor-form" replace />} />
+        <Route path="/download-police-guarantor-form" element={<Navigate to="/police-guarantor-form" replace />} />
+        <Route path="/police-recruitment-portal-login" element={<Layout><PortalActionPage agencyOverride="police" actionOverride="portal-login" /></Layout>} />
+        <Route path="/police-portal-login" element={<Navigate to="/police-recruitment-portal-login" replace />} />
+        <Route path="/police-recruitment-portal" element={<Navigate to="/police-recruitment" replace />} />
+        <Route path="/police-update-documents" element={<Layout><PortalActionPage agencyOverride="police" actionOverride="update-documents" /></Layout>} />
+        <Route path="/update-your-documents" element={<Navigate to="/police-update-documents" replace />} />
+        <Route path="/psc-police" element={<Navigate to="/police-recruitment" replace />} />
+
+        {/* 2. NIGERIAN ARMY (NA) */}
+        <Route path="/army-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/army-confirmation-slip" element={<Navigate to="/army-print-confirmation-slip" replace />} />
+        <Route path="/army-guarantor-form" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/download-army-guarantor-form" element={<Navigate to="/army-guarantor-form" replace />} />
+        <Route path="/army-recruitment-portal-login" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="portal-login" /></Layout>} />
+        <Route path="/army-portal-login" element={<Navigate to="/army-recruitment-portal-login" replace />} />
+        <Route path="/army-update-documents" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="update-documents" /></Layout>} />
+
+        {/* 3. NIGERIAN NAVY (NN) */}
+        <Route path="/navy-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="navy" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/navy-confirmation-slip" element={<Navigate to="/navy-print-confirmation-slip" replace />} />
+        <Route path="/navy-batch-39-print-slip" element={<Navigate to="/navy-print-confirmation-slip" replace />} />
+        <Route path="/navy-guarantor-form" element={<Layout><PortalActionPage agencyOverride="navy" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/download-navy-guarantor-form" element={<Navigate to="/navy-guarantor-form" replace />} />
+        <Route path="/navy-recruitment-portal-login" element={<Layout><PortalActionPage agencyOverride="navy" actionOverride="portal-login" /></Layout>} />
+        <Route path="/navy-portal-login" element={<Navigate to="/navy-recruitment-portal-login" replace />} />
+        <Route path="/joinnigeriannavy-login" element={<Navigate to="/navy-recruitment-portal-login" replace />} />
+        <Route path="/navy-update-documents" element={<Layout><PortalActionPage agencyOverride="navy" actionOverride="update-documents" /></Layout>} />
+
+        {/* 4. CIVIL DEFENCE (NSCDC / CDCFIB) */}
+        <Route path="/civil-defence-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/nscdc-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/cdcfib-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/civil-defence-guarantor-form" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/nscdc-guarantor-form" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/cdcfib-guarantor-form" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/cdcfib-portal-login" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="portal-login" /></Layout>} />
+        <Route path="/civil-defence-portal-login" element={<Navigate to="/cdcfib-portal-login" replace />} />
+        <Route path="/nscdc-portal-login" element={<Navigate to="/cdcfib-portal-login" replace />} />
+        <Route path="/cdcfib-recruitment-portal-login" element={<Navigate to="/cdcfib-portal-login" replace />} />
+        <Route path="/civil-defence-recruitment-portal-login" element={<Navigate to="/cdcfib-portal-login" replace />} />
+        <Route path="/nscdc-recruitment-portal-login" element={<Navigate to="/cdcfib-portal-login" replace />} />
+        <Route path="/cdcfib-update-documents" element={<Layout><PortalActionPage agencyOverride="civil-defence" actionOverride="update-documents" /></Layout>} />
+        <Route path="/civil-defence-update-documents" element={<Navigate to="/cdcfib-update-documents" replace />} />
+        <Route path="/nscdc-update-documents" element={<Navigate to="/cdcfib-update-documents" replace />} />
+
+        {/* 5. NIGERIA IMMIGRATION SERVICE (NIS) */}
+        <Route path="/immigration-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="immigration" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/nis-print-confirmation-slip" element={<Navigate to="/immigration-print-confirmation-slip" replace />} />
+        <Route path="/immigration-guarantor-form" element={<Layout><PortalActionPage agencyOverride="immigration" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/nis-guarantor-form" element={<Navigate to="/immigration-guarantor-form" replace />} />
+        <Route path="/immigration-portal-login" element={<Layout><PortalActionPage agencyOverride="immigration" actionOverride="portal-login" /></Layout>} />
+        <Route path="/immigration-recruitment-portal-login" element={<Navigate to="/immigration-portal-login" replace />} />
+        <Route path="/nis-portal-login" element={<Navigate to="/immigration-portal-login" replace />} />
+        <Route path="/nis-recruitment-portal-login" element={<Navigate to="/immigration-portal-login" replace />} />
+        <Route path="/immigration-update-documents" element={<Layout><PortalActionPage agencyOverride="immigration" actionOverride="update-documents" /></Layout>} />
+        <Route path="/nis-update-documents" element={<Navigate to="/immigration-update-documents" replace />} />
+
+        {/* 6. NIGERIA CUSTOMS SERVICE (NCS) */}
+        <Route path="/customs-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="customs" actionOverride="confirmation-slip" /></Layout>} />
+        <Route path="/ncs-print-confirmation-slip" element={<Navigate to="/customs-print-confirmation-slip" replace />} />
+        <Route path="/customs-guarantor-form" element={<Layout><PortalActionPage agencyOverride="customs" actionOverride="guarantor-form" /></Layout>} />
+        <Route path="/ncs-guarantor-form" element={<Navigate to="/customs-guarantor-form" replace />} />
+        <Route path="/customs-portal-login" element={<Layout><PortalActionPage agencyOverride="customs" actionOverride="portal-login" /></Layout>} />
+        <Route path="/customs-recruitment-portal-login" element={<Navigate to="/customs-portal-login" replace />} />
+        <Route path="/ncs-portal-login" element={<Navigate to="/customs-portal-login" replace />} />
+        <Route path="/ncs-recruitment-portal-login" element={<Navigate to="/customs-portal-login" replace />} />
+        <Route path="/customs-update-documents" element={<Layout><PortalActionPage agencyOverride="customs" actionOverride="update-documents" /></Layout>} />
+        <Route path="/ncs-update-documents" element={<Navigate to="/customs-update-documents" replace />} />
 
         {/* Redirects for legacy utilities */}
         <Route path="/passport-resizer" element={<Navigate to="/guides" replace />} />
@@ -164,8 +259,6 @@ const App: React.FC = () => {
         <Route path="/recruitment-photo-resizer" element={<Navigate to="/guides" replace />} />
 
         {/* Agency Hubs & Specialized In-Demand Portals */}
-        <Route path="/navy-batch-recruitment" element={<Layout><AgencyHub agencySlug="navy-batch" /></Layout>} />
-        <Route path="/navy-batch" element={<Layout><AgencyHub agencySlug="navy-batch" /></Layout>} />
         <Route path="/navy-dssc-recruitment" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
         <Route path="/navy-dssc" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
         <Route path="/dssc-recruitment" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />

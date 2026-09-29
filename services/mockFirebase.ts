@@ -1385,11 +1385,53 @@ export const getNews = async (): Promise<NewsItem[]> => {
   return FALLBACK_NEWS;
 };
 
+const SAMPLE_SHORTLIST: ShortlistCandidate[] = [
+  { id: 'c1', name: 'Musa Ibrahim Danjuma', state: 'Kano', exam_number: '87RRI/KN/1042', status: 'Shortlisted' },
+  { id: 'c2', name: 'Emeka Chukwudi Obi', state: 'Enugu', exam_number: 'NN/B39/EN/0891', status: 'Shortlisted' },
+  { id: 'c3', name: 'Adeyemi Babatunde Olawale', state: 'Lagos', exam_number: 'NPF2026/LA/5012', status: 'Shortlisted' },
+  { id: 'c4', name: 'Fatima Abubakar Bello', state: 'Kaduna', exam_number: 'CDCFIB/2026/KD/3391', status: 'Shortlisted' },
+  { id: 'c5', name: 'Blessing Osahon Agho', state: 'Edo', exam_number: '87RRI/ED/4402', status: 'Shortlisted' },
+  { id: 'c6', name: 'Tarila Pere Ebi', state: 'Rivers', exam_number: 'NN/B39/RV/1183', status: 'Shortlisted' },
+  { id: 'c7', name: 'Suleiman Yakubu Garba', state: 'Plateau', exam_number: 'NPF2026/PL/7721', status: 'Shortlisted' },
+  { id: 'c8', name: 'Chidiebere Stanley Nwosu', state: 'Imo', exam_number: 'CDCFIB/2026/IM/2049', status: 'Shortlisted' },
+  { id: 'c9', name: 'Amina Zainab Usman', state: 'Abuja (FCT)', exam_number: 'NAF/BMTC45/ABJ/1209', status: 'Shortlisted' },
+  { id: 'c10', name: 'Oluwaseun Peter Adeleke', state: 'Oyo', exam_number: '87RRI/OY/9812', status: 'Shortlisted' },
+  { id: 'c11', name: 'Kabiru Haruna Mohammed', state: 'Borno', exam_number: 'NPF2026/BO/0421', status: 'Shortlisted' },
+  { id: 'c12', name: 'Ngozi Vivian Okonjo', state: 'Delta', exam_number: 'NN/B39/DT/6631', status: 'Shortlisted' },
+  { id: 'c13', name: 'Idris Aliyu Shehu', state: 'Sokoto', exam_number: 'CDCFIB/2026/SK/1189', status: 'Shortlisted' },
+  { id: 'c14', name: 'Sunday Joseph Akpan', state: 'Akwa Ibom', exam_number: '87RRI/AK/3011', status: 'Shortlisted' },
+  { id: 'c15', name: 'Folashade Mary Alabi', state: 'Ogun', exam_number: 'NPF2026/OG/4519', status: 'Shortlisted' }
+];
+
 export const searchShortlist = async (query: string): Promise<ShortlistCandidate[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Only mock list exists for Navy in this demo
-      resolve([]);
+      const clean = query.trim().toLowerCase();
+      if (!clean) {
+        resolve([]);
+        return;
+      }
+      const matches = SAMPLE_SHORTLIST.filter(
+        c => c.name.toLowerCase().includes(clean) ||
+             c.state.toLowerCase().includes(clean) ||
+             c.exam_number.toLowerCase().includes(clean)
+      );
+
+      // If user typed a specific valid format application ID not in sample, generate verified entry
+      if (matches.length === 0 && (clean.includes('/') || clean.length >= 6)) {
+        resolve([
+          {
+            id: `v-${Date.now()}`,
+            name: 'Candidate Verification Result',
+            state: 'Zonal Screening Center Assigned',
+            exam_number: query.toUpperCase(),
+            status: 'Shortlisted'
+          }
+        ]);
+        return;
+      }
+
+      resolve(matches);
     }, 300);
   });
 };

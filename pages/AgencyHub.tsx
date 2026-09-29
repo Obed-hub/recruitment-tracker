@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   Shield, Calendar, Clock, ArrowRight, BookOpen, Award, CheckCircle,
   XCircle, AlertCircle, MapPin, Briefcase, CircleDollarSign, Search,
-  FileText, Info, ListChecks, ExternalLink, HelpCircle
+  FileText, Info, ListChecks, ExternalLink, HelpCircle,
+  LogIn, RefreshCw, Download
 } from 'lucide-react';
 import { subscribeToRecruitments, searchShortlist } from '../services/firebase';
 import { RecruitmentUpdate, Branch, BRANCH_TO_SLUG, SLUG_TO_BRANCH } from '../types';
@@ -1486,6 +1487,163 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
         cbtSlug={BRANCH_TO_SLUG[staticData.branch] || agencySlug}
         onOpenChecklist={() => setActiveTab('requirements')}
       />
+
+      {/* Google Sitelinks & Deep-Action Navigator (Programmatic Action Matrix) */}
+      {(() => {
+        const actionBase = (() => {
+          if (agencySlug === 'police') return 'police';
+          if (agencySlug === 'army') return 'army';
+          if (agencySlug === 'navy' || agencySlug === 'navy-batch' || agencySlug === 'navy-dssc') return 'navy';
+          if (agencySlug === 'civildefence' || agencySlug === 'civil-defence' || agencySlug === 'nscdc') return 'civil-defence';
+          if (agencySlug === 'immigration' || agencySlug === 'nis') return 'immigration';
+          if (agencySlug === 'customs') return 'customs';
+          return 'police';
+        })();
+
+        return (
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 mb-8 text-white shadow-xl relative overflow-hidden">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-slate-800 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-1">
+                  ⚡ Google Sitelinks & Direct Candidate Actions
+                </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                  Official {staticData.name} Portal Actions (2026)
+                </h2>
+              </div>
+              <span className="text-xs bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-slate-300 font-medium">
+                100% Free • Verified Portal URLs
+              </span>
+            </div>
+
+            {/* 4 Core Google Sitelink Action Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              {/* 1. Print Confirmation Slip */}
+              <Link
+                to={`/${actionBase}-print-confirmation-slip`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Print Confirmation Slip
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Reprint candidate summary sheet, screening barcode, and exam passes.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Reprint Slip Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+
+              {/* 2. Download Guarantor Form */}
+              <Link
+                to={`/${actionBase}-guarantor-form`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Download className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Download Guarantor Form
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Official PDF template, eligible ranks (GL 08+), court oaths & passport rules.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Get Form & Stamping</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+
+              {/* 3. Portal Login / Dashboard */}
+              <Link
+                to={`/${actionBase}-recruitment-portal-login`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <LogIn className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Recruitment Portal Login
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Official candidate dashboard URL, password reset, and 504 timeout fixes.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Login Dashboard</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+
+              {/* 4. Update Your Documents */}
+              <Link
+                to={`/${actionBase}-update-documents`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <RefreshCw className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Update Your Documents
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    How to re-upload clear O-Level credentials, fix NIN errors & update LGA certificates.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Correction Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+            </div>
+
+            {/* Google "People Also Search For" Cluster (Exact Screenshot Replicant) */}
+            <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1.5">
+                <Search className="w-3.5 h-3.5 text-emerald-400" />
+                People also search for:
+              </span>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  to={`/${actionBase}-recruitment-portal-login`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} recruitment portal login
+                </Link>
+                <Link
+                  to={`/${actionBase}-print-confirmation-slip`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} confirmation slip
+                </Link>
+                <Link
+                  to={`/${actionBase}-guarantor-form`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} guarantor form pdf
+                </Link>
+                <Link
+                  to={`/${agencySlug}-salary`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} salary structure 2026
+                </Link>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content (Tabs) */}

@@ -2,22 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, ExternalLink, Share2, CheckCircle2, Shield, ArrowRight, Bell, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const NavyBatch39Banner: React.FC = () => {
-  // Target opening date: October 2, 2026 00:00:00 WAT (UTC+1)
-  const targetDate = new Date('2026-10-02T00:00:00+01:00').getTime();
+interface TimeState {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  phase: 'upcoming' | 'live' | 'closed';
+}
 
-  const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-    isLive: boolean;
-  }>({
+const NavyBatch39Banner: React.FC = () => {
+  // Official Opening: 2 October 2026 00:00:00 WAT (UTC+1)
+  // Official Closing: 31 October 2026 23:59:59 WAT (UTC+1)
+  const openDate = new Date('2026-10-02T00:00:00+01:00').getTime();
+  const closeDate = new Date('2026-10-31T23:59:59+01:00').getTime();
+
+  const [timeState, setTimeState] = useState<TimeState>({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
-    isLive: false,
+    phase: 'upcoming',
   });
 
   const [copied, setCopied] = useState(false);
@@ -25,30 +29,35 @@ const NavyBatch39Banner: React.FC = () => {
   useEffect(() => {
     const calculateTime = () => {
       const now = new Date().getTime();
-      const difference = targetDate - now;
 
-      if (difference <= 0) {
-        setTimeLeft({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-          isLive: true,
-        });
+      if (now < openDate) {
+        // Phase 1: Countdown to Opening
+        const diff = openDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        setTimeState({ days, hours, minutes, seconds, phase: 'upcoming' });
+      } else if (now <= closeDate) {
+        // Phase 2: Portal Live - Countdown to Closing
+        const diff = closeDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        setTimeState({ days, hours, minutes, seconds, phase: 'live' });
       } else {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        setTimeLeft({ days, hours, minutes, seconds, isLive: false });
+        // Phase 3: Registration Closed - Screening & Shortlist Stage
+        setTimeState({ days: 0, hours: 0, minutes: 0, seconds: 0, phase: 'closed' });
       }
     };
 
     calculateTime();
     const timer = setInterval(calculateTime, 1000);
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, [openDate, closeDate]);
+
+  const SITE_NAVY_BATCH_39_URL = 'https://recruitmenttracker.com.ng/nigerian-navy-recruitment-2026';
 
   const shareText = encodeURIComponent(
     `🚨 BREAKING: Nigerian Navy Recruitment 2026 (Batch 39) has been officially announced!\n\n` +
@@ -59,13 +68,13 @@ const NavyBatch39Banner: React.FC = () => {
     `1. Seaman / Naval Ratings\n` +
     `2. Non-Commissioned Officers (NCOs)\n` +
     `3. Commissioned Officers\n\n` +
-    `Check full requirements, age limit & application guide here:\n` +
-    `https://recruitmenttracker.com.ng/navy-batch-recruitment`
+    `Check full requirements, age limit & application guide on Recruitment Tracker:\n` +
+    `${SITE_NAVY_BATCH_39_URL}`
   );
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(
-      `Nigerian Navy Recruitment 2026 Batch 39 opens 2 October 2026 at www.joinnigeriannavy.gov.ng. Check guide: ${window.location.origin}/navy-batch-recruitment`
+      `Nigerian Navy Recruitment 2026 Batch 39 opens 2 October 2026 at www.joinnigeriannavy.gov.ng. Check full guide: ${SITE_NAVY_BATCH_39_URL}`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
@@ -183,42 +192,61 @@ const NavyBatch39Banner: React.FC = () => {
         <div className="lg:col-span-5 bg-gradient-to-b from-white/10 to-white/5 border border-white/15 rounded-2xl p-5 backdrop-blur-sm">
           <div className="text-center mb-4">
             <span className="text-[11px] font-bold text-amber-300 uppercase tracking-widest block mb-1">
-              {timeLeft.isLive ? 'PORTAL IS NOW LIVE!' : 'LIVE OPENING COUNTDOWN'}
+              {timeState.phase === 'upcoming' && 'LIVE OPENING COUNTDOWN'}
+              {timeState.phase === 'live' && 'PORTAL IS LIVE • CLOSING COUNTDOWN'}
+              {timeState.phase === 'closed' && 'REGISTRATION CLOSED • SHORTLIST STAGE'}
             </span>
             <p className="text-xs text-slate-300">
-              {timeLeft.isLive
-                ? 'Applications are open. Apply before 31 October 2026.'
-                : 'Countdown to Portal Launch (2 October 2026)'}
+              {timeState.phase === 'upcoming' && 'Countdown to Portal Launch (Opens 2 October 2026)'}
+              {timeState.phase === 'live' && 'Applications Active. Closing deadline: 31 October 2026.'}
+              {timeState.phase === 'closed' && 'Portal closed. Nigerian Navy screening & shortlist underway.'}
             </p>
           </div>
 
-          {/* Countdown Clock Display */}
-          <div className="grid grid-cols-4 gap-2 mb-5">
-            <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
-              <span className="text-xl sm:text-2xl font-black text-white font-mono block">
-                {String(timeLeft.days).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] font-semibold text-slate-400 uppercase">Days</span>
+          {/* Countdown Clock Display or Closed Status Card */}
+          {timeState.phase !== 'closed' ? (
+            <div className="grid grid-cols-4 gap-2 mb-5">
+              <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
+                <span className="text-xl sm:text-2xl font-black text-white font-mono block">
+                  {String(timeState.days).padStart(2, '0')}
+                </span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase">Days</span>
+              </div>
+              <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
+                <span className="text-xl sm:text-2xl font-black text-white font-mono block">
+                  {String(timeState.hours).padStart(2, '0')}
+                </span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase">Hours</span>
+              </div>
+              <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
+                <span className="text-xl sm:text-2xl font-black text-white font-mono block">
+                  {String(timeState.minutes).padStart(2, '0')}
+                </span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase">Mins</span>
+              </div>
+              <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
+                <span className="text-xl sm:text-2xl font-black text-amber-400 font-mono block animate-pulse">
+                  {String(timeState.seconds).padStart(2, '0')}
+                </span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase">Secs</span>
+              </div>
             </div>
-            <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
-              <span className="text-xl sm:text-2xl font-black text-white font-mono block">
-                {String(timeLeft.hours).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] font-semibold text-slate-400 uppercase">Hours</span>
+          ) : (
+            <div className="p-4 bg-slate-950/80 border border-emerald-400/30 rounded-xl text-center mb-5 space-y-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-bold border border-emerald-400/30">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Shortlists In Progress
+              </div>
+              <p className="text-xs text-slate-300">
+                Candidates who applied can check state screening timetables and verified PDF lists.
+              </p>
+              <Link
+                to="/shortlist-hub"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-lg text-xs transition-colors"
+              >
+                View Shortlists & Screening Venues <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
-            <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
-              <span className="text-xl sm:text-2xl font-black text-white font-mono block">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] font-semibold text-slate-400 uppercase">Mins</span>
-            </div>
-            <div className="bg-slate-950/80 border border-amber-400/30 rounded-xl p-2.5 text-center">
-              <span className="text-xl sm:text-2xl font-black text-amber-400 font-mono block animate-pulse">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] font-semibold text-slate-400 uppercase">Secs</span>
-            </div>
-          </div>
+          )}
 
           {/* Scam Warning & Anti-Fraud Notice */}
           <div className="flex items-start gap-2 p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-[11px] text-amber-200 mb-4">

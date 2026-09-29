@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, BookOpen, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight, FileCheck2, MessageCircle, Share2, Check } from 'lucide-react';
+import { ArrowLeft, Calendar, CheckCircle, ExternalLink, Clock, BookOpen, ListOrdered, Shield, MapPin, Phone, BrainCircuit, ArrowRight, FileCheck2, MessageCircle, Share2, Check, FileText, ShieldCheck, LogIn, RefreshCw } from 'lucide-react';
 import { subscribeToRecruitmentById, LEGACY_TO_SLUG } from '../services/firebase';
 import { RecruitmentUpdate, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
@@ -272,6 +272,94 @@ const RecruitmentDetail: React.FC = () => {
               lastVerified={getDailyUpdatedBadge(false)}
             />
 
+            {/* Candidate Portal Actions & Sitelinks Grid */}
+            {(() => {
+              const text = (recruitment.branch + ' ' + recruitment.id).toLowerCase();
+              const actionBase = (() => {
+                if (text.includes('police')) return 'police';
+                if (text.includes('army')) return 'army';
+                if (text.includes('navy')) return 'navy';
+                if (text.includes('civil') || text.includes('nscdc') || text.includes('defence')) return 'civil-defence';
+                if (text.includes('immigration') || text.includes('nis')) return 'immigration';
+                if (text.includes('customs')) return 'customs';
+                return null;
+              })();
+
+              if (!actionBase) return null;
+
+              return (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white shadow-lg space-y-4">
+                  <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="p-1 rounded bg-emerald-500/20 text-emerald-400">
+                        <FileCheck2 className="w-4 h-4" />
+                      </span>
+                      <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+                        Official {recruitment.branch} Portal Actions & Guides
+                      </h4>
+                    </div>
+                    <span className="text-[11px] text-emerald-400 font-semibold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                      100% Free
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    <Link
+                      to={`/${actionBase}-print-confirmation-slip`}
+                      className="p-3 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 rounded-xl transition-all group block"
+                    >
+                      <FileText className="w-4 h-4 text-blue-400 mb-1.5" />
+                      <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+                        Print Slip
+                      </span>
+                      <span className="text-[10px] text-slate-400 block pt-0.5">
+                        Reprint confirmation
+                      </span>
+                    </Link>
+
+                    <Link
+                      to={`/${actionBase}-guarantor-form`}
+                      className="p-3 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 rounded-xl transition-all group block"
+                    >
+                      <ShieldCheck className="w-4 h-4 text-emerald-400 mb-1.5" />
+                      <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+                        Guarantor Form
+                      </span>
+                      <span className="text-[10px] text-slate-400 block pt-0.5">
+                        PDF & court oaths
+                      </span>
+                    </Link>
+
+                    <Link
+                      to={`/${actionBase}-recruitment-portal-login`}
+                      className="p-3 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 rounded-xl transition-all group block"
+                    >
+                      <LogIn className="w-4 h-4 text-amber-400 mb-1.5" />
+                      <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+                        Portal Login
+                      </span>
+                      <span className="text-[10px] text-slate-400 block pt-0.5">
+                        Candidate dashboard
+                      </span>
+                    </Link>
+
+                    <Link
+                      to={`/${actionBase}-update-documents`}
+                      className="p-3 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 rounded-xl transition-all group block"
+                    >
+                      <RefreshCw className="w-4 h-4 text-indigo-400 mb-1.5" />
+                      <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors block">
+                        Update Documents
+                      </span>
+                      <span className="text-[10px] text-slate-400 block pt-0.5">
+                        Correction guide
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })()}
+
             <section>
               <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Description</h3>
               <p className="text-gray-700 leading-relaxed text-lg">
@@ -462,7 +550,7 @@ const RecruitmentDetail: React.FC = () => {
                     </a>
                     <button
                       onClick={() => {
-                        navigator.clipboard.writeText(window.location.href);
+                        navigator.clipboard.writeText(`https://recruitmenttracker.com.ng/recruitments/${recruitment.id}`);
                         setCopied(true);
                         setTimeout(() => setCopied(false), 2500);
                       }}

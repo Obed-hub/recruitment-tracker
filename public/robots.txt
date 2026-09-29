@@ -19,6 +19,6 @@ Disallow: /admin
 User-agent: Mediapartners-Google
 Allow: /
 
+# Canonical Sitemaps
 Sitemap: https://recruitmenttracker.com.ng/sitemap.xml
-
-
+Sitemap: https://recruitmenttracker.com.ng/sitemap-high-priority.xml

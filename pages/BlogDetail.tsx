@@ -7,6 +7,7 @@ import { ArticleSchema, FAQPageSchema } from '../components/StructuredData';
 import AdUnit from '../components/AdUnit';
 import NextStepInterstitial from '../components/NextStepInterstitial';
 import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import TelegramIcon from '../components/TelegramIcon';
 import { getDailyUpdatedBadge, getTodayISODate } from '../services/dateUtils';
 
 const BlogDetail: React.FC = () => {
@@ -32,8 +33,10 @@ const BlogDetail: React.FC = () => {
     });
   }, [slug]);
 
+  const canonicalArticleUrl = `https://recruitmenttracker.com.ng/blog/${slug || ''}`;
+
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(canonicalArticleUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -62,7 +65,7 @@ const BlogDetail: React.FC = () => {
   }
 
   const shareText = `Check out this article: ${article.title}`;
-  const shareUrl = window.location.href;
+  const shareUrl = canonicalArticleUrl;
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' - ' + shareUrl)}`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 
@@ -287,27 +290,38 @@ const BlogDetail: React.FC = () => {
             </Link>
           </div>
 
-          {/* Official WhatsApp Channel Card */}
-          <div className="bg-gradient-to-br from-emerald-950 via-slate-900 to-green-950 border border-emerald-500/40 text-white rounded-xl p-6 shadow-md space-y-3">
+          {/* Official Community Channels Card */}
+          <div className="bg-gradient-to-br from-emerald-950 via-slate-900 to-green-950 border border-emerald-500/40 text-white rounded-xl p-5 shadow-md space-y-3">
             <div className="flex items-center gap-2">
-              <MessageCircle className="w-5 h-5 text-emerald-400 fill-current" />
-              <span className="text-[11px] font-black uppercase tracking-wider text-emerald-300">Official Channel</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span className="text-[11px] font-black uppercase tracking-wider text-emerald-300">Official Communities</span>
             </div>
             <h4 className="font-bold text-sm text-white leading-snug">
               NIGERIA RECRUITMENT UPDATE
             </h4>
             <p className="text-xs text-emerald-100/80 leading-relaxed">
-              Join over 150,000+ candidates getting direct shortlist PDFs and portal updates on WhatsApp.
+              Join 150,000+ candidates discussing questions, venues, and getting direct shortlist PDFs:
             </p>
-            <a
-              href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-lg text-xs transition-all shadow-sm active:scale-95"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              Follow on WhatsApp
-            </a>
+            <div className="space-y-2">
+              <a
+                href="https://t.me/recruitmenttracker"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-lg text-xs transition-all shadow-sm active:scale-95"
+              >
+                <TelegramIcon className="w-4 h-4" />
+                Telegram Discussion
+              </a>
+              <a
+                href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-lg text-xs transition-all shadow-sm active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                Follow on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>

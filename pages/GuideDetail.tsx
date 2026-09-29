@@ -118,6 +118,36 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ slugOverride }) => {
     return 'army';
   };
 
+  const actionBase = (() => {
+    const text = (guide.branch + ' ' + guide.title + ' ' + guide.slug).toLowerCase();
+    if (text.includes('police')) return 'police';
+    if (text.includes('army')) return 'army';
+    if (text.includes('navy')) return 'navy';
+    if (text.includes('civil') || text.includes('nscdc') || text.includes('cdcfib')) return 'civil-defence';
+    if (text.includes('immigration') || text.includes('nis')) return 'immigration';
+    if (text.includes('customs')) return 'customs';
+    return null;
+  })();
+
+  const agencySalaryUrl = (() => {
+    if (!actionBase) return '/salary-comparison';
+    if (actionBase === 'army') return '/army-salary';
+    if (actionBase === 'police') return '/police-salary';
+    if (actionBase === 'customs') return '/customs-salary';
+    if (actionBase === 'navy') return '/navy-salary';
+    if (actionBase === 'civil-defence') return '/civil-defence-salary';
+    if (actionBase === 'immigration') return '/immigration-salary';
+    return '/salary-comparison';
+  })();
+
+  const agencyHubUrl = (() => {
+    if (!actionBase) return '/recruitments';
+    if (actionBase === 'navy') return '/navy-recruitment';
+    if (actionBase === 'civil-defence') return '/civil-defence-recruitment';
+    if (actionBase === 'immigration') return '/immigration-recruitment';
+    return `/${actionBase}-recruitment`;
+  })();
+
   return (
     <div className="max-w-5xl mx-auto">
       <Link to="/guides" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors">
@@ -465,36 +495,83 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ slugOverride }) => {
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
             <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
               <Shield className="w-4 h-4 text-military-blue" />
-              <span>Essential Portal Tools</span>
+              <span>Official {guide.branch} Candidate Actions</span>
             </h4>
             <div className="space-y-2.5">
+              {actionBase ? (
+                <>
+                  <Link
+                    to={`/${actionBase}-print-confirmation-slip`}
+                    className="flex items-center justify-between p-3 bg-gray-50 hover:bg-emerald-50 hover:border-emerald-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+                  >
+                    <span>Reprint Confirmation Slip</span>
+                    <span className="text-emerald-600 font-bold">Free PDF</span>
+                  </Link>
+
+                  <Link
+                    to={`/${actionBase}-guarantor-form`}
+                    className="flex items-center justify-between p-3 bg-gray-50 hover:bg-emerald-50 hover:border-emerald-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+                  >
+                    <span>Download Guarantor Form</span>
+                    <span className="text-blue-600 font-bold">Oaths</span>
+                  </Link>
+
+                  <Link
+                    to={`/${actionBase === 'civil-defence' ? 'cdcfib-portal-login' : `${actionBase}-recruitment-portal-login`}`}
+                    className="flex items-center justify-between p-3 bg-gray-50 hover:bg-amber-50 hover:border-amber-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+                  >
+                    <span>Candidate Portal Login</span>
+                    <span className="text-amber-600 font-bold">Login</span>
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  to="/print-army-screening-slip"
+                  className="flex items-center justify-between p-3 bg-gray-50 hover:bg-emerald-50 hover:border-emerald-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+                >
+                  <span>Print Screening Slip</span>
+                  <span className="text-emerald-600 font-bold">Portal</span>
+                </Link>
+              )}
+
               <Link
-                to="/print-army-screening-slip"
-                className="flex items-center justify-between p-3 bg-gray-50 hover:bg-emerald-50 hover:border-emerald-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+                to={agencySalaryUrl}
+                className="flex items-center justify-between p-3 bg-gray-50 hover:bg-amber-50 hover:border-amber-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
               >
-                <span>Print Screening Slip</span>
-                <span className="text-emerald-600">Portal</span>
+                <span>2026 {guide.branch} Salary Scale</span>
+                <span className="text-amber-700 font-bold">CONAFSS</span>
               </Link>
+
+              <Link
+                to={`/past-questions/${getBranchPracticeSlug(guide.branch)}`}
+                className="flex items-center justify-between p-3 bg-gray-50 hover:bg-teal-50 hover:border-teal-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+              >
+                <span>Practice {guide.branch} CBT Questions</span>
+                <span className="text-teal-700 font-bold">100% Free</span>
+              </Link>
+
               <Link
                 to="/shortlist-hub"
                 className="flex items-center justify-between p-3 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
               >
-                <span>State Screening Venues</span>
-                <span className="text-military-blue">View</span>
+                <span>State Screening Venues (36 States)</span>
+                <span className="text-military-blue font-bold">Barracks</span>
               </Link>
-              <Link
-                to="/salary-comparison"
-                className="flex items-center justify-between p-3 bg-gray-50 hover:bg-amber-50 hover:border-amber-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
-              >
-                <span>2026 Salary Comparison</span>
-                <span className="text-amber-700">CONAFSS</span>
-              </Link>
+
               <Link
                 to="/eligibility"
                 className="flex items-center justify-between p-3 bg-gray-50 hover:bg-purple-50 hover:border-purple-200 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
               >
-                <span>Check Your Eligibility</span>
-                <span className="text-purple-700">Checker</span>
+                <span>Verify Age, Height & O'Level</span>
+                <span className="text-purple-700 font-bold">Checker</span>
+              </Link>
+
+              <Link
+                to={agencyHubUrl}
+                className="flex items-center justify-between p-3 bg-gray-50 hover:bg-slate-100 hover:border-slate-300 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 transition-all"
+              >
+                <span>Full {guide.branch} Enlistment Hub</span>
+                <span className="text-slate-900 font-bold">Hub</span>
               </Link>
             </div>
           </div>

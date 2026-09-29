@@ -276,7 +276,7 @@ export const GUIDES: GuideArticle[] = [
     date: '2026-09-11',
     branch: 'Navy',
     statusBadge: 'VERIFIED REGISTRATION WORKFLOW',
-    officialPortalUrl: 'https://joinnigeriannavy.com',
+    officialPortalUrl: 'https://www.joinnigeriannavy.gov.ng',
     keywords: [
       'how to apply for nigerian navy batch 39',
       'joinnigeriannavy portal registration',
@@ -285,49 +285,49 @@ export const GUIDES: GuideArticle[] = [
       'navy form submission guide'
     ],
     howToSteps: [
-      { name: 'Access Official Navy Portal', text: 'Navigate to https://joinnigeriannavy.com using a secure web browser.' },
-      { name: 'Register Candidate Account', text: 'Click on Apply Now, enter your functional email and create a password.' },
+      { name: 'Access Official Navy Portal', text: 'Navigate to https://www.joinnigeriannavy.gov.ng using a secure web browser.' },
+      { name: 'Register Candidate Account', text: 'Click on Apply Now, enter your functional email and create a strong alphanumeric password.' },
       { name: 'Validate NIMC NIN Record', text: 'Enter your 11-digit NIN to synchronize your bio-data automatically with the NIMC database.' },
-      { name: 'Select Rating Cadre', text: 'Choose Category A (General Duties) or Category B (Technical & Tradesmen).' },
-      { name: 'Upload Credentials & Passport', text: 'Upload O-Level results and a crisp passport photo compressed to under 100KB.' },
-      { name: 'Review, Submit & Print PDF Slips', text: 'Submit the application and print the Applicant Summary and Guarantor Forms.' }
+      { name: 'Select Rating Cadre', text: 'Choose Category A (General Duties / Non-Tradesmen) or Category B (Technical & Tradesmen).' },
+      { name: 'Upload Credentials & Passport', text: 'Upload clear scans of O-Level results, LGA indigene letter, and a crisp passport photo under 100KB.' },
+      { name: 'Review, Submit & Print PDF Slips', text: 'Submit the application and print the Applicant Summary, Parent Consent, and Guarantor Forms.' }
     ],
     content: [
-      'Applying for the Nigerian Navy Basic Military Training Course (BMTC) requires preparation. Minor mistakes—such as entering a birth date that does not match your National Identification Number (NIN) record or uploading blurry credential scans—can lead to disqualification before physical screening begins.',
-      'Documents and Details Required Before You Start:',
-      '• National Identification Number (NIN): Issued by NIMC (must contain 11 digits).',
-      '• O-Level Result: WAEC, NECO, GCE, or NABTEB with minimum 5 credits in not more than 2 sittings.',
-      '• Birth Certificate or Age Declaration: Sworn at an authorized high court.',
-      '• Certificate of State of Origin: Endorsed by your Local Government Chairman/Secretary.',
-      '• Digital Passport Photograph: Plain white background, clear face, size between 20KB and 100KB (JPEG format).',
-      '• Valid Email Address & Phone Number: Kept accessible throughout the exercise for test SMS updates.',
-      '6 Steps to Complete Your Nigerian Navy Batch Application:',
-      '1. Step 1: Open the Official Navy Portal at joinnigeriannavy.com.',
-      '2. Step 2: Register a New Candidate Profile with your active email.',
-      '3. Step 3: Authenticate Your NIN Record and confirm name spellings.',
+      'Applying for the Nigerian Navy Basic Military Training Course (BMTC Batch 39) requires meticulous attention to detail. Discrepancies between your National Identification Number (NIN) bio-data and educational certificates are the #1 cause of immediate disqualification.',
+      'Mandatory Credentials & Technical Requirements Before Starting:',
+      '• National Identification Number (NIN): Issued by NIMC (must contain 11 digits and verified date of birth).',
+      '• O-Level Result: WAEC, NECO, GCE, or NABTEB with minimum 5 credits in not more than 2 sittings (English and Maths compulsory).',
+      '• Birth Certificate or Age Declaration: Sworn at an authorized State or Federal High Court within 5 years.',
+      '• Certificate of State of Origin: Signed by your Local Government Chairman or Secretary.',
+      '• Digital Passport Photograph: Plain white background, full face forward, size between 20KB and 50KB (JPEG format).',
+      '• Valid Email Address & Phone Number: Kept active throughout the recruitment cycle for screening SMS and venue alerts.',
+      '6 Steps to Complete Your Nigerian Navy Batch 39 Application:',
+      '1. Step 1: Open the Official Navy Portal at www.joinnigeriannavy.gov.ng.',
+      '2. Step 2: Register a New Candidate Profile with your active email address and phone number.',
+      '3. Step 3: Authenticate Your NIN Record and confirm name spellings match your school certificates.',
       '4. Step 4: Choose Your Enlistment Category (Category A for secondary school leavers, Category B for tradesmen/technicians).',
-      '5. Step 5: Upload Credentials & Passport. Ensure your image is clear and under 100KB in standard JPG/PNG format.',
-      '6. Step 6: Review, Submit, and Print Slips (Summary Slip, Guarantor Endorsement, and Parent Consent Form).'
+      '5. Step 5: Upload Credentials & Passport. Ensure your scans are legible with zero blurriness.',
+      '6. Step 6: Review, Submit, and Print Slips (Summary Slip with Barcode, Guarantor Endorsement, and Parent Consent Form).'
     ],
     faqs: [
       {
         question: 'Can I apply for Nigerian Navy Batch 39 with awaiting results?',
-        answer: 'No. The Nigerian Navy does not accept awaiting results. All candidates must possess complete original certificates or computer printouts with verifiable grades.'
+        answer: 'No. The Nigerian Navy does not accept awaiting results. All candidates must possess complete original certificates or computer printouts with verifiable grades at the time of submission.'
       },
       {
         question: 'Can I combine WAEC and NECO results for Nigerian Navy recruitment?',
-        answer: 'Yes. Candidates can combine two sittings from WAEC, NECO, or NABTEB to complete their required 5 credits, provided English Language and Mathematics are included.'
+        answer: 'Yes. Candidates can combine two sittings from WAEC, NECO, or NABTEB to complete their required 5 credits, provided English Language and Mathematics are passed at credit level.'
       },
       {
         question: 'Who can sign as my guarantor for the Navy enlistment?',
-        answer: 'Authorized guarantors include Traditional Rulers, Civil Servants not below Grade Level 12, Police Officers not below CSP, or Military Officers from Major/Lt Commander and above.'
+        answer: 'Authorized guarantors include Traditional Rulers (First/Second Class), Civil Servants not below Grade Level 12, Police Officers not below CSP, or Military Officers from Major/Lt Commander and above.'
       }
     ]
   },
   {
     slug: 'how-to-apply-cdcfib-portal',
     title: 'How to Apply on CDCFIB Portal: NIS, NSCDC & Fire Service Guide',
-    seoTitle: 'How to Apply on CDCFIB Portal (NIS, NSCDC & Fire)',
+    seoTitle: 'How to Apply on CDCFIB Portal (NIS, NSCDC & Fire 2026)',
     description: 'Step-by-step CDCFIB recruitment guide. How to register, correct NIN mismatch errors, upload passports, and download guarantor slips without errors.',
     category: 'How-to-Apply',
     date: '2026-09-11',
@@ -349,21 +349,22 @@ export const GUIDES: GuideArticle[] = [
       { name: 'Submit & Download Slips', text: 'Generate your application confirmation slip and guarantor endorsement form.' }
     ],
     content: [
-      'The CDCFIB portal at cdcfib.career handles applications for the Civil Defence, Immigration, Correctional, and Fire services.',
-      'Key Application Stages:',
-      '1. Agency Selection: Choose between Immigration (NIS), Civil Defence (NSCDC), Federal Fire Service (FFS), or Correctional Service (NCoS).',
-      '2. Cadre Determination: Superintendent (BSc/HND, Level 08), Inspectorate (ND/NCE, Level 07/06), or Assistant (SSCE/GCE, Level 03/04).',
-      '3. Instant NIN Validation: The portal checks your name and birth date against NIMC records in real time.',
-      '4. File Compression: Passports must be in JPEG format under 100KB. Use our free photo compressor tool to avoid upload errors.'
+      'The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) hosts all enlistments exclusively on cdcfib.career.',
+      'Key Application Stages & Operational Rules:',
+      '1. Agency Selection: Choose between Immigration (NIS), Civil Defence (NSCDC), Federal Fire Service (FFS), or Correctional Service (NCoS). You cannot apply to multiple agencies in the same cycle.',
+      '2. Cadre Determination: Superintendent Cadre (BSc/HND, Level 08), Inspectorate Cadre (ND/NCE/RN, Level 07/06), or Assistant Cadre (SSCE/GCE/NABTEB, Level 03/04).',
+      '3. Instant NIN Validation: The portal checks your name and birth date against NIMC records in real time. Discrepancies block form submission.',
+      '4. File Formatting: Scanned documents must be in PDF format (under 200KB) and passport photos must be in JPEG format under 100KB on a plain white background.',
+      '5. Candidate Confirmation Slip: Immediately upon submission, save your Application ID and download your confirmation slip and referee forms.'
     ],
     faqs: [
       {
         question: 'What is the maximum passport size for CDCFIB application?',
-        answer: 'Your passport photo must not exceed 100KB and must be in JPG/JPEG format with a plain background.'
+        answer: 'Your passport photo must not exceed 100KB and must be in JPG/JPEG format with a plain white background.'
       },
       {
         question: 'How do I resolve NIN mismatch on the CDCFIB portal?',
-        answer: 'If your NIN date of birth differs from your educational certificates, you must update your records at an authorized NIMC center before completing the form.'
+        answer: 'If your NIN date of birth differs from your educational certificates, you must update your records at an authorized NIMC enrollment center before completing the form.'
       }
     ]
   },
