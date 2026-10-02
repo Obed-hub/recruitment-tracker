@@ -38,11 +38,22 @@ const KNOWN_LABELS: Record<string, string> = {
   // Status & Topic Hubs
   'is-nigerian-navy-batch-39-form-out': 'Is Nigerian Navy Batch 39 Form Out?',
   'is-nigerian-army-form-out': 'Is Nigerian Army Form Out 2026?',
+  'is-nigerian-air-force-form-out': 'Is Nigerian Air Force Form Out 2026?',
   'is-police-recruitment-form-out': 'Is Police Recruitment Form Out 2026?',
   'is-cdcfib-recruitment-form-out': 'Is CDCFIB Recruitment Form Out 2026?',
   'how-to-apply-nigerian-navy-batch': 'How to Apply Nigerian Navy Batch 39',
+  'how-to-apply-nigerian-air-force': 'How to Apply Nigerian Air Force BMTC',
   'how-to-apply-police-constable': 'How to Apply Police Constable',
   'how-to-apply-cdcfib-portal': 'How to Apply CDCFIB Portal',
+  'npf-recruitment-portal': 'Nigeria Police Recruitment Portal',
+  'nigerian-army-88-rri-recruitment': 'Nigerian Army 88 RRI Portal',
+  'nigerian-navy-dssc-recruitment': 'Nigerian Navy DSSC Portal',
+  'nis-recruitment-portal': 'Nigeria Immigration Service Portal',
+  'ndlea-recruitment-portal': 'NDLEA Recruitment Portal',
+  'frsc-recruitment-portal': 'FRSC Recruitment Portal',
+  'fcsc-recruitment-portal': 'Federal Civil Service (FCSC) Portal',
+  'teachers-recruitment-subeb': 'SUBEB Teachers Recruitment Portal',
+  'nuc-recruitment-portal': 'National Universities Commission (NUC) Portal',
   'print-army-screening-slip': 'Print Army Screening Slip',
   'nigerian-army-shortlisted-candidates-pdf': 'Nigerian Army Shortlisted Candidates PDF',
   'police-shortlisted-candidates-cbt-date': 'Police Shortlist & CBT Exam Date',
@@ -64,6 +75,7 @@ const KNOWN_LABELS: Record<string, string> = {
   'navy-update-documents': 'Navy Document Re-upload',
 
   'army-recruitment-portal-login': 'Army Portal Login',
+  'recruitment-army-mil-ng-portal-login': 'recruitment.army.mil.ng Portal Login',
   'army-guarantor-form': 'Download Army Guarantor Form',
   'army-update-documents': 'Army Document Re-upload',
 
@@ -175,12 +187,12 @@ export const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({ customItems }) => 
   const location = useLocation();
   const pathname = location.pathname;
 
-  // Do not render breadcrumbs on homepage or admin panel
-  if (pathname === '/' || pathname === '/admin' || pathname === '') {
-    return null;
-  }
-
   const steps = useMemo<BreadcrumbStep[]>(() => {
+    // Do not generate breadcrumbs on homepage or admin panel
+    if (pathname === '/' || pathname === '/admin' || pathname === '') {
+      return [];
+    }
+
     if (customItems && customItems.length > 0) {
       return customItems;
     }

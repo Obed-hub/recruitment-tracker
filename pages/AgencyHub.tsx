@@ -904,6 +904,77 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       { question: 'What is the starting Grade Level for graduates?', answer: 'Fresh graduates are commissioned at Grade Level 08 (GL 08).' }
     ]
   },
+  nuc: {
+    name: 'National Universities Commission',
+    branch: 'NUC',
+    color: 'bg-teal-750',
+    gradient: 'from-teal-800 to-emerald-950',
+    borderCol: 'border-teal-200',
+    textCol: 'text-teal-800',
+    bgLight: 'bg-teal-50/50',
+    officialPortalUrl: 'https://nuc.edu.ng/careers',
+    customSeoTitle: 'NUC Recruitment 2026: National Universities Commission Careers Portal',
+    customSeoDescription: 'Official National Universities Commission (NUC) recruitment 2026 at nuc.edu.ng/careers. Academic Planning Officers, Quality Assurance, CONTISS salary & CBT exam.',
+    scamWarning: 'OFFICIAL NUC ANTI-FRAUD ADVISORY: The National Universities Commission (NUC) does not collect application fees, sell test vouchers, or authorize third-party job agents. Enlistment into federal academic regulatory and administrative cadres is 100% free and merit-based.',
+    description: 'The National Universities Commission (NUC) is the apex regulatory agency for university education in Nigeria under the Federal Ministry of Education. Established in 1962, NUC is mandated to approve new degree programs, conduct program accreditation across all 270+ federal, state, and private universities, enforce Core Curriculum and Minimum Academic Standards (CCMAS), and maintain the Nigerian University System rankings.',
+    generalSalaryDesc: 'NUC personnel are compensated under the Consolidated Tertiary Institutions Salary Structure (CONTISS) and harmonized CONPSS, accompanied by regulatory parastatal allowances, medical coverage, and federal pension plans.',
+    ranks: [
+      { rank: 'Academic Planning Officer II (GL 08)', salary: '₦95,000 - ₦130,000 / month', description: 'Entry-level regulatory rank for B.Sc/B.Ed graduates evaluating university degree benchmarks and accreditation readiness.' },
+      { rank: 'Quality Assurance Officer I (GL 09)', salary: '₦135,000 - ₦165,000 / month', description: 'Second-tier officer cadre handling institutional audits, laboratory inspections, and academic compliance.' },
+      { rank: 'Senior Academic Analyst (GL 10/12)', salary: '₦180,000 - ₦245,000 / month', description: 'Advanced rank for Master’s/Ph.D. holders supervising university resource verifications and research grants.' }
+    ],
+    dates: {
+      portalOpen: 'Periodic via nuc.edu.ng/careers and FCSC gazette',
+      portalClose: 'Announced during active intake cycle',
+      screeningDate: 'CBT examination across 6 geopolitical zones; interviews held at NUC Secretariat, Maitama, Abuja.',
+      examDate: 'JAMB-accredited CBT centres nationwide',
+      shortlistDate: 'Published on nuc.edu.ng and emailed directly to verified applicants'
+    },
+    stepByStep: [
+      'Step 1: Visit the verified NUC career gateway at nuc.edu.ng/careers or the FCSC MDA portal.',
+      'Step 2: Review advertised directorates (Academic Planning, Quality Assurance, Research & Innovation, ICT, Establishment).',
+      'Step 3: Enter your 11-digit National Identification Number (NIN) to authenticate personal identity.',
+      'Step 4: Input university degree class (minimum Second Class Upper or Lower), graduation year, and NYSC discharge number.',
+      'Step 5: Upload clear PDF copies of degree certificates, NYSC discharge certificate, LGA origin letter, and detailed CV.',
+      'Step 6: Submit application dossier and save your NUC Application Reference Slip with your unique registration ID.'
+    ],
+    requirements: {
+      academic: [
+        'Bachelor\'s Degree (B.Sc, B.A, B.Ed, B.Eng) with a minimum of Second Class Lower (2:2); preference is given to First Class and Second Class Upper (2:1) for Academic Planning and Research portfolios.',
+        'Compulsory NYSC Discharge or Official Exemption Certificate.',
+        'Postgraduate degrees (M.Sc, M.Ed, Ph.D.) or relevant chartered credentials (NIM, CPN, ICAN) are added advantages.'
+      ],
+      physical: [
+        'Age Limit: Between 18 and 35 years old at time of application (waivers up to 40 years for specialized Ph.D. holders and senior researchers).',
+        'Open to male and female Nigerian citizens from all 36 states and the FCT (Federal Character compliant).'
+      ],
+      medical: [
+        'Must possess a certified Certificate of Medical Fitness issued by a Federal Medical Centre or government general hospital.',
+        'Satisfactory mental and physical health suitable for field accreditation travel to universities nationwide.'
+      ]
+    },
+    examInfo: {
+      subjects: [
+        'National Policy on Education & University Governance',
+        'Public Service Rules (PSR) & Financial Regulations',
+        'Critical Verbal Logic & Analytical Reasoning',
+        'General Current Affairs & Nigerian Tertiary History'
+      ],
+      duration: '60 minutes',
+      format: 'Computer-Based Test (CBT)',
+      tips: [
+        'Review the NUC Act, the Core Curriculum and Minimum Academic Standards (CCMAS), and the history of Nigerian universities.',
+        'Study Public Service Rules (PSR) chapters on disciplinary proceedings, appointments, and official secret oaths.',
+        'Speed and precision in reading comprehension and analytical problem solving are vital.'
+      ]
+    },
+    faqs: [
+      { question: 'Is the NUC recruitment application form free?', answer: 'Yes. National Universities Commission recruitment is 100% free of charge. Never pay anyone promising employment slots or exam leakages.' },
+      { question: 'Can graduates of state and private universities apply for NUC jobs?', answer: 'Absolutely. Graduates from all NUC-approved federal, state, and private universities are eligible provided their program was duly accredited.' },
+      { question: 'What degree class is required for Academic Planning Officers at NUC?', answer: 'While the minimum civil service baseline is Second Class Lower (2:2), competitive preference for Academic Planning and Quality Assurance desks is given to First Class and Second Class Upper graduates.' },
+      { question: 'Where is the National Universities Commission headquarters located?', answer: 'The NUC Secretariat is located at 26 Aguiyi Ironsi Street, Maitama District, Abuja, FCT, Nigeria.' }
+    ]
+  },
   nnpc: {
     name: 'NNPC Limited',
     branch: 'NNPC',

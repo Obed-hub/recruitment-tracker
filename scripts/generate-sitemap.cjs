@@ -35,18 +35,30 @@ const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
   // High-Intent "Is Form Out" Searches
   { url: '/is-nigerian-navy-batch-39-form-out', priority: '0.90', changefreq: 'daily' },
   { url: '/is-nigerian-army-form-out', priority: '0.90', changefreq: 'daily' },
+  { url: '/is-nigerian-air-force-form-out', priority: '0.90', changefreq: 'daily' },
   { url: '/is-police-recruitment-form-out', priority: '0.90', changefreq: 'daily' },
   { url: '/is-cdcfib-recruitment-form-out', priority: '0.90', changefreq: 'daily' },
 
   // How-to-Apply High Search Volume Hubs
+  { url: '/npf-recruitment-portal', priority: '0.95', changefreq: 'daily' },
+  { url: '/nigerian-army-88-rri-recruitment', priority: '0.94', changefreq: 'daily' },
+  { url: '/nigerian-navy-dssc-recruitment', priority: '0.93', changefreq: 'daily' },
+  { url: '/nis-recruitment-portal', priority: '0.93', changefreq: 'daily' },
+  { url: '/ndlea-recruitment-portal', priority: '0.93', changefreq: 'daily' },
+  { url: '/frsc-recruitment-portal', priority: '0.92', changefreq: 'daily' },
+  { url: '/fcsc-recruitment-portal', priority: '0.92', changefreq: 'daily' },
+  { url: '/teachers-recruitment-subeb', priority: '0.91', changefreq: 'daily' },
+  { url: '/nuc-recruitment-portal', priority: '0.92', changefreq: 'daily' },
   { url: '/how-to-apply-nigerian-navy-batch', priority: '0.90', changefreq: 'daily' },
+  { url: '/how-to-apply-nigerian-air-force', priority: '0.90', changefreq: 'daily' },
   { url: '/how-to-apply-police-constable', priority: '0.88', changefreq: 'daily' },
   { url: '/how-to-apply-cdcfib-portal', priority: '0.88', changefreq: 'daily' },
 
   // Portal Login Verification Hubs (Top Google Query)
+  { url: '/recruitment-army-mil-ng-portal-login', priority: '0.92', changefreq: 'daily' },
+  { url: '/army-recruitment-portal-login', priority: '0.90', changefreq: 'daily' },
   { url: '/navy-recruitment-portal-login', priority: '0.90', changefreq: 'daily' },
   { url: '/police-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
-  { url: '/army-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
   { url: '/cdcfib-portal-login', priority: '0.88', changefreq: 'daily' },
   { url: '/immigration-portal-login', priority: '0.85', changefreq: 'daily' },
   { url: '/customs-portal-login', priority: '0.85', changefreq: 'daily' },

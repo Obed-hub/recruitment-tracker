@@ -113,8 +113,8 @@ const RecruitmentDetail: React.FC = () => {
       description: 'Apply for Nigeria Police Force (NPF) Constable recruitment 2026 at policerecruitment.gov.ng. Check 18-25 age limit, O-Level requirements, CBT dates & salary.'
     },
     'naf-bmtc': {
-      title: 'NAF BMTC 45 Recruitment 2026: Air Force Portal & Requirements',
-      description: 'Nigerian Air Force (NAF) BMTC 45 airmen/airwomen recruitment 2026 at nafrecruitment.airforce.mil.ng. Check trade/non-trade criteria, height & screening.'
+      title: 'Nigerian Air Force Recruitment 2026: NAF Portal & BMTC Form',
+      description: 'Apply for Nigerian Air Force recruitment 2026 on nafrecruitment.airforce.mil.ng. Verified BMTC 45 airmen/airwomen requirements, 1.66m height criteria & portal login.'
     },
     'nscdc-general': {
       title: 'CDCFIB Recruitment 2026: Civil Defence & Immigration Portal',
@@ -424,34 +424,6 @@ const RecruitmentDetail: React.FC = () => {
                 </div>
               </section>
             )}
-
-            <section className="bg-gradient-to-br from-military-blue to-blue-900 rounded-xl p-6 text-white shadow-lg overflow-hidden relative">
-              <div className="absolute right-0 top-0 opacity-10">
-                <BrainCircuit className="w-32 h-32" />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-3 flex items-center">
-                  <BrainCircuit className="w-6 h-6 mr-2 text-yellow-400" />
-                  Free Past Questions Preview
-                </h3>
-                <p className="text-blue-100 mb-4 text-sm leading-relaxed">
-                  Prepare for the {recruitment.branch} recruitment aptitude test with our curated set of past questions and answers.
-                </p>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-4 border border-white/10">
-                  <div className="flex items-center justify-between text-xs mb-2 text-blue-200 uppercase tracking-tighter">
-                    <span>Sample Question</span>
-                    <span>Mathematics / General Knowledge</span>
-                  </div>
-                  <p className="text-sm font-medium">Which of these is the primary role of the {recruitment.branch} in national security?</p>
-                </div>
-                <Link
-                  to={`/past-questions/${BRANCH_TO_SLUG[recruitment.branch] || recruitment.branch}`}
-                  className="inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-military-blue font-bold rounded-lg transition-all transform hover:scale-105"
-                >
-                  Start Practicing Now <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </div>
-            </section>
 
             <section>
               <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center">

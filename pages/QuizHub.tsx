@@ -156,25 +156,6 @@ const QuizHub: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* PDF Past Questions Download Section */}
-      <div className="mt-12 bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl p-8 text-white shadow-lg overflow-hidden relative">
-        <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Download Offline Past Questions PDF</h2>
-            <p className="text-indigo-200 text-sm max-w-xl leading-relaxed">
-              Prefer studying offline? Get the comprehensive Nigerian Army, Navy, Air Force, and Police recruitment past questions and answers PDF study packs for offline preparation.
-            </p>
-          </div>
-          <a
-            href="#"
-            className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold rounded-xl transition-all shadow-md flex-shrink-0 text-center animate-pulse"
-            onClick={(e) => { e.preventDefault(); alert("Offline PDF study packs will be available for download shortly. Continue practicing with our free online CBT simulator!"); }}
-          >
-            Download PDF Study Pack
-          </a>
-        </div>
-      </div>
     </div>
   );
 };

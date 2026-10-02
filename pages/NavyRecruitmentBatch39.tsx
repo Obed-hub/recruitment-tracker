@@ -868,28 +868,6 @@ export const NavyRecruitmentBatch39: React.FC = () => {
         </div>
       </div>
 
-      {/* CBT Aptitude Test Preparation Widget */}
-      <div className="bg-gradient-to-r from-military-blue to-blue-900 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">
-            Exam Preparation
-          </span>
-          <h3 className="text-lg sm:text-xl font-black text-white">
-            Practice Nigerian Navy CBT Past Questions Free
-          </h3>
-          <p className="text-xs text-blue-100 max-w-xl">
-            Simulate the actual Computer-Based Test (CBT) covering Mathematics, English Language, Current Affairs, and Maritime Knowledge with real-time timers and instant scoring.
-          </p>
-        </div>
-
-        <Link
-          to="/past-questions/Navy"
-          className="shrink-0 px-5 py-3 rounded-xl bg-white text-military-blue hover:bg-blue-50 text-xs sm:text-sm font-black transition-all flex items-center gap-2 shadow-md"
-        >
-          Launch CBT Simulator <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-
       {/* Searchable FAQs Section (Targeting Google PAA) */}
       <SearchableFAQSection
         initialCategory="Nigerian Navy"

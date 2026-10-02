@@ -67,10 +67,10 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
   ];
 
   const recruitmentCtaUrl = (() => {
-    if (activeSlug.includes('navy')) return '/navy-batch-recruitment';
-    if (activeSlug.includes('army')) return '/army-recruitment';
-    if (activeSlug.includes('police')) return '/police-recruitment';
-    if (activeSlug.includes('airforce') || activeSlug.includes('air-force')) return '/airforce-recruitment';
+    if (activeSlug.includes('navy')) return '/is-nigerian-navy-batch-39-form-out';
+    if (activeSlug.includes('army')) return '/is-nigerian-army-form-out';
+    if (activeSlug.includes('police')) return '/is-police-recruitment-form-out';
+    if (activeSlug.includes('airforce') || activeSlug.includes('air-force')) return '/is-nigerian-air-force-form-out';
     if (activeSlug.includes('civil-defence') || activeSlug.includes('nscdc')) return '/civil-defence-recruitment';
     if (activeSlug.includes('immigration') || activeSlug.includes('nis')) return '/immigration-recruitment';
     if (activeSlug.includes('customs')) return '/customs-recruitment';

@@ -211,7 +211,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/past-questions" className="hover:text-yellow-400 transition-colors">Past Questions & CBT</Link></li>
                 <li><Link to="/guides" className="hover:text-yellow-400 transition-colors">Guides & Tutorials</Link></li>
                 <li><Link to="/print-army-screening-slip" className="text-emerald-300 hover:text-emerald-200 font-medium transition-colors">Army Tracking (armynotification)</Link></li>
+                <li><Link to="/recruitment-army-mil-ng-portal-login" className="text-emerald-300 hover:text-emerald-200 font-medium transition-colors">recruitment.army.mil.ng Login</Link></li>
+                <li><Link to="/nigerian-army-88-rri-recruitment" className="hover:text-yellow-400 transition-colors">Army 88 RRI Portal Form</Link></li>
+                <li><Link to="/npf-recruitment-portal" className="text-emerald-300 hover:text-emerald-200 font-medium transition-colors">NPF Police Recruitment Portal</Link></li>
+                <li><Link to="/nigerian-navy-dssc-recruitment" className="text-blue-300 hover:text-blue-200 font-medium transition-colors">Navy DSSC Recruitment</Link></li>
+                <li><Link to="/nis-recruitment-portal" className="text-teal-300 hover:text-teal-200 font-medium transition-colors">NIS Immigration Portal</Link></li>
+                <li><Link to="/ndlea-recruitment-portal" className="text-emerald-300 hover:text-emerald-200 font-medium transition-colors">NDLEA Recruitment Portal</Link></li>
+                <li><Link to="/frsc-recruitment-portal" className="text-amber-300 hover:text-amber-200 font-medium transition-colors">FRSC Recruitment Portal</Link></li>
+                <li><Link to="/fcsc-recruitment-portal" className="text-blue-300 hover:text-blue-200 font-medium transition-colors">Federal Civil Service (FCSC)</Link></li>
+                <li><Link to="/teachers-recruitment-subeb" className="text-emerald-300 hover:text-emerald-200 font-medium transition-colors">SUBEB Teachers Recruitment</Link></li>
+                <li><Link to="/nuc-recruitment-portal" className="text-teal-300 hover:text-teal-200 font-medium transition-colors">NUC Universities Commission</Link></li>
                 <li><Link to="/is-nigerian-army-form-out" className="hover:text-yellow-400 transition-colors">Is Army Form Out 2026?</Link></li>
+                <li><Link to="/is-nigerian-air-force-form-out" className="text-sky-300 hover:text-sky-200 font-medium transition-colors">Is Air Force Form Out 2026?</Link></li>
               </ul>
             </div>
 
@@ -219,6 +230,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <h4 className="text-white font-bold mb-4">2026 Portals & Guides</h4>
               <ul className="space-y-2 text-sm">
                 <li><Link to="/how-to-apply-nigerian-navy-batch" className="hover:text-yellow-400 transition-colors">How to Apply Navy Batch 39</Link></li>
+                <li><Link to="/how-to-apply-nigerian-air-force" className="text-sky-300 hover:text-sky-200 font-medium transition-colors">How to Apply Air Force (BMTC)</Link></li>
                 <li><Link to="/how-to-apply-cdcfib-portal" className="hover:text-yellow-400 transition-colors">CDCFIB Portal (NIS/NSCDC/Fire)</Link></li>
                 <li><Link to="/military-physical-standards-height-requirements" className="hover:text-yellow-400 transition-colors">Military Height & Standards</Link></li>
                 <li><Link to="/cdcfib-cbt-past-questions-free-practice" className="text-emerald-300 hover:text-emerald-200 transition-colors">Free CDCFIB CBT Practice</Link></li>

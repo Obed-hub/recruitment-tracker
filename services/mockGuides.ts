@@ -72,7 +72,7 @@ export const GUIDES: GuideArticle[] = [
       ]
     },
     content: [
-      'The Nigerian Army Regular Recruit Intake (RRI) and Direct Short Service Commission (DSSC) registration portal is officially hosted on recruitment.army.mil.ng.',
+      'The Nigerian Army Regular Recruit Intake (RRI) and Direct Short Service Commission (DSSC) registration portal is officially hosted on recruitment.army.mil.ng. For step-by-step account setup and sign in instructions, visit our dedicated recruitment.army.mil.ng Portal Login Guide (/recruitment-army-mil-ng-portal-login).',
       'The Federal Government and Headquarters of the Nigerian Army conduct recruitment exercises annually. The application is completely free of charge. Never pay any recruitment agent, registration officer, or third-party bank account for application scratch cards or PINs.',
       'Official Cycle Dates & Deadlines for 2026:',
       '1. Online Enlistment Flag-off: Advertised nationwide across national dailies, federal gazettes, and the official army web portal.',
@@ -174,6 +174,98 @@ export const GUIDES: GuideArticle[] = [
       {
         question: 'What is the salary of an Ordinary Seaman in the Nigerian Navy?',
         answer: 'An Ordinary Seaman earns approximately ₦78,000 to ₦86,000 per month under the CONAFSS scale, alongside offshore sailing allowances and naval medical welfare.'
+      }
+    ]
+  },
+  {
+    slug: 'is-nigerian-air-force-form-out',
+    title: 'Is Nigerian Air Force Recruitment Form Out for 2026? (BMTC 45 & DSSC Live Portal Status)',
+    seoTitle: 'Is Nigerian Air Force Form Out for 2026? Live Portal Status',
+    description: 'Find out if Nigerian Air Force (NAF) BMTC 45 airmen/airwomen recruitment form is out for 2026. Official dates from nafrecruitment.airforce.mil.ng, requirements & fee.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Air Force',
+    statusBadge: 'OFFICIAL INTAKE CYCLE PENDING / ACTIVE MONITORING',
+    officialPortalUrl: 'https://nafrecruitment.airforce.mil.ng',
+    scamNotice: 'OFFICIAL NAF NOTICE: The Nigerian Air Force application is 100% FREE. The NAF does not sell scratch cards, PIN codes, or application forms. Never pay money to any POS agent, WhatsApp group, or individual claiming to be a recruitment officer.',
+    quickAnswer: {
+      question: 'Is the Nigerian Air Force Recruitment Form Out for 2026?',
+      directAnswer: 'The Nigerian Air Force (NAF) Basic Military Training Course (BMTC Batch 45) for Airmen and Airwomen and Direct Short Service Commission (DSSC) will open on the official portal nafrecruitment.airforce.mil.ng. Enlistment is 100% free of charge. Candidates require 5 O-Level credits (WAEC/NECO/NABTEB) including English Language and Mathematics in max 2 sittings, must be aged 18 to 22 years (tradesmen up to 28), and satisfy height criteria of 1.66m (male) and 1.63m (female).',
+      statusText: 'Portal Monitored Daily • 100% Free Application',
+      statusVariant: 'info',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+        { label: 'Official Portal', value: 'nafrecruitment.airforce.mil.ng' },
+        { label: 'Age Limit', value: '18 - 22 (Non-Trades) / Up to 28 (Trades)' },
+        { label: 'Minimum Height', value: '1.66m (M) | 1.63m (F)' }
+      ]
+    },
+    keywords: [
+      'is nigerian air force form out for 2026',
+      'naf recruitment 2026',
+      'when is air force form coming out 2026',
+      'naf recruitment portal nafrecruitment.airforce.mil.ng',
+      'is air force form out',
+      'nigerian air force bmtc 45 recruitment 2026',
+      'how much is air force form',
+      'nigerian air force recruitment closing date',
+      'air force recruitment requirements 2026'
+    ],
+    quickTable: {
+      headers: ['Recruitment Metric', 'Official Air Force (NAF) Guidelines'],
+      rows: [
+        ['Enlisting Agency', 'Nigerian Air Force (Headquarters NAF, Abuja)'],
+        ['Available Cadres', 'Basic Military Training Course (BMTC 45) & DSSC 33/34'],
+        ['Authorized Application Portal', 'nafrecruitment.airforce.mil.ng'],
+        ['Application Fee', '₦0.00 (Completely Free - Zero Scratch Card)'],
+        ['Minimum Academic Qualification', '5 SSCE Credits (WAEC/NECO/NABTEB/GCE) with English & Maths (max 2 sittings)'],
+        ['Age Bracket', '18–22 years (Non-Tradesmen) | 18–28 years (Tradesmen/Specialists/Drivers)'],
+        ['Height Standards', 'Male: 1.66m (5ft 5in) | Female: 1.63m (5ft 4in)'],
+        ['Depot Training Ground', 'Military Training Centre (MTC), NAF Base Kaduna (6 Months)'],
+        ['Entry Monthly Salary', '₦105,000 – ₦125,000 (Aircraftman / 2026 CONAFSS Scale)']
+      ]
+    },
+    content: [
+      'The Nigerian Air Force (NAF) conducts nationwide recruitment for young Nigerian citizens seeking to serve as airmen, airwomen, or commissioned officers through the Basic Military Training Course (BMTC) and Direct Short Service Commission (DSSC).',
+      'Official Application Portal & Free Registration Notice:',
+      'All official registrations are hosted strictly on nafrecruitment.airforce.mil.ng. Under Federal Government and Armed Forces of Nigeria directives, the recruitment process is 100% free of charge. No payment vouchers, scratch cards, or registration bank accounts are required.',
+      'Key Air Force Recruitment Cadres Explained:',
+      '1. BMTC Non-Tradesmen (General Duties): Targeted at secondary school leavers holding SSCE/WAEC/NECO/NABTEB with 5 credits including Mathematics and English Language in not more than 2 sittings. Age requirement: 18 to 22 years old.',
+      '2. BMTC Tradesmen and Tradeswomen: Designed for candidates with vocational or technical qualifications such as National Diploma (ND), NCE, City & Guilds, or Federal Ministry of Labour Trade Test Grades 1, 2, or 3 (e.g., Aircraft Maintenance, Nursing, Lab Science, Building, Electrical Engineering, Drivers, Military Band). Age limit: 18 to 28 years.',
+      '3. Direct Short Service Commission (DSSC): Open to university graduates (B.Sc, B.Eng, MBBS, LLB) holding a minimum of Second Class Lower division with completed NYSC discharge or exemption. Age range: 20 to 30 years (medical specialists up to 35).',
+      'Physical and Medical Standards Required for NAF Enlistment:',
+      '• Height Requirements: Minimum of 1.66 meters (5 feet 5 inches) for male applicants, and 1.63 meters (5 feet 4 inches) for female applicants.',
+      '• Chest Measurement: Minimum expanded chest measurement of 0.86 meters (34 inches) for male candidates.',
+      '• Medical Cleanliness: Must be free from knock-knees, bow legs, flat feet, visual impairment (must possess normal colour vision), surgical scars, tattoo marks, and chronic medical ailments like asthma or sickle cell disease.',
+      '• Citizenship & Marital Status: Must be an unmarried Nigerian citizen by birth.',
+      'Important Anti-Scam Advisory for All Air Force Aspirants:',
+      '• Beware of Fake Portals: Fraudulent websites often use unofficial domains like .com.ng, .site, or blog pages. Always verify the domain ends in .airforce.mil.ng.',
+      '• Never Pay Anyone for "Replacement Slots": Authentic Air Force recruitment is strictly merit-based and determined by computer-based aptitude tests and physical screening scores. No recruiting officer is allocated "shortlisted quota slots" to sell.'
+    ],
+    faqs: [
+      {
+        question: 'Is the Nigerian Air Force recruitment form out for 2026?',
+        answer: 'The Nigerian Air Force announces official recruitment windows across national newspapers and at nafrecruitment.airforce.mil.ng. You can check our live tracker daily for real-time portal status updates.'
+      },
+      {
+        question: 'How much is the Nigerian Air Force form?',
+        answer: 'The Nigerian Air Force recruitment form is 100% FREE. The NAF does not charge any application fee or sell registration scratch cards.'
+      },
+      {
+        question: 'What is the age limit for Nigerian Air Force BMTC recruitment?',
+        answer: 'For Non-Tradesmen (secondary school certificate holders), the age limit is 18 to 22 years. For Tradesmen/Tradeswomen holding diplomas or trade tests, candidates can apply up to 28 years.'
+      },
+      {
+        question: 'What is the minimum height requirement for the Nigerian Air Force?',
+        answer: 'Male candidates must have a minimum height of 1.66m (5ft 5in), while female candidates must measure at least 1.63m (5ft 4in).'
+      },
+      {
+        question: 'Does the Nigerian Air Force accept awaiting results (AR)?',
+        answer: 'No. The Nigerian Air Force does not accept awaiting results. All candidates must possess complete and verified original certificates or official statements of result at the time of online application and physical screening.'
+      },
+      {
+        question: 'Where is the basic military training for Air Force recruits conducted?',
+        answer: 'Selected airmen and airwomen undergo 6 months of rigorous military training at the Military Training Centre (MTC), NAF Base Kaduna.'
       }
     ]
   },
@@ -325,18 +417,94 @@ export const GUIDES: GuideArticle[] = [
     ]
   },
   {
-    slug: 'how-to-apply-cdcfib-portal',
-    title: 'How to Apply on CDCFIB Portal: NIS, NSCDC & Fire Service Guide',
-    seoTitle: 'How to Apply on CDCFIB Portal (NIS, NSCDC & Fire 2026)',
-    description: 'Step-by-step CDCFIB recruitment guide. How to register, correct NIN mismatch errors, upload passports, and download guarantor slips without errors.',
+    slug: 'how-to-apply-nigerian-air-force',
+    title: 'How to Apply for Nigerian Air Force Recruitment 2026 (BMTC Step-by-Step Guide)',
+    seoTitle: 'How to Apply for Nigerian Air Force (2026 BMTC Step-by-Step)',
+    description: 'Step-by-step guide on how to apply for Nigerian Air Force BMTC 45 recruitment 2026 on nafrecruitment.airforce.mil.ng. Account creation, NIN sync, document upload & slip reprint.',
     category: 'How-to-Apply',
-    date: '2026-09-11',
+    date: '2026-10-02',
+    branch: 'Air Force',
+    statusBadge: 'VERIFIED NAF REGISTRATION WORKFLOW',
+    officialPortalUrl: 'https://nafrecruitment.airforce.mil.ng',
+    keywords: [
+      'how to apply for nigerian air force',
+      'how to apply for nigerian air force recruitment 2026',
+      'nafrecruitment.airforce.mil.ng portal create account',
+      'nigerian air force bmtc application steps',
+      'naf recruitment registration guide',
+      'nigerian air force print confirmation slip',
+      'naf form upload requirements',
+      'air force attestation form download'
+    ],
+    howToSteps: [
+      { name: 'Access Official NAF Portal', text: 'Open your web browser and navigate directly to https://nafrecruitment.airforce.mil.ng.' },
+      { name: 'Create Candidate Account', text: 'Click "Start Application", input your active email address, and set a strong alphanumeric password to initiate your registration.' },
+      { name: 'Authenticate NIMC NIN Details', text: 'Supply your 11-digit National Identification Number (NIN) to automatically synchronize your bio-data with the NIMC database.' },
+      { name: 'Select Enlistment Cadre', text: 'Choose Non-Tradesmen (General Duties) or Tradesmen/Tradeswomen according to your educational credentials.' },
+      { name: 'Upload Scanned Documents & Passport', text: 'Upload legible scans of your O-Level results, Certificate of Indigeneship, and white-background passport photo (size between 20KB and 50KB).' },
+      { name: 'Review, Submit & Print Slips', text: 'Review all filled fields, submit your application, and download and print your Acknowledgement Card and Attestation Form.' }
+    ],
+    content: [
+      'Applying for the Nigerian Air Force Basic Military Training Course (BMTC 45) requires careful preparation and strict adherence to portal guidelines. Any discrepancy between your National Identification Number (NIN) record and educational certificates will lead to automatic disqualification.',
+      'Mandatory Requirements & Documents Needed Before You Start:',
+      '• National Identification Number (NIN): Your 11-digit NIN slip with correct name spelling and verified birth date.',
+      '• O-Level Certificate: WAEC, NECO, GCE, or NABTEB with minimum 5 credits including English Language and Mathematics in max 2 sittings.',
+      '• Certificate of State of Origin: Signed by your Local Government Chairman or authorized Secretary.',
+      '• Birth Certificate or Court Age Declaration: Certified age declaration sworn at a High Court within the last 5 years.',
+      '• Digital Passport Photograph: Plain white background, full face view, size 20KB–50KB (JPEG/PNG format).',
+      '• Valid Email Address & Phone Number: Maintained active throughout the recruitment cycle for examination alerts.',
+      'Step-by-Step Walkthrough to Complete Your NAF Application:',
+      '1. Step 1: Open the Official Website: Navigate to nafrecruitment.airforce.mil.ng on a desktop computer or tablet for optimal formatting.',
+      '2. Step 2: Register a New Candidate Account: Provide a functional email address and a secure password. You will receive an activation code or verification link.',
+      '3. Step 3: Enter Your NIMC NIN: The system connects directly to the NIMC database. Confirm your legal name, gender, and date of birth match your academic records.',
+      '4. Step 4: Choose Your Cadre: Select either Non-Tradesmen (SSCE level) or Tradesmen (OND/NCE/Trade Test certified).',
+      '5. Step 5: Fill Academic Background & Upload Files: Enter your exam year, center number, and grades. Upload digital copies of all mandatory documents.',
+      '6. Step 6: Final Review & Submission: Double-check every field before clicking Submit. Once submitted, bio-data cannot be modified.',
+      'Critical Forms You Must Print Immediately After Submission:',
+      '• Acknowledgement Card / Confirmation Slip: Contains your unique Application Number and passport photograph with QR verification code.',
+      '• Attestation Form (Guarantor Form): Must be signed and stamped by an authorized referee (e.g. Traditional Ruler, Civil Servant GL 12+, Police Officer CSP+, or Military Officer Major/Squadron Leader+).',
+      '• Parent / Guardian Consent Form: Signed by your biological parents or legal guardians permitting enlistment.',
+      '• Local Government Area (LGA) Indigene Attestation: Validates your state and local government quota allocation.'
+    ],
+    faqs: [
+      {
+        question: 'Can I apply for Nigerian Air Force with awaiting results?',
+        answer: 'No. The Nigerian Air Force requires all applicants to have complete, verifiable results at the time of registration. Awaiting results are not entertained.'
+      },
+      {
+        question: 'Can I combine WAEC and NECO results for Air Force recruitment?',
+        answer: 'Yes. You are allowed to combine results from two sittings (e.g., WAEC and NECO, or NECO and NABTEB) to meet the 5 credits requirement, provided English and Maths are passed at credit level.'
+      },
+      {
+        question: 'Who is eligible to sign the Nigerian Air Force Attestation Form?',
+        answer: 'Authorized referees include First or Second Class Traditional Rulers, Civil Servants not below Grade Level 12, Police Officers not below Chief Superintendent of Police (CSP), or Military Officers not below Major or Squadron Leader.'
+      },
+      {
+        question: 'How can I reprint my Nigerian Air Force confirmation slip if lost?',
+        answer: 'You can log back into nafrecruitment.airforce.mil.ng using your registered email and password at any time during the active recruitment cycle to download or reprint your slips.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-apply-cdcfib-portal',
+    title: 'CDCFIB Recruitment Portal 2026: cdcfib.career Login & Application Guide',
+    seoTitle: 'CDCFIB Recruitment Portal 2026: cdcfib.career Login & Form',
+    description: 'Apply on CDCFIB recruitment portal 2026 at cdcfib.career. Official guide for Civil Defence (NSCDC), Immigration (NIS) & Fire login, NIN sync, requirements & form.',
+    category: 'How-to-Apply',
+    date: '2026-10-02',
     branch: 'Civil Defence',
-    statusBadge: 'PORTAL STEP-BY-STEP TUTORIAL',
+    statusBadge: 'CDCFIB OFFICIAL RECRUITMENT PORTAL GUIDE',
     officialPortalUrl: 'https://cdcfib.career',
     keywords: [
+      'cdcfib recruitment portal 2026',
+      'cdcfib portal',
+      'cdcfib recruitment portal',
+      'cdcfib career',
+      'cdcfib.career',
+      'cdcfib recruitment portal login',
+      'cdcfib portal 2026',
+      'cdcfib login portal',
       'how to apply on cdcfib portal',
-      'cdcfib career application guide',
       'immigration recruitment portal apply',
       'nscdc registration steps',
       'cdcfib passport upload size'
@@ -365,6 +533,895 @@ export const GUIDES: GuideArticle[] = [
       {
         question: 'How do I resolve NIN mismatch on the CDCFIB portal?',
         answer: 'If your NIN date of birth differs from your educational certificates, you must update your records at an authorized NIMC enrollment center before completing the form.'
+      }
+    ]
+  },
+  {
+    slug: 'npf-recruitment-portal',
+    title: 'Nigeria Police Recruitment Portal 2026: apply.policerecruitment.gov.ng Constable Form',
+    seoTitle: 'Police Recruitment Portal 2026: NPF Application & Screening',
+    description: 'Official Nigeria Police Force (NPF) recruitment portal 2026 at apply.policerecruitment.gov.ng. Check Constable application status, screening dates, height & NIN sync.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Police',
+    statusBadge: 'POLICE SERVICE COMMISSION (PSC) OFFICIAL PORTAL',
+    officialPortalUrl: 'https://apply.policerecruitment.gov.ng',
+    scamNotice: 'POLICE SERVICE COMMISSION (PSC) CAUTION: The NPF Constable recruitment exercise is completely FREE OF CHARGE. Do not patronize cybercafes selling fake scratch cards, or fraudsters promising special recruitment slots. Report extortion attempts to the Police Complaint Response Unit (CRU).',
+    quickAnswer: {
+      question: 'Is the Nigeria Police Recruitment Portal Open for 2026?',
+      directAnswer: 'The Nigeria Police Force (NPF) Constable recruitment portal operates via apply.policerecruitment.gov.ng under the supervision of the Police Service Commission (PSC). Registration is 100% free. Candidates must be Nigerian citizens aged 18 to 25, possess at least 5 O-Level credits (including English Language and Mathematics) in not more than two sittings, and meet physical standards (minimum 1.67m height for males, 1.64m for females).',
+      statusText: 'NPF Portal Active • 100% Free Constable Enlistment',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Zero Charge)', highlight: true },
+        { label: 'Official Portal', value: 'apply.policerecruitment.gov.ng' },
+        { label: 'Age Bracket', value: '18 - 25 Years Old' },
+        { label: 'Minimum Height', value: '1.67m (M) | 1.64m (F)' }
+      ]
+    },
+    keywords: [
+      'police recruitment portal',
+      'npf recruitment portal',
+      'npfapplication.psc.gov.ng',
+      'police recruitment 2026',
+      'apply.policerecruitment.gov.ng',
+      'police screening dates 2026',
+      'police constable application form',
+      'police portal login',
+      'police recruitment requirements',
+      'police shortlisted candidates pdf'
+    ],
+    quickTable: {
+      headers: ['NPF Recruitment Parameter', 'Official Specification (PSC / NPF)'],
+      rows: [
+        ['Governing Authorities', 'Police Service Commission (PSC) & Nigeria Police Force (NPF)'],
+        ['Primary Application Portal', 'https://apply.policerecruitment.gov.ng'],
+        ['Available Cadres', 'General Duty Police Constables & Police Specialists (Tradesmen)'],
+        ['Academic Requirements', 'WAEC, NECO, GCE, or NABTEB with minimum 5 credits including English & Maths (max 2 sittings)'],
+        ['Age Limit', '18 to 25 years old at time of application'],
+        ['Physical Height Threshold', 'Male: 1.67m (5ft 6in) | Female: 1.64m (5ft 4.5in) | Minimum 86cm chest expand (males)'],
+        ['National Identification', 'Mandatory 11-digit National Identity Number (NIN) synchronized with NIMC'],
+        ['Recruitment Stages', 'Online Application → Physical & Credential Verification → JAMB CBT Exam → Medical Screening']
+      ]
+    },
+    howToSteps: [
+      { name: 'Access Official Portal', text: 'Navigate to https://apply.policerecruitment.gov.ng using Google Chrome or Microsoft Edge.' },
+      { name: 'Input NIN & Bio-Data', text: 'Enter your 11-digit NIN to automatically retrieve and verify your official demographic records.' },
+      { name: 'Upload Educational Documents', text: 'Upload scanned copies of your primary school certificate and WAEC/NECO statements of results.' },
+      { name: 'Complete Physical Declaration', text: 'Provide accurate height, chest measurement, and confirm absence of tattoos, piercings, or speech impediments.' },
+      { name: 'Download Screening Slip & Referee Form', text: 'Submit your entry and immediately print your Application Confirmation Slip with QR code and Guarantor Sheets.' }
+    ],
+    content: [
+      'The Nigeria Police Force (NPF), in collaboration with the Police Service Commission (PSC), conducts nationwide recruitment for General Duty Constables and Specialists through apply.policerecruitment.gov.ng.',
+      'Key Enlistment Cadres & Educational Criteria:',
+      '• General Duty Police Constables: Requires a minimum of 5 credits in WASSCE, NECO, GCE, or NABTEB, including English Language and Mathematics, obtained in no more than two sittings.',
+      '• Police Specialists (Tradesmen): Open to artisans, mechanics, drivers, electrical technicians, and medical assistants holding Trade Test Grade I, II, or III alongside basic O-Level passes.',
+      'Physical Standards & Disqualifying Conditions:',
+      '• Height: Male candidates must stand at least 1.67 meters (5 feet 6 inches) tall, while female candidates must measure at least 1.64 meters (5 feet 4.5 inches).',
+      '• Male chest measurement must expand to at least 86 centimeters (34 inches).',
+      '• Candidates with flat feet, bow legs, k-legs, defective eyesight, speech impediments, amputation, or visible body tattoos will be disqualified during physical inspection.',
+      'State Police Command Screening & Credential Verification:',
+      'Following online registration closure, candidates are invited to their respective State Police Command Headquarters across the 36 states and the FCT. You must appear in clean white T-shirts and white canvas shorts, carrying your original certificates, local government origin letter, national identity card/NIN slip, and 4 passport photographs in a transparent folder.',
+      'JAMB-Supervised Computer-Based Aptitude Test (CBT):',
+      'Candidates who scale physical screening are scheduled for the nationwide Computer-Based Test (CBT) administered in JAMB accredited centers. The examination tests General Knowledge, English Language, Basic Mathematics, and Nigerian Current Affairs.'
+    ],
+    faqs: [
+      {
+        question: 'Is the Nigeria Police recruitment portal 2026 open?',
+        answer: 'The Police Service Commission and NPF open the application window annually across national dailies and at apply.policerecruitment.gov.ng. Registration is 100% free of charge.'
+      },
+      {
+        question: 'What is the age limit for Nigeria Police Constable recruitment?',
+        answer: 'Applicants must be between 18 and 25 years of age at the time of application. Candidates over 25 are ineligible for Constable enlistment.'
+      },
+      {
+        question: 'Can I apply for Police recruitment with awaiting result?',
+        answer: 'No. The Police Service Commission strictly requires all statements of result or certificates to be fully released before application submission.'
+      },
+      {
+        question: 'How much does a newly recruited Police Constable earn in Nigeria?',
+        answer: 'Under the revised Consolidated Police Salary Structure (CONPOSS), a newly recruited Constable (Grade Level 03) earns between ₦84,000 and ₦92,000 monthly, plus uniform allowances and hazard benefits.'
+      }
+    ]
+  },
+  {
+    slug: 'nigerian-army-88-rri-recruitment',
+    title: 'Nigerian Army 88 RRI Recruitment 2026: Application Form & Portal Status',
+    seoTitle: 'Nigerian Army 88 RRI Recruitment 2026: Form & Portal Status',
+    description: 'Apply for Nigerian Army 88 Regular Recruit Intake (RRI) 2026 at recruitment.army.mil.ng. 88 RRI portal status, requirements, screening dates & slip reprint.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Army',
+    statusBadge: '88 REGULAR RECRUITS INTAKE (RRI) OFFICIAL HUB',
+    officialPortalUrl: 'https://recruitment.army.mil.ng',
+    scamNotice: 'NIGERIAN ARMY HEADQUARTERS DIRECTIVE: Nigerian Army 88 RRI registration is strictly free. Never pay money to anyone for application scratch cards, interview passes, or training camp admission. Report extortion attempts to military authorities.',
+    quickAnswer: {
+      question: 'How Do I Apply for Nigerian Army 88 RRI Recruitment 2026?',
+      directAnswer: 'To register for the 88 Regular Recruit Intake (RRI), navigate to recruitment.army.mil.ng. The form is 100% free of charge. Candidates for Non-Tradesmen must be aged 18 to 22 with at least 4 O-Level credits, while Tradesmen must be 18 to 26 years with trade test certifications. Successful recruits undergo 6 months of basic military training at Depot Nigerian Army, Zaria, Kaduna State.',
+      statusText: '88 RRI Portal Active • 100% Free Application',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Zero Fee)', highlight: true },
+        { label: 'Official Enlistment Portal', value: 'recruitment.army.mil.ng' },
+        { label: 'Tracking Mirror', value: 'tracking.armynotification.com.ng' },
+        { label: 'Depot Training Base', value: 'Depot NA, Zaria, Kaduna' }
+      ]
+    },
+    keywords: [
+      'nigerian army 88 rri recruitment form',
+      '88 rri recruitment portal',
+      'recruitment.army.mil.ng 88 rri',
+      'army 88 rri screening date',
+      'army tradesmen 88 rri',
+      '88 rri shortlisted candidates pdf',
+      'depot nigerian army 88 rri',
+      'nigerian army recruitment portal 2026 login'
+    ],
+    quickTable: {
+      headers: ['88 RRI Parameter', 'Official Nigerian Army Requirement'],
+      rows: [
+        ['Cadre Name', '88 Regular Recruit Intake (88 RRI) - Non-Trades & Tradesmen'],
+        ['Official Enlistment Portal', 'https://recruitment.army.mil.ng'],
+        ['Slip Reprint Portal', 'https://tracking.armynotification.com.ng'],
+        ['Age Limit (Non-Trades)', '18 to 22 years old on entry into Depot NA'],
+        ['Age Limit (Tradesmen/Women)', '18 to 26 years old (must hold Trade Test I, II, or III)'],
+        ['Academic Requirements', 'Minimum 4 credits in WASSCE/NECO/GCE/NABTEB including English Language'],
+        ['Physical Height Threshold', 'Male: 1.68m (5ft 6in) | Female: 1.65m (5ft 5in)'],
+        ['Basic Training Location', 'Depot Nigerian Army, Zaria, Kaduna State (6 Months)']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit recruitment.army.mil.ng', text: 'Open the verified military portal and click "Apply Now".' },
+      { name: 'Choose Cadre (Trades vs Non-Trades)', text: 'Select Non-Trades if applying with SSCE only, or Tradesmen if applying with vocational trade test certificates.' },
+      { name: 'Input NIN & Bio-Data', text: 'Enter your 11-digit NIN to sync your full name, origin, and verified date of birth.' },
+      { name: 'Upload Credentials & Passport', text: 'Upload clean scans of educational statements and a white-background passport photograph under 100KB.' },
+      { name: 'Print 88 RRI Slips', text: 'Download and print the Application Summary Sheet and Guarantor Form in multiple copies on clean A4 paper.' }
+    ],
+    content: [
+      'The Nigerian Army 88 Regular Recruit Intake (88 RRI) is the premier enlistment pipeline for young Nigerian patriots seeking to serve as soldiers in the infantry, artillery, armored corps, engineers, signals, medical corps, and intelligence corps.',
+      'Eligibility Breakdown: Non-Tradesmen vs Tradesmen:',
+      '• Non-Tradesmen/Women: Must possess 2 to 3 sittings with minimum 4 credits in WASSCE/NECO/GCE/NABTEB, including English Language. Age requirement is strictly 18 to 22 years at the date of reporting to the screening camp.',
+      '• Tradesmen/Women: Open to mechanics, masons, electricians, drivers, tailors, cooks, and medical lab technicians holding Trade Test certificates or City & Guilds qualifications. Eligible age bracket is 18 to 26 years.',
+      'Physical Standards & Screening Centers:',
+      'Physical screening takes place simultaneously across all 36 state military formations (e.g., 81 Division Garrison Lagos, 1 Division Kaduna, 2 Division Ibadan, 3 Division Jos, 6 Division Port Harcourt, 7 Division Maiduguri, 8 Division Sokoto).',
+      'Candidates must pass the 3.2km endurance run, pull-ups, push-ups, medical vital screening, and document verification.',
+      'Depot Nigerian Army Training in Zaria:',
+      'Successful candidates are transported by official military logistics to Depot Nigerian Army, Zaria, Kaduna State for 6 months of intensive military orientation, field weapon handling, tactical combat maneuvers, and drill discipline.'
+    ],
+    faqs: [
+      {
+        question: 'When will Nigerian Army 88 RRI recruitment form come out?',
+        answer: 'The Nigerian Army publishes official 88 RRI enlistment notices via national gazettes and at recruitment.army.mil.ng. Keep checking our live portal status tracker for daily updates.'
+      },
+      {
+        question: 'What is the cutoff age for Army 88 RRI?',
+        answer: 'Non-trades applicants cannot exceed 22 years of age. Tradesmen holding approved technical trade tests can apply up to 26 years of age.'
+      },
+      {
+        question: 'How much does a Nigerian Army recruit earn per month?',
+        answer: 'Under the Consolidated Armed Forces Salary Structure (CONAFSS), a newly passed-out Private earns approximately ₦77,000 to ₦85,000 monthly, plus free military barracks accommodation, subsidized rations, operational allowances, and free healthcare.'
+      },
+      {
+        question: 'Where can I reprint my 88 RRI screening slip if recruitment.army.mil.ng is slow?',
+        answer: 'Candidates can access the Army secondary mirror server at tracking.armynotification.com.ng using their registered application number and phone number.'
+      }
+    ]
+  },
+  {
+    slug: 'nigerian-navy-dssc-recruitment',
+    title: 'Nigerian Navy DSSC Recruitment 2026: Portal, Requirements & Course Schedule',
+    seoTitle: 'Nigerian Navy DSSC Recruitment 2026: Portal & Requirements',
+    description: 'Official Nigerian Navy Direct Short Service Commission (DSSC) recruitment 2026 at joinnigeriannavy.com. Check degree criteria, age limit, salary & screening.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Navy',
+    statusBadge: 'OFFICER COMMISSION (DSSC COURSE INTAKE) HUB',
+    officialPortalUrl: 'https://joinnigeriannavy.com',
+    scamNotice: 'NAVAL HEADQUARTERS NOTICE: The Nigerian Navy Direct Short Service Commission application is 100% free. The Navy will never solicit funds for shortlisted lists, aptitude test passes, or officer cadet slots. Disregard fraudulent third-party agents.',
+    quickAnswer: {
+      question: 'How to Apply for Nigerian Navy DSSC Recruitment 2026?',
+      directAnswer: 'Applications for the Nigerian Navy Direct Short Service Commission (DSSC) are submitted via joinnigeriannavy.com. Candidates must be Nigerian graduates with a First Class or Second Class Upper Division degree (or Upper Credit HND) with NYSC discharge or exemption certificates. General duty applicants must be aged 22 to 30, while medical doctors and specialists can apply up to 32 years of age. Successful cadets train at the Nigerian Naval College, Onne, Rivers State.',
+      statusText: 'Navy DSSC Portal Active • Commissioned Officer Stream',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+        { label: 'Official Enlistment Portal', value: 'joinnigeriannavy.com' },
+        { label: 'Cadet Rank on Commission', value: 'Sub-Lieutenant / Lieutenant' },
+        { label: 'Officer Training College', value: 'Naval College, Onne, Rivers' }
+      ]
+    },
+    keywords: [
+      'navy dssc recruitment portal',
+      'nigerian navy dssc recruitment 2026',
+      'joinnigeriannavy.com dssc',
+      'navy dssc requirements',
+      'navy dssc age limit',
+      'navy dssc salary',
+      'navy dssc course 29',
+      'navy dssc shortlisted candidates pdf'
+    ],
+    quickTable: {
+      headers: ['DSSC Parameter', 'Nigerian Navy Official Standard'],
+      rows: [
+        ['Commission Type', 'Direct Short Service Commission (DSSC) - Commissioned Officers'],
+        ['Official Portal', 'https://joinnigeriannavy.com'],
+        ['Academic Degree', 'B.Sc / B.Tech / B.Eng / B.A (Second Class Upper minimum) or HND (Upper Credit)'],
+        ['NYSC Requirement', 'Mandatory NYSC Discharge Certificate or official National Exemption Letter'],
+        ['General Age Limit', '22 to 30 years old at date of reporting to Naval College'],
+        ['Medical Doctors Age Limit', 'Up to 32 years for Medical Doctors (MBBS) and Dental Specialists'],
+        ['Physical Height Threshold', 'Male: 1.68m (5ft 6in) | Female: 1.65m (5ft 5in)'],
+        ['Commissioning Rank & Pay', 'Sub-Lieutenant (₦235,000 - ₦290,000/mo) / Lieutenant (Medical: ₦340,000+/mo)']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit joinnigeriannavy.com', text: 'Open the verified naval recruitment portal and click "DSSC Enlistment".' },
+      { name: 'Select Professional Branch', text: 'Choose your eligible discipline (Medical, Engineering, ICT, Logistics, Legal, Chaplaincy, or Naval Aviation).' },
+      { name: 'Upload Degree & NYSC Documents', text: 'Upload original degree certificates, NYSC discharge certificate, WAEC certificate, and local government identification.' },
+      { name: 'Complete Biometrics & NIN Authentication', text: 'Enter your 11-digit NIN for instant identity verification.' },
+      { name: 'Print DSSC Examination Slip', text: 'Download and print the candidate summary sheet with photo barcode for admission into the zonal CBT screening hall.' }
+    ],
+    content: [
+      'The Nigerian Navy Direct Short Service Commission (DSSC) offers university graduates and specialized professionals an accelerated pathway to become commissioned naval officers.',
+      'Eligible Degree Branches & Specializations:',
+      '• Seamanship / Executive: Degree holders in Nautical Science, Navigation, Marine Geography, or Mathematics.',
+      '• Marine & Weapon Engineering: B.Eng/B.Tech in Marine, Mechanical, Electrical/Electronic, Aeronautical, or Mechatronics Engineering.',
+      '• Medical & Health Sciences: Medical Doctors (MBBS), Dentists (BDS), Pharmacists (B.Pharm), Nurses (B.Sc Nursing / RN/RM), Radiographers, and Medical Laboratory Scientists.',
+      '• Information & Communications Technology (ICT): Computer Science, Software Engineering, Cybersecurity, Data Analytics, and Telecommunications.',
+      '• Logistics & Supply: B.Sc in Accounting, Economics, Supply Chain Management, Purchasing & Supply, or Business Administration.',
+      '• Legal Services: LL.B and B.L (Called to the Nigerian Bar).',
+      'Zonal Computer-Based Aptitude Test & Attire:',
+      'Shortlisted applicants sit for a Computer-Based Test at designated naval centers (Lagos, Port Harcourt, Kaduna, Makurdi, Kano, Abuja). Candidates must report in white round-neck T-shirts, navy blue shorts, white socks, and white canvas shoes.',
+      'Training at Nigerian Naval College, Onne:',
+      'Successful officer cadets undergo 9 months of intense naval military drills, maritime law, seamanship, navigation, and executive leadership training at the Nigerian Naval College, Onne, Rivers State before their official Presidential Commissioning parade.'
+    ],
+    faqs: [
+      {
+        question: 'Can Second Class Lower (2:2) apply for Navy DSSC?',
+        answer: 'The Nigerian Navy strictly requires a minimum of Second Class Upper Division (2:1) for university degree holders or Upper Credit for Higher National Diploma (HND) holders. Second Class Lower is generally ineligible unless specific rare specialist waivers are declared.'
+      },
+      {
+        question: 'What is the age limit for Nigerian Navy DSSC?',
+        answer: 'Applicants must be between 22 and 30 years of age on entry into the Naval College. Medical doctors, dentists, and chaplains/imams can be accepted up to 32 years of age.'
+      },
+      {
+        question: 'How much does a Nigerian Navy Sub-Lieutenant earn?',
+        answer: 'A newly commissioned Sub-Lieutenant earns between ₦235,000 and ₦290,000 monthly under CONAFSS, plus sea-duty allowances, hazard pay, and free military medical services.'
+      },
+      {
+        question: 'Is NYSC mandatory for Navy DSSC recruitment?',
+        answer: 'Yes. Candidates must have completed their mandatory National Youth Service Corps (NYSC) and possess an authentic Discharge Certificate or official Certificate of Exemption.'
+      }
+    ]
+  },
+  {
+    slug: 'nis-recruitment-portal',
+    title: 'Nigeria Immigration Service Recruitment 2026: cdcfib.career Portal & Form',
+    seoTitle: 'Immigration Recruitment Portal 2026: NIS cdcfib.career Form',
+    description: 'Apply on Nigeria Immigration Service (NIS) recruitment portal 2026 at cdcfib.career. Superintendent, Inspector & Assistant cadres, requirements, dates & salary.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Immigration',
+    statusBadge: 'CDCFIB / NIGERIA IMMIGRATION SERVICE (NIS) HUB',
+    officialPortalUrl: 'https://cdcfib.career',
+    scamNotice: 'MINISTRY OF INTERIOR / CDCFIB CAUTION: Application for Nigeria Immigration Service is strictly via cdcfib.career and is 100% FREE. Never pay money to recruitment syndicates or POS agents for recruitment pins or interview invitations.',
+    quickAnswer: {
+      question: 'How to Apply for Nigeria Immigration Service (NIS) Recruitment 2026?',
+      directAnswer: 'The Nigeria Immigration Service (NIS) enlists candidates through the Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) portal at cdcfib.career. Registration is completely free. Vacancies span three cadres: Superintendent Cadre (BSc/HND, Level 08, age 18-30), Inspectorate Cadre (ND/NCE/RN, Level 07/06, age 18-26), and Immigration Assistant Cadre (SSCE/GCE, Level 03/04, age 18-25).',
+      statusText: 'NIS Portal Active • Free CDCFIB Registration',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+        { label: 'Official Enlistment Portal', value: 'cdcfib.career' },
+        { label: 'Governing Board', value: 'CDCFIB / Ministry of Interior' },
+        { label: 'Minimum Height', value: '1.65m (M) | 1.60m (F)' }
+      ]
+    },
+    keywords: [
+      'immigration recruitment portal',
+      'nis recruitment portal',
+      'cdcfib.career nis',
+      'nigeria immigration recruitment 2026',
+      'nis shortlisted candidates pdf',
+      'nis screening dates',
+      'immigration assistant cadre form',
+      'cdcfib immigration portal login',
+      'nis salary structure',
+      'immigration superintendent cadre'
+    ],
+    quickTable: {
+      headers: ['NIS Cadre / Parameter', 'Official CDCFIB Requirements'],
+      rows: [
+        ['Superintendent Cadre (ASI II)', 'B.Sc or HND in relevant disciplines (Grade Level 08) | Age 18–30 | NYSC Required'],
+        ['Inspectorate Cadre (Senior Inspector)', 'ND, NCE, or Registered Nurse (RN/RM) (Grade Level 07/06) | Age 18–26'],
+        ['Immigration Assistant Cadre (IA III)', 'WAEC, NECO, GCE, or NABTEB with 4-5 credits (Grade Level 03) | Age 18–25'],
+        ['Official Application Portal', 'https://cdcfib.career'],
+        ['Physical Height Standards', 'Male: 1.65m (5ft 5in) | Female: 1.60m (5ft 3in) | Minimum 87cm chest expand (males)'],
+        ['Aptitude Test Model', 'JAMB-conducted Computer-Based Test (CBT) covering English, Current Affairs & Math'],
+        ['Training Academies', 'Immigration Training School Kano (ITSK) & Immigration Command College Umuahia'],
+        ['Entry Level Salary Range', 'IA III: ₦72,000–₦82,000 | Inspector: ₦115,000–₦135,000 | Superintendent: ₦185,000–₦240,000']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit cdcfib.career', text: 'Open the verified Ministry of Interior portal at https://cdcfib.career.' },
+      { name: 'Select Nigeria Immigration Service', text: 'Choose NIS from the agency selection panel (do not apply to multiple agencies in the same batch).' },
+      { name: 'Choose Designated Cadre', text: 'Select Superintendent (B.Sc/HND), Inspectorate (ND/NCE), or Assistant (SSCE).' },
+      { name: 'Authenticate NIN', text: 'Input your 11-digit National Identity Number to automatically pull your verified bio-data.' },
+      { name: 'Upload Credentials & Passport', text: 'Upload certificates in PDF (under 200KB) and passport photo in JPEG under 100KB on plain white background.' },
+      { name: 'Download Application & Referee Slips', text: 'Submit your entry and print your Application ID confirmation slip and guarantor forms.' }
+    ],
+    content: [
+      'The Nigeria Immigration Service (NIS), an agency of the Federal Ministry of Interior under the Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB), is tasked with border management, migration governance, and passport administration.',
+      'Detailed NIS Cadres & Eligibility:',
+      '1. Superintendent Cadre (Assistant Superintendent of Immigration II - CONPASS 08): Open to holders of First Degrees (B.Sc, B.A, B.Tech) or Higher National Diplomas (HND) in Social Sciences, Humanities, Law, Computer Science, and Engineering. NYSC discharge or exemption certificate is compulsory. Age bracket: 18 to 30 years.',
+      '2. Inspectorate Cadre (Senior Inspector of Immigration - CONPASS 07 / Assistant Inspector - CONPASS 06): Open to holders of National Diplomas (ND), National Certificates in Education (NCE), or Registered Nurses (RN/RM). Age bracket: 18 to 26 years.',
+      '3. Immigration Assistant Cadre (Immigration Assistant III - CONPASS 03): Open to holders of SSCE, NECO, GCE, or NABTEB with minimum 4 credits in not more than two sittings. Age bracket: 18 to 25 years.',
+      'JAMB-Administered CBT Screening Examination:',
+      'Shortlisted applicants are invited to take an electronic Computer-Based Test at JAMB accredited centers nationwide. The examination format tests verbal aptitude, quantitative reasoning, current affairs, and basic immigration law.',
+      'Training Schools & Regimental Drill:',
+      'Appointed officers undergo 6 months of intense regimental drill, border patrol tactics, weapon handling, and document forensics at the Immigration Training School Kano (ITSK), Immigration Command College Umuahia (ICCU), or Immigration Training School Ahoada.'
+    ],
+    faqs: [
+      {
+        question: 'What is the official website for Nigeria Immigration recruitment?',
+        answer: 'All enlistment for the Nigeria Immigration Service is hosted exclusively on the CDCFIB portal at https://cdcfib.career. Avoid fraudulent websites ending in .com or .site.'
+      },
+      {
+        question: 'Can married women apply for Nigeria Immigration Service recruitment?',
+        answer: 'Yes. Married women are eligible to apply, provided they meet the academic, height, age, and physical medical fitness criteria for their selected cadre.'
+      },
+      {
+        question: 'What is the minimum height required for Immigration recruitment?',
+        answer: 'Male candidates must be at least 1.65 meters (5ft 5in) tall, and female candidates must measure at least 1.60 meters (5ft 3in).'
+      },
+      {
+        question: 'How do I download the NIS shortlisted candidates list in PDF?',
+        answer: 'When the Civil Defence, Correctional, Fire and Immigration Services Board publishes shortlists, candidates receive SMS/email invitations and can log into cdcfib.career to download the state-by-state screening PDF lists.'
+      }
+    ]
+  },
+  {
+    slug: 'ndlea-recruitment-portal',
+    title: 'NDLEA Recruitment Portal 2026: portal.ndlea.gov.ng Application & Shortlist',
+    seoTitle: 'NDLEA Recruitment Portal 2026: Application & Shortlist PDF',
+    description: 'Official NDLEA recruitment portal 2026 at portal.ndlea.gov.ng. Check Narcotic Officer & Assistant cadres, requirements, physical assessment centers & shortlist.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'NDLEA',
+    statusBadge: 'NATIONAL DRUG LAW ENFORCEMENT AGENCY (NDLEA) OFFICIAL HUB',
+    officialPortalUrl: 'https://portal.ndlea.gov.ng',
+    scamNotice: 'NDLEA HEADQUARTERS NOTICE: NDLEA online enlistment is 100% FREE OF CHARGE. The agency does not charge fees for application forms, shortlist verification, screening interview invites, or training admission into the NDLEA Academy. Disregard fraudulent payment requests.',
+    quickAnswer: {
+      question: 'How to Apply for NDLEA Recruitment 2026 on portal.ndlea.gov.ng?',
+      directAnswer: 'Applications for the National Drug Law Enforcement Agency (NDLEA) are submitted exclusively online at portal.ndlea.gov.ng. Registration is 100% free. Vacancies cover two main operational cadres: Narcotic Officer Cadre (B.Sc / HND, GL 08, age 20-30 with NYSC) and Narcotic Assistant Cadre (SSCE / ND / NCE, GL 04-06, age 18-25). Candidates must meet minimum height requirements (1.65m for males, 1.60m for females) and pass physical assessment drills.',
+      statusText: 'NDLEA Portal Active • 100% Free Enlistment',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Zero Charge)', highlight: true },
+        { label: 'Official Enlistment Portal', value: 'portal.ndlea.gov.ng' },
+        { label: 'Officer Training Base', value: 'NDLEA Academy, Jos / PH' },
+        { label: 'Minimum Height', value: '1.65m (M) | 1.60m (F)' }
+      ]
+    },
+    keywords: [
+      'ndlea recruitment portal',
+      'ndlea recruitment 2026',
+      'portal.ndlea.gov.ng',
+      'ndlea shortlisted candidates pdf',
+      'ndlea narcotic officer cadre',
+      'ndlea narcotic assistant requirements',
+      'ndlea screening centers 2026',
+      'ndlea salary structure conpass'
+    ],
+    quickTable: {
+      headers: ['NDLEA Cadre / Parameter', 'Official Agency Standard'],
+      rows: [
+        ['Narcotic Officer Cadre (Superintendent)', 'B.Sc / HND in Law, Medicine, Pharmacy, Criminology, Cyber Security, etc. (GL 08) | Age 20–30 | NYSC Required'],
+        ['Narcotic Assistant Cadre (NASS II)', 'ND, NCE, Registered Nurse, or Technical Diploma (GL 06) | Age 18–26'],
+        ['Narcotic Assistant Cadre (NASS I)', 'SSCE, NECO, GCE, or NABTEB with minimum 4-5 credits (GL 04) | Age 18–25'],
+        ['Official Application Portal', 'https://portal.ndlea.gov.ng'],
+        ['Physical Height Threshold', 'Male: 1.65m (5ft 5in) | Female: 1.60m (5ft 3in) | Minimum 85cm chest expansion (males)'],
+        ['Screening Stages', 'Online Application → CBT Aptitude Test → Physical Assessment & Document Verification → Medicals'],
+        ['Academy Training Location', 'NDLEA Academy, Jos, Plateau State / Regional Training Centers'],
+        ['Starting Salary Structure (CONPASS)', 'NASS I: ₦75,000–₦86,000 | NASS II: ₦110,000–₦128,000 | Narcotic Officer: ₦180,000–₦235,000']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit portal.ndlea.gov.ng', text: 'Open the verified agency recruitment portal using a laptop or modern mobile browser.' },
+      { name: 'Select Desired Cadre', text: 'Choose either Narcotic Officer (B.Sc/HND) or Narcotic Assistant (SSCE/ND) based on your educational certificates.' },
+      { name: 'Enter NIN & Validate Demographic Data', text: 'Provide your 11-digit NIN to synchronize your official full name, state of origin, and date of birth.' },
+      { name: 'Upload Credentials & Passport', text: 'Upload clear scans of your degree/SSCE, local government origin letter, birth certificate, and white background passport photograph.' },
+      { name: 'Submit Application & Print Slip', text: 'Submit your profile and print your Application Slip bearing your unique NDLEA Candidate Reference Number and QR barcode.' }
+    ],
+    content: [
+      'The National Drug Law Enforcement Agency (NDLEA) is Nigeria’s primary federal agency responsible for eradicating illicit drug trafficking, narcotics production, and substance abuse across borders and metropolitan hubs.',
+      'Key Enlistment Cadres & Academic Criteria:',
+      '• Narcotic Officer Cadre (Superintendent Stream - GL 08): Open to degree holders with B.Sc, B.A, B.Tech, or HND in Law, Forensic Science, Pharmacy, Medicine, Criminology, Computer Science, Psychology, and Social Sciences. NYSC Discharge Certificate is compulsory. Age bracket: 20 to 30 years.',
+      '• Narcotic Assistant Cadre (NASS II - GL 06): Open to candidates with Ordinary National Diploma (OND), NCE, Community Health Extension Workers (CHEW), or Nursing certificates. Age bracket: 18 to 26 years.',
+      '• Narcotic Assistant Cadre (NASS I - GL 04): Open to secondary school leavers with WAEC, NECO, GCE, or NABTEB with at least 4 credits in not more than two sittings. Age bracket: 18 to 25 years.',
+      'Rigorous Physical Screening & Drug Screening Mandate:',
+      'Because of the operational demands of tactical interdiction and field operations, candidates undergo strenuous physical endurance drills, including push-ups, sit-ups, and a 3.2km road run.',
+      'Crucially, every shortlisted candidate must pass an involuntary comprehensive multi-panel drug test (screening for cannabis, cocaine, opioids, amphetamines, and tramadol) administered by NDLEA medical staff. Any trace of substance abuse leads to immediate disqualification and arrest.',
+      'NDLEA Academy Training:',
+      'Selected recruits undergo 6 to 9 months of intense regimental drill, intelligence gathering, weapons handling, undercover surveillance, and international narcotics law at the NDLEA Academy in Jos, Plateau State.'
+    ],
+    faqs: [
+      {
+        question: 'Is the NDLEA recruitment portal 2026 open?',
+        answer: 'NDLEA enlistment opens periodically under the leadership of the Agency Chairman and is hosted on portal.ndlea.gov.ng. Registration is 100% free.'
+      },
+      {
+        question: 'What is the cutoff age for NDLEA recruitment?',
+        answer: 'Applicants for Narcotic Officer positions must not exceed 30 years. Narcotic Assistant applicants must be between 18 and 25 years old at the close of the portal.'
+      },
+      {
+        question: 'Does NDLEA conduct drug screening during recruitment?',
+        answer: 'Yes. All candidates undergo a mandatory comprehensive toxicology and drug test during the physical screening exercise. Any candidate testing positive for illicit drugs is immediately rejected.'
+      },
+      {
+        question: 'How much does an NDLEA officer earn per month?',
+        answer: 'Under the Consolidated Paramilitary Salary Structure (CONPASS), a Narcotic Assistant earns between ₦75,000 and ₦86,000, while a commissioned Narcotic Officer (Assistant Superintendent of Narcotics) earns between ₦180,000 and ₦235,000 monthly plus operational allowances.'
+      }
+    ]
+  },
+  {
+    slug: 'frsc-recruitment-portal',
+    title: 'FRSC Recruitment Portal 2026: frsc.gov.ng RMA & Officer Cadre Form',
+    seoTitle: 'FRSC Recruitment Portal 2026: RMA & Officer Form Guide',
+    description: 'Official FRSC recruitment portal 2026 at frsc.gov.ng/careers. Check Road Marshal Assistant (RMA), Marshal Inspector, Officer cadre requirements & screening dates.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'FRSC',
+    statusBadge: 'FEDERAL ROAD SAFETY CORPS (FRSC) OFFICIAL RECRUITMENT HUB',
+    officialPortalUrl: 'https://frsc.gov.ng/careers',
+    scamNotice: 'FRSC CORPS MARSHAL DIRECTIVE: The Federal Road Safety Corps recruitment is 100% FREE. The Corps does not appoint intermediaries or sell scratch cards. Never transfer money to personal bank accounts for enlistment slots or interview passes.',
+    quickAnswer: {
+      question: 'How Do I Apply for FRSC Recruitment 2026 on frsc.gov.ng?',
+      directAnswer: 'Applications for the Federal Road Safety Corps (FRSC) are processed through frsc.gov.ng/careers or dedicated CDCFIB/FRSC portal links. Registration is 100% free of charge. Vacancies exist across three tiers: Officer Cadre (B.Sc/HND, GL 08, age 18-30 with NYSC), Marshal Inspectorate Cadre (ND/NCE/RN, GL 07, age 18-28), and Road Marshal Assistant (RMA) Cadre (SSCE/Trade Test, GL 03/04, age 18-25). Male candidates must measure at least 1.68m and female candidates 1.63m.',
+      statusText: 'FRSC Portal Active • 100% Free Marshal Enlistment',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Zero Fee)', highlight: true },
+        { label: 'Official Enlistment Portal', value: 'frsc.gov.ng/careers' },
+        { label: 'Training Academy', value: 'FRSC Academy, Udi, Enugu' },
+        { label: 'Minimum Height', value: '1.68m (M) | 1.63m (F)' }
+      ]
+    },
+    keywords: [
+      'frsc recruitment portal',
+      'frsc recruitment 2026',
+      'frsc.gov.ng careers',
+      'road marshal assistant rma form',
+      'frsc marshal inspector cadre',
+      'frsc screening dates 2026',
+      'frsc physical fitness test',
+      'frsc shortlisted candidates pdf'
+    ],
+    quickTable: {
+      headers: ['FRSC Cadre / Parameter', 'Official Corps Standard'],
+      rows: [
+        ['Officer Cadre (ARC - Assistant Route Commander)', 'B.Sc / HND in relevant disciplines (Grade Level 08) | Age 18–30 | NYSC Certificate Compulsory'],
+        ['Marshal Inspectorate Cadre (MI / DMI)', 'ND, NCE, Registered Nurse, or CHEW (Grade Level 07/06) | Age 18–28'],
+        ['Road Marshal Assistant II & III (RMA)', 'WAEC, NECO, GCE, or NABTEB with 3-5 credits, or Trade Test Driver/Artisan (GL 03/04) | Age 18–25'],
+        ['Official Enlistment Portal', 'https://frsc.gov.ng/careers'],
+        ['Physical Height Threshold', 'Male: 1.68m (5ft 6in) | Female: 1.63m (5ft 4in) | Minimum 86cm chest expand (males)'],
+        ['Physical Fitness Drills', '3.2km road endurance march, obstacle crossing, push-ups, and balance test'],
+        ['Officer Training Academy', 'FRSC Academy, Udi, Enugu State | RMA Training School, Kotorkoshi, Zamfara State'],
+        ['Consolidated Salary Scale (CONPASS)', 'RMA: ₦74,000–₦85,000 | Marshal Inspector: ₦118,000–₦138,000 | Officer (ARC): ₦185,000–₦245,000']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit frsc.gov.ng/careers', text: 'Open the verified Federal Road Safety Corps career portal.' },
+      { name: 'Select Operational Cadre', text: 'Select Officer Cadre (ARC), Marshal Inspectorate, or Road Marshal Assistant (RMA).' },
+      { name: 'Authenticate NIN', text: 'Enter your 11-digit NIN to sync your personal details directly from NIMC.' },
+      { name: 'Upload Credentials & Driver License (if applicable)', text: 'Upload clear scans of your degree or O-Level certificates, birth declaration, and valid drivers license for driving roles.' },
+      { name: 'Download Screening Slip & Guarantor Form', text: 'Generate your official FRSC Application Acknowledgment Slip and Guarantors Form for state physical screening.' }
+    ],
+    content: [
+      'The Federal Road Safety Corps (FRSC) is the lead traffic management, road safety administration, and highway patrol agency in Nigeria operating under the Presidency.',
+      'Detailed FRSC Cadres & Qualification Criteria:',
+      '1. Regular Marshal / Officer Cadre (Assistant Route Commander - CONPASS 08): Open to holders of First Degrees (B.Sc, B.A, B.Tech) or HND in disciplines such as Law, Transport Management, Mechanical Engineering, Computer Science, Mass Communication, and Medicine. NYSC Discharge Certificate is compulsory. Age limit: 18 to 30 years.',
+      '2. Marshal Inspectorate Cadre (Marshal Inspector - CONPASS 07): Open to holders of Higher National Diplomas (HND) or National Diplomas (ND) in Nursing, CHEW, Medical Laboratory, or NCE. Age limit: 18 to 28 years.',
+      '3. Road Marshal Assistant Cadre (RMA II & III - CONPASS 03/04): Open to candidates holding SSCE/NECO with 3 to 5 credits, or professional drivers with Trade Test Grade II/III and valid Class E Driver’s License. Age limit: 18 to 25 years.',
+      'State-Level Physical Screening & Documentation:',
+      'Screening exercises take place at designated FRSC Sector Commands across all 36 state capitals and the FCT. Candidates undergo credential verification, chest measurement, height check, medical vitals, and a compulsory 3.2km road endurance test.',
+      'FRSC Training Academies:',
+      'Appointed officers undergo regimental paramilitary training at the FRSC Academy, Udi, Enugu State, while Marshal Inspectors and Road Marshal Assistants train at the FRSC Training School, Kotorkoshi, Zamfara State.'
+    ],
+    faqs: [
+      {
+        question: 'When will FRSC recruitment form 2026 come out?',
+        answer: 'The Federal Road Safety Corps announces vacancies on national dailies and via frsc.gov.ng/careers. Registration is 100% free of charge.'
+      },
+      {
+        question: 'Can I apply for FRSC Road Marshal Assistant (RMA) with WAEC result?',
+        answer: 'Yes. Candidates with a minimum of 3 to 5 credits in WAEC, NECO, or NABTEB can apply for the Road Marshal Assistant (RMA) cadre.'
+      },
+      {
+        question: 'What is the required height for FRSC recruitment?',
+        answer: 'Male candidates must be at least 1.68m (5ft 6in) tall, and female candidates must measure at least 1.63m (5ft 4in).'
+      },
+      {
+        question: 'How much does an FRSC officer earn?',
+        answer: 'Under the CONPASS salary scale, a Road Marshal Assistant earns between ₦74,000 and ₦85,000 monthly, a Marshal Inspector earns ₦118,000 to ₦138,000, and a commissioned Assistant Route Commander (Officer) earns ₦185,000 to ₦245,000.'
+      }
+    ]
+  },
+  {
+    slug: 'fcsc-recruitment-portal',
+    title: 'Federal Civil Service Commission (FCSC) Recruitment Portal 2026: Vacancies & Application',
+    seoTitle: 'FCSC Recruitment Portal 2026: Federal Civil Service Form',
+    description: 'Apply on Federal Civil Service Commission (FCSC) portal 2026 at careers.fedcivilservice.gov.ng. Check MDA vacancies, Grade Level 08 requirements, salary & test.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Civil Service',
+    statusBadge: 'FEDERAL CIVIL SERVICE COMMISSION (FCSC) OFFICIAL HUB',
+    officialPortalUrl: 'https://careers.fedcivilservice.gov.ng',
+    scamNotice: 'FEDERAL CIVIL SERVICE COMMISSION (FCSC) ADVISORY: Enlistment into Federal Ministries, Departments, and Agencies (MDAs) is strictly merit-based and 100% FREE. The FCSC does not appoint recruitment agents or collect processing fees. Disregard fake employment letters sold by racketeers.',
+    quickAnswer: {
+      question: 'How to Apply for Federal Civil Service (FCSC) Recruitment 2026?',
+      directAnswer: 'Applications for Federal Civil Service Commission vacancies across Ministries, Departments, and Agencies (MDAs) are submitted through careers.fedcivilservice.gov.ng. Registration is 100% free. Entry-level graduate positions start at Grade Level 08 (salary ₦85,000–₦115,000 under CONPSS) for B.Sc / HND holders with completed NYSC certificates. Candidates must be between 18 and 35 years of age and pass computerized aptitude tests.',
+      statusText: 'FCSC Portal Active • Federal MDAs Enlistment',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+        { label: 'Official MDA Portal', value: 'careers.fedcivilservice.gov.ng' },
+        { label: 'Entry Level Cadre', value: 'Grade Level 08 (B.Sc/HND)' },
+        { label: 'Age Requirement', value: '18 - 35 Years Old' }
+      ]
+    },
+    keywords: [
+      'federal civil service recruitment',
+      'fcsc recruitment portal',
+      'fcsc recruitment 2026',
+      'careers.fedcivilservice.gov.ng',
+      'federal civil service portal login',
+      'civil service salary scale conpss',
+      'federal government job application',
+      'fcsc shortlisted candidates'
+    ],
+    quickTable: {
+      headers: ['FCSC Parameter / Cadre', 'Official Federal Civil Service Standard'],
+      rows: [
+        ['Governing Body', 'Federal Civil Service Commission (FCSC), Abuja'],
+        ['Primary Application Portal', 'https://careers.fedcivilservice.gov.ng'],
+        ['Participating Ministries (MDAs)', 'Education, Foreign Affairs, Agriculture, Health, Works & Housing, Trade & Investment, Transport'],
+        ['Graduate Officer Entry (GL 08)', 'B.Sc, B.A, B.Eng, or HND (Minimum 2:2 / Lower Credit) with mandatory NYSC Discharge/Exemption'],
+        ['Senior Officer Entry (GL 09/10)', 'Master’s Degree (M.Sc / M.A) or specialized professional certifications with 3–5 years experience'],
+        ['Executive / Clerical Cadre (GL 04-06)', 'ND, NCE, or SSCE/GCE with 5 credits including English Language & Mathematics'],
+        ['Age Bracket', '18 to 35 years old at date of submission (up to 40 for specialized doctors/engineers)'],
+        ['Consolidated Salary Scale (CONPSS)', 'GL 04: ₦55,000–₦65,000 | GL 08: ₦85,000–₦115,000 | GL 10: ₦135,000–₦170,000 | GL 14: ₦220,000–₦285,000']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit careers.fedcivilservice.gov.ng', text: 'Open the verified Federal Civil Service career portal.' },
+      { name: 'Select Target MDA & Vacancy Cadre', text: 'Browse active MDA openings (e.g. Planning Officer, Education Officer, Administrative Officer, Agricultural Officer).' },
+      { name: 'Input NIN & Bio-Data', text: 'Validate your 11-digit NIN for automatic national identity and origin authentication.' },
+      { name: 'Upload Credentials & NYSC Certificate', text: 'Upload scanned copies of degree certificates, NYSC discharge/exemption, and local government identification letter.' },
+      { name: 'Submit Application & Print Reference Slip', text: 'Complete declarations and print your FCSC Acknowledgment Slip with unique tracking registration ID.' }
+    ],
+    content: [
+      'The Federal Civil Service Commission (FCSC) is the apex constitutional body responsible for appointing, promoting, and disciplining senior officers across all Federal Ministries, Departments, and Agencies (MDAs) of the Federal Republic of Nigeria.',
+      'Core Participating Ministries & Available Portfolios:',
+      '• Federal Ministry of Education: Education Officers (GL 08) deployed to Federal Unity Colleges across Nigeria.',
+      '• Ministry of Foreign Affairs: Foreign Service Officers (GL 08) handling diplomatic relations and consular missions abroad.',
+      '• Federal Ministry of Agriculture and Food Security: Agricultural Officers, Veterinarians, and Agronomists.',
+      '• Federal Ministry of Works and Housing: Civil Engineers, Quantity Surveyors, Architects, and Town Planners.',
+      '• Federal Ministry of Trade, Industry and Investment: Commercial Officers, Trade Specialists, and Industrial Inspectors.',
+      'Academic Qualifications & Grade Level Classifications:',
+      '• Grade Level 08 (Entry Graduate): Requires a Bachelor’s Degree (B.Sc, B.A, B.Eng) or Higher National Diploma (HND) with an authentic NYSC discharge or exemption certificate.',
+      '• Grade Level 09/10: For candidates possessing Master’s degrees or relevant professional charters (e.g., ICAN, COREN, NIM).',
+      '• Grade Level 04/06: Clerical and Executive Assistants holding SSCE or Ordinary National Diplomas (OND).',
+      'Computer-Based Examination & Oral Board Interview:',
+      'Shortlisted applicants undergo a Computer-Based Test (CBT) assessing Public Service Rules (PSR), Financial Regulations, General Current Affairs, and Core Specialization Aptitude, followed by an oral interview before the FCSC Board in Abuja.'
+    ],
+    faqs: [
+      {
+        question: 'Is the Federal Civil Service recruitment portal open for 2026?',
+        answer: 'Vacancies across Federal MDAs are advertised via the FCSC portal at careers.fedcivilservice.gov.ng and published in national gazettes. Registration is 100% free.'
+      },
+      {
+        question: 'Can HND holders apply for Grade Level 08 in the Federal Civil Service?',
+        answer: 'Yes. In line with the Federal Government policy harmonizing B.Sc and HND qualifications in the civil service, HND holders enter at Grade Level 08 provided they possess an NYSC discharge or exemption certificate.'
+      },
+      {
+        question: 'What is the age limit for Federal Civil Service jobs?',
+        answer: 'Applicants must generally be between 18 and 35 years old at the time of entry. Waivers up to 40 years are occasionally granted for rare medical specialists, doctoral holders, and senior engineering consultants.'
+      },
+      {
+        question: 'How much does a Federal Civil Servant earn on Grade Level 08?',
+        answer: 'Under the Consolidated Public Service Salary Structure (CONPSS), an entry-level officer on GL 08 earns between ₦85,000 and ₦115,000 monthly, plus federal allowances, housing benefits, and contributory pension credits.'
+      }
+    ]
+  },
+  {
+    slug: 'teachers-recruitment-subeb',
+    title: 'SUBEB & Teachers Recruitment Portal 2026: State Application Links & TRCN Guide',
+    seoTitle: 'SUBEB Teachers Recruitment 2026: State Portals & TRCN',
+    description: 'State Universal Basic Education Board (SUBEB) & secondary school teachers recruitment 2026. Check TRCN rules, Lagos/Oyo/Kaduna portal links, salary & CBT test.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'Civil Service',
+    statusBadge: 'SUBEB & STATE TEACHERS RECRUITMENT NATIONAL HUB',
+    officialPortalUrl: 'https://subeb.lagosstate.gov.ng',
+    scamNotice: 'STATE MINISTRY OF EDUCATION WARNING: Teaching recruitment into public primary and junior secondary schools across all 36 states is strictly FREE. Do not pay middlemen claiming to sell employment slots or interview exemptions. Report fraudsters to state anti-corruption commissions.',
+    quickAnswer: {
+      question: 'How Do I Apply for SUBEB Teachers Recruitment in Nigeria for 2026?',
+      directAnswer: 'State Universal Basic Education Board (SUBEB) and Teachers Service Commission recruitments are managed on state-specific online portals (e.g., subeb.lagosstate.gov.ng, jobportal.oyostate.gov.ng, kdsg-jobs.com). Registration is 100% free. Qualified candidates must hold an NCE (National Certificate in Education) for primary schools or B.Ed / B.Sc(Ed) / PGDE for secondary schools. Teachers Registration Council of Nigeria (TRCN) certification or induction is mandatory.',
+      statusText: 'State Portals Active • 100% Free Teacher Enlistment',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Zero Charge)', highlight: true },
+        { label: 'Minimum Qualification', value: 'NCE / B.Ed / B.Sc(Ed)' },
+        { label: 'Mandatory Council', value: 'TRCN Registration' },
+        { label: 'Age Bracket', value: '18 - 35 (Up to 40)' }
+      ]
+    },
+    keywords: [
+      'teachers recruitment portal',
+      'subeb recruitment 2026',
+      'state universal basic education board recruitment',
+      'trcn certificate requirements',
+      'lagos subeb recruitment',
+      'oyo subeb recruitment',
+      'kaduna teachers recruitment',
+      'teachers salary scale contiss conpcass',
+      'public school teacher salary nigeria'
+    ],
+    quickTable: {
+      headers: ['SUBEB Recruitment Parameter', 'Official State Standard / TRCN Rules'],
+      rows: [
+        ['Primary School Teachers Cadre', 'National Certificate in Education (NCE) | Grade Level 07 | TRCN Induction'],
+        ['Secondary School Teachers Cadre', 'B.Ed, B.Sc(Ed), B.A(Ed), or B.Sc/HND + Post Graduate Diploma in Education (PGDE) | Grade Level 08'],
+        ['TRCN Certification Mandate', 'Compulsory registration or passing of the Teacher Licensure Examination (PQE)'],
+        ['Major State Application Portals', 'Lagos (subeb.lagosstate.gov.ng) | Oyo (jobportal.oyostate.gov.ng) | Kaduna (kdsg-jobs.com)'],
+        ['Core Subject Vacancies', 'English, Mathematics, Sciences (Physics/Chemistry/Biology), ICT, Agricultural Science, Local Languages'],
+        ['Screening Stages', 'Online Application → Computer-Based Test (CBT) → Subject Micro-Teaching Demonstration → Oral Interview'],
+        ['Age Threshold', '18 to 35 years old (States like Lagos & Oyo permit up to 40 years for specialized STEM teachers)'],
+        ['Civil Service Teachers Salary Range', 'NCE (GL 07): ₦70,000–₦85,000 | Degree (GL 08): ₦85,000–₦110,000 | Plus State Peculiar Teaching Allowances']
+      ]
+    },
+    howToSteps: [
+      { name: 'Identify State SUBEB Portal', text: 'Access your resident state recruitment gateway (e.g., Lagos SUBEB, Oyo TESCOM, EdoBEST, Kaduna SUBEB).' },
+      { name: 'Create Account with NIN', text: 'Register with your verified email, phone number, and 11-digit NIN.' },
+      { name: 'Input Academic Qualifications & Teaching Subject', text: 'Select your teaching subject specialty (Mathematics, English, Basic Science, etc.) and submit your NCE or B.Ed grades.' },
+      { name: 'Upload TRCN Certificate or PQE Slip', text: 'Upload clear scans of your Teachers Registration Council of Nigeria (TRCN) certificate or induction letter.' },
+      { name: 'Print Examination Slip', text: 'Download your application summary and examination venue slip for the computerized screening test.' }
+    ],
+    content: [
+      'The State Universal Basic Education Board (SUBEB) across Nigeria’s 36 states and the Federal Capital Territory (FCT) is empowered to recruit, train, and deploy certified teachers to public primary and junior secondary schools.',
+      'Mandatory Qualifications: NCE, B.Ed & The PGDE Requirement:',
+      '• Primary Education Cadre (GL 07): A National Certificate in Education (NCE) in Primary Education Studies, Early Childhood Care, English, Mathematics, Integrated Science, Social Studies, or Technical Education.',
+      '• Junior & Senior Secondary School Cadre (GL 08): Bachelor of Education (B.Ed), Bachelor of Science in Education (B.Sc Ed), or Bachelor of Arts in Education (B.A Ed).',
+      '• Non-Education Graduates (B.Sc / HND): Candidates with degrees in Engineering, Pure Sciences, Accounting, or Economics MUST possess a Post Graduate Diploma in Education (PGDE) or Professional Diploma in Education (PDE).',
+      'TRCN Professional Licensure Regulation:',
+      'By federal statutory law, every practicing teacher in public schools must be registered with the Teachers Registration Council of Nigeria (TRCN). Candidates who have not written the Professional Qualifying Examination (PQE) are typically granted a grace window to sit for the next diet upon employment.',
+      'State-Level Micro-Teaching Demonstrations:',
+      'Beyond computerized tests in pedagogy and English, successful candidates are required to prepare a 10-minute micro-teaching session on a chalkboard or whiteboard before an evaluation panel assessing classroom management, lesson planning, and vocal projection.'
+    ],
+    faqs: [
+      {
+        question: 'Can I apply for SUBEB teaching recruitment without TRCN certificate?',
+        answer: 'Most state SUBEBs allow applicants with NCE or B.Ed to apply with their institution induction letter or PQE registration slip, provided they complete full TRCN licensure after provisional appointment.'
+      },
+      {
+        question: 'Can B.Sc or HND holders apply without education degree?',
+        answer: 'Candidates without education degrees must hold a Post Graduate Diploma in Education (PGDE) to be officially certified as teachers in the public civil service.'
+      },
+      {
+        question: 'What is the salary of a public primary school teacher in Nigeria?',
+        answer: 'NCE teachers on Grade Level 07 earn between ₦70,000 and ₦85,000 monthly, while graduate teachers on Grade Level 08 earn ₦85,000 to ₦110,000, depending on state-specific minimum wage implementation and rural posting allowances.'
+      },
+      {
+        question: 'Which states are currently recruiting teachers?',
+        answer: 'States like Lagos, Oyo (TESCOM), Edo (EdoBEST), Kaduna, Kano, and Delta periodically roll out large-scale teaching drives. Track our portal for instant alerts on state intake cycles.'
+      }
+    ]
+  },
+  {
+    slug: 'nuc-recruitment-portal',
+    title: 'National Universities Commission (NUC) Recruitment 2026: Application Portal & Academic Cadres',
+    seoTitle: 'NUC Recruitment Portal 2026: Apply at nuc.edu.ng',
+    description: 'Apply for National Universities Commission (NUC) recruitment 2026 at nuc.edu.ng. Academic planning, quality assurance, CONTISS salary scale & screening test.',
+    category: 'Live Status',
+    date: '2026-10-02',
+    branch: 'NUC',
+    statusBadge: 'NATIONAL UNIVERSITIES COMMISSION (NUC) OFFICIAL HUB',
+    officialPortalUrl: 'https://nuc.edu.ng/careers',
+    scamNotice: 'FEDERAL EDUCATION PARASTATAL WARNING: Employment into the National Universities Commission (NUC) is strictly merit-based, competitive, and 100% FREE. The Commission does not request payment for application forms, aptitude tests, or interview selection. Immediately report anyone soliciting money to the ICPC or NUC Secretariat, Maitama, Abuja.',
+    quickAnswer: {
+      question: 'How to Apply for National Universities Commission (NUC) Recruitment 2026?',
+      directAnswer: 'Applications for the National Universities Commission (NUC) recruitment are processed through the official careers portal at nuc.edu.ng/careers or via the Federal Civil Service Commission portal. Registration is 100% free. Entry-level academic and quality assurance roles start at Grade Level 08 (salary ₦95,000–₦130,000 under the CONTISS/CONPSS harmonized scale) for B.Sc / B.A / B.Ed graduates with minimum Second Class Upper (2:1) or Lower (2:2) and completed NYSC certificates. Candidates must pass a Computer-Based Test (CBT) covering higher education administration and current affairs.',
+      statusText: 'NUC Portal Active • Academic & Admin Cadres',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Application Fee', value: '₦0.00 (Zero Charge)', highlight: true },
+        { label: 'Official Portal', value: 'nuc.edu.ng/careers' },
+        { label: 'Entry Level Cadre', value: 'GL 08 (B.Sc/B.Ed/B.A)' },
+        { label: 'Age Requirement', value: '18 - 35 Years (Up to 40)' }
+      ]
+    },
+    keywords: [
+      'national universities commission recruitment',
+      'nuc recruitment portal',
+      'nuc recruitment 2026',
+      'nuc.edu.ng careers',
+      'nuc academic planning officer jobs',
+      'nuc salary scale contiss',
+      'national universities commission application',
+      'nuc shortlisted candidates 2026',
+      'federal education parastatal jobs'
+    ],
+    quickTable: {
+      headers: ['NUC Vacancy / Cadre', 'Official Academic & Parastatal Standard'],
+      rows: [
+        ['Governing Authority', 'National Universities Commission (NUC), Maitama, Abuja'],
+        ['Primary Career Portals', 'https://nuc.edu.ng/careers & careers.fedcivilservice.gov.ng'],
+        ['Academic Planning Officers (GL 08)', 'B.Sc, B.Ed, B.A (Minimum 2:1 or Upper 2:2) with NYSC Discharge. Reviews university curriculum, accreditations, and program establishment.'],
+        ['Quality Assurance & Inspection Officers', 'Degree in Education Planning, Sciences, or Administration. Responsible for university standards monitoring and institutional audits.'],
+        ['Research & Innovation Officers (GL 09/10)', 'Master’s (M.Sc/M.Ed) or doctorate in educational measurement, institutional research, or STEM fields.'],
+        ['ICT & Data Analysts (GL 08)', 'B.Sc / HND Computer Science, Software Engineering, or Cyber Security managing the Nigerian University System (NUS) databases.'],
+        ['Executive & Secretarial Cadres (GL 06/07)', 'ND, NCE, or Higher National Diplomas in Office Technology & Management or Secretarial Administration.'],
+        ['Consolidated Salary Structure', 'CONTISS/CONPSS Scale: GL 06 (₦70,000–₦82,000) | GL 08 (₦95,000–₦130,000) | GL 10 (₦150,000–₦190,000) | GL 12/14 (₦220,000–₦310,000)']
+      ]
+    },
+    howToSteps: [
+      { name: 'Visit nuc.edu.ng/careers', text: 'Access the authentic National Universities Commission career gateway or FCSC MDA recruitment link.' },
+      { name: 'Select Department & Cadre', text: 'Choose your target division (Academic Planning, Quality Assurance, Research & Innovation, ICT, or Administration).' },
+      { name: 'NIN & Academic Verification', text: 'Validate your 11-digit NIN and input degree classification, university of graduation, and NYSC certificate details.' },
+      { name: 'Upload Certified Transcripts & Credentials', text: 'Upload degree certificate, NYSC discharge/exemption letter, LGA certificate of origin, and CV in PDF format.' },
+      { name: 'Submit & Print NUC Verification Slip', text: 'Complete submission and print your NUC Application Reference Slip with your tracking registration ID.' }
+    ],
+    content: [
+      'The National Universities Commission (NUC) is the statutory federal regulatory agency under the Federal Ministry of Education responsible for the orderly development, accreditation, and standard setting of the Nigerian University System (NUS).',
+      'Key Departments & Strategic Vacancy Profiles:',
+      '• Directorate of Academic Planning: Academic Planning Officers evaluate university degree curriculum benchmarks (CCMAS), review resource readiness for new programs, and monitor lecturer-to-student ratios.',
+      '• Directorate of Quality Assurance: Quality Assurance Officers conduct statutory accreditation visits, inspect laboratory facilities, and audit academic compliance across 270+ federal, state, and private universities.',
+      '• Directorate of Research, Innovation & Information Technology: Coordinates tertiary research grants, manages the Nigerian University System rankings, and maintains national graduate databases.',
+      '• Directorate of Establishment & Human Resources: Oversees internal commission administration, university governing council coordination, and federal compliance documentation.',
+      'Academic Qualifications & Grade Level Classifications:',
+      '• Grade Level 08 (Entry Graduate): Requires a Bachelor’s Degree (B.Sc, B.A, B.Ed) with a minimum of Second Class Honours (Lower Division, with preference given to Upper Division) and an authentic NYSC discharge or exemption certificate.',
+      '• Grade Level 09/10: Candidates with Master’s degrees (M.Sc, M.Ed, M.Phil) or professional chartered credentials with 3 to 5 years of post-qualification experience.',
+      '• Grade Level 12/13 (Senior Regulatory Analysts): Ph.D. holders or senior institutional researchers with demonstrated university governance experience.',
+      'Selection Process & Computerized Screening:',
+      'Shortlisted applicants sit for a Computer-Based Test (CBT) covering National Policy on Education, Public Service Rules (PSR), Higher Education Regulatory Trends, Analytical Reasoning, and General English, followed by an oral defense before the NUC Interview Panel at the Commission’s Headquarters in Maitama, Abuja.'
+    ],
+    faqs: [
+      {
+        question: 'Is the NUC recruitment portal open for 2026?',
+        answer: 'Vacancies are announced via the NUC official website at nuc.edu.ng/careers and coordinated through the Federal Civil Service Commission. Application is 100% free.'
+      },
+      {
+        question: 'Can graduates with Second Class Lower (2:2) apply for NUC jobs?',
+        answer: 'Yes. Candidates with Second Class Lower (2:2) degrees can apply for administrative, executive, and ICT roles, while specialized academic planning and research desks give preference to First Class and Second Class Upper graduates.'
+      },
+      {
+        question: 'What is the salary structure of NUC staff in Nigeria?',
+        answer: 'Staff of the National Universities Commission are remunerated under harmonized federal parastatal scales (CONTISS/CONPSS) with peculiar regulatory agency allowances. An entry-level GL 08 officer earns between ₦95,000 and ₦130,000 monthly, plus federal medical and pension benefits.'
+      },
+      {
+        question: 'Where is the NUC recruitment screening and interview conducted?',
+        answer: 'Initial computerized aptitude tests are held in accredited CBT centers across the six geopolitical zones, while final oral board interviews take place at the NUC Secretariat, 26 Aguiyi Ironsi Street, Maitama, Abuja.'
+      }
+    ]
+  },
+  {
+    slug: 'recruitment-army-mil-ng-portal-login',
+    title: 'recruitment.army.mil.ng Portal Login 2026: Create Account & Sign In (88 RRI & DSSC)',
+    seoTitle: 'recruitment.army.mil.ng Portal Login 2026: Sign In & Create Account',
+    description: 'Official guide for recruitment.army.mil.ng portal login 2026. Step-by-step account creation, sign in, NIN verification, password reset & slip reprint for 88 RRI & DSSC.',
+    category: 'How-to-Apply',
+    date: '2026-10-02',
+    branch: 'Army',
+    statusBadge: 'OFFICIAL ARMY PORTAL GATEWAY & LOGIN GUIDE',
+    officialPortalUrl: 'https://recruitment.army.mil.ng',
+    scamNotice: 'OFFICIAL ARMY SECURITY NOTICE: The authentic Nigerian Army recruitment portal is strictly recruitment.army.mil.ng. Registration, account creation, and candidate login are 100% FREE. The Nigerian Army NEVER asks candidates to pay for scratch cards, PINs, or interview slots. Disregard fraudulent copycat domains ending in .site, .co, or .blogspot.',
+    quickAnswer: {
+      question: 'How Do I Login and Create an Account on recruitment.army.mil.ng?',
+      directAnswer: 'To login or create an account on the Nigerian Army portal, navigate to recruitment.army.mil.ng. New candidates must click "Apply Now" or "Create Account", provide a functional email, set an alphanumeric password, and input their 11-digit NIN. Existing applicants for Regular Recruit Intake (88 RRI) or Direct Short Service Commission (DSSC) can click "Candidate Login", enter their registered email and password, and access their dashboard to track application status and reprint screening slips.',
+      statusText: 'Portal Active • 100% Free Candidate Access',
+      statusVariant: 'success',
+      metrics: [
+        { label: 'Official Portal', value: 'recruitment.army.mil.ng', highlight: true },
+        { label: 'Application Fee', value: '₦0.00 (100% Free)' },
+        { label: 'Tracking Mirror', value: 'tracking.armynotification.com.ng' },
+        { label: 'Intake Programs', value: '88 RRI & DSSC 30/31' }
+      ]
+    },
+    keywords: [
+      'recruitment.army.mil.ng',
+      'nigerian army recruitment portal 2026 login',
+      'www recruitment army mil ng portal',
+      'www recruitment army mil ng portal create account',
+      'recruit.army.mil.ng',
+      'recruitment.army.mil.ng portal login',
+      'nigerian army recruitment portal 2026',
+      'army recruitment portal',
+      'recruitment army mil ng',
+      'https://recruitment.army.mil.ng',
+      'recruitment army portal',
+      'www recruitment army mil ng portal login password',
+      'recruitment.army.mil.ng portal sign up',
+      'login nigerian army portal',
+      'my tracking slip login'
+    ],
+    quickTable: {
+      headers: ['Portal Metric', 'Official Army Specifications (recruitment.army.mil.ng)'],
+      rows: [
+        ['Primary Portal URL', 'https://recruitment.army.mil.ng'],
+        ['Alternative Tracking URL', 'https://tracking.armynotification.com.ng'],
+        ['Available Enlistments', 'Regular Recruit Intake (88 RRI) & Direct Short Service Commission (DSSC)'],
+        ['Access Fee', '₦0.00 (Completely Free - Zero Scratch Card)'],
+        ['Candidate Login Credentials', 'Registered Email Address + Account Password or 11-digit NIN'],
+        ['NIN Integration', 'Direct National Identity Management Commission (NIMC) Synchronization'],
+        ['Dashboard Capabilities', 'Submit Bio-data, Check Application Status, Download Screening Slip & Guarantor Form'],
+        ['Technical Support Email', 'recruitment@army.mil.ng']
+      ]
+    },
+    howToSteps: [
+      { name: 'Navigate to Verified Army Portal', text: 'Open your browser and visit https://recruitment.army.mil.ng (ensure SSL padlock is verified).' },
+      { name: 'Select Account Action (Register or Login)', text: 'New applicants click "Create Account / Apply Now"; returning candidates click "Candidate Login".' },
+      { name: 'Input Credentials & Verify NIN', text: 'Enter your functional personal email, create a secure password, and supply your 11-digit NIN for instant bio-data sync.' },
+      { name: 'Confirm Account Activation', text: 'Open your email inbox or spam folder and click the verification link or enter the verification OTP.' },
+      { name: 'Access Candidate Dashboard', text: 'Log in with your verified email and password, choose your cadre (Tradesmen or Non-Tradesmen), and complete application forms.' },
+      { name: 'Download & Print Verification Slips', text: 'Head to the downloads section to print your Application Summary Sheet, Guarantor Form, and Screening Slip in multiple clean copies.' }
+    ],
+    content: [
+      'The Nigerian Army officially hosts all military enlistment operations on recruitment.army.mil.ng. Every year, over 500,000 Nigerian youths access this portal to apply for the Regular Recruit Intake (RRI) and Direct Short Service Commission (DSSC).',
+      'Understanding the Difference: recruitment.army.mil.ng vs tracking.armynotification.com.ng:',
+      '• recruitment.army.mil.ng: This is the primary enlistment server where new applicants create profiles, complete O-Level submissions, upload passport photos, and generate initial application reference numbers.',
+      '• tracking.armynotification.com.ng: This is the secondary application tracking and slip reprint server deployed by the Nigerian Army to manage high-volume candidate traffic during screening and shortlist verification periods.',
+      'Step-by-Step: How to Create an Account on recruitment.army.mil.ng:',
+      '1. Step 1: Open the official URL https://recruitment.army.mil.ng on Google Chrome, Safari, or Microsoft Edge.',
+      '2. Step 2: Click on "Apply Now" or "Create Account".',
+      '3. Step 3: Enter an active email address you have personal daily access to (do not use a cybercafe operator\'s email).',
+      '4. Step 4: Create a strong password (minimum 8 characters including letters, numbers, and symbols).',
+      '5. Step 5: Enter your 11-digit National Identification Number (NIN). The portal automatically pulls your official registered full name and date of birth from the NIMC database.',
+      '6. Step 6: Review the fetched information to ensure full consistency with your educational certificates, then click "Submit Registration".',
+      'How to Login If You Have Already Registered:',
+      '1. Visit recruitment.army.mil.ng and click "Login" at the top navigation bar.',
+      '2. Select your category: Regular Recruit Intake (88 RRI) or Direct Short Service Commission (DSSC).',
+      '3. Enter your registered email address and password in the login fields.',
+      '4. Click "Sign In" to open your candidate dashboard.',
+      'How to Reset a Forgotten Army Portal Password:',
+      '• Click on "Forgot Password?" below the login form on recruitment.army.mil.ng.',
+      '• Enter the exact email address or NIN used during initial registration.',
+      '• Check your email inbox (and Spam/Junk folder) for the password reset link from recruitment@army.mil.ng.',
+      '• Click the link and set a new password, then return to the login screen.',
+      'Troubleshooting 4 Common recruitment.army.mil.ng Login Errors:',
+      '1. "Invalid Email or Password": Check for accidental leading or trailing spaces if copying and pasting. Passwords on the Army portal are case-sensitive.',
+      '2. "NIN Already Registered": If you previously applied in a past cycle, use the password recovery tool instead of attempting to create a second account. Creating duplicate accounts with the same NIN is strictly prohibited and causes automatic system disqualification.',
+      '3. "Server Error 500 / 503 Service Unavailable": Caused by high concurrent user traffic. Access the mirror server at tracking.armynotification.com.ng or try logging in during off-peak hours (between 10:00 PM and 6:00 AM).',
+      '4. "Application Slip Download Fails": If clicking the print button does not trigger the PDF download, disable your browser\'s pop-up blocker or switch to desktop mode.',
+      'Essential Physical Documents to Print from Your Dashboard:',
+      '• Candidate Screening Summary Slip: Must display your clear candidate photograph, passport QR code, and designated state screening center.',
+      '• Guarantor Form (Attestation Letter): Must be signed and stamped by an authorized referee (e.g. Traditional Ruler, Civil Servant GL 08+, Police CSP+, or Military Officer Captain+).',
+      '• Parent / Guardian Consent Letter: Signed by parents or legal guardians for candidates aged 18 to 22.',
+      '• Local Government Indigene Certificate: Certified by your LGA Chairman or Secretary.'
+    ],
+    faqs: [
+      {
+        question: 'How do I create an account on recruitment.army.mil.ng?',
+        answer: 'Visit recruitment.army.mil.ng, click "Create Account" or "Apply Now", enter your active email and password, provide your 11-digit NIN for NIMC synchronization, and activate your profile via the verification email.'
+      },
+      {
+        question: 'What is the correct web address for the Nigerian Army recruitment portal?',
+        answer: 'The authentic Nigerian Army recruitment portal is https://recruitment.army.mil.ng. For application tracking and reprint of screening slips, candidates can also access https://tracking.armynotification.com.ng.'
+      },
+      {
+        question: 'How much does it cost to register or login on recruitment.army.mil.ng?',
+        answer: 'Registration, login, and slip download on recruitment.army.mil.ng are 100% free of charge. The Nigerian Army does not sell scratch cards or PIN codes.'
+      },
+      {
+        question: 'What should I do if I forgot my Nigerian Army portal password?',
+        answer: 'Click the "Forgot Password" link on recruitment.army.mil.ng, enter your registered email address or NIN, and follow the password reset link sent to your inbox.'
+      },
+      {
+        question: 'Can I login to the Nigerian Army portal using my mobile phone?',
+        answer: 'Yes. The portal is mobile-responsive. However, for downloading and printing your application screening slips and guarantor forms, using a desktop computer or enabling "Desktop Site" in your mobile browser is recommended.'
+      },
+      {
+        question: 'Why does recruitment.army.mil.ng show "Server Error" or fail to load?',
+        answer: 'During peak application or shortlist release dates, millions of users access the site simultaneously. If you experience timeout errors, refresh using Ctrl+F5, access tracking.armynotification.com.ng, or log in during off-peak hours.'
       }
     ]
   },
@@ -1125,7 +2182,7 @@ export const GUIDES: GuideArticle[] = [
     slug: 'nigerian-air-force-bmtc-recruitment-guide',
     title: 'Nigerian Air Force (NAF) BMTC Recruitment 2026: Portal, Form, Salary & Qualifications',
     seoTitle: 'Nigerian Air Force BMTC Recruitment 2026: Form, Salary Scale & Portal Guide',
-    description: 'Comprehensive guide to Nigerian Air Force Basic Military Training Course (BMTC) 2026. Portalnafrecruitment.airforce.mil.ng, CONAFSS pay, age limit & aptitude test.',
+    description: 'Comprehensive guide to Nigerian Air Force Basic Military Training Course (BMTC) 2026. Portal nafrecruitment.airforce.mil.ng, CONAFSS pay, age limit & aptitude test.',
     category: 'How-to-Apply',
     date: '2026-09-21',
     branch: 'Air Force',

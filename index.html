@@ -6,15 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/assets/logo.png" />
   <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="RecruitTrack" />
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Resource Preconnects for Ultra-Fast Network Waterfalls -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  <style>
+    body { margin: 0; background-color: #f8fafc; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  </style>
+
+  <!-- Google tag (gtag.js) - Deferred Non-Blocking Execution -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7S3TQ38MV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'G-T7S3TQ38MV');
+    gtag('config', 'G-T7S3TQ38MV', { 'send_page_view': true });
   </script>
 
   <title>Nigeria Military Recruitment Tracker</title>
@@ -160,6 +173,15 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').catch(function(err) {
+          console.log('[SW] Registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 
 </html>

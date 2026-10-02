@@ -96,6 +96,7 @@ const Dashboard: React.FC = () => {
       case 'NDLEA': return '/ndlea-recruitment';
       case 'EFCC': return '/efcc-recruitment';
       case 'FCSC': return '/fcsc-recruitment';
+      case 'NUC': return '/nuc-recruitment-portal';
       case 'NNPC': return '/nnpc-recruitment';
       case 'CBN': return '/cbn-recruitment';
       case 'NIMC': return '/nimc-recruitment';
@@ -116,8 +117,8 @@ const Dashboard: React.FC = () => {
     'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs', 'NDLEA',
     // Law Enforcement
     'EFCC',
-    // Civil Service
-    'FCSC',
+    // Civil Service & Education Parastatals
+    'FCSC', 'NUC',
     // Oil & Gas
     'NNPC',
     // Finance
@@ -144,6 +145,9 @@ const Dashboard: React.FC = () => {
       <WebSiteSchema />
       <OrganizationSchema />
 
+      {/* Primary Priority Announcement: Nigerian Navy Batch 39 Recruitment 2026 */}
+      <NavyBatch39Banner />
+
       {/* Hero / Live Status Section */}
       <section>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
@@ -159,9 +163,6 @@ const Dashboard: React.FC = () => {
           <Link to="/recruitments" className="text-sm font-semibold text-military-blue hover:underline">View All Agencies</Link>
         </div>
 
-        {/* High-Impact Announcement: Nigerian Navy Batch 39 Recruitment 2026 */}
-        <NavyBatch39Banner />
-
         {/* Featured Query Banner: Which Recruitment Form is Out Now (2026)? */}
         <div className="mb-4 p-4 bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-blue-500/30">
           <div className="flex items-center gap-3">
@@ -171,7 +172,7 @@ const Dashboard: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-blue-300 bg-blue-500/20 px-2 py-0.5 rounded-full">
-                  Rank #1 Search Trend
+                  Official 2026 Portal Guide
                 </span>
                 <span className="text-[10px] font-semibold text-slate-300">Updated Daily</span>
               </div>
@@ -318,6 +319,7 @@ const Dashboard: React.FC = () => {
               else if (branch === 'Customs') headerColor = 'bg-slate-700';
               else if (branch === 'EFCC') headerColor = 'bg-amber-700';
               else if (branch === 'FCSC') headerColor = 'bg-violet-700';
+              else if (branch === 'NUC') headerColor = 'bg-teal-700';
               else if (branch === 'NNPC') headerColor = 'bg-green-800';
               else if (branch === 'CBN') headerColor = 'bg-teal-700';
               else if (branch === 'NIMC') headerColor = 'bg-blue-800';

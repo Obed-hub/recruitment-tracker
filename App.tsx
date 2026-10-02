@@ -1,35 +1,37 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import RecruitmentFilter from './pages/RecruitmentFilter';
-import EligibilityChecker from './pages/EligibilityChecker';
-import RecruitmentDetail from './pages/RecruitmentDetail';
-import QuizHub from './pages/QuizHub';
-import QuizInterface from './pages/QuizInterface';
-import AdminPanel from './pages/AdminPanel';
-import AboutUs from './pages/AboutUs';
-import ContactUs from './pages/ContactUs';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsConditions from './pages/TermsConditions';
-import Disclaimer from './pages/Disclaimer';
 import ScrollToTop from './components/ScrollToTop';
 import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker';
-import GuidesHub from './pages/GuidesHub';
-import GuideDetail from './pages/GuideDetail';
-import BlogHub from './pages/BlogHub';
-import BlogDetail from './pages/BlogDetail';
-import AgencyHub from './pages/AgencyHub';
-import ArmySalary from './pages/ArmySalary';
-import SalaryComparison from './pages/SalaryComparison';
-import PoliceSalary from './pages/PoliceSalary';
-import CustomsSalary from './pages/CustomsSalary';
-import StandaloneSalaryPage from './pages/StandaloneSalaryPage';
-import ShortlistHub from './pages/ShortlistHub';
-import WhichFormIsOut from './pages/WhichFormIsOut';
-import NavyRecruitmentBatch39 from './pages/NavyRecruitmentBatch39';
-import FAQHub from './pages/FAQHub';
-import PortalActionPage from './pages/PortalActionPage';
+
+// Route-level code-splitting with React.lazy
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const RecruitmentFilter = lazy(() => import('./pages/RecruitmentFilter'));
+const EligibilityChecker = lazy(() => import('./pages/EligibilityChecker'));
+const RecruitmentDetail = lazy(() => import('./pages/RecruitmentDetail'));
+const QuizHub = lazy(() => import('./pages/QuizHub'));
+const QuizInterface = lazy(() => import('./pages/QuizInterface'));
+const AdminPanel = lazy(() => import('./pages/AdminPanel'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsConditions = lazy(() => import('./pages/TermsConditions'));
+const Disclaimer = lazy(() => import('./pages/Disclaimer'));
+const GuidesHub = lazy(() => import('./pages/GuidesHub'));
+const GuideDetail = lazy(() => import('./pages/GuideDetail'));
+const BlogHub = lazy(() => import('./pages/BlogHub'));
+const BlogDetail = lazy(() => import('./pages/BlogDetail'));
+const AgencyHub = lazy(() => import('./pages/AgencyHub'));
+const ArmySalary = lazy(() => import('./pages/ArmySalary'));
+const SalaryComparison = lazy(() => import('./pages/SalaryComparison'));
+const PoliceSalary = lazy(() => import('./pages/PoliceSalary'));
+const CustomsSalary = lazy(() => import('./pages/CustomsSalary'));
+const StandaloneSalaryPage = lazy(() => import('./pages/StandaloneSalaryPage'));
+const ShortlistHub = lazy(() => import('./pages/ShortlistHub'));
+const WhichFormIsOut = lazy(() => import('./pages/WhichFormIsOut'));
+const NavyRecruitmentBatch39 = lazy(() => import('./pages/NavyRecruitmentBatch39'));
+const FAQHub = lazy(() => import('./pages/FAQHub'));
+const PortalActionPage = lazy(() => import('./pages/PortalActionPage'));
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -41,7 +43,8 @@ const App: React.FC = () => {
     <BrowserRouter>
       <ScrollToTop />
       <GoogleAnalyticsTracker />
-      <Routes>
+      <Suspense fallback={null}>
+        <Routes>
         {/* Admin panel — full page, outside the main Layout */}
         <Route path="/admin" element={<AdminPanel />} />
 
@@ -85,13 +88,64 @@ const App: React.FC = () => {
         <Route path="/recruitment-forms-out-now" element={<Navigate to="/which-recruitment-form-is-out-now" replace />} />
         <Route path="/is-nigerian-army-form-out" element={<Layout><GuideDetail slugOverride="is-nigerian-army-form-out" /></Layout>} />
         <Route path="/is-nigerian-navy-batch-39-form-out" element={<Layout><GuideDetail slugOverride="is-nigerian-navy-batch-39-form-out" /></Layout>} />
+        <Route path="/is-nigerian-air-force-form-out" element={<Layout><GuideDetail slugOverride="is-nigerian-air-force-form-out" /></Layout>} />
+        <Route path="/is-air-force-form-out" element={<Navigate to="/is-nigerian-air-force-form-out" replace />} />
+        <Route path="/is-naf-form-out" element={<Navigate to="/is-nigerian-air-force-form-out" replace />} />
+        <Route path="/naf-recruitment-2026" element={<Navigate to="/is-nigerian-air-force-form-out" replace />} />
+        <Route path="/is-nigerian-airforce-form-out" element={<Navigate to="/is-nigerian-air-force-form-out" replace />} />
         <Route path="/is-police-recruitment-form-out" element={<Layout><GuideDetail slugOverride="is-police-recruitment-form-out" /></Layout>} />
         <Route path="/is-cdcfib-recruitment-form-out" element={<Layout><GuideDetail slugOverride="is-cdcfib-recruitment-form-out" /></Layout>} />
 
         {/* TOPIC 2: How-to-Apply & Portal Guides */}
         <Route path="/how-to-apply-nigerian-navy-batch" element={<Layout><GuideDetail slugOverride="how-to-apply-nigerian-navy-batch" /></Layout>} />
+        <Route path="/how-to-apply-nigerian-air-force" element={<Layout><GuideDetail slugOverride="how-to-apply-nigerian-air-force" /></Layout>} />
+        <Route path="/how-to-apply-air-force" element={<Navigate to="/how-to-apply-nigerian-air-force" replace />} />
+        <Route path="/how-to-apply-naf" element={<Navigate to="/how-to-apply-nigerian-air-force" replace />} />
+        <Route path="/how-to-apply-nigerian-airforce" element={<Navigate to="/how-to-apply-nigerian-air-force" replace />} />
         <Route path="/how-to-apply-cdcfib-portal" element={<Layout><GuideDetail slugOverride="how-to-apply-cdcfib-portal" /></Layout>} />
         <Route path="/how-to-apply-police-constable" element={<Layout><GuideDetail slugOverride="how-to-apply-police-constable" /></Layout>} />
+
+        {/* PHASE 1 HIGH-INTENT PILLAR PAGES */}
+        <Route path="/npf-recruitment-portal" element={<Layout><GuideDetail slugOverride="npf-recruitment-portal" /></Layout>} />
+        <Route path="/police-recruitment-portal" element={<Navigate to="/npf-recruitment-portal" replace />} />
+        
+        <Route path="/nigerian-army-88-rri-recruitment" element={<Layout><GuideDetail slugOverride="nigerian-army-88-rri-recruitment" /></Layout>} />
+        <Route path="/army-88-rri" element={<Navigate to="/nigerian-army-88-rri-recruitment" replace />} />
+        <Route path="/army-88-rri-recruitment" element={<Navigate to="/nigerian-army-88-rri-recruitment" replace />} />
+
+        <Route path="/nigerian-navy-dssc-recruitment" element={<Layout><GuideDetail slugOverride="nigerian-navy-dssc-recruitment" /></Layout>} />
+        <Route path="/navy-dssc-recruitment" element={<Navigate to="/nigerian-navy-dssc-recruitment" replace />} />
+
+        <Route path="/nis-recruitment-portal" element={<Layout><GuideDetail slugOverride="nis-recruitment-portal" /></Layout>} />
+        <Route path="/immigration-recruitment-portal" element={<Navigate to="/nis-recruitment-portal" replace />} />
+
+        {/* PHASE 2 HIGH-INTENT PILLAR PAGES */}
+        <Route path="/ndlea-recruitment-portal" element={<Layout><GuideDetail slugOverride="ndlea-recruitment-portal" /></Layout>} />
+        <Route path="/ndlea-portal" element={<Navigate to="/ndlea-recruitment-portal" replace />} />
+        <Route path="/ndlea-recruitment" element={<Navigate to="/ndlea-recruitment-portal" replace />} />
+
+        <Route path="/frsc-recruitment-portal" element={<Layout><GuideDetail slugOverride="frsc-recruitment-portal" /></Layout>} />
+        <Route path="/frsc-portal" element={<Navigate to="/frsc-recruitment-portal" replace />} />
+        <Route path="/frsc-recruitment" element={<Navigate to="/frsc-recruitment-portal" replace />} />
+
+        {/* PHASE 3 HIGH-INTENT CIVIL SERVICE PILLAR PAGES */}
+        <Route path="/fcsc-recruitment-portal" element={<Layout><GuideDetail slugOverride="fcsc-recruitment-portal" /></Layout>} />
+        <Route path="/fcsc-portal" element={<Navigate to="/fcsc-recruitment-portal" replace />} />
+        <Route path="/fcsc-recruitment" element={<Navigate to="/fcsc-recruitment-portal" replace />} />
+        <Route path="/federal-civil-service-recruitment" element={<Navigate to="/fcsc-recruitment-portal" replace />} />
+
+        <Route path="/teachers-recruitment-subeb" element={<Layout><GuideDetail slugOverride="teachers-recruitment-subeb" /></Layout>} />
+        <Route path="/subeb-recruitment" element={<Navigate to="/teachers-recruitment-subeb" replace />} />
+        <Route path="/subeb-recruitment-portal" element={<Navigate to="/teachers-recruitment-subeb" replace />} />
+        <Route path="/teachers-recruitment" element={<Navigate to="/teachers-recruitment-subeb" replace />} />
+
+        {/* NUC (National Universities Commission) Civil Service / Academic Parastatal Hub */}
+        <Route path="/nuc-recruitment-portal" element={<Layout><GuideDetail slugOverride="nuc-recruitment-portal" /></Layout>} />
+        <Route path="/nuc-portal" element={<Navigate to="/nuc-recruitment-portal" replace />} />
+        <Route path="/nuc-recruitment" element={<Layout><AgencyHub agencySlug="nuc" /></Layout>} />
+        <Route path="/nuc-recruitment-2026" element={<Navigate to="/nuc-recruitment-portal" replace />} />
+        <Route path="/nuc" element={<Navigate to="/nuc-recruitment-portal" replace />} />
+        <Route path="/national-universities-commission-recruitment" element={<Navigate to="/nuc-recruitment-portal" replace />} />
 
         {/* TOPIC 3: Shortlist, Screening & Tracking Slip Content */}
         <Route path="/print-army-screening-slip" element={<Layout><GuideDetail slugOverride="print-army-screening-slip" /></Layout>} />
@@ -193,12 +247,19 @@ const App: React.FC = () => {
         <Route path="/psc-police" element={<Navigate to="/police-recruitment" replace />} />
 
         {/* 2. NIGERIAN ARMY (NA) */}
+        <Route path="/recruitment-army-mil-ng-portal-login" element={<Layout><GuideDetail slugOverride="recruitment-army-mil-ng-portal-login" /></Layout>} />
+        <Route path="/army-recruitment-portal-login" element={<Layout><GuideDetail slugOverride="recruitment-army-mil-ng-portal-login" /></Layout>} />
+        <Route path="/army-portal-login" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
+        <Route path="/recruitment-army-mil-ng" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
+        <Route path="/recruit-army-mil-ng" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
+        <Route path="/recruitment-army-mil-ng-portal" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
+        <Route path="/recruitment-army-mil-ng-create-account" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
+        <Route path="/www-recruitment-army-mil-ng-portal" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
+        <Route path="/army-recruitment-portal-2026-login" element={<Navigate to="/recruitment-army-mil-ng-portal-login" replace />} />
         <Route path="/army-print-confirmation-slip" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="confirmation-slip" /></Layout>} />
         <Route path="/army-confirmation-slip" element={<Navigate to="/army-print-confirmation-slip" replace />} />
         <Route path="/army-guarantor-form" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="guarantor-form" /></Layout>} />
         <Route path="/download-army-guarantor-form" element={<Navigate to="/army-guarantor-form" replace />} />
-        <Route path="/army-recruitment-portal-login" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="portal-login" /></Layout>} />
-        <Route path="/army-portal-login" element={<Navigate to="/army-recruitment-portal-login" replace />} />
         <Route path="/army-update-documents" element={<Layout><PortalActionPage agencyOverride="army" actionOverride="update-documents" /></Layout>} />
 
         {/* 3. NIGERIAN NAVY (NN) */}
@@ -304,6 +365,7 @@ const App: React.FC = () => {
         <Route path="/disclaimer" element={<Layout><Disclaimer /></Layout>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };

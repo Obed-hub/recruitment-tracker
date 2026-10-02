@@ -36,6 +36,16 @@ const UPCOMING_2026_AGENCIES: UpcomingAgency[] = [
     warning: 'Official announcement released: registration begins 2 October 2026 on www.joinnigeriannavy.gov.ng. Registration is 100% free of charge.',
   },
   {
+    name: 'Nigerian Air Force (NAF BMTC 45 & DSSC)',
+    category: 'Military',
+    expectedDate: '2026/2027 Cycle Announcement',
+    cadres: 'Non-Tradesmen (Airmen/Airwomen), Tradesmen & DSSC',
+    status: 'Announced',
+    portalUrl: 'https://nafrecruitment.airforce.mil.ng',
+    hubUrl: '/is-nigerian-air-force-form-out',
+    warning: 'Official Air Force registration is 100% free on nafrecruitment.airforce.mil.ng. NAF does not charge registration scratch card fees.',
+  },
+  {
     name: 'Nigeria Immigration Service (NIS)',
     category: 'Paramilitary',
     expectedDate: 'Q2 / Q3 2026',
@@ -109,6 +119,10 @@ const WHICH_FORM_FAQS = [
   {
     question: 'Is the Nigeria Police Constable 2026 form open?',
     answer: 'Yes. The Police Service Commission (PSC) and Nigeria Police Force (NPF) open online applications via apply.policerecruitment.gov.ng for General Duty and Specialist Constables. Applicants must possess a minimum of 5 credits in WAEC/NECO/NABTEB including English and Mathematics.'
+  },
+  {
+    question: 'Is the Nigerian Air Force (NAF) BMTC 45 recruitment form out for 2026?',
+    answer: 'The Nigerian Air Force publishes official recruitment announcements exclusively on nafrecruitment.airforce.mil.ng. Enlistment is 100% free of charge with zero scratch cards or PINs. Candidates can verify live portal status, O-Level requirements (5 credits), and step-by-step portal instructions on our dedicated Air Force guides.'
   },
   {
     question: 'Has CDCFIB opened recruitment for Immigration (NIS) or Civil Defence (NSCDC)?',

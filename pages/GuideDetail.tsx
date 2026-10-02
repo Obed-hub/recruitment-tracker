@@ -423,34 +423,6 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ slugOverride }) => {
             })}
           </article>
 
-          {/* High-Converting Contextual CTAs */}
-          <div className="p-5 bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-200 rounded-2xl my-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-center sm:text-left">
-                <h4 className="font-bold text-gray-900 text-sm sm:text-base mb-1">
-                  Preparing for {guide.branch} Aptitude & CBT Screening?
-                </h4>
-                <p className="text-xs text-gray-600">
-                  Practice timed questions with instant scoring, explanations, and review.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 shrink-0">
-                <Link
-                  to={`/past-questions/${getBranchPracticeSlug(guide.branch)}`}
-                  className="px-4 py-2.5 bg-military-green hover:bg-green-800 text-white font-bold text-xs rounded-xl shadow-sm transition-all"
-                >
-                  Start Practice Test
-                </Link>
-                <Link
-                  to="/shortlist-hub"
-                  className="px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 font-bold text-xs rounded-xl transition-all"
-                >
-                  Screening Venues
-                </Link>
-              </div>
-            </div>
-          </div>
-
           {/* Frequently Asked Questions Section (PAA Structured) */}
           {guide.faqs && guide.faqs.length > 0 && (
             <div className="pt-6 border-t border-gray-100">

@@ -28,6 +28,7 @@ const RecruitmentFilter: React.FC = () => {
       case 'NDLEA': return '/ndlea-recruitment';
       case 'EFCC': return '/efcc-recruitment';
       case 'FCSC': return '/fcsc-recruitment';
+      case 'NUC': return '/nuc-recruitment-portal';
       case 'NNPC': return '/nnpc-recruitment';
       case 'CBN': return '/cbn-recruitment';
       case 'NIMC': return '/nimc-recruitment';
@@ -93,6 +94,7 @@ const RecruitmentFilter: React.FC = () => {
       case 'Customs': return 'bg-slate-700';
       case 'EFCC': return 'bg-amber-700';
       case 'FCSC': return 'bg-violet-700';
+      case 'NUC': return 'bg-teal-700';
       case 'NNPC': return 'bg-green-800';
       case 'CBN': return 'bg-teal-700';
       case 'NIMC': return 'bg-blue-800';
@@ -120,8 +122,8 @@ const RecruitmentFilter: React.FC = () => {
     'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs',
     // Law Enforcement
     'EFCC',
-    // Civil Service
-    'FCSC',
+    // Civil Service & Education Parastatals
+    'FCSC', 'NUC',
     // Oil & Gas
     'NNPC',
     // Finance

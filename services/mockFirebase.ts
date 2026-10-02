@@ -696,6 +696,39 @@ const RECRUITMENTS: RecruitmentUpdate[] = [
       { zone: 'South West', venue: 'NDLEA Lagos Command', address: 'Ikoyi, Lagos', coordinator_contact: '08000000212' },
       { zone: 'North West', venue: 'NDLEA Kano Command', address: 'Kano', coordinator_contact: '08000000213' }
     ]
+  },
+  {
+    id: '22',
+    branch: 'NUC',
+    title: 'National Universities Commission (NUC) Academic & Admin Recruitment 2026',
+    category: 'Entry Level',
+    status: 'Open',
+    deadline_date: '2026-11-30',
+    portal_url: 'https://nuc.edu.ng/careers',
+    updated_at: '2026-10-02T10:00:00Z',
+    site_status: 'online',
+    description: 'The National Universities Commission (NUC) announces vacancy applications for Academic Planning Officers, Quality Assurance Inspectors, Research Analysts, and ICT Database Specialists across the Nigerian University System (NUS). The Commission is the federal regulatory body overseeing 270+ universities in Nigeria under the Federal Ministry of Education.',
+    requirements: [
+      'Must be a Nigerian citizen with verified National Identification Number (NIN).',
+      'Bachelor’s Degree (B.Sc, B.A, B.Ed, B.Eng) with a minimum of Second Class Lower (2:2) or Upper Credit (preference to 2:1 and First Class for Academic Planning).',
+      'Compulsory NYSC Discharge or Official Exemption Certificate.',
+      'Age bracket: 18 to 35 years at date of submission (up to 40 for Ph.D. holders).',
+      'High proficiency in academic research, educational policy, or institutional data systems.',
+      'Satisfactory medical fitness certificate from a recognized government hospital.'
+    ],
+    application_process: [
+      'Access the official NUC career gateway at nuc.edu.ng/careers or via the Federal Civil Service Commission portal.',
+      'Select your professional Directorate (Academic Planning, Quality Assurance, Research & Innovation, ICT, Establishment).',
+      'Authenticate your profile with your 11-digit NIN and upload degree credentials, NYSC certificate, and CV.',
+      'Submit the application and print your NUC Reference Acknowledgment Slip with unique registration number.',
+      'Shortlisted candidates sit for a Computer-Based Test (CBT) on Higher Education Policy, Public Service Rules, and Logic.'
+    ],
+    exam_centers: [
+      { zone: 'FCT', venue: 'NUC Secretariat Board Auditorium', address: '26 Aguiyi Ironsi Street, Maitama, Abuja', coordinator_contact: '08000000221' },
+      { zone: 'South West', venue: 'University of Lagos CBT Center', address: 'Akoka, Yaba, Lagos', coordinator_contact: '08000000222' },
+      { zone: 'North West', venue: 'Ahmadu Bello University CBT Centre', address: 'Samaru, Zaria, Kaduna', coordinator_contact: '08000000223' },
+      { zone: 'South East', venue: 'University of Nigeria Nsukka (UNN) Digital Library', address: 'Nsukka, Enugu', coordinator_contact: '08000000224' }
+    ]
   }
 ];
 
@@ -1268,7 +1301,11 @@ const QUESTIONS: Question[] = [
   { id: 'ndlea1', branch: 'NDLEA', question: 'The National Drug Law Enforcement Agency (NDLEA) was established by Decree No. 48 of which year?', options: ['1985', '1989', '1995', '2003'], correctAnswer: 1, explanation: 'The NDLEA was established by Decree No. 48 of 1989 to coordinate drug control efforts.' },
   { id: 'ndlea2', branch: 'NDLEA', question: 'Who is the current Chairman and Chief Executive of NDLEA?', options: ['Brig. Gen. Buba Marwa (Rtd)', 'Ahmadu Giade', 'Mustapha Abdallah', 'Kemi Adeosun'], correctAnswer: 0, explanation: 'Brig. Gen. Mohamed Buba Marwa (Rtd) is the Chairman and Chief Executive of NDLEA.' },
   { id: 'ndlea3', branch: 'NDLEA', question: 'NDLEA is a federal agency under the supervision of which government ministry?', options: ['Ministry of Interior', 'Ministry of Defence', 'Ministry of Justice', 'Ministry of Police Affairs'], correctAnswer: 2, explanation: 'The NDLEA operates under the Federal Ministry of Justice (Office of the Attorney General of the Federation).' },
-  { id: 'ndlea4', branch: 'NDLEA', question: 'Which of the following is a primary mandate of the NDLEA?', options: ['Extinguishing fires', 'Combating drug trafficking and abuse', 'Securing maritime boundaries', 'Managing land border passport checks'], correctAnswer: 1, explanation: 'NDLEA\'s primary mandate is to eliminate the manufacturing, processing, selling, exporting, and trafficking of hard drugs and psychotropic substances.' }
+  { id: 'ndlea4', branch: 'NDLEA', question: 'Which of the following is a primary mandate of the NDLEA?', options: ['Extinguishing fires', 'Combating drug trafficking and abuse', 'Securing maritime boundaries', 'Managing land border passport checks'], correctAnswer: 1, explanation: 'NDLEA\'s primary mandate is to eliminate the manufacturing, processing, selling, exporting, and trafficking of hard drugs and psychotropic substances.' },
+  { id: 'nuc1', branch: 'NUC', question: 'The National Universities Commission (NUC) was established in which year as an advisory agency?', options: ['1960', '1962', '1974', '1985'], correctAnswer: 1, explanation: 'The NUC was set up in 1962 following the Eric Ashby Commission recommendations and became a statutory commission under Decree No. 1 of 1974.' },
+  { id: 'nuc2', branch: 'NUC', question: 'What does CCMAS stand for in the Nigerian University System?', options: ['Centralized Course Management and Academic Scoring', 'Core Curriculum and Minimum Academic Standards', 'Commission Committee on Modern Academic Syllabus', 'Certified Curricula for Master and Advanced Studies'], correctAnswer: 1, explanation: 'CCMAS stands for Core Curriculum and Minimum Academic Standards, designed to overhaul degree benchmarks in Nigerian universities.' },
+  { id: 'nuc3', branch: 'NUC', question: 'Under which federal government ministry does the National Universities Commission (NUC) operate?', options: ['Federal Ministry of Science, Technology and Innovation', 'Federal Ministry of Education', 'Federal Ministry of Youth Development', 'Federal Ministry of Information and National Orientation'], correctAnswer: 1, explanation: 'The NUC is a regulatory parastatal under the Federal Ministry of Education.' },
+  { id: 'nuc4', branch: 'NUC', question: 'Which body is statutorily responsible for accrediting degree programs in Nigerian universities?', options: ['JAMB', 'TRCN', 'National Universities Commission (NUC)', 'WAEC'], correctAnswer: 2, explanation: 'The NUC possesses the exclusive legal mandate to accredit degree programs across federal, state, and private universities in Nigeria.' }
 ] as any;
 
 export const getRecruitments = async (): Promise<RecruitmentUpdate[]> => {
