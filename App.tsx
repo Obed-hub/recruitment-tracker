@@ -32,6 +32,7 @@ const WhichFormIsOut = lazy(() => import('./pages/WhichFormIsOut'));
 const NavyRecruitmentBatch39 = lazy(() => import('./pages/NavyRecruitmentBatch39'));
 const FAQHub = lazy(() => import('./pages/FAQHub'));
 const PortalActionPage = lazy(() => import('./pages/PortalActionPage'));
+const SponsoredAdReport = lazy(() => import('./pages/SponsoredAdReport'));
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         <Routes>
         {/* Admin panel — full page, outside the main Layout */}
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/ad-report" element={<SponsoredAdReport />} />
 
         {/* All other pages share the main Layout */}
         <Route path="/" element={<Layout><Dashboard /></Layout>} />

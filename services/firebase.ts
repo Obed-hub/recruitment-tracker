@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, get, child, set, update, remove } from "firebase/database";
+import { getDatabase, ref, onValue, get, child, set, update, remove, increment } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
 import { RecruitmentUpdate, Question, NewsItem, ShortlistCandidate, Branch, RecruitmentCategory, ExamCenter, SLUG_TO_BRANCH } from "../types";
@@ -742,4 +742,293 @@ export const updateAllPortals = async (portals: Record<string, any>): Promise<vo
     await set(monitorRef, portals);
     console.log('[Admin] Bulk-updated all portals');
 };
+
+// ─── SPONSORED ADS REALTIME CONFIGURATION ──────────────────────────────────
+
+export interface SponsoredAdConfig {
+    active: boolean;
+    title: string;
+    company: string;
+    location: string;
+    salary: string;
+    requirements: string[];
+    directUrl: string;
+    whatsappNumber?: string;
+    prefilledMessage?: string;
+    updatedAt?: number;
+}
+
+export const DEFAULT_SPONSORED_AD: SponsoredAdConfig = {
+    active: true,
+    title: 'Head of Financial Institution',
+    company: 'Juntpay Payment Limited',
+    location: 'Nigeria (Hybrid / Remote)',
+    salary: '₦200,000–₦500,000/month',
+    requirements: [
+        'Minimum 5 years of relevant experience',
+        'Experience in online financial business',
+        'Knowledge of banking and financial compliance',
+        'Age 35 and above, as stated by the advertiser'
+    ],
+    directUrl: 'https://wa.link/64qnjm',
+    whatsappNumber: '',
+    prefilledMessage: 'Hello, I am applying for the Head of Financial Institution position (Juntpay Payment Limited) seen on Nigeria Recruitment Tracker.'
+};
+
+const SPONSORED_AD_STORAGE_KEY = 'nrt_sponsored_ad_config';
+const SPONSORED_METRICS_STORAGE_KEY = 'nrt_sponsored_ad_metrics';
+
+const getCachedSponsoredAd = (): SponsoredAdConfig => {
+    if (typeof window === 'undefined') return DEFAULT_SPONSORED_AD;
+    try {
+        const raw = localStorage.getItem(SPONSORED_AD_STORAGE_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            return {
+                ...DEFAULT_SPONSORED_AD,
+                ...parsed,
+                requirements: Array.isArray(parsed.requirements) ? parsed.requirements : DEFAULT_SPONSORED_AD.requirements
+            };
+        }
+    } catch (e) {
+        console.warn('[Cache] Could not read cached ad:', e);
+    }
+    return DEFAULT_SPONSORED_AD;
+};
+
+const getCachedMetrics = (): AdMetrics => {
+    if (typeof window === 'undefined') return { impressions: 0, clicks: 0, placements: {} };
+    try {
+        const raw = localStorage.getItem(SPONSORED_METRICS_STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+    } catch (e) {
+        console.warn('[Cache] Could not read cached metrics:', e);
+    }
+    return { impressions: 0, clicks: 0, placements: {} };
+};
+
+/**
+ * Subscribes to live sponsored ad data in Firebase Realtime Database with local persistence fallback.
+ */
+export const subscribeToSponsoredAd = (callback: (ad: SponsoredAdConfig) => void): (() => void) => {
+    // 1. Deliver cached data immediately
+    const initial = getCachedSponsoredAd();
+    callback(initial);
+
+    // 2. Listen to in-memory / cross-tab updates
+    const handleLocalUpdate = (e: Event) => {
+        const customEvt = e as CustomEvent<SponsoredAdConfig>;
+        if (customEvt.detail) {
+            callback(customEvt.detail);
+        } else {
+            callback(getCachedSponsoredAd());
+        }
+    };
+    if (typeof window !== 'undefined') {
+        window.addEventListener('sponsored_ad_updated', handleLocalUpdate);
+        window.addEventListener('storage', handleLocalUpdate);
+    }
+
+    // 3. Listen to Firebase Realtime Database
+    let unsubscribeFirebase = () => {};
+    try {
+        const adRef = ref(db, 'sponsored_ad');
+        unsubscribeFirebase = onValue(adRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                const resolvedAd: SponsoredAdConfig = {
+                    ...DEFAULT_SPONSORED_AD,
+                    ...data,
+                    requirements: Array.isArray(data.requirements) 
+                        ? data.requirements 
+                        : (typeof data.requirements === 'string' ? data.requirements.split('\n').filter(Boolean) : DEFAULT_SPONSORED_AD.requirements)
+                };
+                if (typeof window !== 'undefined') {
+                    try { localStorage.setItem(SPONSORED_AD_STORAGE_KEY, JSON.stringify(resolvedAd)); } catch {}
+                }
+                callback(resolvedAd);
+            }
+        }, (err) => {
+            console.warn('[Firebase] Warning on sponsored ad stream, keeping local cache:', err?.message || err);
+        });
+    } catch (e) {
+        console.warn('[Firebase] Could not subscribe to sponsored_ad path:', e);
+    }
+
+    return () => {
+        unsubscribeFirebase();
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('sponsored_ad_updated', handleLocalUpdate);
+            window.removeEventListener('storage', handleLocalUpdate);
+        }
+    };
+};
+
+/**
+ * Updates or takes down the sponsored ad in Firebase Realtime Database (with automatic local storage persistence).
+ */
+export const updateSponsoredAd = async (adData: Partial<SponsoredAdConfig>): Promise<void> => {
+    const fullConfig: SponsoredAdConfig = {
+        ...getCachedSponsoredAd(),
+        ...adData,
+        updatedAt: Date.now()
+    };
+
+    // 1. Always persist to localStorage immediately
+    if (typeof window !== 'undefined') {
+        try {
+            localStorage.setItem(SPONSORED_AD_STORAGE_KEY, JSON.stringify(fullConfig));
+            window.dispatchEvent(new CustomEvent('sponsored_ad_updated', { detail: fullConfig }));
+        } catch (e) {
+            console.warn('[Cache] Could not save sponsored ad to localStorage:', e);
+        }
+    }
+
+    // 2. Sync to Firebase Realtime Database (catch permission errors gracefully)
+    try {
+        const adRef = ref(db, 'sponsored_ad');
+        await set(adRef, fullConfig);
+        console.log('[Admin] Updated Sponsored Ad successfully in Firebase');
+    } catch (firebaseErr: any) {
+        console.warn('[Admin] Firebase RTDB sync note (local changes applied):', firebaseErr?.message || firebaseErr);
+        // Do not throw so admin panel succeeds and user changes remain active
+    }
+};
+
+export interface AdMetrics {
+    impressions: number;
+    clicks: number;
+    lastImpression?: number;
+    lastClick?: number;
+    placements?: Record<string, { impressions: number; clicks: number }>;
+}
+
+export const recordAdImpression = async (placement: string = 'general'): Promise<void> => {
+    const cleanPlacement = placement.replace(/[^a-zA-Z0-9_-]/g, '_');
+    
+    // Update local cache
+    if (typeof window !== 'undefined') {
+        try {
+            const metrics = getCachedMetrics();
+            metrics.impressions = (metrics.impressions || 0) + 1;
+            metrics.lastImpression = Date.now();
+            if (!metrics.placements) metrics.placements = {};
+            if (!metrics.placements[cleanPlacement]) metrics.placements[cleanPlacement] = { impressions: 0, clicks: 0 };
+            metrics.placements[cleanPlacement].impressions += 1;
+            localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(metrics));
+            window.dispatchEvent(new CustomEvent('sponsored_metrics_updated', { detail: metrics }));
+        } catch {}
+    }
+
+    // Try Firebase
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        await update(metricsRef, {
+            impressions: increment(1),
+            lastImpression: Date.now(),
+            [`placements/${cleanPlacement}/impressions`]: increment(1)
+        });
+    } catch (e) {
+        // Firebase permission or network, already saved locally
+    }
+};
+
+export const recordAdClick = async (placement: string = 'general'): Promise<void> => {
+    const cleanPlacement = placement.replace(/[^a-zA-Z0-9_-]/g, '_');
+    
+    // Update local cache
+    if (typeof window !== 'undefined') {
+        try {
+            const metrics = getCachedMetrics();
+            metrics.clicks = (metrics.clicks || 0) + 1;
+            metrics.lastClick = Date.now();
+            if (!metrics.placements) metrics.placements = {};
+            if (!metrics.placements[cleanPlacement]) metrics.placements[cleanPlacement] = { impressions: 0, clicks: 0 };
+            metrics.placements[cleanPlacement].clicks += 1;
+            localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(metrics));
+            window.dispatchEvent(new CustomEvent('sponsored_metrics_updated', { detail: metrics }));
+        } catch {}
+    }
+
+    // Try Firebase
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        await update(metricsRef, {
+            clicks: increment(1),
+            lastClick: Date.now(),
+            [`placements/${cleanPlacement}/clicks`]: increment(1)
+        });
+    } catch (e) {
+        // Firebase permission or network, already saved locally
+    }
+};
+
+export const subscribeToAdMetrics = (callback: (metrics: AdMetrics) => void): (() => void) => {
+    // Deliver initial local cache
+    callback(getCachedMetrics());
+
+    const handleLocalMetrics = (e: Event) => {
+        const customEvt = e as CustomEvent<AdMetrics>;
+        if (customEvt.detail) {
+            callback(customEvt.detail);
+        } else {
+            callback(getCachedMetrics());
+        }
+    };
+
+    if (typeof window !== 'undefined') {
+        window.addEventListener('sponsored_metrics_updated', handleLocalMetrics);
+        window.addEventListener('storage', handleLocalMetrics);
+    }
+
+    let unsubscribeFirebase = () => {};
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        unsubscribeFirebase = onValue(metricsRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const val = snapshot.val();
+                const resolved: AdMetrics = {
+                    impressions: val.impressions || 0,
+                    clicks: val.clicks || 0,
+                    lastImpression: val.lastImpression,
+                    lastClick: val.lastClick,
+                    placements: val.placements || {}
+                };
+                if (typeof window !== 'undefined') {
+                    try { localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(resolved)); } catch {}
+                }
+                callback(resolved);
+            }
+        }, (err) => {
+            console.warn('[Firebase Metrics] Metrics stream note:', err?.message || err);
+        });
+    } catch {}
+
+    return () => {
+        unsubscribeFirebase();
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('sponsored_metrics_updated', handleLocalMetrics);
+            window.removeEventListener('storage', handleLocalMetrics);
+        }
+    };
+};
+
+export const resetAdMetrics = async (): Promise<void> => {
+    if (typeof window !== 'undefined') {
+        const empty: AdMetrics = { impressions: 0, clicks: 0, placements: {} };
+        localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(empty));
+        window.dispatchEvent(new CustomEvent('sponsored_metrics_updated', { detail: empty }));
+    }
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        await set(metricsRef, {
+            impressions: 0,
+            clicks: 0,
+            lastReset: Date.now(),
+            placements: {}
+        });
+    } catch {}
+};
+
+
 

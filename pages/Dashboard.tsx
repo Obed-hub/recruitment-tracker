@@ -11,6 +11,7 @@ import { GUIDES } from '../services/mockGuides';
 import { BLOG_ARTICLES } from '../services/mockBlog';
 import ViralCommunityWidget from '../components/ViralCommunityWidget';
 import NavyBatch39Banner from '../components/NavyBatch39Banner';
+import SponsoredJobCard from '../components/SponsoredJobCard';
 import { getDailyUpdatedBadge, formatCardUpdateDate } from '../services/dateUtils';
 import SearchableFAQSection from '../components/SearchableFAQSection';
 
@@ -147,6 +148,9 @@ const Dashboard: React.FC = () => {
 
       {/* Primary Priority Announcement: Nigerian Navy Batch 39 Recruitment 2026 */}
       <NavyBatch39Banner />
+
+      {/* Featured Sponsored Recruitment Vacancy (High-Visibility Placement) */}
+      <SponsoredJobCard placementContext="homepage_under_batch39_banner" className="my-2" />
 
       {/* Hero / Live Status Section */}
       <section>
@@ -291,6 +295,8 @@ const Dashboard: React.FC = () => {
         {/* Viral WhatsApp Community Alert */}
         <ViralCommunityWidget agencyName="Nigeria Recruitment Tracker" variant="banner" />
 
+        {/* High-Converting Sponsored Vacancy Placement */}
+        <SponsoredJobCard placementContext="homepage_feed" className="my-2" />
 
         {loading ? (
           <div className="space-y-6">

@@ -9,8 +9,10 @@ import {
 import SEO from '../components/SEO';
 import {
     subscribeToPortalMonitor, updatePortalStatus, updateAllPortals,
+    subscribeToSponsoredAd, updateSponsoredAd, SponsoredAdConfig, DEFAULT_SPONSORED_AD,
     adminSignIn, adminSignOut, onAdminAuthStateChanged
 } from '../services/firebase';
+import SponsoredJobCard from '../components/SponsoredJobCard';
 
 
 
@@ -198,7 +200,7 @@ interface PortalEdit {
     dirty?: boolean;
 }
 
-type TabId = 'portals' | 'recruitments';
+type TabId = 'portals' | 'recruitments' | 'sponsored_ads';
 
 // ─── Login Screen ────────────────────────────────────────────────────────────────
 const LoginScreen: React.FC = () => {
@@ -555,11 +557,21 @@ const AdminPanel: React.FC = () => {
     const [isSavingAll, setIsSavingAll] = useState(false);
     const [allSaved, setAllSaved] = useState(false);
     const [firebaseConnected, setFirebaseConnected] = useState(false);
+    const [adminError, setAdminError] = useState<string | null>(null);
 
     // ── Recruitment state ─────────────────────────────────────────────────
     const [recruitments, setRecruitments] = useState<RecruitmentEdit[]>(
         RECRUITMENT_SEED.map(r => ({ ...r, dirty: false, saving: false, saved: false }))
     );
+
+    // ── Sponsored Ad state ────────────────────────────────────────────────
+    const [sponsoredAd, setSponsoredAd] = useState<SponsoredAdConfig>(DEFAULT_SPONSORED_AD);
+    const [adRequirementsText, setAdRequirementsText] = useState<string>(
+        DEFAULT_SPONSORED_AD.requirements.join('\n')
+    );
+    const [adDirty, setAdDirty] = useState(false);
+    const [adSaving, setAdSaving] = useState(false);
+    const [adSaved, setAdSaved] = useState(false);
 
     // Listen to Firebase Auth state — auto-login if session exists
     useEffect(() => {
@@ -569,6 +581,20 @@ const AdminPanel: React.FC = () => {
         });
         return () => unsub();
     }, []);
+
+    // Subscribe to live Sponsored Ad in Firebase
+    useEffect(() => {
+        if (!isLoggedIn) return;
+        const unsub = subscribeToSponsoredAd((liveAd) => {
+            if (liveAd && !adDirty) {
+                setSponsoredAd(liveAd);
+                setAdRequirementsText(
+                    Array.isArray(liveAd.requirements) ? liveAd.requirements.join('\n') : ''
+                );
+            }
+        });
+        return () => unsub();
+    }, [isLoggedIn, adDirty]);
 
     // Initialize portals from Firebase
     useEffect(() => {
@@ -646,7 +672,7 @@ const AdminPanel: React.FC = () => {
         } catch (err) {
             console.error('[Admin] Save failed:', err);
             setPortals(prev => prev.map(p => p.id === id ? { ...p, saving: false } : p));
-            alert(`Failed to save ${portal.name}. Check your Firebase connection.`);
+            setAdminError(`Failed to save ${portal.name}. Check your Firebase connection.`);
         }
     };
 
@@ -672,7 +698,7 @@ const AdminPanel: React.FC = () => {
             }, 3000);
         } catch (err) {
             console.error('[Admin] Save All failed:', err);
-            alert('Failed to save all portals. Check your Firebase connection.');
+            setAdminError('Failed to save all portals. Check your Firebase connection.');
         } finally {
             setIsSavingAll(false);
         }
@@ -705,8 +731,49 @@ const AdminPanel: React.FC = () => {
         } catch (err) {
             console.error('[Admin] Recruitment save failed:', err);
             setRecruitments(prev => prev.map(r => r.id === rec.id ? { ...r, saving: false } : r));
-            alert(`Failed to save ${rec.title}. Check your Firebase connection.`);
+            setAdminError(`Failed to save ${rec.title}. Check your Firebase connection.`);
         }
+    };
+
+    // ── Sponsored Ad handlers ───────────────────────────────────────────
+    const handleSponsoredAdChange = (field: keyof SponsoredAdConfig, value: any) => {
+        setSponsoredAd(prev => ({ ...prev, [field]: value }));
+        setAdDirty(true);
+        setAdSaved(false);
+    };
+
+    const handleRequirementsChange = (text: string) => {
+        setAdRequirementsText(text);
+        const list = text.split('\n').map(s => s.trim()).filter(Boolean);
+        setSponsoredAd(prev => ({ ...prev, requirements: list }));
+        setAdDirty(true);
+        setAdSaved(false);
+    };
+
+    const handleSponsoredAdSave = async () => {
+        setAdSaving(true);
+        try {
+            const list = adRequirementsText.split('\n').map(s => s.trim()).filter(Boolean);
+            await updateSponsoredAd({
+                ...sponsoredAd,
+                requirements: list
+            });
+            setAdDirty(false);
+            setAdSaved(true);
+            setTimeout(() => setAdSaved(false), 3000);
+        } catch (err) {
+            console.error('[Admin] Failed to save Sponsored Ad:', err);
+            setAdminError('Failed to save Sponsored Ad. Check Firebase connection.');
+        } finally {
+            setAdSaving(false);
+        }
+    };
+
+    const handleLoadDefaultAd = () => {
+        setSponsoredAd(DEFAULT_SPONSORED_AD);
+        setAdRequirementsText(DEFAULT_SPONSORED_AD.requirements.join('\n'));
+        setAdDirty(true);
+        setAdSaved(false);
     };
 
     if (!authChecked) {
@@ -728,6 +795,7 @@ const AdminPanel: React.FC = () => {
     const TABS: { id: TabId; label: string; icon: React.ReactNode; badge?: number }[] = [
         { id: 'portals', label: 'Portal Statuses', icon: <Globe className="w-4 h-4" />, badge: dirtyPortals || undefined },
         { id: 'recruitments', label: 'Recruitments', icon: <Briefcase className="w-4 h-4" />, badge: dirtyRecruits || undefined },
+        { id: 'sponsored_ads', label: 'Sponsored Ads Manager', icon: <Tag className="w-4 h-4" />, badge: adDirty ? 1 : undefined },
     ];
 
     return (
@@ -767,6 +835,17 @@ const AdminPanel: React.FC = () => {
                     </button>
                 </div>
             </div>
+
+            {adminError && (
+                <div className="max-w-7xl mx-auto px-6 pt-4">
+                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg flex items-center justify-between text-sm shadow-sm">
+                        <span>{adminError}</span>
+                        <button onClick={() => setAdminError(null)} className="text-red-700 font-semibold hover:underline ml-4">
+                            Dismiss
+                        </button>
+                    </div>
+                </div>
+            )}
 
             <div className="max-w-7xl mx-auto px-6 py-8">
                 {/* Stats Bar */}
@@ -844,6 +923,229 @@ const AdminPanel: React.FC = () => {
                             ))}
                         </div>
                     </>
+                )}
+
+                {/* ── TAB: Sponsored Ads Manager ── */}
+                {activeTab === 'sponsored_ads' && (
+                    <div className="space-y-6">
+                        {/* Status / Alert Header */}
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 bg-white border border-gray-200 rounded-2xl shadow-sm">
+                            <div>
+                                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                                    <Tag className="w-5 h-5 text-emerald-600" />
+                                    Sponsored Ad Controller (Site-Wide)
+                                </h2>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Control the sponsored vacancy shown across Homepage, Navy Hub, Salary Hub, and Detail pages in real time.
+                                </p>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                <a
+                                    href="/ad-report"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition-all shadow-xs"
+                                >
+                                    <ExternalLink className="w-4 h-4 text-emerald-600" />
+                                    View Live Report Page
+                                </a>
+
+                                <button
+                                    onClick={() => handleSponsoredAdChange('active', !sponsoredAd.active)}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
+                                        sponsoredAd.active
+                                            ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm'
+                                            : 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100'
+                                    }`}
+                                >
+                                    {sponsoredAd.active ? (
+                                        <>
+                                            <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                                            Ad is LIVE (Visible Site-Wide)
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                                            Ad is TAKEN DOWN (Hidden Everywhere)
+                                        </>
+                                    )}
+                                </button>
+
+                                <button
+                                    onClick={handleSponsoredAdSave}
+                                    disabled={adSaving}
+                                    className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all shadow-sm ${
+                                        adSaved
+                                            ? 'bg-green-600 text-white'
+                                            : 'bg-slate-900 hover:bg-black text-white'
+                                    } disabled:opacity-60`}
+                                >
+                                    {adSaving ? (
+                                        <><RefreshCw className="w-4 h-4 animate-spin" /> Publishing...</>
+                                    ) : adSaved ? (
+                                        <><CheckCircle className="w-4 h-4" /> Published Live!</>
+                                    ) : (
+                                        <><Save className="w-4 h-4" /> Publish Changes</>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Editor Grid: Left Form / Right Live Preview */}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                            {/* Form Input Columns */}
+                            <div className="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+                                <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                                    <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider">
+                                        Ad Content & WhatsApp Settings
+                                    </h3>
+                                    <button
+                                        type="button"
+                                        onClick={handleLoadDefaultAd}
+                                        className="text-xs text-emerald-700 font-semibold hover:underline"
+                                    >
+                                        Load Juntpay Template
+                                    </button>
+                                </div>
+
+                                {/* Job Title */}
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                                        Job Title
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={sponsoredAd.title || ''}
+                                        onChange={e => handleSponsoredAdChange('title', e.target.value)}
+                                        placeholder="e.g. Head of Financial Institution"
+                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                    />
+                                </div>
+
+                                {/* Company & Location */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                                            Company / Organization Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={sponsoredAd.company || ''}
+                                            onChange={e => handleSponsoredAdChange('company', e.target.value)}
+                                            placeholder="e.g. Juntpay Payment Limited"
+                                            className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                                            Location / Region
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={sponsoredAd.location || ''}
+                                            onChange={e => handleSponsoredAdChange('location', e.target.value)}
+                                            placeholder="e.g. Nigeria / Lagos"
+                                            className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Salary Range */}
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                                        Salary Range / Rate
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={sponsoredAd.salary || ''}
+                                        onChange={e => handleSponsoredAdChange('salary', e.target.value)}
+                                        placeholder="e.g. ₦200,000–₦500,000/month"
+                                        className="w-full bg-slate-50 border border-slate-200 text-emerald-700 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                    />
+                                </div>
+
+                                {/* Direct WhatsApp Link */}
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                                        Direct WhatsApp URL / Action Link
+                                    </label>
+                                    <input
+                                        type="url"
+                                        value={sponsoredAd.directUrl || ''}
+                                        onChange={e => handleSponsoredAdChange('directUrl', e.target.value)}
+                                        placeholder="https://wa.link/64qnjm or https://wa.me/2348000000000"
+                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                    />
+                                    <span className="text-[11px] text-gray-500 mt-1 block">
+                                        Enter any <code className="text-emerald-700 font-semibold">https://wa.link/...</code> or WhatsApp link. Clicks will open directly in the applicant's WhatsApp and log in GA4.
+                                    </span>
+                                </div>
+
+                                {/* Requirements List (Multi-line) */}
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                                        Job Requirements (1 item per line)
+                                    </label>
+                                    <textarea
+                                        rows={5}
+                                        value={adRequirementsText}
+                                        onChange={e => handleRequirementsChange(e.target.value)}
+                                        placeholder="Minimum 5 years of relevant experience&#10;Experience in online financial business&#10;Knowledge of banking and financial compliance&#10;Age 35 and above, as stated by the advertiser"
+                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl p-3 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all resize-y"
+                                    />
+                                    <span className="text-[11px] text-gray-500 mt-0.5 block">
+                                        Press Enter to add new bullet points.
+                                    </span>
+                                </div>
+
+                                <div className="pt-2">
+                                    <button
+                                        type="button"
+                                        onClick={handleSponsoredAdSave}
+                                        disabled={adSaving}
+                                        className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                                    >
+                                        <Save className="w-4 h-4" /> Save & Push Live to All Users
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Live Interactive Preview Box */}
+                            <div className="lg:col-span-5 space-y-3">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xs font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1.5">
+                                        <Eye className="w-4 h-4 text-emerald-600" /> Real-Time Live Preview
+                                    </span>
+                                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                                        sponsoredAd.active ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+                                    }`}>
+                                        {sponsoredAd.active ? 'Status: Active on Site' : 'Status: Hidden'}
+                                    </span>
+                                </div>
+
+                                <div className="bg-slate-100 p-4 sm:p-6 rounded-2xl border border-slate-200">
+                                    <div className="text-center mb-3">
+                                        <p className="text-[11px] text-slate-500 font-medium">
+                                            {sponsoredAd.active ? 'Visitors see this card across the site:' : 'Ad is disabled — Visitors will see nothing.'}
+                                        </p>
+                                    </div>
+
+                                    {/* Preview Card Component */}
+                                    <SponsoredJobCard
+                                        title={sponsoredAd.title}
+                                        company={sponsoredAd.company}
+                                        location={sponsoredAd.location}
+                                        salary={sponsoredAd.salary}
+                                        requirements={sponsoredAd.requirements}
+                                        directUrl={sponsoredAd.directUrl}
+                                        placementContext="admin_preview"
+                                        className="shadow-md"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 )}
 
 

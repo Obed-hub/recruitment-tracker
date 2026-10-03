@@ -12,6 +12,7 @@ import AdUnit from '../components/AdUnit';
 import { FAQPageSchema, BreadcrumbListSchema } from '../components/StructuredData';
 import { getDailyUpdatedBadge } from '../services/dateUtils';
 import NavyBatch39Banner from '../components/NavyBatch39Banner';
+import SponsoredJobCard from '../components/SponsoredJobCard';
 
 interface UpcomingAgency {
   name: string;
@@ -314,6 +315,9 @@ const WhichFormIsOut: React.FC = () => {
       {/* Breaking Navy Batch 39 Announcement & Countdown */}
       <NavyBatch39Banner />
 
+      {/* Featured Sponsored Recruitment Vacancy (High-Visibility Placement) */}
+      <SponsoredJobCard placementContext="which_form_under_batch39_banner" className="my-3" />
+
       {/* Interactive Filter & Search Controls */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6 space-y-4">
         <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
@@ -375,6 +379,9 @@ const WhichFormIsOut: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Featured High-Paying Alternative Job */}
+      <SponsoredJobCard placementContext="which_form_is_out" />
 
       {/* Section 1: Active Portals List */}
       {selectedTab !== 'upcoming' && (

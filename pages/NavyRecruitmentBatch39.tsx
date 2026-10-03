@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
+import SponsoredJobCard from '../components/SponsoredJobCard';
 import { FAQPageSchema, JobPostingSchema, BreadcrumbListSchema } from '../components/StructuredData';
 import { getDailyUpdatedBadge } from '../services/dateUtils';
 import SearchableFAQSection from '../components/SearchableFAQSection';
@@ -196,7 +197,11 @@ export const NavyRecruitmentBatch39: React.FC = () => {
       `Check requirements, salary scale, age limits & practice CBT past questions on Recruitment Tracker:\n` +
       `${SITE_NAVY_BATCH_39_URL}`
     );
-    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    const link = document.createElement('a');
+    link.href = `https://api.whatsapp.com/send?text=${text}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.click();
   };
 
   // Eligibility evaluation logic
@@ -392,6 +397,9 @@ export const NavyRecruitmentBatch39: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Featured Sponsored Recruitment Vacancy (High-Visibility Placement Under Batch 39 Banner) */}
+      <SponsoredJobCard placementContext="navy_batch_39_under_banner" className="my-3" />
 
       {/* Critical Anti-Scam Public Advisory */}
       <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 sm:p-5 flex items-start gap-3 shadow-sm">
@@ -619,6 +627,9 @@ export const NavyRecruitmentBatch39: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* High-Intent Sponsored Alternative Job */}
+      <SponsoredJobCard placementContext="navy_batch_39" />
 
       {/* Cadres Breakdown Tabs */}
       <div className="space-y-4">

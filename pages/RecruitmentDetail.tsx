@@ -10,6 +10,7 @@ import { GUIDES } from '../services/mockGuides';
 import FastActionCard from '../components/FastActionCard';
 import ScreeningChecklist from '../components/ScreeningChecklist';
 import NextStepInterstitial from '../components/NextStepInterstitial';
+import SponsoredJobCard from '../components/SponsoredJobCard';
 import StickyRecommendedBar from '../components/StickyRecommendedBar';
 import { PositionZeroQuickAnswer } from '../components/PositionZeroQuickAnswer';
 import { getDailyUpdatedBadge } from '../services/dateUtils';
@@ -456,6 +457,9 @@ const RecruitmentDetail: React.FC = () => {
                 title={`${recruitment.title} Physical Screening Document Checklist`}
               />
             </section>
+
+            {/* Featured High-Paying Alternative Vacancy */}
+            <SponsoredJobCard placementContext={`recruitment_detail_${recruitment.branch.toLowerCase().replace(/\s+/g, '_')}`} />
 
             {/* Re-circulation Next Step Interstitial */}
             <NextStepInterstitial

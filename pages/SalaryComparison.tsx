@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
+import SponsoredJobCard from '../components/SponsoredJobCard';
 import { FAQPageSchema, BreadcrumbListSchema } from '../components/StructuredData';
 import FastActionCard from '../components/FastActionCard';
 import NextStepInterstitial from '../components/NextStepInterstitial';
@@ -375,6 +376,9 @@ const SalaryComparison: React.FC = () => {
         </div>
       </div>
 
+      {/* Featured Sponsored Recruitment Vacancy */}
+      <SponsoredJobCard placementContext="salary_comparison_top" className="my-3" />
+
       {/* Featured Snippet Direct Answer Card */}
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-500/40 rounded-3xl p-6 md:p-8 shadow-sm">
         <div className="flex items-start gap-4">
@@ -596,6 +600,9 @@ const SalaryComparison: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Featured High-Paying Sponsored Alternative */}
+      <SponsoredJobCard placementContext="salary_comparison" />
 
       <AdUnit slot="SALARY_COMPARISON_MID_AD" />
 
