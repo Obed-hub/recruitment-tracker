@@ -5,6 +5,7 @@ interface SEOProps {
     title?: string;
     description?: string;
     canonical?: string;
+    canonicalUrl?: string;
     ogType?: 'website' | 'article';
     ogImage?: string;
     keywords?: string[];
@@ -14,6 +15,7 @@ const SEO: React.FC<SEOProps> = ({
     title,
     description,
     canonical,
+    canonicalUrl,
     ogType = 'website',
     ogImage = '/assets/og-image.png',
     keywords = [],
@@ -21,8 +23,11 @@ const SEO: React.FC<SEOProps> = ({
     const siteName = 'Nigeria Recruitment Tracker';
     const fullTitle = title ? `${title} | ${siteName}` : siteName;
     const siteUrl = 'https://recruitmenttracker.com.ng';
-    const cleanPath = window.location.pathname.replace(/\/$/, '');
-    const fullCanonical = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${cleanPath}`;
+    const cleanPath = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '') : '';
+    const activeCanonical = canonicalUrl || canonical;
+    const fullCanonical = activeCanonical
+        ? (activeCanonical.startsWith('http') ? activeCanonical : `${siteUrl}${activeCanonical.startsWith('/') ? activeCanonical : '/' + activeCanonical}`)
+        : `${siteUrl}${cleanPath}`;
 
     const defaultDescription = 'Track latest Nigeria recruitment updates, check eligibility, and prepare for exams.';
 

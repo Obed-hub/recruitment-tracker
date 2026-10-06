@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrainCircuit, BookOpen, Clock, Award, Shield } from 'lucide-react';
+import { BrainCircuit, BookOpen, Clock, Award, Shield, CheckCircle2, AlertCircle, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Branch, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
 import { FAQPageSchema } from '../components/StructuredData';
+import AdUnit from '../components/AdUnit';
 
 const QuizHub: React.FC = () => {
   const practiceOptions: { branch: Branch | 'General', label: string, desc: string, color: string }[] = [
@@ -23,145 +24,183 @@ const QuizHub: React.FC = () => {
 
   const quizFAQs = [
     {
-      question: "Where can I get free Nigerian military past questions?",
-      answer: "Our Past Question Centre provides 100% free computer-based test (CBT) practice questions and answers for Nigerian Army, Navy, Air Force, Police, and Civil Defence examinations."
+      question: "Where can I get free Nigerian military & paramilitary past questions?",
+      answer: "Our Past Question Centre provides 100% free computer-based test (CBT) practice questions and answers for Nigerian Army, Navy, Air Force, Police, Civil Defence, Immigration, Customs, and FRSC screening examinations."
     },
     {
-      question: "What subjects are tested in Nigerian military recruitment exams?",
-      answer: "The screening examinations usually cover English Language, Mathematics, General Knowledge (Current Affairs, history of Nigeria, and agency-specific knowledge), and logical reasoning."
+      question: "What subjects are tested in Nigerian recruitment aptitude tests?",
+      answer: "Standard CBT screening examinations cover: (1) Use of English & Comprehension (30%), (2) General Knowledge & Current Affairs (40%), (3) Mathematics & Quantitative Logic (30%), and agency-specific technical questions."
     },
     {
-      question: "How do I prepare for a military CBT aptitude test?",
-      answer: "The best preparation is regular practice under timed conditions. Get familiar with national and international current affairs, study the history and ranks of the agency you applied to, and take mock tests."
+      question: "What is the pass mark for Nigerian military and police CBT screening exams?",
+      answer: "While cut-off marks vary based on state quotas and applicant volume, achieving 60% or higher is generally required to secure a place on the shortlisted candidate interview list."
+    },
+    {
+      question: "How much time is given per question in recruitment CBT exams?",
+      answer: "Most recruitment examinations (administered via JAMB CBT centers or specialized test providers) allow between 30 to 45 seconds per question (e.g. 50 to 100 questions within 45 to 60 minutes)."
     }
   ];
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6">
       <SEO
-        title="Past Question Centre - Nigeria Recruitment Preparation"
-        description="Prepare for Nigerian recruitment aptitude tests with our professional Past Question CBT tests. Practice with real exam questions from Army, Navy, Police, and more."
-        canonical="/past-questions"
-        keywords={['past question', 'Nigeria recruitment test', 'aptitude test practice', 'Army past questions', 'Police past questions']}
+        title="Past Question Centre 2026: Free CBT Aptitude Test Practice | Army, Navy, Police, NSCDC"
+        description="Prepare for Nigerian military, police, and paramilitary recruitment examinations. Practice real computer-based test (CBT) past questions with instant grading, answers, and time-management tips."
+        canonicalUrl="/past-questions"
+        keywords={[
+          'past question',
+          'Nigeria recruitment test',
+          'aptitude test practice',
+          'Army past questions',
+          'Police past questions',
+          'nscdc past questions',
+          'navy cbt questions',
+          'military screening exam practice'
+        ]}
       />
       <FAQPageSchema faqs={quizFAQs} />
-      <div className="text-center py-12">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Past Question Centre</h1>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Prepare for your recruitment aptitude test with our simulated Computer Based Test (CBT) environment. We provide real past questions from previous recruitment exercises to help you understand the pattern, timing, and difficulty level of the official exams.
+
+      <div className="text-center py-10 sm:py-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-military-blue text-xs font-semibold mb-4">
+          <BrainCircuit className="w-3.5 h-3.5" />
+          <span>Official 2026 CBT Screening Simulation</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+          Recruitment Past Question CBT Centre
+        </h1>
+        <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Master your computer-based screening test with simulated mock examinations. Practice real past questions from previous Nigerian Army, Navy, Air Force, Police, and paramilitary recruitment cycles.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {practiceOptions.map((opt) => (
-          <div key={opt.branch} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow group">
-            <div className={`h-3 ${opt.color}`}></div>
-            <div className="p-8">
-              <div className={`w-12 h-12 rounded-lg ${opt.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
-                <Shield className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{opt.label} Past Question</h3>
-              <p className="text-gray-500 text-sm mb-6 h-10">{opt.desc}</p>
+          <div key={opt.branch} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow group flex flex-col justify-between">
+            <div>
+              <div className={`h-2.5 ${opt.color}`}></div>
+              <div className="p-6">
+                <div className={`w-11 h-11 rounded-lg ${opt.color} flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform shadow-sm`}>
+                  <Shield className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-1.5">{opt.label} Past Questions</h3>
+                <p className="text-gray-500 text-xs mb-4 leading-relaxed">{opt.desc}</p>
 
-              <div className="flex items-center text-xs text-gray-400 mb-6 space-x-4">
-                <div className="flex items-center"><Clock className="w-3 h-3 mr-1" /> Flexible</div>
-                <div className="flex items-center"><BookOpen className="w-3 h-3 mr-1" /> 10–100 Questions</div>
+                <div className="flex items-center text-xs text-gray-400 mb-2 space-x-3">
+                  <div className="flex items-center"><Clock className="w-3 h-3 mr-1" /> Timed & Untimed</div>
+                  <div className="flex items-center"><BookOpen className="w-3 h-3 mr-1" /> 10–100 Qs</div>
+                </div>
               </div>
+            </div>
 
+            <div className="p-6 pt-0">
               <Link
                 to={`/past-questions/${BRANCH_TO_SLUG[opt.branch] || opt.branch}`}
-                className={`w-full block text-center py-3 rounded-lg font-semibold text-white transition-opacity hover:opacity-90 ${opt.color}`}
+                className={`w-full block text-center py-2.5 rounded-lg font-bold text-xs text-white transition-opacity hover:opacity-90 shadow-sm ${opt.color}`}
               >
-                Start Test
+                Launch Mock CBT Test
               </Link>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Features Section */}
-      <div className="bg-indigo-50 rounded-2xl p-8 lg:p-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex-1">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why use our Past Questions Centre?</h2>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><BrainCircuit className="w-4 h-4 text-indigo-700" /></div>
-                <div>
-                  <h4 className="font-bold text-gray-800">Exam Simulation</h4>
-                  <p className="text-sm text-gray-600">Get familiar with the CBT interface used in actual recruitment screenings.</p>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <div className="bg-indigo-200 p-1 rounded mr-3 mt-1"><Award className="w-4 h-4 text-indigo-700" /></div>
-                <div>
-                  <h4 className="font-bold text-gray-800">Instant Scoring</h4>
-                  <p className="text-sm text-gray-600">See your results immediately and review correct answers to learn from mistakes.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="flex-1 flex justify-center">
-            <div className="bg-white p-6 rounded-xl shadow-md rotate-3 border border-indigo-100 max-w-xs">
-              <div className="flex justify-between items-center border-b border-gray-100 pb-2 mb-4">
-                <span className="text-xs font-bold text-gray-500">SCORE REPORT</span>
-                <span className="text-green-600 font-bold text-sm">PASSED</span>
-              </div>
-              <div className="text-center py-4">
-                <div className="text-5xl font-extrabold text-indigo-900">85%</div>
-                <p className="text-sm text-gray-500 mt-2">Excellent performance!</p>
-              </div>
-            </div>
-          </div>
+      {/* Ad Unit */}
+      <div className="my-8">
+        <AdUnit slot="QUIZ_HUB_MIDDLE_AD" />
+      </div>
+
+      {/* CBT Exam Pattern & Subject Weightings Table */}
+      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm mb-12">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+          <BarChart3 className="w-6 h-6 text-military-blue" />
+          <span>Standard Exam Pattern & Subject Weightings</span>
+        </h2>
+        <p className="text-sm text-gray-500 mb-6">Standardized blueprint used in JAMB-facilitated and agency internal computer-based assessments</p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr className="border-b border-gray-200 text-gray-700 bg-gray-50">
+                <th className="p-3.5 font-bold">Subject Area</th>
+                <th className="p-3.5 font-bold">Weighting</th>
+                <th className="p-3.5 font-bold">Key Topics Covered</th>
+                <th className="p-3.5 font-bold">Benchmark Time</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 text-gray-600">
+              <tr className="hover:bg-gray-50/50">
+                <td className="p-3.5 font-semibold text-gray-900">Current Affairs & Nigerian History</td>
+                <td className="p-3.5 font-bold text-emerald-600">40%</td>
+                <td className="p-3.5">Nigerian constitution, landmark historical dates, agency leadership, military ranks, ECOWAS/AU</td>
+                <td className="p-3.5">30 seconds / question</td>
+              </tr>
+              <tr className="hover:bg-gray-50/50">
+                <td className="p-3.5 font-semibold text-gray-900">Use of English & Comprehension</td>
+                <td className="p-3.5 font-bold text-blue-600">30%</td>
+                <td className="p-3.5">Synonyms, antonyms, sentence completion, idiomatic expressions, short comprehension passage</td>
+                <td className="p-3.5">40 seconds / question</td>
+              </tr>
+              <tr className="hover:bg-gray-50/50">
+                <td className="p-3.5 font-semibold text-gray-900">Mathematics & Quantitative Logic</td>
+                <td className="p-3.5 font-bold text-purple-600">30%</td>
+                <td className="p-3.5">Basic algebra, percentages, ratios, probability, series completion, logical syllogisms</td>
+                <td className="p-3.5">60 seconds / question</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
       {/* Preparation Tips Section */}
-      <div className="mt-12 bg-white rounded-2xl p-8 border border-gray-200">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm mb-12">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
           <BookOpen className="w-6 h-6 text-military-blue" />
-          Aptitude Test Preparation Tips
+          <span>Aptitude Test Preparation Strategy</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
-          <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <h4 className="font-bold text-gray-800 mb-1">1. Master Current Affairs</h4>
-              <p>Nigerian recruitment tests heavily feature questions on Nigerian history, geography, and current political leadership. Stay updated with national news.</p>
-            </div>
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <h4 className="font-bold text-gray-800 mb-1">2. Practice Speed & Accuracy</h4>
-              <p>Most CBT exams give about 30-45 seconds per question. Use our untimed mode first to learn, then try to finish within 30 minutes to simulate real pressure.</p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-600">
+          <div className="p-5 bg-gray-50 rounded-xl border border-gray-100 space-y-2">
+            <h4 className="font-bold text-gray-900 text-base flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>1. Master Current Affairs</span>
+            </h4>
+            <p className="text-xs leading-relaxed">
+              Recruitment screening heavily features questions on national governance, agency mandates, and security leaders. Review our dedicated guide articles before attempting quizzes.
+            </p>
           </div>
-          <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <h4 className="font-bold text-gray-800 mb-1">3. Know Your Branch</h4>
-              <p>Each agency has specific roles. The Navy often asks about maritime boundaries, while the Air Force might ask about aircraft types and ranks.</p>
-            </div>
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <h4 className="font-bold text-gray-800 mb-1">4. Review and Relax</h4>
-              <p>After each test, use our "Review Answers" feature. Understanding why you missed a question is more valuable than just getting a high score.</p>
-            </div>
+
+          <div className="p-5 bg-gray-50 rounded-xl border border-gray-100 space-y-2">
+            <h4 className="font-bold text-gray-900 text-base flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>2. Speed & Pacing</span>
+            </h4>
+            <p className="text-xs leading-relaxed">
+              CBT tests permit ~40 seconds per question. Begin with untimed practice to understand answer explanations, then switch to timed simulation mode to build real test resilience.
+            </p>
+          </div>
+
+          <div className="p-5 bg-gray-50 rounded-xl border border-gray-100 space-y-2">
+            <h4 className="font-bold text-gray-900 text-base flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>3. Agency Knowledge</span>
+            </h4>
+            <p className="text-xs leading-relaxed">
+              Each agency tests specialty lore (e.g., Nigerian Navy tests maritime coordinates and ship categories; Air Force tests aircraft classifications; Customs tests tariff codes).
+            </p>
           </div>
         </div>
       </div>
 
-      {/* PDF Past Questions Download Section */}
-      <div className="mt-12 bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl p-8 text-white shadow-lg overflow-hidden relative">
-        <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Download Offline Past Questions PDF</h2>
-            <p className="text-indigo-200 text-sm max-w-xl leading-relaxed">
-              Prefer studying offline? Get the comprehensive Nigerian Army, Navy, Air Force, and Police recruitment past questions and answers PDF study packs for offline preparation.
-            </p>
-          </div>
-          <a
-            href="#"
-            className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold rounded-xl transition-all shadow-md flex-shrink-0 text-center animate-pulse"
-            onClick={(e) => { e.preventDefault(); alert("Offline PDF study packs will be available for download shortly. Continue practicing with our free online CBT simulator!"); }}
-          >
-            Download PDF Study Pack
-          </a>
+      {/* FAQ Section */}
+      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm mb-16">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {quizFAQs.map((faq, idx) => (
+            <div key={idx} className="border-b border-gray-100 pb-4 last:border-b-0">
+              <h3 className="font-bold text-gray-800 text-sm sm:text-base mb-1">{faq.question}</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

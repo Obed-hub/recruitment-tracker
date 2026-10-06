@@ -158,7 +158,7 @@ const RecruitmentDetail: React.FC = () => {
 
             <section>
               <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center">
-                <ListOrdered className="w-5 h-5 mr-2 text-military-blue" /> Application Process
+                <ListOrdered className="w-5 h-5 mr-2 text-military-blue" /> Application Process & Protocol
               </h3>
               <div className="space-y-4">
                 {recruitment.application_process?.length ? (
@@ -174,6 +174,43 @@ const RecruitmentDetail: React.FC = () => {
                   <p className="text-gray-500 italic">Please refer to the official portal for application steps.</p>
                 )}
               </div>
+            </section>
+
+            {/* Universal Document Verification Checklist */}
+            <section className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <Shield className="w-5 h-5 text-military-green" />
+                <span>Standard Document Verification Requirements</span>
+              </h3>
+              <p className="text-xs text-gray-600 mb-3">
+                Ensure all documents are organized in clean original and photocopy folders before screening:
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>National Identity Number (NIN) Slip</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>WAEC / NECO / NABTEB (5 Credits)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Degree / HND / ND Statement of Result</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Certificate of State of Origin (LGA)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>NPC Birth Certificate / Court Declaration</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Printed Online Acknowledgement Slip</span>
+                </li>
+              </ul>
             </section>
 
             {recruitment.branch === 'Army' && (

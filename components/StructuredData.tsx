@@ -205,9 +205,11 @@ interface ArticleSchemaProps {
     description: string;
     url: string;
     image?: string;
-    datePublished: string;
+    datePublished?: string;
+    publishedAt?: string;
     dateModified?: string;
-    authorName: string;
+    updatedAt?: string;
+    authorName?: string;
     publisherName?: string;
     publisherLogo?: string;
 }
@@ -218,17 +220,24 @@ export const ArticleSchema: React.FC<ArticleSchemaProps> = ({
     url,
     image = 'https://recruitmenttracker.com.ng/assets/logo.png',
     datePublished,
+    publishedAt,
     dateModified,
-    authorName,
+    updatedAt,
+    authorName = 'Nigeria Recruitment Tracker Editorial Team',
     publisherName = 'Nigeria Recruitment Tracker',
     publisherLogo = 'https://recruitmenttracker.com.ng/assets/logo.png',
 }) => {
+    const siteUrl = 'https://recruitmenttracker.com.ng';
+    const fullUrl = url.startsWith('http') ? url : `${siteUrl}${url.startsWith('/') ? url : '/' + url}`;
+    const pubDate = safeISODate(publishedAt || datePublished);
+    const modDate = safeISODate(updatedAt || dateModified || pubDate);
+
     const data = {
         headline: title,
         description: description,
         image: image,
-        datePublished: safeISODate(datePublished),
-        dateModified: safeISODate(dateModified || datePublished),
+        datePublished: pubDate,
+        dateModified: modDate,
         author: {
             '@type': 'Person',
             name: authorName,
@@ -243,7 +252,7 @@ export const ArticleSchema: React.FC<ArticleSchemaProps> = ({
         },
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': url,
+            '@id': fullUrl,
         },
     };
     return <StructuredData type="NewsArticle" data={data} />;

@@ -421,6 +421,123 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         answer: 'University graduates (BSc/HND) who enter through Cadet ASP recruitment start at the rank of Assistant Superintendent of Police (ASP) on Grade Level 08.'
       }
     ]
+  },
+  {
+    slug: 'how-to-fix-nigerian-navy-portal-issues-email-code-nin',
+    title: 'How to Fix Nigerian Navy Portal Issues: Email Code Not Sending & NIN Errors (2026)',
+    description: 'Facing email verification code delays, NIN validation errors, or upload failures on joinnigeriannavy.com? Here are proven solutions to fix portal issues and submit your application.',
+    category: 'Guides',
+    date: '2026-10-06',
+    readTime: '6 min read',
+    keywords: [
+      'nigerian navy recruitment portal email not receiving code',
+      'joinnigeriannavy email verification code not sending',
+      'nigerian navy portal nin validation error',
+      'how to solve navy portal issues',
+      'navy recruitment portal login problem',
+      'joinnigeriannavy portal error'
+    ],
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
+    content: [
+      {
+        type: 'p',
+        text: 'With tens of thousands of applicants rushing to register for the Nigerian Navy recruitment exercise (joinnigeriannavy.com), the portal servers frequently experience intense traffic congestion. This leads to common technical roadblocks such as email verification codes (OTP) not arriving, "NIN Validation Failed" popups, and document upload errors. If you are stuck on any of these stages, follow this step-by-step troubleshooting guide to resolve the issues immediately.'
+      },
+      {
+        type: 'h2',
+        text: '1. How to Fix: Email Verification Code (OTP) Not Sending'
+      },
+      {
+        type: 'p',
+        text: 'One of the most reported issues is not receiving the email confirmation token or activation link after creating an account on joinnigeriannavy.com. Here is how to fix it:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Check Spam & Junk Folders: Over 65% of Navy portal activation emails are filtered automatically by Gmail, Yahoo Mail, or Outlook into the Spam, Promotions, or Updates folders. Search your inbox for "joinnigeriannavy" or "Nigerian Navy".',
+          'Wait for Server Queue Release: Due to massive server queues during peak hours (10:00 AM to 6:00 PM), verification emails can be delayed by 15 to 45 minutes. Do not keep clicking "Resend OTP" rapidly, as each click generates a new code that invalidates the previous one.',
+          'Use a Clean Gmail Address: Yahoo Mail and iCloud accounts often block automated transactional emails from government mail servers. If possible, register using an active @gmail.com address.',
+          'Whitelist the Sender Domain: Add no-reply@joinnigeriannavy.com to your Google Contacts so automated emails are delivered directly into your Primary inbox.',
+          'Apply During Off-Peak Hours: The fastest email delivery occurs between 11:00 PM and 5:30 AM when server traffic drops drastically.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: '2. How to Fix: "NIN Validation Failed" & Record Mismatches'
+      },
+      {
+        type: 'p',
+        text: 'The Nigerian Navy portal integrates with the National Identity Management Commission (NIMC) database via an automated API. When the connection fails, you will see errors such as "NIN record not found" or "NIN validation error".'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Verify Exact Name Arrangement: Your Surname, First Name, and Middle Name on the Navy portal must match the exact sequence and spelling on your NIN slip.',
+          'Verify Date of Birth Consistency: If the Date of Birth you entered on the registration form differs even by one day from your NIMC record, the validation API will reject your submission.',
+          'NIMC Server Downtime: The NIMC verification server periodically goes offline for maintenance. If your details are 100% accurate and you still receive a validation error, wait 2 to 3 hours and retry.',
+          'Check Phone Number Link: Ensure the phone number entered is the primary mobile number registered on your NIMC profile.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: '3. Fixing Passport & Document Upload Errors'
+      },
+      {
+        type: 'p',
+        text: 'If the portal returns an error when uploading your O\'Level certificates, birth declaration, or passport photograph:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Compress File Sizes: Scanned documents must be in PDF or JPEG format and strictly under 200 KB. Use free online compression tools (such as TinyPNG or iLovePDF) to reduce file sizes before uploading.',
+          'Passport Specs: Passport photograph must be on a plain white background, measuring exactly 2 x 2 inches (JPEG format, below 100 KB).',
+          'File Naming: Avoid special characters, commas, or spaces in file names (e.g., name your file "waec_result.pdf" instead of "My WAEC (Final) Result 2026.pdf").'
+        ]
+      },
+      {
+        type: 'h2',
+        text: '4. Solving 502 Bad Gateway & Portal Login Failures'
+      },
+      {
+        type: 'p',
+        text: 'When the portal displays a white blank page or "502 Bad Gateway":'
+      },
+      {
+        type: 'ol',
+        items: [
+          'Clear Browser Cache & Cookies: Press Ctrl + Shift + Delete on your computer browser to clear cached data.',
+          'Use Incognito / Private Window: Opening the portal in an Incognito tab prevents conflicting cookie sessions.',
+          'Switch Browsers: Use Google Chrome or Mozilla Firefox on a desktop PC or laptop rather than mobile phone mini-browsers.',
+          'Avoid Multiple Tabs: Do not open multiple tabs of joinnigeriannavy.com simultaneously on the same device.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Summary Checklist Before Submitting'
+      },
+      {
+        type: 'p',
+        text: 'Always review every section before clicking the final submit button. Once submitted, applicant bio-data cannot be edited directly on the portal. Make sure you download and print your Application Confirmation Slip and Parent/Guardian Consent Form immediately after submission.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Why am I not getting the email verification code from the Nigerian Navy portal?',
+        answer: 'Email delays are usually caused by server congestion during peak daytime hours or spam filtering. Check your Spam/Promotions tab, wait 15 minutes before requesting a new code, or register using a Gmail address during off-peak hours (11 PM to 5 AM).'
+      },
+      {
+        question: 'How do I fix the NIN validation failed error on joinnigeriannavy.com?',
+        answer: 'Ensure your Surname, First Name, Middle Name, and Date of Birth match your official NIMC slip exactly. If the details match, the error is caused by temporary NIMC server downtime—wait a few hours and retry.'
+      },
+      {
+        question: 'What is the maximum file size for document uploads on the Navy portal?',
+        answer: 'All scanned certificates and O\'Level results should be uploaded in PDF/JPEG format and must be under 200 KB. Passport photos should be in JPEG format under 100 KB.'
+      },
+      {
+        question: 'Can I edit my application after final submission on the Navy portal?',
+        answer: 'No. Once you click final submit, details cannot be altered online. Ensure all names, grades, and certificates are verified before final submission.'
+      }
+    ]
   }
 ];
 

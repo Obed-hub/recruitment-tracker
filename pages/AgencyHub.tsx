@@ -1022,6 +1022,57 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     faqs: [
       { question: 'Is NAFDAC under the Ministry of Health?', answer: 'Yes, NAFDAC is supervised by the Federal Ministry of Health.' }
     ]
+  },
+  ncaa: {
+    name: 'Nigerian Civil Aviation Authority',
+    branch: 'NCAA',
+    color: 'bg-sky-800',
+    gradient: 'from-sky-800 to-indigo-950',
+    borderCol: 'border-sky-200',
+    textCol: 'text-sky-800',
+    bgLight: 'bg-sky-50/50',
+    description: 'The Nigerian Civil Aviation Authority (NCAA) is the apex regulatory agency for civil aviation in Nigeria. Established under the Civil Aviation Act, it oversees safety oversight, licensing of airlines and aviation personnel, aerodrome certifications, and air navigation standards.',
+    generalSalaryDesc: 'NCAA personnel are remunerated according to specialized aviation regulatory scales (CONPSS plus enhanced safety and risk allowances), with attractive international ICAO technical training opportunities.',
+    ranks: [
+      { rank: 'Aviation Safety Officer II (Graduate Entry)', salary: '₦110,000 - ₦145,000 / month', description: 'Starting rank for fresh university graduates in engineering, meteorology, or sciences.' },
+      { rank: 'Airworthiness Inspector', salary: '₦180,000 - ₦240,000 / month', description: 'Experienced technical cadre responsible for aircraft certification and maintenance audits.' },
+      { rank: 'Flight Operations Inspector', salary: '₦250,000 - ₦350,000 / month', description: 'Specialized role for licensed commercial pilots and flight operations specialists.' }
+    ],
+    dates: {
+      portalOpen: 'Periodic (Refer to portal updates)',
+      portalClose: 'Updated on ncaa.gov.ng',
+      screeningDate: 'Interviews and technical vetting take place at NCAA Corporate HQ in Abuja.',
+      examDate: 'Computer-based assessment dates are communicated to shortlisted candidates.',
+      shortlistDate: 'Published on the official ncaa.gov.ng portal.'
+    },
+    requirements: {
+      academic: [
+        'Degree or HND in Aeronautical/Mechanical/Electrical Engineering, Physics, Law, Computer Science, or Business Admin.',
+        'NYSC discharge or official exemption certificate.',
+        'Professional aviation ratings (ICAO, NCAT, or AME license) are mandatory for safety and flight inspector roles.'
+      ],
+      physical: [
+        'Age: 18 to 30 years for entry-level; up to 45 years for experienced licensed aviation inspectors.',
+        'No specific height requirements.'
+      ],
+      medical: [
+        'Must pass standard ICAO-compliant medical fitness tests.',
+        'Normal color vision and auditory acuity are required for operational roles.'
+      ]
+    },
+    examInfo: {
+      subjects: ['Civil Aviation Regulations & Safety Standards', 'English & Quantitative Aptitude', 'General Aviation Knowledge & Current Affairs'],
+      duration: '60 minutes',
+      format: 'CBT format',
+      tips: [
+        'Study the Civil Aviation Act and basic ICAO standards.',
+        'Review basic quantitative reasoning and data interpretation.'
+      ]
+    },
+    faqs: [
+      { question: 'What is the official NCAA career portal?', answer: 'The official portal is hosted on https://ncaa.gov.ng/careers.' },
+      { question: 'Is the NCAA recruitment form free?', answer: 'Yes, official recruitment by the NCAA is 100% free of charge.' }
+    ]
   }
 };
 

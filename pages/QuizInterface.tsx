@@ -5,8 +5,9 @@ import {
   Clock, RotateCcw, BookOpen, Play, ListChecks
 } from 'lucide-react';
 import { getQuestions } from '../services/mockFirebase';
-import { Question } from '../types';
+import { Question, SLUG_TO_BRANCH } from '../types';
 import AdUnit from '../components/AdUnit';
+import SEO from '../components/SEO';
 import { QuizSchema } from '../components/StructuredData';
 
 // ── Question count options ───────────────────────────────────────────────────
@@ -21,10 +22,11 @@ const COUNT_OPTIONS = [
 // ── Setup Screen ─────────────────────────────────────────────────────────────
 const SetupScreen: React.FC<{
   branch: string;
+  branchDisplayName: string;
   maxQuestions: number;
   onStart: (count: number) => void;
   allQuestions: Question[];
-}> = ({ branch, maxQuestions, onStart, allQuestions }) => {
+}> = ({ branch, branchDisplayName, maxQuestions, onStart, allQuestions }) => {
   const [selected, setSelected] = useState(20);
 
   const available = COUNT_OPTIONS.filter(o => o.value <= maxQuestions);
@@ -44,9 +46,20 @@ const SetupScreen: React.FC<{
 
   return (
     <>
+      <SEO
+        title={`${branchDisplayName} CBT Past Questions & Mock Exam Simulator (2026)`}
+        description={`Practice free Nigerian ${branchDisplayName} recruitment CBT exam past questions. Timed test simulator with instant scoring and detailed answer explanations.`}
+        canonical={`/past-questions/${branch}`}
+        keywords={[
+          `${branchDisplayName.toLowerCase()} past questions`,
+          `${branchDisplayName.toLowerCase()} cbt exam`,
+          `nigerian ${branchDisplayName.toLowerCase()} screening questions`,
+          'free cbt practice nigeria'
+        ]}
+      />
       <QuizSchema
-        quizName={`Nigerian ${branch} Aptitude Test Practice`}
-        description={`Practice official CBT exam questions for Nigerian ${branch} recruitment screening.`}
+        quizName={`Nigerian ${branchDisplayName} Aptitude Test Practice`}
+        description={`Practice official CBT exam questions for Nigerian ${branchDisplayName} recruitment screening.`}
         questions={schemaQuestions}
       />
       <div className="max-w-xl mx-auto py-10">
@@ -56,7 +69,7 @@ const SetupScreen: React.FC<{
           <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <ListChecks className="w-7 h-7 text-white" />
           </div>
-          <h2 className="text-2xl font-bold">{branch} Past Question</h2>
+          <h2 className="text-2xl font-bold">{branchDisplayName} Past Questions</h2>
           <p className="text-green-100 text-sm mt-1">Configure your session before starting</p>
           <div className="mt-4 text-[10px] text-green-200 uppercase tracking-widest font-bold">Nigeria Recruitment Portal</div>
         </div>
@@ -144,7 +157,10 @@ const SetupScreen: React.FC<{
 
 // ── Main Quiz Interface ───────────────────────────────────────────────────────
 const QuizInterface: React.FC = () => {
-  const { branch } = useParams<{ branch: string }>();
+  const { branch: rawBranch } = useParams<{ branch: string }>();
+  const cleanBranchSlug = rawBranch ? decodeURIComponent(rawBranch).trim().toLowerCase().replace(/[\s_]+/g, '-') : 'general';
+  const branchDisplayName = (SLUG_TO_BRANCH[cleanBranchSlug] || rawBranch || 'General') as string;
+
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -155,7 +171,7 @@ const QuizInterface: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    getQuestions(branch).then(data => {
+    getQuestions(cleanBranchSlug).then(data => {
       setAllQuestions(data);
       setLoading(false);
       setCurrentQuestion(0);
@@ -163,7 +179,7 @@ const QuizInterface: React.FC = () => {
       setShowResult(false);
       setStarted(false);
     });
-  }, [branch]);
+  }, [cleanBranchSlug]);
 
   const handleStart = (count: number) => {
     // Shuffle and slice to the user-chosen count
@@ -214,7 +230,7 @@ const QuizInterface: React.FC = () => {
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-military-green" />
         <div className="text-center">
           <p className="text-lg font-bold text-gray-700">Loading Questions...</p>
-          <p className="text-sm text-gray-400">Preparing your personalized {branch} practice session.</p>
+          <p className="text-sm text-gray-400">Preparing your personalized {branchDisplayName} practice session.</p>
         </div>
       </div>
     );
@@ -224,7 +240,7 @@ const QuizInterface: React.FC = () => {
   if (allQuestions.length === 0) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-gray-800">No questions available for {branch} yet.</h2>
+        <h2 className="text-2xl font-bold text-gray-800">No questions available for {branchDisplayName} yet.</h2>
         <Link to="/past-questions" className="text-military-blue underline mt-4 inline-block">Back to Past Questions Centre</Link>
       </div>
     );
@@ -234,7 +250,8 @@ const QuizInterface: React.FC = () => {
   if (!started) {
     return (
       <SetupScreen
-        branch={branch || 'General'}
+        branch={cleanBranchSlug}
+        branchDisplayName={branchDisplayName}
         maxQuestions={allQuestions.length}
         onStart={handleStart}
         allQuestions={allQuestions}

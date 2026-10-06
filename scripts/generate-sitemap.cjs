@@ -47,6 +47,16 @@ async function generateSitemap() {
             '/faan-recruitment',
             '/nimasa-recruitment',
             '/nafdac-recruitment',
+            '/ncaa-recruitment',
+            '/ncaa-recruitment-guide',
+            '/ngo-jobs',
+            '/ngo-jobs/remote-entry-level',
+            '/exams/civil-service-exam-guide',
+            '/jobs/civil-service-commission-guide',
+            '/traineeships/guide',
+            '/traineeships/management',
+            '/training/on-the-job',
+            '/tech/software-developer-traineeship',
         ];
 
         let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -98,7 +108,14 @@ async function generateSitemap() {
             'print-army-screening-slip',
             'navy-dssc-vs-bmtc',
             'police-constable-subject-combinations',
-            'correct-cdcfib-portal-errors'
+            'correct-cdcfib-portal-errors',
+            'ncaa-recruitment-guide',
+            'military-physical-standards-height-requirements',
+            'how-to-apply-cdcfib-portal',
+            'how-to-apply-police-constable',
+            'is-nigerian-air-force-form-out',
+            'military-medical-screening-test-disqualifications',
+            'fix-nigerian-navy-portal-issues'
         ];
 
         guideSlugs.forEach(slug => {
@@ -115,7 +132,8 @@ async function generateSitemap() {
             'how-to-prepare-pass-military-aptitude-tests',
             'common-reasons-disqualification-military-physical-screening',
             'paramilitary-vs-military-ranks-salaries-nigeria',
-            'nigeria-police-force-ranks-salary-structure'
+            'nigeria-police-force-ranks-salary-structure',
+            'how-to-fix-nigerian-navy-portal-issues-email-code-nin'
         ];
 
         blogSlugs.forEach(slug => {

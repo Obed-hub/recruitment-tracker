@@ -1,0 +1,2 @@
+/news-api/* https://newsdata.io/api/1/:splat 200
+/* /index.html 200

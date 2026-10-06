@@ -14,7 +14,7 @@ export type Branch =
   // Identity & Technology
   | 'NIMC' | 'NCC' | 'NITDA'
   // Transport & Maritime
-  | 'FAAN' | 'NIMASA'
+  | 'FAAN' | 'NIMASA' | 'NCAA'
   // Health & Food Safety
   | 'NAFDAC';
 export type RecruitmentStatus = 'Open' | 'Closed' | 'Shortlist Out' | 'Unknown';
@@ -131,6 +131,7 @@ export const SLUG_TO_BRANCH: Record<string, Branch | 'General'> = {
   'nitda': 'NITDA',
   'faan': 'FAAN',
   'nimasa': 'NIMASA',
+  'ncaa': 'NCAA',
   'nafdac': 'NAFDAC',
   'general': 'General'
 };
@@ -156,6 +157,7 @@ export const BRANCH_TO_SLUG: Record<string, string> = {
   'NITDA': 'nitda',
   'FAAN': 'faan',
   'NIMASA': 'nimasa',
+  'NCAA': 'ncaa',
   'NAFDAC': 'nafdac',
   'General': 'general'
 };
