@@ -13,6 +13,8 @@ import SponsoredJobCard from '../components/SponsoredJobCard';
 import { getDailyUpdatedBadge, formatCardUpdateDate } from '../services/dateUtils';
 import SearchableFAQSection from '../components/SearchableFAQSection';
 import MilitaryScreeningAdCreative from '../components/MilitaryScreeningAdCreative';
+import { GUIDES } from '../services/mockGuides';
+import { BLOG_ARTICLES } from '../services/mockBlog';
 
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
