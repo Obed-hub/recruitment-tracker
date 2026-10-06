@@ -3,48 +3,75 @@ import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker';
+import ErrorBoundary from './components/ErrorBoundary';
 
-// Route-level code-splitting with React.lazy
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const RecruitmentFilter = lazy(() => import('./pages/RecruitmentFilter'));
-const EligibilityChecker = lazy(() => import('./pages/EligibilityChecker'));
-const RecruitmentDetail = lazy(() => import('./pages/RecruitmentDetail'));
-const QuizHub = lazy(() => import('./pages/QuizHub'));
-const QuizInterface = lazy(() => import('./pages/QuizInterface'));
-const AdminPanel = lazy(() => import('./pages/AdminPanel'));
-const AboutUs = lazy(() => import('./pages/AboutUs'));
-const ContactUs = lazy(() => import('./pages/ContactUs'));
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const TermsConditions = lazy(() => import('./pages/TermsConditions'));
-const Disclaimer = lazy(() => import('./pages/Disclaimer'));
-const GuidesHub = lazy(() => import('./pages/GuidesHub'));
-const GuideDetail = lazy(() => import('./pages/GuideDetail'));
-const BlogHub = lazy(() => import('./pages/BlogHub'));
-const BlogDetail = lazy(() => import('./pages/BlogDetail'));
-const AgencyHub = lazy(() => import('./pages/AgencyHub'));
-const ArmySalary = lazy(() => import('./pages/ArmySalary'));
-const SalaryComparison = lazy(() => import('./pages/SalaryComparison'));
-const PoliceSalary = lazy(() => import('./pages/PoliceSalary'));
-const CustomsSalary = lazy(() => import('./pages/CustomsSalary'));
-const StandaloneSalaryPage = lazy(() => import('./pages/StandaloneSalaryPage'));
-const ShortlistHub = lazy(() => import('./pages/ShortlistHub'));
-const WhichFormIsOut = lazy(() => import('./pages/WhichFormIsOut'));
-const NavyRecruitmentBatch39 = lazy(() => import('./pages/NavyRecruitmentBatch39'));
-const FAQHub = lazy(() => import('./pages/FAQHub'));
-const PortalActionPage = lazy(() => import('./pages/PortalActionPage'));
-const SponsoredAdReport = lazy(() => import('./pages/SponsoredAdReport'));
-const MilitaryScreeningSalesPage = lazy(() => import('./pages/MilitaryScreeningSalesPage'));
+// Helper to auto-recover when deployment updates chunk hashes
+const lazyWithRetry = (componentImport: () => Promise<any>) =>
+  lazy(async () => {
+    try {
+      const comp = await componentImport();
+      window.sessionStorage.removeItem('chunk_retry_' + window.location.pathname);
+      return comp;
+    } catch (error) {
+      console.warn('[App] Chunk load error, recovering with refresh:', error);
+      const isRetried = window.sessionStorage.getItem('chunk_retry_' + window.location.pathname);
+      if (!isRetried) {
+        window.sessionStorage.setItem('chunk_retry_' + window.location.pathname, 'true');
+        window.location.reload();
+        return { default: () => null };
+      }
+      throw error;
+    }
+  });
+
+const PageLoadingFallback: React.FC = () => (
+  <div className="min-h-[60vh] flex flex-col items-center justify-center p-8 space-y-3">
+    <div className="w-10 h-10 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+    <p className="text-xs font-semibold text-gray-500 animate-pulse">Loading verified recruitment data...</p>
+  </div>
+);
+
+// Route-level code-splitting with resilient lazyWithRetry
+const Dashboard = lazyWithRetry(() => import('./pages/Dashboard'));
+const RecruitmentFilter = lazyWithRetry(() => import('./pages/RecruitmentFilter'));
+const EligibilityChecker = lazyWithRetry(() => import('./pages/EligibilityChecker'));
+const RecruitmentDetail = lazyWithRetry(() => import('./pages/RecruitmentDetail'));
+const QuizHub = lazyWithRetry(() => import('./pages/QuizHub'));
+const QuizInterface = lazyWithRetry(() => import('./pages/QuizInterface'));
+const AdminPanel = lazyWithRetry(() => import('./pages/AdminPanel'));
+const AboutUs = lazyWithRetry(() => import('./pages/AboutUs'));
+const ContactUs = lazyWithRetry(() => import('./pages/ContactUs'));
+const PrivacyPolicy = lazyWithRetry(() => import('./pages/PrivacyPolicy'));
+const TermsConditions = lazyWithRetry(() => import('./pages/TermsConditions'));
+const Disclaimer = lazyWithRetry(() => import('./pages/Disclaimer'));
+const GuidesHub = lazyWithRetry(() => import('./pages/GuidesHub'));
+const GuideDetail = lazyWithRetry(() => import('./pages/GuideDetail'));
+const BlogHub = lazyWithRetry(() => import('./pages/BlogHub'));
+const BlogDetail = lazyWithRetry(() => import('./pages/BlogDetail'));
+const AgencyHub = lazyWithRetry(() => import('./pages/AgencyHub'));
+const ArmySalary = lazyWithRetry(() => import('./pages/ArmySalary'));
+const SalaryComparison = lazyWithRetry(() => import('./pages/SalaryComparison'));
+const PoliceSalary = lazyWithRetry(() => import('./pages/PoliceSalary'));
+const CustomsSalary = lazyWithRetry(() => import('./pages/CustomsSalary'));
+const StandaloneSalaryPage = lazyWithRetry(() => import('./pages/StandaloneSalaryPage'));
+const ShortlistHub = lazyWithRetry(() => import('./pages/ShortlistHub'));
+const WhichFormIsOut = lazyWithRetry(() => import('./pages/WhichFormIsOut'));
+const NavyRecruitmentBatch39 = lazyWithRetry(() => import('./pages/NavyRecruitmentBatch39'));
+const FAQHub = lazyWithRetry(() => import('./pages/FAQHub'));
+const PortalActionPage = lazyWithRetry(() => import('./pages/PortalActionPage'));
+const SponsoredAdReport = lazyWithRetry(() => import('./pages/SponsoredAdReport'));
+const MilitaryScreeningSalesPage = lazyWithRetry(() => import('./pages/MilitaryScreeningSalesPage'));
 
 // Authority Pillars
-const NcaaRecruitmentGuide = lazy(() => import('./pages/NcaaRecruitmentGuide'));
-const NgoJobsHub = lazy(() => import('./pages/NgoJobsHub'));
-const NgoRemoteEntryLevel = lazy(() => import('./pages/NgoRemoteEntryLevel'));
-const CivilServiceExamGuide = lazy(() => import('./pages/CivilServiceExamGuide'));
-const CivilServiceCommissionGuide = lazy(() => import('./pages/CivilServiceCommissionGuide'));
-const GraduateTraineeGuide = lazy(() => import('./pages/GraduateTraineeGuide'));
-const ManagementTraineeGuide = lazy(() => import('./pages/ManagementTraineeGuide'));
-const OnTheJobTrainingGuide = lazy(() => import('./pages/OnTheJobTrainingGuide'));
-const TechTraineeshipGuide = lazy(() => import('./pages/TechTraineeshipGuide'));
+const NcaaRecruitmentGuide = lazyWithRetry(() => import('./pages/NcaaRecruitmentGuide'));
+const NgoJobsHub = lazyWithRetry(() => import('./pages/NgoJobsHub'));
+const NgoRemoteEntryLevel = lazyWithRetry(() => import('./pages/NgoRemoteEntryLevel'));
+const CivilServiceExamGuide = lazyWithRetry(() => import('./pages/CivilServiceExamGuide'));
+const CivilServiceCommissionGuide = lazyWithRetry(() => import('./pages/CivilServiceCommissionGuide'));
+const GraduateTraineeGuide = lazyWithRetry(() => import('./pages/GraduateTraineeGuide'));
+const ManagementTraineeGuide = lazyWithRetry(() => import('./pages/ManagementTraineeGuide'));
+const OnTheJobTrainingGuide = lazyWithRetry(() => import('./pages/OnTheJobTrainingGuide'));
+const TechTraineeshipGuide = lazyWithRetry(() => import('./pages/TechTraineeshipGuide'));
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -53,14 +80,15 @@ const PracticeBranchRedirect: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <GoogleAnalyticsTracker />
-      <Suspense fallback={null}>
-        <Routes>
-          {/* Admin panel — full page, outside the main Layout */}
-          <Route path="/admin" element={<AdminPanel />} />
-          <Route path="/ad-report" element={<SponsoredAdReport />} />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ScrollToTop />
+        <GoogleAnalyticsTracker />
+        <Suspense fallback={<PageLoadingFallback />}>
+          <Routes>
+            {/* Admin panel — full page, outside the main Layout */}
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/ad-report" element={<SponsoredAdReport />} />
 
           {/* High-Converting Military Screening Guide Sales Page */}
           <Route path="/military-screening-guide" element={<MilitaryScreeningSalesPage />} />
@@ -355,6 +383,7 @@ const App: React.FC = () => {
         </Routes>
       </Suspense>
     </BrowserRouter>
+  </ErrorBoundary>
   );
 };
 
