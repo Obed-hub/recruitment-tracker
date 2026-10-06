@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Newspaper, Search, Clock, ArrowRight, BookOpen } from 'lucide-react';
+import { Newspaper, Search, Clock, ArrowRight, BookOpen, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getBlogArticles, BlogArticle } from '../services/mockBlog';
 import SEO from '../components/SEO';
+import { BreadcrumbListSchema } from '../components/StructuredData';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
 
 const BlogHub: React.FC = () => {
   const [articles, setArticles] = useState<BlogArticle[]>([]);
@@ -40,13 +42,24 @@ const BlogHub: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto py-6">
       <SEO
-        title="Career Advice, Salaries & Latest Recruitment News"
-        description="Stay updated with our recruitment blog. Get detailed information on government salaries, military preparation guides, physical screening tips, and paramilitary career options in Nigeria."
+        title="Recruitment News & Salary Guides 2026/2027 [Exam Prep & Career Tips]"
+        description="Stay updated with our Nigerian recruitment blog. Get detailed breakdowns of federal salary scales, military screening tips, past questions, and paramilitary career options."
         canonical="/blog"
-        keywords={['nigerian recruitment news', 'federal government salary scale', 'military screening preparation', 'paramilitary vs military Nigeria', 'police force salary structures']}
+        keywords={['nigerian recruitment news 2026', 'federal government salary scale', 'military screening preparation', 'paramilitary vs military Nigeria', 'police force salary structures']}
+      />
+
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Recruitment News & Career Advice', url: '/blog' }
+        ]}
       />
 
       <div className="text-center py-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold mb-4">
+          <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+          <span>{getDailyUpdatedBadge()} • Editorial Updates</span>
+        </div>
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Latest Insights & Career Advice</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Expert articles, study tips, salary structures, and insider guides to help you land your dream job in Nigerian federal and military agencies.

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Mail, MapPin, MessageSquare, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO';
+import TelegramIcon from '../components/TelegramIcon';
 
 const ContactUs: React.FC = () => {
     return (
@@ -47,16 +48,26 @@ const ContactUs: React.FC = () => {
                             <MessageSquare className="w-6 h-6 text-military-green" />
                         </div>
                         <div>
-                            <h3 className="text-lg font-bold text-gray-900">Follow Us</h3>
-                            <div className="flex space-x-4 mt-2">
-                                <a href="#" className="p-2 bg-gray-100 rounded-full hover:bg-military-blue hover:text-white transition-colors">
-                                    <Twitter className="w-5 h-5" />
+                            <h3 className="text-lg font-bold text-gray-900">Official Discussion & Updates</h3>
+                            <p className="text-sm text-gray-600 mb-3">Join our active applicant communities for real-time discussions, screening verification, and shortlist drops:</p>
+                            <div className="flex flex-col gap-2.5">
+                                <a
+                                    href="https://t.me/recruitmenttracker"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-3.5 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-xl text-xs font-bold transition-all shadow-sm w-fit"
+                                >
+                                    <TelegramIcon className="w-4 h-4" />
+                                    <span>Telegram Discussion Channel (@recruitmenttracker)</span>
                                 </a>
-                                <a href="#" className="p-2 bg-gray-100 rounded-full hover:bg-military-blue hover:text-white transition-colors">
-                                    <Facebook className="w-5 h-5" />
-                                </a>
-                                <a href="#" className="p-2 bg-gray-100 rounded-full hover:bg-military-blue hover:text-white transition-colors">
-                                    <Instagram className="w-5 h-5" />
+                                <a
+                                    href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl text-xs font-black transition-all shadow-sm w-fit"
+                                >
+                                    <MessageCircle className="w-4 h-4 fill-current" />
+                                    <span>WhatsApp Channel (NIGERIA RECRUITMENT UPDATE)</span>
                                 </a>
                             </div>
                         </div>

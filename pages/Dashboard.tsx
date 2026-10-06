@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, BookOpen, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, Clock, ExternalLink, FileDown, AlertCircle, BrainCircuit, BookOpen, Image as ImageIcon, MapPin, CircleDollarSign, Sparkles, Calendar, CheckCircle2, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { subscribeToRecruitments, getNews } from '../services/firebase';
+import { subscribeToRecruitments, getNews, STATIC_DATA } from '../services/firebase';
 import { RecruitmentUpdate, NewsItem, Branch } from '../types';
 import PortalMonitor from '../components/PortalMonitor';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
 import { WebSiteSchema, OrganizationSchema, FAQPageSchema } from '../components/StructuredData';
-import { GUIDES } from '../services/mockGuides';
-import { BLOG_ARTICLES } from '../services/mockBlog';
+import ViralCommunityWidget from '../components/ViralCommunityWidget';
+import NavyBatch39Banner from '../components/NavyBatch39Banner';
+import SponsoredJobCard from '../components/SponsoredJobCard';
+import { getDailyUpdatedBadge, formatCardUpdateDate } from '../services/dateUtils';
+import SearchableFAQSection from '../components/SearchableFAQSection';
+import MilitaryScreeningAdCreative from '../components/MilitaryScreeningAdCreative';
 
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
@@ -28,9 +32,9 @@ const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
 };
 
 const Dashboard: React.FC = () => {
-  const [recruitments, setRecruitments] = useState<RecruitmentUpdate[]>([]);
+  const [recruitments, setRecruitments] = useState<RecruitmentUpdate[]>(STATIC_DATA);
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -61,7 +65,7 @@ const Dashboard: React.FC = () => {
 
     getNews()
       .then(newsData => setNews(newsData))
-      .catch(err => console.error('[Dashboard] News fetch error:', err));
+      .catch(err => console.warn('[Dashboard] News fetch notice:', err));
 
     return () => {
       clearTimeout(timeoutId);
@@ -92,6 +96,7 @@ const Dashboard: React.FC = () => {
       case 'NDLEA': return '/ndlea-recruitment';
       case 'EFCC': return '/efcc-recruitment';
       case 'FCSC': return '/fcsc-recruitment';
+      case 'NUC': return '/nuc-recruitment-portal';
       case 'NNPC': return '/nnpc-recruitment';
       case 'CBN': return '/cbn-recruitment';
       case 'NIMC': return '/nimc-recruitment';
@@ -112,8 +117,8 @@ const Dashboard: React.FC = () => {
     'Police', 'Civil Defence', 'FRSC', 'Fire Service', 'Immigration', 'Customs', 'NDLEA',
     // Law Enforcement
     'EFCC',
-    // Civil Service
-    'FCSC',
+    // Civil Service & Education Parastatals
+    'FCSC', 'NUC',
     // Oil & Gas
     'NNPC',
     // Finance
@@ -129,47 +134,171 @@ const Dashboard: React.FC = () => {
   // We will display all in a grid
   const displayBranches = branches;
 
-  const generalFAQs = [
-    {
-      question: "How do I check Nigerian military recruitment status?",
-      answer: "You can track the live status of Nigerian Army, Navy, and Air Force recruitment portals directly on our home dashboard. We monitor portal availability, status updates (Open, Closed, Shortlist Out), and application deadlines in real-time."
-    },
-    {
-      question: "Are military recruitment forms free in Nigeria?",
-      answer: "Yes, official recruitment forms for the Nigerian Army, Navy, Air Force, Police, and paramilitary agencies are completely free of charge. Avoid paying individuals claiming to represent these agencies."
-    },
-    {
-      question: "What is DSSC in Nigerian military recruitment?",
-      answer: "DSSC stands for Direct Short Service Commission. It is a commission type in the Nigerian military for university graduates and HND holders, allowing professionals (doctors, engineers, lawyers, teachers) to join as commissioned officers."
-    },
-    {
-      question: "How long does military recruitment screening last?",
-      answer: "The screening duration varies, but generally, physical screening, credential verification, and aptitude tests last between 1 to 2 weeks at designated zonal centers."
-    }
-  ];
-
   return (
     <div className="space-y-8">
       <SEO
-        title="Home - Track Latest Recruitment Updates"
-        description="Stay updated with the latest recruitment news in Nigeria. Check eligibility, track portal status, and prepare with CBT tests."
+        title="Nigeria Recruitment Tracker 2026/2027 [Live Portal Status & Free CBT Questions]"
+        description="Official tracking portal for Nigerian military & paramilitary recruitments 2026/2027. Check live portal status for Army, Navy, Police, NSCDC, take free CBT mock tests & download screening slips."
         canonical="/"
-        keywords={['Nigeria recruitment updates', 'Latest job recruitment 2026', 'Recruitment tracker', 'CBT practice Nigeria']}
+        keywords={['Nigeria recruitment updates 2026', 'Latest military recruitment Nigeria', 'Recruitment tracker', 'CBT practice Nigeria', 'Army recruitment 2026', 'Police recruitment portal']}
       />
       <WebSiteSchema />
       <OrganizationSchema />
-      <FAQPageSchema faqs={generalFAQs} />
+
+      {/* Primary Priority Announcement: Nigerian Navy Batch 39 Recruitment 2026 */}
+      <NavyBatch39Banner />
+
+      {/* Featured Sponsored Recruitment Vacancy (High-Visibility Placement) */}
+      <SponsoredJobCard placementContext="homepage_under_batch39_banner" className="my-2" />
 
       {/* Hero / Live Status Section */}
       <section>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-            <span className="w-2 h-8 bg-military-green mr-3 rounded-sm"></span>
-            Live Recruitment Status
-          </h2>
-          <Link to="/recruitments" className="text-sm font-semibold text-military-blue hover:underline">View All</Link>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+              <span className="w-2 h-8 bg-military-green mr-3 rounded-sm"></span>
+              Live Recruitment Status
+            </h2>
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5 shadow-2xs">
+              <Calendar className="w-3.5 h-3.5 text-emerald-600" /> {getDailyUpdatedBadge()}
+            </span>
+          </div>
+          <Link to="/recruitments" className="text-sm font-semibold text-military-blue hover:underline">View All Agencies</Link>
         </div>
 
+        {/* Featured Query Banner: Which Recruitment Form is Out Now (2026)? */}
+        <div className="mb-4 p-4 bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-blue-500/30">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center shrink-0 border border-blue-400/30">
+              <FileText className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-300 bg-blue-500/20 px-2 py-0.5 rounded-full">
+                  Official 2026 Portal Guide
+                </span>
+                <span className="text-[10px] font-semibold text-slate-300">Updated Daily</span>
+              </div>
+              <h3 className="text-sm sm:text-base font-black text-white mt-0.5">
+                Which Recruitment Form is Out Now in Nigeria? (2026/2027)
+              </h3>
+              <p className="text-xs text-slate-300">
+                Live list of active military, police & paramilitary portals currently accepting applications vs upcoming calls.
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/which-recruitment-form-is-out-now"
+            className="shrink-0 w-full sm:w-auto px-4 py-2.5 bg-blue-500 hover:bg-blue-400 text-slate-950 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md"
+          >
+            Check Active Forms <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Quick Gateway Callout for tracking.armynotification.com.ng */}
+        <div className="mb-6 p-4 bg-gradient-to-r from-emerald-950 via-green-900 to-slate-950 text-white rounded-xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-emerald-700/50">
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 block">
+                Nigerian Army Candidate Gateway
+              </span>
+              <p className="text-xs sm:text-sm font-medium text-emerald-100">
+                Checking your 87/88 RRI or DSSC status on <span className="font-mono text-emerald-300 font-bold">tracking.armynotification.com.ng</span>?
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/guides/print-army-screening-slip"
+            className="shrink-0 px-4 py-2 bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shadow-sm"
+          >
+            Status Check & Slip Guide <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* High-Traffic Quick Gateways: Shortlists, Salaries, Guides & Slips, CBT */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+          <Link
+            to="/shortlist-hub"
+            className="p-3.5 sm:p-4 bg-white rounded-2xl border border-amber-200/80 hover:border-amber-400 shadow-sm hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 text-amber-600 mb-1">
+              <MapPin className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-50 px-2 py-0.5 rounded-md">
+                36 States
+              </span>
+            </div>
+            <div className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-amber-700 transition-colors">
+              Shortlists & Venues
+            </div>
+            <p className="text-[11px] text-gray-500 mt-0.5 hidden sm:block">
+              State screening centers & PDF checker
+            </p>
+          </Link>
+
+          <Link
+            to="/salary-comparison"
+            className="p-3.5 sm:p-4 bg-white rounded-2xl border border-blue-200/80 hover:border-blue-400 shadow-sm hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 text-blue-600 mb-1">
+              <CircleDollarSign className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-blue-50 px-2 py-0.5 rounded-md">
+                2026 Pay
+              </span>
+            </div>
+            <div className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-blue-700 transition-colors">
+              2026 Salary Scales
+            </div>
+            <p className="text-[11px] text-gray-500 mt-0.5 hidden sm:block">
+              Army, Police & Customs CONAFSS
+            </p>
+          </Link>
+
+          <Link
+            to="/guides"
+            className="p-3.5 sm:p-4 bg-white rounded-2xl border border-emerald-200/80 hover:border-emerald-400 shadow-sm hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 text-emerald-600 mb-1">
+              <BookOpen className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-md">
+                Application
+              </span>
+            </div>
+            <div className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-emerald-700 transition-colors">
+              Guides & Slips
+            </div>
+            <p className="text-[11px] text-gray-500 mt-0.5 hidden sm:block">
+              Reprint slip & portal steps
+            </p>
+          </Link>
+
+          <Link
+            to="/past-questions"
+            className="p-3.5 sm:p-4 bg-white rounded-2xl border border-purple-200/80 hover:border-purple-400 shadow-sm hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 text-purple-600 mb-1">
+              <BrainCircuit className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-purple-50 px-2 py-0.5 rounded-md">
+                Timed CBT
+              </span>
+            </div>
+            <div className="text-xs sm:text-sm font-black text-gray-900 group-hover:text-purple-700 transition-colors">
+              CBT Mock Exams
+            </div>
+            <p className="text-[11px] text-gray-500 mt-0.5 hidden sm:block">
+              5,000+ past questions & answers
+            </p>
+          </Link>
+        </div>
+
+        {/* Viral WhatsApp Community Alert */}
+        <ViralCommunityWidget agencyName="Nigeria Recruitment Tracker" variant="banner" />
+
+        {/* 🎖️ High-Converting Military & Paramilitary Screening Elimination Native Ad */}
+        <MilitaryScreeningAdCreative format="native-card" className="my-4" />
+
+        {/* High-Converting Sponsored Vacancy Placement */}
+        <SponsoredJobCard placementContext="homepage_feed" className="my-2" />
 
         {loading ? (
           <div className="space-y-6">
@@ -198,6 +327,7 @@ const Dashboard: React.FC = () => {
               else if (branch === 'Customs') headerColor = 'bg-slate-700';
               else if (branch === 'EFCC') headerColor = 'bg-amber-700';
               else if (branch === 'FCSC') headerColor = 'bg-violet-700';
+              else if (branch === 'NUC') headerColor = 'bg-teal-700';
               else if (branch === 'NNPC') headerColor = 'bg-green-800';
               else if (branch === 'CBN') headerColor = 'bg-teal-700';
               else if (branch === 'NIMC') headerColor = 'bg-blue-800';
@@ -238,7 +368,7 @@ const Dashboard: React.FC = () => {
                         <div className="flex items-center gap-2 mb-2">
                           <div className="flex items-center text-xs text-gray-500">
                             <Clock className="w-3 h-3 mr-1" />
-                            <span>Updated: {new Date(data.updated_at).toLocaleDateString()}</span>
+                            <span>Updated: {formatCardUpdateDate(data.updated_at)}</span>
                           </div>
                           {data.site_status && (
                             <span className={`flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full ${data.site_status === 'online'
@@ -267,13 +397,99 @@ const Dashboard: React.FC = () => {
                             to={getHubLink(branch, data.id)}
                             className={`w-full flex items-center justify-center py-2 px-4 rounded-lg text-sm font-semibold text-white transition-colors ${headerColor} hover:opacity-90`}
                           >
-                            View Details <ArrowRight className="w-4 h-4 ml-2" />
+                            View Portal & Guidelines <ArrowRight className="w-4 h-4 ml-2" />
                           </Link>
                         )}
+
+                        {/* High-Impact SEO & User Internal Links to Salary/Guides */}
+                        <div className="mt-3 pt-2.5 border-t border-gray-100 flex flex-wrap items-center justify-between gap-1.5 text-[11px]">
+                          {branch === 'Army' ? (
+                            <>
+                              <Link
+                                to="/army-salary"
+                                className="text-emerald-700 hover:text-emerald-900 font-bold bg-emerald-50 hover:bg-emerald-100 px-2 py-0.5 rounded transition-colors"
+                              >
+                                ₦ 2026 Army Salary
+                              </Link>
+                              <Link
+                                to="/guides/print-army-screening-slip"
+                                className="text-military-blue hover:underline font-medium"
+                              >
+                                Slip Printing Guide →
+                              </Link>
+                            </>
+                          ) : branch === 'Navy' ? (
+                            <>
+                              <Link
+                                to="/navy-batch-recruitment"
+                                className="text-blue-700 hover:text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 px-2 py-0.5 rounded transition-colors"
+                              >
+                                Batch 38/39 Portal
+                              </Link>
+                              <Link
+                                to="/salary-comparison"
+                                className="text-emerald-700 hover:underline font-medium"
+                              >
+                                Navy CONAFSS Pay →
+                              </Link>
+                            </>
+                          ) : branch === 'CBN' ? (
+                            <>
+                              <Link
+                                to="/cbn-recruitment"
+                                className="text-teal-800 hover:text-teal-950 font-bold bg-teal-50 hover:bg-teal-100 px-2 py-0.5 rounded transition-colors"
+                              >
+                                Verified CBN Portal
+                              </Link>
+                              <span className="text-amber-700 font-medium text-[10px]">
+                                Anti-Scam Alert
+                              </span>
+                            </>
+                          ) : branch === 'NCC' ? (
+                            <>
+                              <Link
+                                to="/ncc-recruitment"
+                                className="text-indigo-700 hover:text-indigo-900 font-bold bg-indigo-50 hover:bg-indigo-100 px-2 py-0.5 rounded transition-colors"
+                              >
+                                NCC Officer Salary
+                              </Link>
+                              <Link
+                                to="/past-questions"
+                                className="text-indigo-600 hover:underline font-medium"
+                              >
+                                CBT Questions →
+                              </Link>
+                            </>
+                          ) : (
+                            <>
+                              <Link
+                                to="/salary-comparison"
+                                className="text-gray-600 hover:text-emerald-700 font-medium hover:underline"
+                              >
+                                2026 Salary Scale
+                              </Link>
+                              <Link
+                                to="/past-questions"
+                                className="text-military-blue hover:underline font-medium"
+                              >
+                                CBT Mock Tests →
+                              </Link>
+                            </>
+                          )}
+                        </div>
                       </>
                     ) : (
-                      <div className="flex flex-col h-[100px] justify-center items-center">
-                        <p className="text-sm text-gray-400 text-center">No active updates.</p>
+                      <div className="flex flex-col justify-center items-center py-4 space-y-2">
+                        <p className="text-xs text-gray-400 text-center">No active recruitment cycle currently open.</p>
+                        <div className="flex items-center gap-2 text-[11px]">
+                          <Link to={getHubLink(branch, '')} className="text-military-blue hover:underline font-semibold">
+                            Official Guidelines
+                          </Link>
+                          <span className="text-gray-300">•</span>
+                          <Link to="/salary-comparison" className="text-emerald-700 hover:underline font-medium">
+                            Salary Scale
+                          </Link>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -310,6 +526,23 @@ const Dashboard: React.FC = () => {
                 </Link>
               </div>
 
+              {/* Army Candidate Tracking Section */}
+              <div className="pt-4 border-t border-gray-100 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Candidate Portal Gateway</h3>
+                <Link to="/guides/print-army-screening-slip" className="w-full flex items-center justify-between p-4 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors group">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-emerald-200 rounded text-emerald-900">
+                      <Clock className="w-6 h-6" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-emerald-950">tracking.armynotification.com.ng</span>
+                      <span className="text-xs text-emerald-700">Verify application number & reprint screening slip</span>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-emerald-600 group-hover:text-emerald-800" />
+                </Link>
+              </div>
+
               <div className="pt-4 border-t border-gray-100 space-y-3">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Help Desk</h3>
                 <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-100 flex gap-3">
@@ -340,7 +573,7 @@ const Dashboard: React.FC = () => {
       <section className="mt-12">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-gray-900">Latest Military & Paramilitary News</h2>
-          <Link to="/news" className="text-military-blue text-sm font-medium hover:underline">View All</Link>
+          <Link to="/blog" className="text-military-blue text-sm font-medium hover:underline">View All</Link>
         </div>
 
         <div className="space-y-4">
@@ -511,6 +744,17 @@ const Dashboard: React.FC = () => {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* Recruitment FAQs & Fast Answers (Searchable & Schema-Enabled) */}
+      <section className="mt-12">
+        <SearchableFAQSection
+          limit={6}
+          showAllLink={true}
+          enableStructuredData={true}
+          title="Recruitment FAQs & Quick Answers"
+          subtitle="Search verified answers to common questions about ongoing military & paramilitary recruitments, portal slips, and screening."
+        />
       </section>
     </div >
   );

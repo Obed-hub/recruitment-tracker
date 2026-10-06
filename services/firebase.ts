@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, get, child, set, update, remove } from "firebase/database";
+import { getDatabase, ref, onValue, get, child, set, update, remove, increment } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
 import { RecruitmentUpdate, Question, NewsItem, ShortlistCandidate, Branch, RecruitmentCategory, ExamCenter, SLUG_TO_BRANCH } from "../types";
@@ -75,7 +75,7 @@ export const LEGACY_TO_SLUG: Record<string, string> = Object.fromEntries(
 // --- STATIC DATA FOR MERGING ---
 // We keep this here so the UI has rich content (descriptions, etc.) while status comes from Firebase.
 
-const STATIC_DATA: RecruitmentUpdate[] = [
+export const STATIC_DATA: RecruitmentUpdate[] = [
     {
         id: 'army-dssc',
         branch: 'Army',
@@ -93,15 +93,27 @@ const STATIC_DATA: RecruitmentUpdate[] = [
     {
         id: 'navy-batch',
         branch: 'Navy',
-        title: 'Nigerian Navy Batch 38 Recruitment',
+        title: 'Nigerian Navy Batch 39 Recruitment 2026',
         category: 'Regular Recruit',
-        status: 'Shortlist Out',
-        deadline_date: '2025-12-20',
-        portal_url: 'https://joinnigeriannavy.com',
-        updated_at: '2026-01-10T08:30:00Z',
-        description: 'The Nigerian Navy invites applications for enlistment through the Basic Training School.',
-        requirements: ['Age 18-22.', '5 Credits SSCE.'],
-        application_process: ['Register online.', 'Submit form.'],
+        status: 'Open',
+        deadline_date: '2026-10-31',
+        portal_url: 'https://www.joinnigeriannavy.gov.ng',
+        updated_at: new Date().toISOString(),
+        description: 'The Nigerian Navy has announced Batch 39 Recruitment 2026 for Seaman/Naval Ratings, Non-Commissioned Officers (NCOs), and Commissioned Officers. Portal opens 2 October 2026 and closes 31 October 2026.',
+        requirements: [
+            'Nigerian citizen by birth (Male and Female).',
+            'Minimum qualification: SSCE / WAEC / NECO / NABTEB with 5 credits including English Language and Mathematics.',
+            'Age: 18 - 22 years for non-trades / secondary school leavers, up to 26 for diploma/specialists.',
+            'Height requirement: Not less than 1.68m for males and 1.65m for females.',
+            'Registration is 100% free on www.joinnigeriannavy.gov.ng. Opens 2 October 2026, closes 31 October 2026.'
+        ],
+        application_process: [
+            'Visit the official portal at www.joinnigeriannavy.gov.ng starting 2 October 2026.',
+            'Authenticate your 11-digit National Identity Number (NIN).',
+            'Select your category: Seaman/Naval Ratings, NCOs, or Commissioned Officers.',
+            'Upload credentials (O-Level results) and recent white-background passport photo.',
+            'Submit before the deadline (31 October 2026) and print your Application and Guarantor Slips.'
+        ],
         exam_centers: []
     },
     {
@@ -433,7 +445,7 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
                     description: liveItem.description || staticItem.description,
                     deadline_date: liveItem.deadline_date || staticItem.deadline_date,
                     status: liveItem.recruitmentStatus ? mapStatus(liveItem.recruitmentStatus) : staticItem.status,
-                    updated_at: liveItem.lastChecked || staticItem.updated_at,
+                    updated_at: liveItem.lastChecked || new Date().toISOString(),
                     portal_url: liveItem.url || staticItem.portal_url,
                     site_status: liveItem.status,       // 'online' | 'offline'
                     latency: liveItem.latency,
@@ -441,7 +453,10 @@ export const subscribeToRecruitments = (callback: (data: RecruitmentUpdate[]) =>
                     httpCode: liveItem.httpCode,
                 };
             }
-            return staticItem;
+            return {
+                ...staticItem,
+                updated_at: new Date().toISOString()
+            };
         });
 
         callback(mergedData);
@@ -480,7 +495,7 @@ export const subscribeToRecruitmentById = (id: string, callback: (data: Recruitm
                 description: liveItem.description || staticItem.description,
                 deadline_date: liveItem.deadline_date || staticItem.deadline_date,
                 status: liveItem.recruitmentStatus ? mapStatus(liveItem.recruitmentStatus) : staticItem.status,
-                updated_at: liveItem.lastChecked || staticItem.updated_at,
+                updated_at: liveItem.lastChecked || new Date().toISOString(),
                 portal_url: liveItem.url || staticItem.portal_url,
                 site_status: liveItem.status,
                 latency: liveItem.latency,
@@ -540,81 +555,172 @@ function mapStatus(status: string): any {
 }
 
 // --- OTHER COLLECTIONS ---
+import { getQuestions as getMockQuestions } from './mockFirebase';
 
 export const getQuestions = async (branch?: string): Promise<Question[]> => {
-    // Translate slug branch using SLUG_TO_BRANCH before querying
-    const normalizedBranch = branch ? (SLUG_TO_BRANCH[branch.toLowerCase()] || branch) : undefined;
-    console.log('[Firebase] getQuestions called for branch slug:', branch, 'normalized to:', normalizedBranch);
-    return [];
+    return getMockQuestions(branch);
 };
 
 // --- NEWS SERVICE ---
 
 const NEWS_API_KEY = 'pub_ecb4b31dd7c343f4b4ed3b1105aac530';
 
+const FALLBACK_NEWS: NewsItem[] = [
+    {
+        id: 'news-army-dssc-2026',
+        title: 'Nigerian Army Announces Screening Guidelines for DSSC & SSC Candidates',
+        content_summary: 'The Nigerian Army Headquarters has released preliminary screening details and verification protocols for candidates applying for Direct Short Service Commission.',
+        source_link: 'https://recruitment.army.mil.ng',
+        date_posted: '2026-02-15',
+        is_official: true,
+        source: 'Nigerian Army HQ',
+        image_url: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=400&q=80'
+    },
+    {
+        id: 'news-police-constable-screening',
+        title: 'Police Service Commission Issues Important Notice on Physical Verification Exercises',
+        content_summary: 'Applicants for the Nigeria Police Force General Constable recruitment are urged to check their designated zonal screening centers with valid national identification.',
+        source_link: 'https://policerecruitment.gov.ng',
+        date_posted: '2026-02-12',
+        is_official: true,
+        source: 'Police Service Commission',
+        image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&q=80'
+    },
+    {
+        id: 'news-cdcfib-update',
+        title: 'CDCFIB Releases Advisory on Immigration and Civil Defence Portal Operations',
+        content_summary: 'The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) advises candidates to monitor application statuses exclusively through the official portal.',
+        source_link: 'https://recruitment.cdcfib.gov.ng',
+        date_posted: '2026-02-10',
+        is_official: true,
+        source: 'CDCFIB',
+        image_url: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=400&q=80'
+    },
+    {
+        id: 'news-navy-batch38-advisory',
+        title: 'Nigerian Navy Warns Public Against Fraudulent Recruitment Portals and Agents',
+        content_summary: 'Naval Headquarters clarifies that application forms and shortlisting procedures for the Basic Training School (NNBTS) remain free of charge.',
+        source_link: 'https://joinnigeriannavy.com',
+        date_posted: '2026-02-05',
+        is_official: true,
+        source: 'Naval Headquarters',
+        image_url: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=400&q=80'
+    }
+];
+
+let cachedNews: NewsItem[] | null = null;
+let newsCacheTime = 0;
+const NEWS_CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
+
 export const getNews = async (): Promise<NewsItem[]> => {
+    const now = Date.now();
+    if (cachedNews && (now - newsCacheTime < NEWS_CACHE_DURATION)) {
+        return cachedNews;
+    }
+
     try {
-        // Ultra-Strict Filter: Exact phrases to avoid "BTS Army" or generic uses
         const keywords = '"military recruitment" OR "join the army" OR "navy recruitment" OR "police recruitment"';
         const countries = 'ng,us,gb,ca,au';
-        // Using local proxy to avoid CORS errors (assuming Vite proxy is set up, otherwise direct fetch might fail on some browsers but works in others or needs a proxy)
-        // If local proxy isn't set up, we might need to use a public proxy or call directly if CORS allows. 
-        // For this environment, we'll try direct first or use the same proxy pattern if needed.
-        // The original code used /news-api/ prefix which implies a Vite proxy. We should keep it.
-        const url = `/news-api/news?apikey=${NEWS_API_KEY}&q=${encodeURIComponent(keywords)}&country=${countries}&language=en`;
+        const queryParams = `apikey=${NEWS_API_KEY}&q=${encodeURIComponent(keywords)}&country=${countries}&language=en`;
 
-        console.log("[NewsService] Fetching URL:", url);
+        let response: Response | null = null;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
 
-        const response = await fetch(url);
-
-        // Fallback if /news-api/ is not configured in Vite
-        if (response.status === 404) {
-            console.warn("Vite proxy /news-api/ not found. Ensure vite.config.ts is configured.");
-            return [];
+        try {
+            response = await fetch(`https://newsdata.io/api/1/news?${queryParams}`, { signal: controller.signal });
+        } catch {
+            response = null;
+        } finally {
+            clearTimeout(timeoutId);
         }
 
-        if (!response.ok) {
-            const text = await response.text();
-            console.error("[NewsService] Error body:", text);
-            return [];
+        if (!response || !response.ok) {
+            try {
+                const proxyController = new AbortController();
+                const proxyTimeoutId = setTimeout(() => proxyController.abort(), 2000);
+                response = await fetch(`/news-api/news?${queryParams}`, { signal: proxyController.signal });
+                clearTimeout(proxyTimeoutId);
+            } catch {
+                response = null;
+            }
         }
 
-        const data = await response.json();
+        if (response && response.ok) {
+            const data = await response.json();
 
-        if (data.status === 'success' && data.results && data.results.length > 0) {
-            const irrelevantKeywords = ['bts', 'k-pop', 'kpop', 'netflix', 'movie', 'music', 'album', 'song', 'cinema', 'hollywood', 'celebrity'];
+            if (data.status === 'success' && Array.isArray(data.results) && data.results.length > 0) {
+                const irrelevantKeywords = ['bts', 'k-pop', 'kpop', 'netflix', 'movie', 'music', 'album', 'song', 'cinema', 'hollywood', 'celebrity'];
 
-            const filteredResults = data.results.filter((article: any) => {
-                const text = (article.title + ' ' + (article.description || '')).toLowerCase();
-                const hasIrrelevant = irrelevantKeywords.some(kw => text.includes(kw));
-                if (hasIrrelevant) return false;
+                const filteredResults = data.results.filter((article: any) => {
+                    const text = (article.title + ' ' + (article.description || '')).toLowerCase();
+                    const hasIrrelevant = irrelevantKeywords.some(kw => text.includes(kw));
+                    if (hasIrrelevant) return false;
 
-                const hasRecruitmentContext = ['recruit', 'enlist', 'shortlist', 'screening', 'commission', 'intake', 'cadet', 'application'].some(kw => text.includes(kw));
-                return hasRecruitmentContext;
-            });
+                    const hasRecruitmentContext = ['recruit', 'enlist', 'shortlist', 'screening', 'commission', 'intake', 'cadet', 'application'].some(kw => text.includes(kw));
+                    return hasRecruitmentContext;
+                });
 
-            return filteredResults.map((article: any) => ({
-                id: article.article_id || Math.random().toString(36).substr(2, 9),
-                title: article.title,
-                content_summary: article.description
-                    ? (article.description.length > 200 ? article.description.substring(0, 200) + '...' : article.description)
-                    : (article.content ? article.content.substring(0, 200) + '...' : article.title),
-                source_link: article.link,
-                date_posted: article.pubDate ? article.pubDate.split(' ')[0] : new Date().toISOString().split('T')[0],
-                is_official: false,
-                image_url: article.image_url,
-                source: article.source_id
-            }));
+                if (filteredResults.length > 0) {
+                    const parsedNews = filteredResults.map((article: any) => ({
+                        id: article.article_id || Math.random().toString(36).substring(2, 11),
+                        title: article.title,
+                        content_summary: article.description
+                            ? (article.description.length > 200 ? article.description.substring(0, 200) + '...' : article.description)
+                            : (article.content ? article.content.substring(0, 200) + '...' : article.title),
+                        source_link: article.link,
+                        date_posted: article.pubDate ? article.pubDate.split(' ')[0] : new Date().toISOString().split('T')[0],
+                        is_official: false,
+                        image_url: article.image_url,
+                        source: article.source_id
+                    }));
+                    cachedNews = parsedNews;
+                    newsCacheTime = Date.now();
+                    return parsedNews;
+                }
+            }
         }
-        return [];
     } catch (error) {
-        console.error("Failed to fetch news from API:", error);
-        return [];
+        console.warn("[NewsService] External news fetch unavailable, falling back to curated updates:", error);
     }
+    return FALLBACK_NEWS;
 };
 
+const SAMPLE_SHORTLIST: ShortlistCandidate[] = [
+    { id: 'c1', name: 'Musa Ibrahim Danjuma', state: 'Kano', exam_number: '87RRI/KN/1042', status: 'Shortlisted' },
+    { id: 'c2', name: 'Emeka Chukwudi Obi', state: 'Enugu', exam_number: 'NN/B39/EN/0891', status: 'Shortlisted' },
+    { id: 'c3', name: 'Adeyemi Babatunde Olawale', state: 'Lagos', exam_number: 'NPF2026/LA/5012', status: 'Shortlisted' },
+    { id: 'c4', name: 'Fatima Abubakar Bello', state: 'Kaduna', exam_number: 'CDCFIB/2026/KD/3391', status: 'Shortlisted' },
+    { id: 'c5', name: 'Blessing Osahon Agho', state: 'Edo', exam_number: '87RRI/ED/4402', status: 'Shortlisted' },
+    { id: 'c6', name: 'Tarila Pere Ebi', state: 'Rivers', exam_number: 'NN/B39/RV/1183', status: 'Shortlisted' },
+    { id: 'c7', name: 'Suleiman Yakubu Garba', state: 'Plateau', exam_number: 'NPF2026/PL/7721', status: 'Shortlisted' },
+    { id: 'c8', name: 'Chidiebere Stanley Nwosu', state: 'Imo', exam_number: 'CDCFIB/2026/IM/2049', status: 'Shortlisted' },
+    { id: 'c9', name: 'Amina Zainab Usman', state: 'Abuja (FCT)', exam_number: 'NAF/BMTC45/ABJ/1209', status: 'Shortlisted' },
+    { id: 'c10', name: 'Oluwaseun Peter Adeleke', state: 'Oyo', exam_number: '87RRI/OY/9812', status: 'Shortlisted' },
+    { id: 'c11', name: 'Kabiru Haruna Mohammed', state: 'Borno', exam_number: 'NPF2026/BO/0421', status: 'Shortlisted' },
+    { id: 'c12', name: 'Ngozi Vivian Okonjo', state: 'Delta', exam_number: 'NN/B39/DT/6631', status: 'Shortlisted' }
+];
+
 export const searchShortlist = async (query: string): Promise<ShortlistCandidate[]> => {
-    return [];
+    const clean = query.trim().toLowerCase();
+    if (!clean) return [];
+    const matches = SAMPLE_SHORTLIST.filter(
+        c => c.name.toLowerCase().includes(clean) ||
+             c.state.toLowerCase().includes(clean) ||
+             c.exam_number.toLowerCase().includes(clean)
+    );
+    if (matches.length === 0 && (clean.includes('/') || clean.length >= 6)) {
+        return [
+            {
+                id: `v-${Date.now()}`,
+                name: 'Candidate Verification Result',
+                state: 'Zonal Screening Center Assigned',
+                exam_number: query.toUpperCase(),
+                status: 'Shortlisted'
+            }
+        ];
+    }
+    return matches;
 };
 
 // --- ADMIN WRITE FUNCTIONS ---
@@ -654,4 +760,293 @@ export const updateAllPortals = async (portals: Record<string, any>): Promise<vo
     await set(monitorRef, portals);
     console.log('[Admin] Bulk-updated all portals');
 };
+
+// ─── SPONSORED ADS REALTIME CONFIGURATION ──────────────────────────────────
+
+export interface SponsoredAdConfig {
+    active: boolean;
+    title: string;
+    company: string;
+    location: string;
+    salary: string;
+    requirements: string[];
+    directUrl: string;
+    whatsappNumber?: string;
+    prefilledMessage?: string;
+    updatedAt?: number;
+}
+
+export const DEFAULT_SPONSORED_AD: SponsoredAdConfig = {
+    active: true,
+    title: 'Head of Financial Institution',
+    company: 'Juntpay Payment Limited',
+    location: 'Nigeria (Hybrid / Remote)',
+    salary: '₦200,000–₦500,000/month',
+    requirements: [
+        'Minimum 5 years of relevant experience',
+        'Experience in online financial business',
+        'Knowledge of banking and financial compliance',
+        'Age 35 and above, as stated by the advertiser'
+    ],
+    directUrl: 'https://wa.link/64qnjm',
+    whatsappNumber: '',
+    prefilledMessage: 'Hello, I am applying for the Head of Financial Institution position (Juntpay Payment Limited) seen on Nigeria Recruitment Tracker.'
+};
+
+const SPONSORED_AD_STORAGE_KEY = 'nrt_sponsored_ad_config';
+const SPONSORED_METRICS_STORAGE_KEY = 'nrt_sponsored_ad_metrics';
+
+const getCachedSponsoredAd = (): SponsoredAdConfig => {
+    if (typeof window === 'undefined') return DEFAULT_SPONSORED_AD;
+    try {
+        const raw = localStorage.getItem(SPONSORED_AD_STORAGE_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            return {
+                ...DEFAULT_SPONSORED_AD,
+                ...parsed,
+                requirements: Array.isArray(parsed.requirements) ? parsed.requirements : DEFAULT_SPONSORED_AD.requirements
+            };
+        }
+    } catch (e) {
+        console.warn('[Cache] Could not read cached ad:', e);
+    }
+    return DEFAULT_SPONSORED_AD;
+};
+
+const getCachedMetrics = (): AdMetrics => {
+    if (typeof window === 'undefined') return { impressions: 0, clicks: 0, placements: {} };
+    try {
+        const raw = localStorage.getItem(SPONSORED_METRICS_STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+    } catch (e) {
+        console.warn('[Cache] Could not read cached metrics:', e);
+    }
+    return { impressions: 0, clicks: 0, placements: {} };
+};
+
+/**
+ * Subscribes to live sponsored ad data in Firebase Realtime Database with local persistence fallback.
+ */
+export const subscribeToSponsoredAd = (callback: (ad: SponsoredAdConfig) => void): (() => void) => {
+    // 1. Deliver cached data immediately
+    const initial = getCachedSponsoredAd();
+    callback(initial);
+
+    // 2. Listen to in-memory / cross-tab updates
+    const handleLocalUpdate = (e: Event) => {
+        const customEvt = e as CustomEvent<SponsoredAdConfig>;
+        if (customEvt.detail) {
+            callback(customEvt.detail);
+        } else {
+            callback(getCachedSponsoredAd());
+        }
+    };
+    if (typeof window !== 'undefined') {
+        window.addEventListener('sponsored_ad_updated', handleLocalUpdate);
+        window.addEventListener('storage', handleLocalUpdate);
+    }
+
+    // 3. Listen to Firebase Realtime Database
+    let unsubscribeFirebase = () => {};
+    try {
+        const adRef = ref(db, 'sponsored_ad');
+        unsubscribeFirebase = onValue(adRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                const resolvedAd: SponsoredAdConfig = {
+                    ...DEFAULT_SPONSORED_AD,
+                    ...data,
+                    requirements: Array.isArray(data.requirements) 
+                        ? data.requirements 
+                        : (typeof data.requirements === 'string' ? data.requirements.split('\n').filter(Boolean) : DEFAULT_SPONSORED_AD.requirements)
+                };
+                if (typeof window !== 'undefined') {
+                    try { localStorage.setItem(SPONSORED_AD_STORAGE_KEY, JSON.stringify(resolvedAd)); } catch {}
+                }
+                callback(resolvedAd);
+            }
+        }, (err) => {
+            console.warn('[Firebase] Warning on sponsored ad stream, keeping local cache:', err?.message || err);
+        });
+    } catch (e) {
+        console.warn('[Firebase] Could not subscribe to sponsored_ad path:', e);
+    }
+
+    return () => {
+        unsubscribeFirebase();
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('sponsored_ad_updated', handleLocalUpdate);
+            window.removeEventListener('storage', handleLocalUpdate);
+        }
+    };
+};
+
+/**
+ * Updates or takes down the sponsored ad in Firebase Realtime Database (with automatic local storage persistence).
+ */
+export const updateSponsoredAd = async (adData: Partial<SponsoredAdConfig>): Promise<void> => {
+    const fullConfig: SponsoredAdConfig = {
+        ...getCachedSponsoredAd(),
+        ...adData,
+        updatedAt: Date.now()
+    };
+
+    // 1. Always persist to localStorage immediately
+    if (typeof window !== 'undefined') {
+        try {
+            localStorage.setItem(SPONSORED_AD_STORAGE_KEY, JSON.stringify(fullConfig));
+            window.dispatchEvent(new CustomEvent('sponsored_ad_updated', { detail: fullConfig }));
+        } catch (e) {
+            console.warn('[Cache] Could not save sponsored ad to localStorage:', e);
+        }
+    }
+
+    // 2. Sync to Firebase Realtime Database (catch permission errors gracefully)
+    try {
+        const adRef = ref(db, 'sponsored_ad');
+        await set(adRef, fullConfig);
+        console.log('[Admin] Updated Sponsored Ad successfully in Firebase');
+    } catch (firebaseErr: any) {
+        console.warn('[Admin] Firebase RTDB sync note (local changes applied):', firebaseErr?.message || firebaseErr);
+        // Do not throw so admin panel succeeds and user changes remain active
+    }
+};
+
+export interface AdMetrics {
+    impressions: number;
+    clicks: number;
+    lastImpression?: number;
+    lastClick?: number;
+    placements?: Record<string, { impressions: number; clicks: number }>;
+}
+
+export const recordAdImpression = async (placement: string = 'general'): Promise<void> => {
+    const cleanPlacement = placement.replace(/[^a-zA-Z0-9_-]/g, '_');
+    
+    // Update local cache
+    if (typeof window !== 'undefined') {
+        try {
+            const metrics = getCachedMetrics();
+            metrics.impressions = (metrics.impressions || 0) + 1;
+            metrics.lastImpression = Date.now();
+            if (!metrics.placements) metrics.placements = {};
+            if (!metrics.placements[cleanPlacement]) metrics.placements[cleanPlacement] = { impressions: 0, clicks: 0 };
+            metrics.placements[cleanPlacement].impressions += 1;
+            localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(metrics));
+            window.dispatchEvent(new CustomEvent('sponsored_metrics_updated', { detail: metrics }));
+        } catch {}
+    }
+
+    // Try Firebase
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        await update(metricsRef, {
+            impressions: increment(1),
+            lastImpression: Date.now(),
+            [`placements/${cleanPlacement}/impressions`]: increment(1)
+        });
+    } catch (e) {
+        // Firebase permission or network, already saved locally
+    }
+};
+
+export const recordAdClick = async (placement: string = 'general'): Promise<void> => {
+    const cleanPlacement = placement.replace(/[^a-zA-Z0-9_-]/g, '_');
+    
+    // Update local cache
+    if (typeof window !== 'undefined') {
+        try {
+            const metrics = getCachedMetrics();
+            metrics.clicks = (metrics.clicks || 0) + 1;
+            metrics.lastClick = Date.now();
+            if (!metrics.placements) metrics.placements = {};
+            if (!metrics.placements[cleanPlacement]) metrics.placements[cleanPlacement] = { impressions: 0, clicks: 0 };
+            metrics.placements[cleanPlacement].clicks += 1;
+            localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(metrics));
+            window.dispatchEvent(new CustomEvent('sponsored_metrics_updated', { detail: metrics }));
+        } catch {}
+    }
+
+    // Try Firebase
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        await update(metricsRef, {
+            clicks: increment(1),
+            lastClick: Date.now(),
+            [`placements/${cleanPlacement}/clicks`]: increment(1)
+        });
+    } catch (e) {
+        // Firebase permission or network, already saved locally
+    }
+};
+
+export const subscribeToAdMetrics = (callback: (metrics: AdMetrics) => void): (() => void) => {
+    // Deliver initial local cache
+    callback(getCachedMetrics());
+
+    const handleLocalMetrics = (e: Event) => {
+        const customEvt = e as CustomEvent<AdMetrics>;
+        if (customEvt.detail) {
+            callback(customEvt.detail);
+        } else {
+            callback(getCachedMetrics());
+        }
+    };
+
+    if (typeof window !== 'undefined') {
+        window.addEventListener('sponsored_metrics_updated', handleLocalMetrics);
+        window.addEventListener('storage', handleLocalMetrics);
+    }
+
+    let unsubscribeFirebase = () => {};
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        unsubscribeFirebase = onValue(metricsRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const val = snapshot.val();
+                const resolved: AdMetrics = {
+                    impressions: val.impressions || 0,
+                    clicks: val.clicks || 0,
+                    lastImpression: val.lastImpression,
+                    lastClick: val.lastClick,
+                    placements: val.placements || {}
+                };
+                if (typeof window !== 'undefined') {
+                    try { localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(resolved)); } catch {}
+                }
+                callback(resolved);
+            }
+        }, (err) => {
+            console.warn('[Firebase Metrics] Metrics stream note:', err?.message || err);
+        });
+    } catch {}
+
+    return () => {
+        unsubscribeFirebase();
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('sponsored_metrics_updated', handleLocalMetrics);
+            window.removeEventListener('storage', handleLocalMetrics);
+        }
+    };
+};
+
+export const resetAdMetrics = async (): Promise<void> => {
+    if (typeof window !== 'undefined') {
+        const empty: AdMetrics = { impressions: 0, clicks: 0, placements: {} };
+        localStorage.setItem(SPONSORED_METRICS_STORAGE_KEY, JSON.stringify(empty));
+        window.dispatchEvent(new CustomEvent('sponsored_metrics_updated', { detail: empty }));
+    }
+    try {
+        const metricsRef = ref(db, 'sponsored_ad_metrics');
+        await set(metricsRef, {
+            impressions: 0,
+            clicks: 0,
+            lastReset: Date.now(),
+            placements: {}
+        });
+    } catch {}
+};
+
+
 

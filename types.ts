@@ -6,7 +6,7 @@ export type Branch =
   // Law Enforcement / Anti-Corruption
   | 'EFCC'
   // Civil Service & Federal Commissions
-  | 'FCSC'
+  | 'FCSC' | 'NUC'
   // Oil, Gas & Energy
   | 'NNPC'
   // Finance & Banking
@@ -124,6 +124,7 @@ export const SLUG_TO_BRANCH: Record<string, Branch | 'General'> = {
   'ndlea': 'NDLEA',
   'efcc': 'EFCC',
   'fcsc': 'FCSC',
+  'nuc': 'NUC',
   'nnpc': 'NNPC',
   'cbn': 'CBN',
   'nimc': 'NIMC',
@@ -150,6 +151,7 @@ export const BRANCH_TO_SLUG: Record<string, string> = {
   'NDLEA': 'ndlea',
   'EFCC': 'efcc',
   'FCSC': 'fcsc',
+  'NUC': 'nuc',
   'NNPC': 'nnpc',
   'CBN': 'cbn',
   'NIMC': 'nimc',

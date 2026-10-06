@@ -1,468 +1,951 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://recruitmenttracker.com.ng</loc>
+    <loc>https://recruitmenttracker.com.ng/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nigerian-navy-recruitment-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/which-recruitment-form-is-out-now</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/military-screening-guide</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/screening-guide-2026</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/shortlist-hub</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/recruitments</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/eligibility</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/past-questions</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides</loc>
+    <loc>https://recruitmenttracker.com.ng/eligibility</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/blog</loc>
+    <loc>https://recruitmenttracker.com.ng/faqs</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/about</loc>
+    <loc>https://recruitmenttracker.com.ng/is-nigerian-navy-batch-39-form-out</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/contact</loc>
+    <loc>https://recruitmenttracker.com.ng/is-nigerian-army-form-out</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/privacy</loc>
+    <loc>https://recruitmenttracker.com.ng/is-nigerian-air-force-form-out</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/terms</loc>
+    <loc>https://recruitmenttracker.com.ng/is-police-recruitment-form-out</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/ncc-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/is-cdcfib-recruitment-form-out</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/army-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/npf-recruitment-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/navy-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/nigerian-army-88-rri-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/airforce-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/nigerian-navy-dssc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/customs-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/nis-recruitment-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/frsc-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/ndlea-recruitment-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/ndlea-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/frsc-recruitment-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/nis-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/fcsc-recruitment-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/nda-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/teachers-recruitment-subeb</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/police-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/nuc-recruitment-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/civil-defence-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/nscdc-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/fire-service-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/fire-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/immigration-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/efcc-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/fcsc-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/nnpc-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/cbn-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/nimc-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/nitda-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/faan-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/nimasa-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/nafdac-recruitment</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/ncaa-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/ncaa-recruitment-guide</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/ngo-jobs</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/ngo-jobs/remote-entry-level</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/exams/civil-service-exam-guide</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/jobs/civil-service-commission-guide</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/traineeships/guide</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/traineeships/management</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/training/on-the-job</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/tech/software-developer-traineeship</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/army</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/navy-recruitment-portal-login</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/navy</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/army-recruitment-portal-login</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/air-force</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/police-recruitment-portal-login</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/nda</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/cdcfib-portal-login</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/police</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/immigration-recruitment-portal-login</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/civil-defence</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/customs-recruitment-portal-login</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/immigration</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/navy-print-confirmation-slip</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/customs</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/army-print-confirmation-slip</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/frsc</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/police-print-confirmation-slip</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/fire-service</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/civil-defence-print-confirmation-slip</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/past-questions/general</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://recruitmenttracker.com.ng/immigration-print-confirmation-slip</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/nigerian-army-recruit-salary</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://recruitmenttracker.com.ng/print-army-screening-slip</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/nscdc-physical-screening-centers</loc>
+    <loc>https://recruitmenttracker.com.ng/navy-guarantor-form</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/army-guarantor-form</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/police-guarantor-form</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/civil-defence-guarantor-form</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/immigration-guarantor-form</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/salary-comparison</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/army-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/navy-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/police-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/customs-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/civil-defence-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/immigration-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/airforce-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/frsc-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/ndlea-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/fire-service-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/efcc-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nnpc-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/cbn-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/blog</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/is-nigerian-navy-batch-39-form-out</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/how-to-apply-nigerian-navy-batch</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/nigerian-navy-past-questions-bmtc-exam</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/guides/print-army-screening-slip</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/navy-dssc-vs-bmtc</loc>
+    <loc>https://recruitmenttracker.com.ng/guides/police-constable-cbt-exam-date-screening-centers</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/police-constable-subject-combinations</loc>
+    <loc>https://recruitmenttracker.com.ng/guides/cdcfib-cbt-past-questions-free-practice</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/guides/correct-cdcfib-portal-errors</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/guides/ncaa-recruitment-guide</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/guides/military-physical-standards-height-requirements</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/how-to-apply-cdcfib-portal</loc>
+    <loc>https://recruitmenttracker.com.ng/guides/police-recruitment-requirements-age-limit</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/ndlea-recruitment-requirements-qualifications</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/navy-dssc-vs-bmtc</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/military-medical-screening-test-requirements</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/correct-cdcfib-portal-errors</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/efcc-recruitment-screening-qualifications</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/ncaa-recruitment-guide</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/guides/how-to-apply-police-constable</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/is-nigerian-air-force-form-out</loc>
+    <loc>https://recruitmenttracker.com.ng/guides/how-to-apply-cdcfib-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/guides/military-medical-screening-test-disqualifications</loc>
+    <loc>https://recruitmenttracker.com.ng/guides/nscdc-physical-screening-centers</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/police-constable-subject-combinations</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/guides/nigerian-army-recruit-salary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/guides/fix-nigerian-navy-portal-issues</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/blog/top-10-high-paying-agencies-nigeria</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/nigerian-navy-batch-39-recruitment-guide-portal</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/blog/how-to-prepare-pass-military-aptitude-tests</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/blog/common-reasons-disqualification-military-physical-screening</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/blog/paramilitary-vs-military-ranks-salaries-nigeria</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/blog/nigeria-police-force-ranks-salary-structure</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/blog/how-to-fix-nigerian-navy-portal-issues-email-code-nin</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/army-dssc</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/nigerian-army-shortlisted-candidates-pdf-checker</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/cbn-entry-level</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/top-10-high-paying-agencies-nigeria</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/customs-supplementary</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/how-to-prepare-pass-military-aptitude-tests</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/efcc-investigator</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/common-reasons-disqualification-military-physical-screening</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/faan-entry-level</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/paramilitary-vs-military-ranks-salaries-nigeria</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/fcsc-entry-level</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/nigeria-police-force-ranks-salary-structure</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/fire-inspector</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/cdcfib-reprint-application-slip-guarantor-form</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/frsc-recruitment</loc>
+    <loc>https://recruitmenttracker.com.ng/blog/military-medical-screening-test-disqualifications</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/immigration-inspector</loc>
+    <loc>https://recruitmenttracker.com.ng/navy-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/naf-bmtc</loc>
+    <loc>https://recruitmenttracker.com.ng/army-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/nafdac-regulatory</loc>
+    <loc>https://recruitmenttracker.com.ng/police-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/airforce-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/customs-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/civil-defence-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nscdc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/immigration-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nis-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/ndlea-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/frsc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/fire-service-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/fire-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/efcc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nda-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/navy-dssc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nnpc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/cbn-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nimc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nitda-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/faan-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nimasa-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/nafdac-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/fcsc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/ncc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/navy</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/army</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/police</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/air-force</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/civil-defence</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/customs</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/immigration</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/ndlea</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/frsc</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/fire-service</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/nda</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/past-questions/general</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/recruitments/navy-batch</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/ncc-entry-level</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/army-dssc</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/nimasa-marine</loc>
+    <loc>https://recruitmenttracker.com.ng/recruitments/naf-bmtc</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/nimc-staff</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/nitda-it-officer</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/nnpc-graduate</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://recruitmenttracker.com.ng/recruitments/nscdc-general</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://recruitmenttracker.com.ng/recruitments/police-constable</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nscdc-general</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/frsc-recruitment</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/fire-inspector</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/immigration-inspector</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/customs-supplementary</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/efcc-investigator</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/fcsc-entry-level</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nnpc-graduate</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/cbn-entry-level</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nimc-staff</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/ncc-entry-level</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nitda-it-officer</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/faan-entry-level</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nimasa-marine</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/recruitments/nafdac-regulatory</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/about</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/contact</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/privacy</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/terms</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://recruitmenttracker.com.ng/disclaimer</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
 </urlset>

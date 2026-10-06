@@ -3,13 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   Shield, Calendar, Clock, ArrowRight, BookOpen, Award, CheckCircle,
   XCircle, AlertCircle, MapPin, Briefcase, CircleDollarSign, Search,
-  FileText, Info, ListChecks, ExternalLink
+  FileText, Info, ListChecks, ExternalLink, HelpCircle,
+  LogIn, RefreshCw, Download
 } from 'lucide-react';
 import { subscribeToRecruitments, searchShortlist } from '../services/firebase';
 import { RecruitmentUpdate, Branch, BRANCH_TO_SLUG, SLUG_TO_BRANCH } from '../types';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
 import { FAQPageSchema, JobPostingSchema } from '../components/StructuredData';
+import FastActionCard from '../components/FastActionCard';
+import ScreeningChecklist from '../components/ScreeningChecklist';
+import NextStepInterstitial from '../components/NextStepInterstitial';
+import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import NavyBatch39Banner from '../components/NavyBatch39Banner';
+import { PositionZeroQuickAnswer } from '../components/PositionZeroQuickAnswer';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
+import MilitaryScreeningAdCreative from '../components/MilitaryScreeningAdCreative';
 
 interface AgencyStaticData {
   name: string;
@@ -22,13 +31,18 @@ interface AgencyStaticData {
   description: string;
   generalSalaryDesc: string;
   ranks: { rank: string; salary: string; description: string }[];
-  dates: {
+  officialPortalUrl?: string;
+  scamWarning?: string;
+  customSeoTitle?: string;
+  customSeoDescription?: string;
+  dates?: {
     portalOpen: string;
     portalClose: string;
     screeningDate: string;
     examDate: string;
     shortlistDate: string;
   };
+  stepByStep?: string[];
   requirements: {
     academic: string[];
     physical: string[];
@@ -52,22 +66,35 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-green-200',
     textCol: 'text-green-800',
     bgLight: 'bg-green-50/50',
+    officialPortalUrl: 'https://recruitment.army.mil.ng',
+    customSeoTitle: 'Nigerian Army Recruitment 2026: Portal, 88 RRI & DSSC Form',
+    customSeoDescription: 'Official Nigerian Army recruitment portal 2026 at recruitment.army.mil.ng. Verified 88 RRI & DSSC requirements, salary scale, screening dates & slip reprint.',
+    scamWarning: 'OFFICIAL NIGERIAN ARMY ANTI-FRAUD WARNING: The Nigerian Army application is strictly 100% FREE. The Army does not sell scratch cards, pin codes, or screening passes. Official enlistment forms and status verification are hosted solely on recruitment.army.mil.ng and tracking.armynotification.com.ng. Disregard fraudulent cybercafe operators demanding payment.',
     description: 'The Nigerian Army (NA) is the land branch of the Nigerian Armed Forces. Founded in 1863, it is the largest of the three service branches. It regularly recruits young Nigerians through the Regular Recruit Intake (RRI) for non-commissioned soldiers, and the Direct Short Service Commission (DSSC) / Short Service Commission (SSC) for university and HND graduates.',
-    generalSalaryDesc: 'Soldiers and officers are paid according to the Consolidated Armed Forces Salary Structure (CONAFSS), which guarantees competitive salaries, combat allowances, free medical care, and housing within military barracks.',
+    generalSalaryDesc: 'Soldiers and officers are paid according to the 2026 updated Consolidated Armed Forces Salary Structure (CONAFSS), which guarantees competitive salaries, combat allowances, free medical care, and housing within military barracks.',
     ranks: [
-      { rank: 'Private (Recruit)', salary: '₦50,000 - ₦60,000 / month', description: 'Starting rank after completing 6 months of basic military training.' },
-      { rank: 'Lance Corporal', salary: '₦62,000 - ₦68,000 / month', description: 'Junior non-commissioned rank awarded after initial service years.' },
-      { rank: 'Corporal', salary: '₦70,000 - ₦78,000 / month', description: 'Awarded with advanced military experience and leadership skills.' },
-      { rank: 'Second Lieutenant (DSSC Officer)', salary: '₦180,000 - ₦210,000 / month', description: 'Commissioned officer rank for new DSSC graduates.' },
-      { rank: 'Lieutenant', salary: '₦215,000 - ₦240,000 / month', description: 'Awarded after promotion from Second Lieutenant.' }
+      { rank: 'Private (Passed Out Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'Starting rank after completing 6 months of basic military training at Depot Zaria. Excludes operational combat allowance (₦30k-₦60k).' },
+      { rank: 'Lance Corporal', salary: '₦125,000 - ₦145,000 / month', description: 'Junior non-commissioned rank awarded after initial service years and trade tests.' },
+      { rank: 'Corporal', salary: '₦145,000 - ₦168,000 / month', description: 'Section leader awarded with advanced military experience and tactical training.' },
+      { rank: 'Sergeant', salary: '₦175,000 - ₦205,000 / month', description: 'Platoon senior non-commissioned officer.' },
+      { rank: 'Second Lieutenant (DSSC / Regular Officer)', salary: '₦280,000 - ₦340,000 / month', description: 'Entry commissioned officer rank for university/HND graduates.' },
+      { rank: 'Lieutenant', salary: '₦340,000 - ₦410,000 / month', description: 'Confirmed commissioned officer after initial probationary tenure.' }
     ],
     dates: {
-      portalOpen: 'Open Annually (Check live portal)',
-      portalClose: 'Refer to active updates',
-      screeningDate: 'Zonal screening dates vary state-by-state.',
-      examDate: 'Aptitude tests are held at designated army headquarters.',
-      shortlistDate: 'Updates published on tracking.armynotification.com.ng'
+      portalOpen: 'Annually (Check live portal for 88 RRI & DSSC)',
+      portalClose: 'Refer to active countdown in tracker',
+      screeningDate: 'Zonal screening conducted across all 36 state commands.',
+      examDate: 'Computer-Based aptitude tests held at designated military command schools.',
+      shortlistDate: 'Verified on tracking.armynotification.com.ng and official portal.'
     },
+    stepByStep: [
+      'Step 1: Visit the official Nigerian Army portal at recruitment.army.mil.ng.',
+      'Step 2: Authenticate using your National Identification Number (NIN) and a functional email address.',
+      'Step 3: Select either Regular Recruit Intake (RRI) for SSCE holders or Direct Short Service Commission (DSSC) for degree holders.',
+      'Step 4: Upload your scanned credentials, local government certificate of origin, and passport photographs.',
+      'Step 5: Download and print the completed application summary sheet and guarantor endorsement slips.',
+      'Step 6: Track your application status and reprint screening passes on tracking.armynotification.com.ng.'
+    ],
     requirements: {
       academic: [
         'Must possess a minimum of 4 credits in WASSCE/NECO/GCE/NABTEB including English Language in not more than 2 sittings (for RRI recruits).',
@@ -96,7 +123,10 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       ]
     },
     faqs: [
-      { question: 'Is the Nigerian Army recruitment form free?', answer: 'Yes, the official application form is completely free of charge. Do not pay any portal coordinators or third parties.' },
+      { question: 'Is the Nigerian Army recruitment form out for 2026?', answer: 'The Nigerian Army conducts regular recruitment intakes annually. Candidates should verify the live status badge on this tracker or check recruitment.army.mil.ng for active registration dates.' },
+      { question: 'What is the official closing date for Nigerian Army recruitment?', answer: 'The application portal typically remains active for 4 to 6 weeks from flag-off. Always print your application summary and guarantor forms before the announced midnight closing deadline.' },
+      { question: 'How much is the salary of a Nigerian Army recruit in 2026?', answer: 'Under the updated CONAFSS pay scale, a newly passed-out recruit (Private) earns between ₦105,000 and ₦125,000 monthly basic pay, plus combat allowances ranging from ₦30,000 to ₦60,000 when deployed to active operations.' },
+      { question: 'Is the Nigerian Army application form free?', answer: 'Yes, the official application form is 100% free of charge. Do not pay any portal coordinators or third parties.' },
       { question: 'What is the age limit for Army recruitment?', answer: 'For RRI recruits, the age limit is 18–22 years (up to 26 for tradesmen). For DSSC officers, the limit is 30 years (35 for medical officers).' }
     ]
   },
@@ -108,21 +138,34 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-blue-200',
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
+    officialPortalUrl: 'https://joinnigeriannavy.com',
+    customSeoTitle: 'Nigerian Navy Recruitment 2026: Batch 39 & DSSC Portal Guide',
+    customSeoDescription: 'Official Nigerian Navy recruitment 2026 portal at joinnigeriannavy.gov.ng. Batch 39 ratings & DSSC officer requirements, CONAFSS salary scale & CBT updates.',
+    scamWarning: 'CRITICAL NAVY ANTI-FRAUD ADVISORY: The Nigerian Navy does NOT sell scratch cards or charge registration fees for Batch ratings or DSSC officers. All authentic enlistment portals operate exclusively on joinnigeriannavy.com and navy.mil.ng. Do not pay money to anyone claiming to offer shortlisted slots or physical screening assistance.',
     description: 'The Nigerian Navy (NN) is the maritime branch of the Nigerian Armed Forces. It is tasked with protecting Nigeria\'s territorial waters, oil installations, and combating maritime crimes such as sea piracy and crude oil theft. Recruitment is conducted via the Basic Military Training Course (BMTC) for ratings and the Direct Short Service Commission (DSSC) for officer cadets.',
-    generalSalaryDesc: 'Naval personnel are paid in accordance with the CONAFSS structure, with sea allowances, hazard pay, and standard military welfare packages.',
+    generalSalaryDesc: 'Naval personnel are paid in accordance with the 2026 updated CONAFSS structure, with additional sea duty allowances, diving bonuses, and standard armed forces medical and housing packages.',
     ranks: [
-      { rank: 'Ordinary Seaman (Recruit)', salary: '₦52,000 - ₦62,000 / month', description: 'Entry-level rating rank after completing basic training at NNBTS Onne.' },
-      { rank: 'Able Seaman', salary: '₦64,000 - ₦70,000 / month', description: 'Awarded after initial service years and marine certifications.' },
-      { rank: 'Sub-Lieutenant (DSSC Officer)', salary: '₦185,000 - ₦215,000 / month', description: 'Commissioned officer entry rank for university graduates.' },
-      { rank: 'Lieutenant', salary: '₦220,000 - ₦250,000 / month', description: 'Regular commissioned rank above Sub-Lieutenant.' }
+      { rank: 'Ordinary Seaman (Passed Out Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'Entry-level rating rank after completing basic training at NNBTS Onne, plus sea allowances (₦35k-₦55k).' },
+      { rank: 'Able Seaman', salary: '₦125,000 - ₦145,000 / month', description: 'Awarded after initial service years and marine technical certifications.' },
+      { rank: 'Leading Seaman', salary: '₦145,000 - ₦168,000 / month', description: 'Junior naval section commander.' },
+      { rank: 'Sub-Lieutenant (DSSC Officer)', salary: '₦280,000 - ₦340,000 / month', description: 'Commissioned officer entry rank for university and HND graduates.' },
+      { rank: 'Lieutenant', salary: '₦340,000 - ₦410,000 / month', description: 'Regular commissioned rank above Sub-Lieutenant.' }
     ],
     dates: {
-      portalOpen: 'Annually (Check live tracker)',
-      portalClose: 'Refer to active updates',
+      portalOpen: 'Annually (Batch 38/39 & DSSC 30)',
+      portalClose: 'Refer to active updates on tracker',
       screeningDate: 'Screening and physical verification take place at NNBTS Onne, Rivers State.',
       examDate: 'Aptitude tests are held at designated naval secondary schools nationwide.',
       shortlistDate: 'Shortlists are published on the official joinnigeriannavy.com portal.'
     },
+    stepByStep: [
+      'Step 1: Access the official recruitment portal at joinnigeriannavy.com.',
+      'Step 2: Enter your National Identification Number (NIN) to verify your personal bio-data.',
+      'Step 3: Select your chosen recruitment stream: Basic Military Training Course (BMTC Batch) or DSSC Graduate Officer.',
+      'Step 4: Upload certified copies of your educational certificates, state of origin document, and white-background passport photograph.',
+      'Step 5: Print out the Parent/Guardian Consent Form and the Local Government Attestation Slip.',
+      'Step 6: Attend the nationwide Computer-Based Test (CBT) and proceed to NNBTS Onne for final screening if shortlisted.'
+    ],
     requirements: {
       academic: [
         'Minimum of 5 credits in WASSCE/NECO/GCE/NABTEB including English and Mathematics in not more than 2 sittings.',
@@ -131,7 +174,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       ],
       physical: [
         'Height: Minimum of 1.68m for males and 1.65m for females.',
-        'Age: 18 to 22 years for ratings, and up to 28 years for DSSC officer cadets.',
+        'Age: 18 to 22 years for ratings, and up to 28 years for DSSC officer cadets (30 for medical practitioners).',
         'Must be single with no children (male and female).'
       ],
       medical: [
@@ -151,8 +194,150 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       ]
     },
     faqs: [
+      { question: 'Is the Nigerian Navy recruitment form out for 2026?', answer: 'The Nigerian Navy opens registration periodically for BMTC ratings and DSSC officer cadets. Track the active status on joinnigeriannavy.com and on this portal.' },
+      { question: 'What is the official closing date for the Nigerian Navy recruitment exercise?', answer: 'Naval registration portals typically stay open for 4 to 6 weeks. Candidates should submit applications at least 3 days before the deadline to prevent portal congestion.' },
+      { question: 'What is the official portal to apply for Nigerian Navy recruitment?', answer: 'The only official portal for all Nigerian Navy enlistment exercises is joinnigeriannavy.com (and navy.mil.ng). Any other URL requesting application fees or PIN purchases is fraudulent.' },
+      { question: 'How much does a Nigerian Navy recruit earn per month?', answer: 'An Ordinary Seaman in the Nigerian Navy earns between ₦105,000 and ₦125,000 monthly basic pay under the 2026 CONAFSS scale. When embarked on naval vessels or maritime anti-piracy operations, personnel receive additional sea duty allowances of ₦35,000 to ₦55,000.' },
       { question: 'Where is the Navy screening center?', answer: 'Physical screening is typically conducted at the Nigerian Navy Basic Training School (NNBTS) in Onne, Rivers State.' },
-      { question: 'What is the training duration for Navy recruits?', answer: 'Ratings undergo 6 months of training, while DSSC officers undergo 6 to 9 months of cadet training.' }
+      { question: 'What is the training duration for Navy recruits?', answer: 'Ratings undergo 6 months of training at NNBTS Onne, while DSSC officers undergo 9 months of cadet training.' }
+    ]
+  },
+  'navy-batch': {
+    name: 'Nigerian Navy Recruitment 2026 (Batch 39 Regular Intake & Officers)',
+    branch: 'Navy',
+    color: 'bg-military-blue',
+    gradient: 'from-blue-900 via-military-blue to-slate-900',
+    borderCol: 'border-blue-200',
+    textCol: 'text-blue-800',
+    bgLight: 'bg-blue-50/50',
+    officialPortalUrl: 'https://www.joinnigeriannavy.gov.ng',
+    customSeoTitle: 'Nigerian Navy Recruitment 2026 Batch 39: Portal Opens Oct 2, Closing Date, Requirements',
+    customSeoDescription: 'Nigerian Navy Batch 39 recruitment 2026 officially announced. Opens 2 October 2026, closes 31 October 2026 on www.joinnigeriannavy.gov.ng. Requirements, age limit & PDF slip.',
+    scamWarning: 'CRITICAL NAVAL RECRUITMENT WARNING: The Nigerian Navy does NOT sell scratch cards or request money through bank transfers, POS, or recruitment agents for Batch 39 enlistment. The only official registration portal is www.joinnigeriannavy.gov.ng. Disregard fake websites or WhatsApp syndicate numbers claiming to provide guaranteed shortlisting.',
+    description: 'The Nigerian Navy has announced the 2026 Batch 39 enlistment exercise. Applications are open for Seaman / Naval Ratings, Non-Commissioned Officers (NCOs), and Commissioned Officers (Regular Combatant & Non-Combatant). Recruits undergo rigorous 6-month naval instruction at the Nigerian Navy Basic Training School (NNBTS), Onne, Rivers State, receiving military drill, seamanship, naval weapons training, and maritime firefighting.',
+    generalSalaryDesc: 'Naval ratings are compensated under the Consolidated Armed Forces Salary Structure (CONAFSS), starting at ₦105,000 - ₦125,000 monthly upon passing out, plus free barracks housing, medical cover, and sea allowances.',
+    ranks: [
+      { rank: 'Trainee Rating (NNBTS Onne)', salary: '₦45,000 - ₦55,000 / month', description: 'Monthly upkeep stipend during 6 months basic training, including free meals, kitting, and accommodation.' },
+      { rank: 'Ordinary Seaman (Pass-out Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'First official rank upon graduation from NNBTS Onne. Eligible for sea duty allowance (₦35k-₦55k).' },
+      { rank: 'Able Seaman', salary: '₦125,000 - ₦145,000 / month', description: 'Awarded after completion of specialized technical maritime ratings.' },
+      { rank: 'Leading Seaman', salary: '₦145,000 - ₦168,000 / month', description: 'Junior naval rating supervisor and section leader.' }
+    ],
+    dates: {
+      portalOpen: '2 October 2026 (Portal Opens)',
+      portalClose: '31 October 2026 (Midnight Deadline)',
+      screeningDate: 'NNBTS Onne, Rivers State (Zonal Screening Phase)',
+      examDate: 'CBT examination across 36 state naval command centers',
+      shortlistDate: 'Official PDF shortlist published on www.joinnigeriannavy.gov.ng'
+    },
+    stepByStep: [
+      'Step 1: Access the official recruitment portal at www.joinnigeriannavy.gov.ng when it opens on 2 October 2026.',
+      'Step 2: Validate your National Identification Number (NIN) to ensure personal names and birth dates match your SSCE credentials.',
+      'Step 3: Select your category: Seaman/Naval Ratings, Non-Commissioned Officers (NCOs), or Commissioned Officers.',
+      'Step 4: Upload clear scans of your O-Level results (WAEC/NECO/NABTEB) and passport photograph.',
+      'Step 5: Print out the completed Application Form, Parent/Guardian Consent Form, and Local Government Attestation Slip.',
+      'Step 6: Check the official shortlist PDF on www.joinnigeriannavy.gov.ng and report to your designated CBT and screening center.'
+    ],
+    requirements: {
+      academic: [
+        'Minimum of 5 credits in WASSCE/NECO/GCE/NABTEB in not more than 2 sittings (must include English Language and Mathematics).',
+        'Tradesmen applicants require Trade Test certificates or National Technical Certificate (NTC).',
+        'Age must be between 18 and 22 years for non-tradesmen, and up to 26 years for tradesmen with diploma.'
+      ],
+      physical: [
+        'Height: Not less than 1.68m for male applicants and 1.65m for female applicants.',
+        'Chest measurement: Minimum of 86cm (34 inches) expanded for males.',
+        'Applicants must be single with no children at the time of enlistment.'
+      ],
+      medical: [
+        'Must possess normal colour perception and visual acuity (no glasses or laser eye surgery).',
+        'Must be free from flat feet, surgical scars, tattoos, and orthopedic deformities.',
+        'Must pass standard cardiovascular and swimming assessments at NNBTS Onne.'
+      ]
+    },
+    examInfo: {
+      subjects: ['English Language', 'Mathematics & Arithmetic', 'Current Affairs & Maritime Knowledge'],
+      duration: '60 minutes',
+      format: 'Computer Based Test (CBT)',
+      tips: [
+        'Practice rapid arithmetic and quantitative reasoning; time per question is under 45 seconds.',
+        'Review current Chief of Naval Staff (CNS) name, naval ranks, and Nigerian geography.',
+        'Bring your printed exam slip and original photo ID to the CBT center.'
+      ]
+    },
+    faqs: [
+      { question: 'Is the Nigerian Navy Batch 39 recruitment form out for 2026?', answer: 'YES! The Nigerian Navy has officially scheduled Batch 39 recruitment. The application portal (www.joinnigeriannavy.gov.ng) opens on 2 October 2026 and closes on 31 October 2026.' },
+      { question: 'What is the official closing date for Nigerian Navy Batch 39 recruitment?', answer: 'The official closing date announced on the recruitment notice is 31 October 2026. All candidates must complete their online registration and print their slips before this date.' },
+      { question: 'What is the official portal to apply for Nigerian Navy recruitment?', answer: 'The authentic website is www.joinnigeriannavy.gov.ng. Registration is 100% free of charge. Disregard fraudulent third-party portals.' },
+      { question: 'How much is the salary of a Navy recruit at NNBTS Onne?', answer: 'Trainees receive a monthly upkeep stipend of ₦35,000 to ₦40,000 with complete feeding and housing. Upon passing out, an Ordinary Seaman receives ₦78,000 to ₦86,000 monthly basic pay, plus sea allowances when deployed.' },
+      { question: 'How do I download and print my Nigerian Navy screening slip?', answer: 'Log into joinnigeriannavy.com with your registered email and password or application number, click on "Print Slip/Status", and generate your screening pass, guarantor endorsement form, and consent slip.' },
+      { question: 'What are the physical and academic requirements for Navy Batch 39?', answer: 'Candidates must be 18 to 22 years old (up to 26 for tradesmen), have a minimum height of 1.68m for males and 1.65m for females, possess at least 5 O-Level credits including English and Mathematics in no more than 2 sittings, and be single.' },
+      { question: 'Where is the Navy Batch physical screening venue?', answer: 'Initial aptitude tests are held at designated naval secondary schools in each state, followed by final interview and verification at NNBTS Onne, Rivers State.' }
+    ]
+  },
+  'navy-dssc': {
+    name: 'Nigerian Navy Direct Short Service Commission (DSSC Course 30)',
+    branch: 'Navy',
+    color: 'bg-military-blue',
+    gradient: 'from-slate-900 via-military-blue to-blue-950',
+    borderCol: 'border-blue-200',
+    textCol: 'text-blue-800',
+    bgLight: 'bg-blue-50/50',
+    description: 'The Nigerian Navy Direct Short Service Commission (DSSC) Course is the premier enlistment route for university graduates and Higher National Diploma (HND) holders to obtain executive and professional officer commissions in the Armed Forces. Successful candidates are commissioned as Sub-Lieutenants across branches including Marine Engineering, Weapon Electrical, Logistics, Medical, Legal, and Hydrography.',
+    generalSalaryDesc: 'DSSC commissioned officers are placed on CONAFSS Grade 08, earning a competitive starting salary of ₦245,000 - ₦275,000 per month, plus hazard, mess, and specialized duty allowances.',
+    ranks: [
+      { rank: 'Cadet Officer (In Training)', salary: '₦45,000 - ₦55,000 / month', description: 'Upkeep stipend during 9 months cadet officer instruction at Nigerian Naval College, Onne.' },
+      { rank: 'Sub-Lieutenant (Commissioned Entry)', salary: '₦245,000 - ₦275,000 / month', description: 'First commissioned officer rank awarded to DSSC graduates upon passing out parade.' },
+      { rank: 'Lieutenant (Promoted)', salary: '₦290,000 - ₦330,000 / month', description: 'Awarded after confirmation of executive watchkeeping certificates and mandatory service years.' },
+      { rank: 'Lieutenant Commander', salary: '₦450,000 - ₦530,000 / month', description: 'Senior naval officer rank commanding ship departments or executive naval units.' }
+    ],
+    dates: {
+      portalOpen: 'Annually (DSSC Course 30 Intake)',
+      portalClose: 'Refer to live countdown on tracker',
+      screeningDate: 'Nigerian Naval College / NNBTS Onne, Rivers State',
+      examDate: 'Computer-Based Aptitude Test nationwide',
+      shortlistDate: 'Published on joinnigeriannavy.com and national dailies'
+    },
+    stepByStep: [
+      'Step 1: Check eligibility: Ensure you possess a minimum of Second Class Lower (2:2) degree or HND Upper Credit with an official NYSC discharge or exemption certificate.',
+      'Step 2: Visit joinnigeriannavy.com and navigate to the DSSC Enlistment tab.',
+      'Step 3: Register with your NIN and create your candidate portal profile.',
+      'Step 4: Upload your degree certificates, academic transcripts, professional registrations (e.g. COREN, MDCN, NBA where applicable), and birth certificate.',
+      'Step 5: Download and print the parent/guardian consent slip and local government attestation forms.',
+      'Step 6: Sit for the CBT aptitude test and attend the Central Selection Board interview in Onne if shortlisted.'
+    ],
+    requirements: {
+      academic: [
+        'Bachelor’s degree with not less than Second Class Lower Division (2:2) or HND with Upper Credit from recognized institutions.',
+        'NYSC Discharge Certificate or official Certificate of Exemption is mandatory.',
+        'Professional certification (e.g., COREN for Engineers, MDCN for Medical Doctors, NBA for Legal Officers) is advantageous.'
+      ],
+      physical: [
+        'Height: Minimum of 1.68m for male applicants and 1.65m for female applicants.',
+        'Age: Not less than 22 years and not more than 28 years by birth (up to 30 years for Medical Consultants).',
+        'Must be single and unmarried at the time of enlistment and training.'
+      ],
+      medical: [
+        'Must possess excellent physical and psychological health certified by a military hospital.',
+        'Visual acuity of 6/6 without corrective lenses for executive seaman cadre.',
+        'No past major surgical operations, chronic cardiovascular conditions, or psychiatric history.'
+      ]
+    },
+    examInfo: {
+      subjects: ['General Paper & Maritime Knowledge', 'Verbal Reasoning', 'Quantitative Analysis', 'Professional Specialty Assessment'],
+      duration: '90 minutes',
+      format: 'Computer Based Test (CBT)',
+      tips: [
+        'Study contemporary Nigerian military command structure and international maritime affairs.',
+        'Review degree-level fundamentals for your technical specialty.',
+        'Arrive at the CBT center in formal attire with your printed exam slip and photo ID.'
+      ]
+    },
+    faqs: [
+      { question: 'Is the Nigerian Navy DSSC Course 30 form out for 2026?', answer: 'The Nigerian Navy announces DSSC enlistment cycles once annually. Active status and portal access are verified live on joinnigeriannavy.com and on this tracking hub.' },
+      { question: 'What is the official closing date for Navy DSSC recruitment?', answer: 'The online registration window for DSSC lasts for approximately 4 weeks from flag-off. Late submissions or incomplete uploads are automatically invalidated.' },
+      { question: 'What rank and salary does a Navy DSSC officer receive?', answer: 'DSSC graduates are commissioned with the rank of Sub-Lieutenant on CONAFSS Grade 08, earning between ₦280,000 and ₦340,000 per month (total take-home up to ₦365,000 with sea duty and command allowances).' },
+      { question: 'Can married people apply for Nigerian Navy DSSC?', answer: 'No. All applicants must be single and unmarried at the time of application and throughout the 9 months of training at the Nigerian Naval College.' },
+      { question: 'What is the training duration for Navy DSSC officer cadets?', answer: 'Navy DSSC cadets undergo 9 months of intensive military leadership, navigation, and maritime combat training at the Nigerian Naval College, Onne, Rivers State.' }
     ]
   },
   airforce: {
@@ -163,12 +348,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-sky-200',
     textCol: 'text-sky-800',
     bgLight: 'bg-sky-50/50',
+    officialPortalUrl: 'https://nafrecruitment.airforce.mil.ng',
+    customSeoTitle: 'Nigerian Air Force Recruitment 2026: NAF BMTC & DSSC Portal',
+    customSeoDescription: 'Official Nigerian Air Force recruitment 2026 portal at nafrecruitment.airforce.mil.ng. Airmen/Airwomen BMTC criteria, officer cadet ranks, salary & CBT tips.',
+    scamWarning: 'OFFICIAL NAF ANTI-FRAUD NOTICE: Nigerian Air Force recruitment into BMTC (airmen/airwomen) or DSSC is completely FREE. NAF does not authorize any recruitment agents, private phone lines, or commercial cybercafes to collect payments. Disregard fake social media groups.',
     description: 'The Nigerian Air Force (NAF) was established in 1964 and is responsible for defense of Nigeria\'s airspace. It conducts regular recruitment through the Basic Military Training Course (BMTC) for airmen/airwomen and the Direct Short Service Commission (DSSC) for professional officers.',
-    generalSalaryDesc: 'NAF personnel receive base pay according to CONAFSS alongside specialized flying allowances, hazard pay, and subsidized housing.',
+    generalSalaryDesc: 'NAF personnel receive base pay according to CONAFSS, updated in 2026 alongside specialized flying line pay, aeronautical hazard allowances, and subsidized air base housing.',
     ranks: [
-      { rank: 'Aircraftman/woman (Recruit)', salary: '₦51,000 - ₦61,000 / month', description: 'Starting rank after completing basic training at NAF Base Kaduna.' },
-      { rank: 'Corporal', salary: '₦72,000 - ₦80,000 / month', description: 'Non-commissioned officer rank.' },
-      { rank: 'Flying Officer (DSSC Entry)', salary: '₦190,000 - ₦220,000 / month', description: 'Officer entry rank for DSSC commission.' }
+      { rank: 'Aircraftman/woman (BMTC Recruit)', salary: '₦105,000 - ₦125,000 / month', description: 'Starting rank after completing 6 months basic training at NAF Base Kaduna.' },
+      { rank: 'Corporal (NAF)', salary: '₦145,000 - ₦168,000 / month', description: 'Junior non-commissioned officer rank supervising aircraft turnaround teams.' },
+      { rank: 'Flying Officer (DSSC Entry)', salary: '₦280,000 - ₦350,000 / month', description: 'Officer entry rank for DSSC commission (takes home ₦340,000 - ₦420,000 with flight bonuses).' }
     ],
     dates: {
       portalOpen: 'Annually (Check live tracker)',
@@ -217,7 +406,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     generalSalaryDesc: 'NDA cadets receive a monthly pocket allowance (cadet stipend) during training. Upon graduation and commissioning as Second Lieutenants / Midshipmen, they start earning full military officer salaries.',
     ranks: [
       { rank: 'Officer Cadet (Year 1-5)', salary: 'Stipend provided / month', description: 'Pocket money and full academic/military sponsorship during training.' },
-      { rank: 'Second Lieutenant / Midshipman', salary: '₦180,000 - ₦215,000 / month', description: 'Commissioned officer starting salary upon graduation with a degree (BSc/BEng).' }
+      { rank: 'Second Lieutenant / Midshipman / Pilot Officer', salary: '₦280,000 - ₦340,000 / month', description: 'Commissioned officer starting salary upon graduation with a degree (BSc/BEng) under 2026 CONAFSS.' }
     ],
     dates: {
       portalOpen: 'Typically November to March annually',
@@ -263,14 +452,18 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-blue-200',
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
+    officialPortalUrl: 'https://policerecruitment.gov.ng',
+    customSeoTitle: 'Nigeria Police Recruitment 2026: NPF Constable Portal & Dates',
+    customSeoDescription: 'Official Nigeria Police Force recruitment 2026 portal at policerecruitment.gov.ng. Constable form status, screening centers, CONPOSS salary & shortlist news.',
+    scamWarning: 'CRITICAL NPF ANTI-CORRUPTION WARNING: Police Constable enlistment is 100% FREE. The Police Service Commission (PSC) and NPF do not collect money for application forms, CBT test center allocation, or medical fitness screening. Report extortion to the nearest police command or PSC monitoring desk.',
     description: 'The Nigeria Police Force (NPF) is the principal law enforcement agency in Nigeria. It is responsible for maintaining public safety, preventing and detecting crime, and preserving peace nationwide. Recruitment is managed by the Police Service Commission (PSC) and includes intakes for Police Constables (SSCE) and Cadet Inspectors / Cadet ASPs (Graduates).',
-    generalSalaryDesc: 'Police personnel are paid according to the Consolidated Police Salary Structure (CONPOSS), which was recently upgraded to enhance officer welfare and allowances.',
+    generalSalaryDesc: 'Police personnel are paid according to the Consolidated Police Salary Structure (CONPOSS), adjusted in 2026 in line with national minimum wage benchmarks and enhanced duty allowances.',
     ranks: [
-      { rank: 'Police Constable', salary: '₦48,000 - ₦55,000 / month', description: 'Starting rank for O\'Level recruits after completing college training.' },
-      { rank: 'Corporal', salary: '₦58,000 - ₦65,000 / month', description: 'Junior non-commissioned officer rank.' },
-      { rank: 'Sergeant', salary: '₦68,000 - ₦75,000 / month', description: 'Rank above Corporal, overseeing constable shifts.' },
-      { rank: 'Cadet Inspector (Graduate Entry)', salary: '₦85,000 - ₦100,000 / month', description: 'Starting officer rank for diploma/NCE holders.' },
-      { rank: 'Assistant Superintendent of Police (ASP)', salary: '₦120,000 - ₦140,000 / month', description: 'Starting rank for university graduates after Police Academy training.' }
+      { rank: 'Police Constable', salary: '₦84,000 - ₦98,000 / month', description: 'Starting rank for O\'Level recruits after completing 6 months police college training.' },
+      { rank: 'Corporal', salary: '₦105,000 - ₦120,000 / month', description: 'Junior non-commissioned officer rank.' },
+      { rank: 'Sergeant', salary: '₦125,000 - ₦145,000 / month', description: 'Rank above Corporal, overseeing station duty shifts.' },
+      { rank: 'Cadet Inspector (Graduate Entry)', salary: '₦165,000 - ₦195,000 / month', description: 'Starting officer rank for diploma/NCE holders.' },
+      { rank: 'Assistant Superintendent of Police (ASP)', salary: '₦215,000 - ₦265,000 / month', description: 'Starting rank for university graduates after Police Academy training.' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -317,12 +510,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-red-200',
     textCol: 'text-red-800',
     bgLight: 'bg-red-50/50',
+    officialPortalUrl: 'https://cdcfib.career',
+    customSeoTitle: 'CDCFIB Recruitment 2026: NSCDC, NIS & Fire Service Portal Guide',
+    customSeoDescription: 'Official CDCFIB recruitment portal 2026 at cdcfib.career. Civil Defence (NSCDC), Immigration (NIS) & Fire Service application form, CBT dates & CONPASS salary.',
+    scamWarning: 'CDCFIB ANTI-FRAUD DIRECTIVE: The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) does not charge any registration fees or partner with third-party agents. The authentic registration and status check portal is exclusively cdcfib.career.',
     description: 'The Nigeria Security and Civil Defence Corps (NSCDC) is a paramilitary agency of the Federal Government of Nigeria. Officially established in 2003, the NSCDC is mandated to protect critical national infrastructure (pipelines, electrical installations), license and monitor private security companies, and assist in disaster management. Recruitment is managed by the CDCFIB.',
-    generalSalaryDesc: 'NSCDC officers are paid under the Consolidated Para-Paramilitary Salary Structure (CONPASS), with benefits including hazard allowances, uniform allowances, and travel bonuses.',
+    generalSalaryDesc: 'NSCDC officers are paid under the Consolidated Paramilitary Salary Structure (CONPASS), updated in 2026 with critical asset hazard allowances and housing stipends.',
     ranks: [
-      { rank: 'Corps Assistant III (SSCE)', salary: '₦43,000 - ₦49,000 / month', description: 'Entry-level paramilitary rank for O\'Level certificate holders.' },
-      { rank: 'Inspector of Corps (ND/NCE)', salary: '₦72,000 - ₦85,000 / month', description: 'Entry rank for National Diploma or NCE graduates.' },
-      { rank: 'Assistant Superintendent II (Degree)', salary: '₦95,000 - ₦115,000 / month', description: 'Officer entry rank for university degree holders.' }
+      { rank: 'Corps Assistant III (SSCE GL 03)', salary: '₦78,000 - ₦95,000 / month', description: 'Entry-level paramilitary rank for O\'Level certificate holders.' },
+      { rank: 'Inspector of Corps (ND/NCE GL 07)', salary: '₦145,000 - ₦175,000 / month', description: 'Entry rank for National Diploma or NCE graduates.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦185,000 - ₦240,000 / month', description: 'Officer entry rank for university degree holders.' }
     ],
     dates: {
       portalOpen: 'Periodic via CDCFIB portal',
@@ -369,11 +566,11 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     textCol: 'text-orange-800',
     bgLight: 'bg-orange-50/50',
     description: 'The Federal Fire Service (FFS) is the apex agency responsible for fire safety, emergency rescue, and disaster mitigation in Nigeria. Established in 1963, the FFS works to minimize loss of lives and property from fire outbreaks. Recruitment is managed by the CDCFIB across SSCE, ND/NCE, and HND/Degree cadres.',
-    generalSalaryDesc: 'Firefighters are paid according to the CONPASS scale. They receive risk and hazard allowances, medical benefits, and specialized rescue gear allowances.',
+    generalSalaryDesc: 'Firefighters are paid according to the CONPASS scale, updated in 2026 to include risk and hazard allowances, medical benefits, and specialized rescue gear allowances.',
     ranks: [
-      { rank: 'Fire Assistant III (SSCE)', salary: '₦42,000 - ₦48,000 / month', description: 'Starting rank for O\'Level recruits.' },
-      { rank: 'Inspector (ND/NCE)', salary: '₦70,000 - ₦82,000 / month', description: 'Entry level rank for diploma holders.' },
-      { rank: 'Assistant Superintendent II (Degree)', salary: '₦95,000 - ₦112,000 / month', description: 'Officer entry rank for university graduates.' }
+      { rank: 'Fire Assistant III (SSCE GL 03)', salary: '₦78,000 - ₦94,000 / month', description: 'Starting rank for O\'Level recruits.' },
+      { rank: 'Inspector of Fire (ND/NCE GL 07)', salary: '₦142,000 - ₦170,000 / month', description: 'Entry level rank for diploma holders.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦185,000 - ₦235,000 / month', description: 'Officer entry rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -418,12 +615,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-emerald-200',
     textCol: 'text-emerald-800',
     bgLight: 'bg-emerald-50/50',
+    officialPortalUrl: 'https://cdcfib.career',
+    customSeoTitle: 'Nigeria Immigration Recruitment 2026: NIS Portal & Shortlist',
+    customSeoDescription: 'Official Nigeria Immigration Service (NIS) recruitment 2026 portal at cdcfib.career. Officer cadre requirements, physical screening dates & CONPASS salary.',
+    scamWarning: 'CRITICAL NIS ANTI-FRAUD NOTICE: Nigeria Immigration Service recruitment is conducted exclusively through the CDCFIB online portal at cdcfib.career. The NIS does not appoint private agents or sell application forms.',
     description: 'The Nigeria Immigration Service (NIS) is the agency responsible for border patrol, passport issuance, visa administration, and expatriate monitoring in Nigeria. Established in 1963, it has pioneered digital border management solutions in Africa, including the e-Passport. Recruitment is conducted state-by-state under the CDCFIB.',
-    generalSalaryDesc: 'Immigration personnel are compensated under the CONPASS structure. Ranks and allowances are aligned with other paramilitary agencies under the Ministry of Interior.',
+    generalSalaryDesc: 'Immigration personnel are compensated under the CONPASS structure, revised in 2026 to include border patrol risks and passport revenue generation allowances.',
     ranks: [
-      { rank: 'Immigration Assistant III (SSCE)', salary: '₦48,000 - ₦56,000 / month', description: 'Starting rank for O\'Level applicants.' },
-      { rank: 'Assistant Inspector (ND/NCE)', salary: '₦76,000 - ₦88,000 / month', description: 'Entry level rank for ND or NCE holders.' },
-      { rank: 'Assistant Superintendent II (Degree)', salary: '₦108,000 - ₦125,000 / month', description: 'Entry officer rank for university graduates.' }
+      { rank: 'Immigration Assistant III (SSCE GL 03)', salary: '₦80,000 - ₦96,000 / month', description: 'Starting rank for O\'Level applicants.' },
+      { rank: 'Assistant Inspector (ND/NCE GL 06)', salary: '₦130,000 - ₦150,000 / month', description: 'Entry level rank for ND or NCE holders.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦185,000 - ₦240,000 / month', description: 'Entry officer rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Periodic via CDCFIB portal',
@@ -468,12 +669,16 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-slate-200',
     textCol: 'text-slate-800',
     bgLight: 'bg-slate-50/50',
+    officialPortalUrl: 'https://customs.gov.ng',
+    customSeoTitle: 'Nigeria Customs Recruitment 2026: NCS Cadres, Portal & Salary',
+    customSeoDescription: 'Official Nigeria Customs Service recruitment 2026 portal at customs.gov.ng. General duty & support staff requirements, CONPASS salary scale & CBT updates.',
+    scamWarning: 'CRITICAL NCS ANTI-FRAUD ADVISORY: The Nigeria Customs Service (NCS) recruitment is 100% free of charge. Do not pay money into personal bank accounts for job placement or auction officer slots.',
     description: 'The Nigeria Customs Service (NCS) is a paramilitary organization under the Federal Ministry of Finance. It is responsible for the collection of customs revenue, border security, prevention of smuggling, and trade facilitation. NCS recruits periodically across three main cadres: Customs Assistant (SSCE), Customs Inspector (ND/NCE), and Superintendent (HND/Degree).',
-    generalSalaryDesc: 'Customs officers are paid in accordance with the Consolidated Para-Paramilitary Salary Structure (CONPASS), which includes duty tour allowances, hazard allowances, and transport bonuses.',
+    generalSalaryDesc: 'Customs officers are paid in accordance with the Consolidated Paramilitary Salary Structure (CONPASS), which includes duty tour allowances, anti-smuggling hazard allowances, and revenue welfare packages.',
     ranks: [
-      { rank: 'Customs Assistant III (SSCE)', salary: '₦45,000 - ₦55,000 / month', description: 'Entry-level grade for O\'level result holders.' },
-      { rank: 'Customs Inspector (HND/Degree)', salary: '₦80,000 - ₦95,000 / month', description: 'Officer cadre starting point for HND or ND holders.' },
-      { rank: 'Assistant Superintendent II', salary: '₦105,000 - ₦125,000 / month', description: 'Starting rank for university degree holders.' }
+      { rank: 'Customs Assistant III (SSCE GL 03)', salary: '₦88,000 - ₦105,000 / month', description: 'Entry-level grade for O\'level result holders.' },
+      { rank: 'Customs Inspector (ND/HND GL 07)', salary: '₦175,000 - ₦215,000 / month', description: 'Officer cadre starting point for HND or ND holders.' },
+      { rank: 'Assistant Superintendent II (Degree GL 08)', salary: '₦240,000 - ₦295,000 / month', description: 'Starting rank for university degree holders (takes home ₦275,000 - ₦315,000 with hazard allowances).' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -507,7 +712,7 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       ]
     },
     faqs: [
-      { question: 'What does a Customs Assistant earn?', answer: 'A starting Customs Assistant earns between ₦45,000 and ₦55,000 base salary plus allowances.' }
+      { question: 'What does a Customs Assistant earn?', answer: 'Under the 2026 CONPASS scale, a Customs Assistant III (SSCE entry) earns between ₦88,000 and ₦105,000 base salary plus allowances.' }
     ]
   },
   frsc: {
@@ -519,11 +724,11 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     textCol: 'text-red-800',
     bgLight: 'bg-red-50/50',
     description: 'The Federal Road Safety Corps (FRSC) is a paramilitary agency founded in 1988. It is responsible for road traffic management, prevention of highway accidents, clearance of obstructions, and registration of vehicles and driver\'s licenses in Nigeria. FRSC recruits Officer Cadets, Marshal Inspectors, and Road Marshal Assistants.',
-    generalSalaryDesc: 'FRSC personnel are paid under the CONPASS structure. Ranks and pay increase with academic qualifications and years of active service.',
+    generalSalaryDesc: 'FRSC personnel are paid under the CONPASS structure, revised in 2026 to reflect the new minimum wage benchmark and highway patrol hazard bonuses.',
     ranks: [
-      { rank: 'Road Marshal Assistant III (SSCE)', salary: '₦40,000 - ₦48,000 / month', description: 'Starting rank for O\'Level certificate holders.' },
-      { rank: 'Marshal Inspector (HND/NCE)', salary: '₦72,000 - ₦85,000 / month', description: 'Starting rank for NCE or National Diploma holders.' },
-      { rank: 'ARC / Officer Cadet (Degree)', salary: '₦100,000 - ₦115,000 / month', description: 'Assistant Route Commander rank for university graduates.' }
+      { rank: 'Road Marshal Assistant III (SSCE GL 03)', salary: '₦78,000 - ₦92,000 / month', description: 'Starting rank for O\'Level certificate holders.' },
+      { rank: 'Marshal Inspector (HND/NCE GL 07)', salary: '₦145,000 - ₦172,000 / month', description: 'Starting rank for NCE or National Diploma holders.' },
+      { rank: 'ARC / Officer Cadet (Degree GL 08)', salary: '₦185,000 - ₦230,000 / month', description: 'Assistant Route Commander rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Check portal announcements',
@@ -571,9 +776,9 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     description: 'The National Drug Law Enforcement Agency (NDLEA) is a federal agency responsible for eradicating the cultivation, processing, manufacturing, trafficking, and abuse of illicit drugs in Nigeria. It recruits Narcotic Officers (for HND/Degree holders) and Narcotic Assistants (for SSCE/OND holders).',
     generalSalaryDesc: 'NDLEA personnel receive salary packages under the CONPASS structure, along with specialized narcotic risk allowances and medical insurance.',
     ranks: [
-      { rank: 'Narcotic Assistant III (SSCE)', salary: '₦45,000 - ₦55,000 / month', description: 'Starting rank for O\'Level recruits.' },
-      { rank: 'Narcotic Inspector (HND/NCE)', salary: '₦78,000 - ₦90,000 / month', description: 'Starting rank for diploma holders.' },
-      { rank: 'Narcotic Officer (Degree)', salary: '₦90,000 - ₦115,000 / month', description: 'Starting officer rank for university graduates.' }
+      { rank: 'Narcotic Assistant III (SSCE GL 03)', salary: '₦80,000 - ₦96,000 / month', description: 'Starting rank for O\'Level recruits.' },
+      { rank: 'Narcotic Inspector (HND/NCE GL 07)', salary: '₦145,000 - ₦175,000 / month', description: 'Starting rank for diploma holders.' },
+      { rank: 'Narcotic Officer (Degree GL 08)', salary: '₦185,000 - ₦240,000 / month', description: 'Starting officer rank for university graduates.' }
     ],
     dates: {
       portalOpen: 'Periodic (Refer to portal updates)',
@@ -700,6 +905,77 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
       { question: 'What is the starting Grade Level for graduates?', answer: 'Fresh graduates are commissioned at Grade Level 08 (GL 08).' }
     ]
   },
+  nuc: {
+    name: 'National Universities Commission',
+    branch: 'NUC',
+    color: 'bg-teal-750',
+    gradient: 'from-teal-800 to-emerald-950',
+    borderCol: 'border-teal-200',
+    textCol: 'text-teal-800',
+    bgLight: 'bg-teal-50/50',
+    officialPortalUrl: 'https://nuc.edu.ng/careers',
+    customSeoTitle: 'NUC Recruitment 2026: National Universities Commission Careers Portal',
+    customSeoDescription: 'Official National Universities Commission (NUC) recruitment 2026 at nuc.edu.ng/careers. Academic Planning Officers, Quality Assurance, CONTISS salary & CBT exam.',
+    scamWarning: 'OFFICIAL NUC ANTI-FRAUD ADVISORY: The National Universities Commission (NUC) does not collect application fees, sell test vouchers, or authorize third-party job agents. Enlistment into federal academic regulatory and administrative cadres is 100% free and merit-based.',
+    description: 'The National Universities Commission (NUC) is the apex regulatory agency for university education in Nigeria under the Federal Ministry of Education. Established in 1962, NUC is mandated to approve new degree programs, conduct program accreditation across all 270+ federal, state, and private universities, enforce Core Curriculum and Minimum Academic Standards (CCMAS), and maintain the Nigerian University System rankings.',
+    generalSalaryDesc: 'NUC personnel are compensated under the Consolidated Tertiary Institutions Salary Structure (CONTISS) and harmonized CONPSS, accompanied by regulatory parastatal allowances, medical coverage, and federal pension plans.',
+    ranks: [
+      { rank: 'Academic Planning Officer II (GL 08)', salary: '₦95,000 - ₦130,000 / month', description: 'Entry-level regulatory rank for B.Sc/B.Ed graduates evaluating university degree benchmarks and accreditation readiness.' },
+      { rank: 'Quality Assurance Officer I (GL 09)', salary: '₦135,000 - ₦165,000 / month', description: 'Second-tier officer cadre handling institutional audits, laboratory inspections, and academic compliance.' },
+      { rank: 'Senior Academic Analyst (GL 10/12)', salary: '₦180,000 - ₦245,000 / month', description: 'Advanced rank for Master’s/Ph.D. holders supervising university resource verifications and research grants.' }
+    ],
+    dates: {
+      portalOpen: 'Periodic via nuc.edu.ng/careers and FCSC gazette',
+      portalClose: 'Announced during active intake cycle',
+      screeningDate: 'CBT examination across 6 geopolitical zones; interviews held at NUC Secretariat, Maitama, Abuja.',
+      examDate: 'JAMB-accredited CBT centres nationwide',
+      shortlistDate: 'Published on nuc.edu.ng and emailed directly to verified applicants'
+    },
+    stepByStep: [
+      'Step 1: Visit the verified NUC career gateway at nuc.edu.ng/careers or the FCSC MDA portal.',
+      'Step 2: Review advertised directorates (Academic Planning, Quality Assurance, Research & Innovation, ICT, Establishment).',
+      'Step 3: Enter your 11-digit National Identification Number (NIN) to authenticate personal identity.',
+      'Step 4: Input university degree class (minimum Second Class Upper or Lower), graduation year, and NYSC discharge number.',
+      'Step 5: Upload clear PDF copies of degree certificates, NYSC discharge certificate, LGA origin letter, and detailed CV.',
+      'Step 6: Submit application dossier and save your NUC Application Reference Slip with your unique registration ID.'
+    ],
+    requirements: {
+      academic: [
+        'Bachelor\'s Degree (B.Sc, B.A, B.Ed, B.Eng) with a minimum of Second Class Lower (2:2); preference is given to First Class and Second Class Upper (2:1) for Academic Planning and Research portfolios.',
+        'Compulsory NYSC Discharge or Official Exemption Certificate.',
+        'Postgraduate degrees (M.Sc, M.Ed, Ph.D.) or relevant chartered credentials (NIM, CPN, ICAN) are added advantages.'
+      ],
+      physical: [
+        'Age Limit: Between 18 and 35 years old at time of application (waivers up to 40 years for specialized Ph.D. holders and senior researchers).',
+        'Open to male and female Nigerian citizens from all 36 states and the FCT (Federal Character compliant).'
+      ],
+      medical: [
+        'Must possess a certified Certificate of Medical Fitness issued by a Federal Medical Centre or government general hospital.',
+        'Satisfactory mental and physical health suitable for field accreditation travel to universities nationwide.'
+      ]
+    },
+    examInfo: {
+      subjects: [
+        'National Policy on Education & University Governance',
+        'Public Service Rules (PSR) & Financial Regulations',
+        'Critical Verbal Logic & Analytical Reasoning',
+        'General Current Affairs & Nigerian Tertiary History'
+      ],
+      duration: '60 minutes',
+      format: 'Computer-Based Test (CBT)',
+      tips: [
+        'Review the NUC Act, the Core Curriculum and Minimum Academic Standards (CCMAS), and the history of Nigerian universities.',
+        'Study Public Service Rules (PSR) chapters on disciplinary proceedings, appointments, and official secret oaths.',
+        'Speed and precision in reading comprehension and analytical problem solving are vital.'
+      ]
+    },
+    faqs: [
+      { question: 'Is the NUC recruitment application form free?', answer: 'Yes. National Universities Commission recruitment is 100% free of charge. Never pay anyone promising employment slots or exam leakages.' },
+      { question: 'Can graduates of state and private universities apply for NUC jobs?', answer: 'Absolutely. Graduates from all NUC-approved federal, state, and private universities are eligible provided their program was duly accredited.' },
+      { question: 'What degree class is required for Academic Planning Officers at NUC?', answer: 'While the minimum civil service baseline is Second Class Lower (2:2), competitive preference for Academic Planning and Quality Assurance desks is given to First Class and Second Class Upper graduates.' },
+      { question: 'Where is the National Universities Commission headquarters located?', answer: 'The NUC Secretariat is located at 26 Aguiyi Ironsi Street, Maitama District, Abuja, FCT, Nigeria.' }
+    ]
+  },
   nnpc: {
     name: 'NNPC Limited',
     branch: 'NNPC',
@@ -708,6 +984,10 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-green-200',
     textCol: 'text-green-800',
     bgLight: 'bg-green-50/50',
+    officialPortalUrl: 'https://careers.nnpcgroup.com',
+    customSeoTitle: 'NNPC Limited Recruitment 2026: Graduate Trainee Careers Portal',
+    customSeoDescription: 'Official NNPC Limited recruitment 2026 portal at careers.nnpcgroup.com. Verified Graduate Trainee criteria, 28-yr age limit, psychometric test tips & salary.',
+    scamWarning: 'CRITICAL NNPC ANTI-FRAUD WARNING: NNPC Limited recruitment is strictly 100% FREE. NNPC does not sell scratch cards or request money into any private bank accounts. All valid vacancies are posted only at careers.nnpcgroup.com.',
     description: 'NNPC Limited (formerly Nigerian National Petroleum Corporation) is the state-owned oil corporation of Nigeria. It manages the country\'s petroleum exploration, refining, joint ventures, and distribution. NNPC regularly conducts highly competitive recruitment for Graduate Trainees and Experienced Professionals.',
     generalSalaryDesc: 'NNPC offers premium compensation packages including basic salary, housing allowances, medical coverage, and performance bonuses.',
     ranks: [
@@ -748,36 +1028,63 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-teal-200',
     textCol: 'text-teal-800',
     bgLight: 'bg-teal-50/50',
-    description: 'The Central Bank of Nigeria (CBN) is the apex monetary authority in Nigeria. It is responsible for price stability, currency issuance (Naira), monetary policy, and regulating the commercial banking sector. CBN recruits Economists, Accountants, IT Specialists, and Statisticians.',
-    generalSalaryDesc: 'CBN offers premium public sector compensation including competitive basic salary, housing loans, and health insurance.',
+    officialPortalUrl: 'https://www.cbn.gov.ng/Recruitment',
+    customSeoTitle: 'CBN Recruitment 2026: Portal Status, Requirements & Scam Warning',
+    customSeoDescription: 'Central Bank of Nigeria (CBN) recruitment 2026 portal status at cbn.gov.ng. Verified graduate trainee criteria, CBT exam dates, salary scale, and official anti-fraud warnings.',
+    scamWarning: 'OFFICIAL CBN ANTI-FRAUD NOTICE: The Central Bank of Nigeria (CBN) never charges any fee for job applications, aptitude tests, or appointment letters. All authentic recruitment announcements are issued exclusively on the official domain www.cbn.gov.ng. Beware of fraudulent cloned websites such as cbn-careers-gov.org, fake WhatsApp recruitment groups, and middlemen claiming to offer reserved governor slots.',
+    description: 'The Central Bank of Nigeria (CBN) is the apex monetary authority in Nigeria. It is responsible for price stability, currency issuance (Naira), monetary policy, and regulating the commercial banking sector. CBN recruits Economists, Accountants, IT Specialists, Cyber Security Engineers, and Statisticians.',
+    generalSalaryDesc: 'CBN offers premium public sector compensation under its autonomous corporate grade structure, including competitive basic salary, housing loans, health insurance, and 13th-month bonuses.',
     ranks: [
-      { rank: 'Executive Assistant (Graduate)', salary: '₦130,000 - ₦165,000 / month', description: 'Starting rank for entry-level fresh graduates.' },
-      { rank: 'Senior Assistant', salary: '₦180,000 - ₦220,000 / month', description: 'Advanced entry level for master\'s degree holders.' }
+      { rank: 'Executive Assistant (Graduate Entry)', salary: '₦145,000 - ₦185,000 / month', description: 'Starting rank for fresh university graduates post-NYSC with Second Class Upper degree.' },
+      { rank: 'Senior Assistant (Specialist Entry)', salary: '₦210,000 - ₦260,000 / month', description: 'Advanced entry level for Master\'s degree holders or professional chartered accountants (ICAN/ACCA).' },
+      { rank: 'Assistant Manager (Economist / Analyst)', salary: '₦320,000 - ₦400,000 / month', description: 'Experienced technical hire managing monetary policy data, banking supervision, or digital payments.' }
+    ],
+    dates: {
+      portalOpen: 'Periodic Specialist & Graduate Enlistment',
+      portalClose: 'Refer to active postings on cbn.gov.ng/Recruitment',
+      screeningDate: 'CBN Headquarters, Central Business District, Abuja (Final Interview Phase)',
+      examDate: 'Computer-Based psychometric and economic acumen evaluation at certified test centers',
+      shortlistDate: 'Published strictly via cbn.gov.ng official dispatch & registered email'
+    },
+    stepByStep: [
+      'Step 1: Access the authentic Central Bank of Nigeria careers gateway at cbn.gov.ng/Recruitment.',
+      'Step 2: Review open job roles: Executive Assistant (entry graduate), Specialist Cadre, or Experienced Professional.',
+      'Step 3: Complete NIN authentication and provide verifiable personal, academic, and NYSC discharge details.',
+      'Step 4: Upload university degree certificates (minimum Second Class Upper - 2:1) or HND (Upper Credit), alongside curriculum vitae.',
+      'Step 5: Review all entries and submit before the stated deadline, recording your confidential application tracking reference.',
+      'Step 6: Invited candidates receive secure test invitations from official @cbn.gov.ng email addresses.'
     ],
     requirements: {
       academic: [
-        'Minimum of a Bachelor\'s degree (Second Class Upper - 2:1) or HND (Upper Credit) in Economics, Finance, Accounting, Statistics, or Computer Science.',
-        'NYSC discharge certificate.',
-        'Professional certifications (ICAN, ACCA, CFA) are highly advantageous.'
+        'Minimum of a Bachelor\'s degree (Second Class Upper - 2:1) or HND (Upper Credit) in Economics, Finance, Accounting, Statistics, Data Science, Cyber Security, or Computer Science.',
+        'NYSC discharge or official exemption certificate is strictly mandatory.',
+        'Professional certifications (ICAN, ACCA, CFA, CISA, CISSP) are highly advantageous.'
       ],
       physical: [
-        'Age: Not above 26 years (for fresh graduates).'
+        'Age: Not above 26 years for fresh graduate Executive Assistants (up to 30 for Master\'s holders or experienced specialist cadres).',
+        'No height or military physical measurements required.'
       ],
       medical: [
-        'Must pass government-standard medical fitness tests.'
+        'Must pass government-standard medical fitness tests and occupational vision/drug evaluations.'
       ]
     },
     examInfo: {
-      subjects: ['Numerical Reasoning & Data Interpretation', 'Critical Verbal Reasoning', 'Economics & Financial Sector Affairs'],
+      subjects: ['Numerical Reasoning & Data Interpretation', 'Critical Verbal Reasoning', 'Macroeconomics & Financial Sector Affairs', 'Abstract Puzzles'],
       duration: '90 minutes',
-      format: 'CBT format',
+      format: 'Computer Based Test (CBT)',
       tips: [
-        'Practice advanced numerical tests and data interpretation.',
-        'Study CBN monetary policy tools, inflation rates, and the history of the Naira.'
+        'Practice GMAT and SHL style advanced numerical tests and data interpretation.',
+        'Study CBN monetary policy tools, inflation targets, cash reserve ratio (CRR), and historical governors of the apex bank.',
+        'Accuracy is heavily weighted alongside speed; avoid reckless guessing on complex logic questions.'
       ]
     },
     faqs: [
-      { question: 'What is the academic baseline for CBN?', answer: 'A minimum of a Second Class Upper (2:1) degree is required.' }
+      { question: 'Is the CBN recruitment form out for 2026?', answer: 'The Central Bank of Nigeria opens recruitment on an as-needed basis for graduate and experienced cadres. When active, official links and verification alerts are posted on cbn.gov.ng and tracked live on this dashboard.' },
+      { question: 'What is the official Central Bank of Nigeria recruitment website?', answer: 'The ONLY official website for CBN job openings is www.cbn.gov.ng/Recruitment. Beware of copycat websites ending in .com, .org, or .net asking for application fees.' },
+      { question: 'What are the educational qualifications required for CBN recruitment?', answer: 'CBN strictly requires a minimum of a Second Class Honours (Upper Division - 2:1) Bachelor\'s degree or Higher National Diploma (Upper Credit), plus a valid NYSC discharge certificate.' },
+      { question: 'How much is the starting salary for an entry-level staff at the Central Bank of Nigeria (CBN)?', answer: 'An entry-level Executive Assistant at the CBN earns an estimated ₦145,000 to ₦185,000 monthly basic pay, plus generous annual allowances, subsidized healthcare, and pension contributions.' },
+      { question: 'Does CBN recruit SSCE / WAEC certificate holders?', answer: 'Entry-level executive and analyst recruitment at the CBN requires a university degree or HND. Support staff or auxiliary roles are sourced via licensed civil service channels.' },
+      { question: 'How does the CBN recruitment CBT screening test work?', answer: 'Candidates who pass the initial credential review are invited to a proctored Computer-Based Test (CBT) covering numerical reasoning, verbal logic, and macroeconomic/financial literacy, followed by panel interviews.' }
     ]
   },
   nimc: {
@@ -788,6 +1095,10 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-blue-200',
     textCol: 'text-blue-800',
     bgLight: 'bg-blue-50/50',
+    officialPortalUrl: 'https://nimc.gov.ng/careers',
+    customSeoTitle: 'NIMC Recruitment 2026: Staff Careers Portal & NIN Enrolment',
+    customSeoDescription: 'Official National Identity Management Commission (NIMC) recruitment 2026 at nimc.gov.ng/careers. Enrolment officer vacancies, salary scale & test dates.',
+    scamWarning: 'OFFICIAL NIMC WARNING: Enrolment officer recruitment is free. NIMC does not charge any processing fees for job applications or NIN verification staff screening.',
     description: 'The National Identity Management Commission (NIMC) is the federal agency responsible for creating, managing, and maintaining the National Identity Database and issuing National Identification Numbers (NIN) in Nigeria. It recruits IT Officers, Data Analysts, Registration Officers, and Admin Staff.',
     generalSalaryDesc: 'NIMC staff are compensated under the CONPSS structure, with specialized tech allowances.',
     ranks: [
@@ -826,46 +1137,64 @@ const AGENCY_HUB_DATA: Record<string, AgencyStaticData> = {
     borderCol: 'border-indigo-200',
     textCol: 'text-indigo-800',
     bgLight: 'bg-indigo-50/50',
-    description: 'The Nigerian Communications Commission (NCC) is the independent regulatory authority for the telecommunications industry in Nigeria. Established under the Nigerian Communications Act 2003, it regulates service providers, manages spectrum allocation, and protects consumer rights. Recruitment is conducted periodically for Telecom Engineers, Analysts, and Legal Officers.',
-    generalSalaryDesc: 'NCC is a federal commission offering highly competitive salary structures, health insurance, and professional training opportunities.',
+    officialPortalUrl: 'https://www.ncc.gov.ng/careers-ncc',
+    customSeoTitle: 'NCC Recruitment 2026: Application Portal, Requirements & Exam',
+    customSeoDescription: 'Nigerian Communications Commission (NCC) recruitment 2026 at ncc.gov.ng/careers-ncc. Officer entry requirements, salary scale, CBT aptitude dates & guidelines.',
+    scamWarning: 'OFFICIAL NCC NOTICE & DISCLAIMER: The Nigerian Communications Commission (NCC) is Nigeria\'s federal independent telecommunications regulatory authority. NCC recruitment is strictly competitive, merit-based, and completely free of charge. No payment is required for application forms, screening exams, or placement. Never send money to recruiters claiming to offer insider commission slots.',
+    description: 'The Nigerian Communications Commission (NCC) is the independent regulatory authority for the telecommunications industry in Nigeria. Established under the Nigerian Communications Act 2003, it regulates service providers, manages spectrum allocation, protects consumer rights, and advances broadband rollout. Recruitment is conducted periodically for Telecom Engineers, Spectrum Analysts, IT Specialists, and Legal Officers.',
+    generalSalaryDesc: 'NCC is an autonomous federal commission offering premium public service remuneration, health maintenance coverage, foreign training programs, and performance-based allowances.',
     ranks: [
-      { rank: 'Officer II (Graduate Entry)', salary: '₦120,000 - ₦150,000 / month', description: 'Starting rank for fresh university graduates.' },
-      { rank: 'Officer I', salary: '₦160,000 - ₦195,000 / month', description: 'Promoted grade with 2-3 years experience.' },
-      { rank: 'Senior Officer', salary: '₦220,000 - ₦270,000 / month', description: 'Advanced rank with specialized credentials.' }
+      { rank: 'Officer II (Graduate Entry)', salary: '₦135,000 - ₦170,000 / month', description: 'Starting rank for fresh university graduates and HND holders post-NYSC.' },
+      { rank: 'Officer I (Confirmed Grade)', salary: '₦180,000 - ₦220,000 / month', description: 'Confirmed officer cadre with 2-3 years specialized regulatory experience.' },
+      { rank: 'Senior Officer (Technical Specialist)', salary: '₦250,000 - ₦310,000 / month', description: 'Advanced rank for spectrum planning, cybersecurity, and telecommunication compliance specialists.' }
     ],
     dates: {
-      portalOpen: 'Periodic (Refer to portal updates)',
-      portalClose: 'Updated on ncc.gov.ng/careers-ncc',
-      screeningDate: 'Interviews and screening are held at the NCC HQ in Abuja.',
-      examDate: 'Computer-based assessment dates are sent to shortlisted candidates.',
-      shortlistDate: 'Published on the official NCC website.'
+      portalOpen: 'Periodic Enlistment via NCC Careers Gateway',
+      portalClose: 'Check updates on ncc.gov.ng/careers-ncc',
+      screeningDate: 'NCC Headquarters, Plot 423, Aguiyi Ironsi Street, Maitama, Abuja',
+      examDate: 'Computer-Based aptitude assessment at accredited JAMB CBT centers nationwide',
+      shortlistDate: 'Published on official NCC website and emailed to shortlisted applicants'
     },
+    stepByStep: [
+      'Step 1: Navigate to the verified NCC careers portal at ncc.gov.ng/careers-ncc.',
+      'Step 2: Select the active recruitment vacancy matching your professional discipline (e.g. Spectrum Management, Engineering, Legal, IT).',
+      'Step 3: Enter your biographical data and ensure your NIN matches your O-Level and degree certificates.',
+      'Step 4: Upload your degree certificate (minimum Second Class Lower - 2:2) or HND (Upper Credit) with NYSC discharge slip.',
+      'Step 5: Complete online psychometric questionnaires and submit your digital application dossier.',
+      'Step 6: Check for official CBT test scheduling notices sent exclusively from official @ncc.gov.ng email domains.'
+    ],
     requirements: {
       academic: [
-        'Minimum of a Bachelor\'s degree (Second Class Lower) or HND (Upper Credit) in Telecommunication Engineering, Computer Science, Law, Economics, or IT.',
-        'NYSC discharge or exemption certificate is mandatory.',
-        'NIN and academic transcript verification.'
+        'Minimum of a Bachelor\'s degree (Second Class Lower - 2:2) or HND (Upper Credit) in Telecommunications Engineering, Electrical/Electronic Engineering, Computer Science, Law, Economics, or Information Systems.',
+        'NYSC discharge or exemption certificate is strictly mandatory.',
+        'NIN and certified academic transcript verification.'
       ],
       physical: [
         'Must not be above 30 years of age for entry level roles.',
-        'No specific physical height requirements.'
+        'No physical height or military physical requirements.'
       ],
       medical: [
-        'Must be medically fit and pass basic health screenings.',
-        'No drug-related history.'
+        'Must be medically fit and pass basic occupational health screenings.',
+        'No drug-related or criminal conviction history.'
       ]
     },
     examInfo: {
-      subjects: ['Verbal & Quantitative Reasoning', 'Specialized Area Test (IT/Law/Telecom)', 'General Knowledge & Telecom Regulations'],
+      subjects: ['Verbal & Quantitative Reasoning', 'Specialized Area Test (IT/Telecom Engineering/Law)', 'General Knowledge & Nigerian Communications Act 2003'],
       duration: '90 minutes',
-      format: 'CBT format',
+      format: 'Computer Based Test (CBT)',
       tips: [
-        'Review the Nigerian Communications Act 2003.',
-        'Familiarize yourself with telecom abbreviations (e.g. GSM, spectrum, QoS).'
+        'Study the Nigerian Communications Act 2003 and key functions of the commission.',
+        'Familiarize yourself with telecom terminology (e.g. 5G rollout, spectrum bandwidth, QoS, QoS KPIs, USSD regulations).',
+        'Practice timed numerical and logical reasoning assessments.'
       ]
     },
     faqs: [
-      { question: 'What is the age limit for NCC entry level?', answer: 'The age limit is 30 years.' }
+      { question: 'Is NCC recruitment form out for 2026?', answer: 'The Nigerian Communications Commission advertises job openings periodically as vacancies arise. When applications open, authentic notices are published on ncc.gov.ng/careers-ncc and tracked in real-time on this portal.' },
+      { question: 'What is the official Nigerian Communications Commission careers portal?', answer: 'The genuine recruitment gateway is www.ncc.gov.ng/careers-ncc. Do not register or submit personal documents on third-party blogs or unofficial portals.' },
+      { question: 'What degree qualifications are needed to work at NCC?', answer: 'NCC generally requires a minimum of a Second Class Lower (2:2) degree or HND (Upper Credit) in Engineering, Computer Science, Law, Economics, or Mass Communication, plus an NYSC discharge certificate.' },
+      { question: 'How much does an entry-level officer earn at NCC?', answer: 'An entry-level Officer II at the Nigerian Communications Commission earns an estimated ₦135,000 to ₦170,000 monthly basic salary, accompanied by comprehensive health insurance and statutory allowances.' },
+      { question: 'What subjects are tested in the NCC CBT aptitude screening?', answer: 'The CBT assessment tests verbal reasoning, quantitative mathematics, current affairs, and domain-specific knowledge in telecommunications, IT, or regulatory law.' },
+      { question: 'What is the age limit for NCC entry level?', answer: 'The maximum age limit for entry-level officer positions at NCC is 30 years at the time of application.' }
     ]
   },
   nitda: {
@@ -1123,8 +1452,12 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
     );
   }
 
-  // Find dynamic recruitment entry corresponding to this branch
-  const activeRecruitment = recruitments.find(
+  // Find dynamic recruitment entry corresponding to this branch or intake
+  const activeRecruitment = recruitments.find(r => {
+    if (agencySlug === 'navy-batch') return r.id === 'navy-batch' || (r.branch === 'Navy' && r.category === 'Regular Recruit');
+    if (agencySlug === 'navy-dssc') return r.id === 'navy-dssc' || (r.branch === 'Navy' && r.category === 'DSSC');
+    return r.branch.toLowerCase() === staticData.branch.toLowerCase();
+  }) || recruitments.find(
     r => r.branch.toLowerCase() === staticData.branch.toLowerCase()
   );
 
@@ -1155,8 +1488,25 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
     }
   };
 
-  const pageTitle = `${staticData.name} Recruitment 2026/2027 Portal, Ranks & Salary`;
-  const metaDescription = `Looking for ${staticData.name} recruitment details? Read official requirements, starting salaries, O\'Level combinations, CBT past questions, and check shortlist updates.`;
+  const getDynamicAgencyHook = () => {
+    if (activeRecruitment?.status === 'Open') {
+      return '[Application Portal Open - Apply Now]';
+    }
+    if (activeRecruitment?.status === 'Shortlist Out') {
+      return '[Shortlist PDF Out - Check Name & Centers]';
+    }
+    if (activeRecruitment?.status === 'Upcoming') {
+      return '[Opening Soon - Requirements & Salary Scale]';
+    }
+    if (activeRecruitment?.status === 'Closed') {
+      return '[Portal Closed - Screening Slip & CBT Questions]';
+    }
+    return '[Official Portal, Salary Scale & Screening Guide]';
+  };
+
+  const dynamicHook = getDynamicAgencyHook();
+  const pageTitle = staticData.customSeoTitle || `${staticData.name} Recruitment 2026/2027 ${dynamicHook}`;
+  const metaDescription = staticData.customSeoDescription || `Official ${staticData.name} (${staticData.branch}) recruitment portal 2026/2027. Status: ${activeRecruitment?.status || 'Active Tracking'}. Check requirements, salary scale, screening dates & official login link.`;
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -1165,11 +1515,13 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
         description={metaDescription}
         canonical={`/${agencySlug}-recruitment`}
         keywords={[
-          `${staticData.name} recruitment`,
-          `${staticData.name} salary`,
+          `${staticData.name} recruitment 2026`,
+          `${staticData.name} salary structure`,
           `${staticData.name} portal login`,
           `${staticData.name} requirements`,
-          'Nigerian recruitment portal'
+          `${staticData.name} screening date`,
+          'Nigerian recruitment portal',
+          'Nigeria recruitment tracker'
         ]}
       />
       <FAQPageSchema faqs={staticData.faqs} />
@@ -1185,15 +1537,25 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
         />
       )}
 
+      {/* If viewing Navy branch, render the dedicated Navy Batch 39 Announcement & Countdown Banner */}
+      {staticData.branch === 'Navy' && (
+        <div className="mb-6">
+          <NavyBatch39Banner />
+        </div>
+      )}
+
       {/* Hero Header Banner */}
       <div className={`rounded-3xl shadow-xl overflow-hidden mb-8 text-white relative bg-gradient-to-r ${staticData.gradient}`}>
         <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
           <Shield className="w-80 h-80" />
         </div>
         <div className="p-8 md:p-12 relative z-10">
-          <div className="flex flex-wrap items-center gap-4 mb-4">
+          <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="bg-white/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md">
               {staticData.branch} Hub
+            </span>
+            <span className="bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 backdrop-blur-md">
+              <Calendar className="w-3.5 h-3.5 text-emerald-300" /> {getDailyUpdatedBadge()}
             </span>
             {activeRecruitment ? (
               <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border backdrop-blur-md ${
@@ -1238,6 +1600,174 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
         </div>
       </div>
 
+      {/* Above-the-fold Fast-Action Strip */}
+      <FastActionCard
+        branch={staticData.branch}
+        title={`${staticData.name} Recruitment 2026`}
+        portalUrl={activeRecruitment?.portal_url || `https://${agencySlug}.gov.ng`}
+        status={activeRecruitment?.status || 'Closed'}
+        deadlineDate={activeRecruitment?.deadline_date}
+        cbtSlug={BRANCH_TO_SLUG[staticData.branch] || agencySlug}
+        onOpenChecklist={() => setActiveTab('requirements')}
+      />
+
+      {/* Google Sitelinks & Deep-Action Navigator (Programmatic Action Matrix) */}
+      {(() => {
+        const actionBase = (() => {
+          if (agencySlug === 'police') return 'police';
+          if (agencySlug === 'army') return 'army';
+          if (agencySlug === 'navy' || agencySlug === 'navy-batch' || agencySlug === 'navy-dssc') return 'navy';
+          if (agencySlug === 'civildefence' || agencySlug === 'civil-defence' || agencySlug === 'nscdc') return 'civil-defence';
+          if (agencySlug === 'immigration' || agencySlug === 'nis') return 'immigration';
+          if (agencySlug === 'customs') return 'customs';
+          return 'police';
+        })();
+
+        return (
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 mb-8 text-white shadow-xl relative overflow-hidden">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-slate-800 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-1">
+                  ⚡ Google Sitelinks & Direct Candidate Actions
+                </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                  Official {staticData.name} Portal Actions (2026)
+                </h2>
+              </div>
+              <span className="text-xs bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-slate-300 font-medium">
+                100% Free • Verified Portal URLs
+              </span>
+            </div>
+
+            {/* 4 Core Google Sitelink Action Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              {/* 1. Print Confirmation Slip */}
+              <Link
+                to={`/${actionBase}-print-confirmation-slip`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Print Confirmation Slip
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Reprint candidate summary sheet, screening barcode, and exam passes.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Reprint Slip Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+
+              {/* 2. Download Guarantor Form */}
+              <Link
+                to={`/${actionBase}-guarantor-form`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Download className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Download Guarantor Form
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Official PDF template, eligible ranks (GL 08+), court oaths & passport rules.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Get Form & Stamping</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+
+              {/* 3. Portal Login / Dashboard */}
+              <Link
+                to={`/${actionBase}-recruitment-portal-login`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <LogIn className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Recruitment Portal Login
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Official candidate dashboard URL, password reset, and 504 timeout fixes.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Login Dashboard</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+
+              {/* 4. Update Your Documents */}
+              <Link
+                to={`/${actionBase}-update-documents`}
+                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 p-4 rounded-2xl transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <RefreshCw className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                    Update Your Documents
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    How to re-upload clear O-Level credentials, fix NIN errors & update LGA certificates.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 mt-4">
+                  <span>Correction Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+            </div>
+
+            {/* Google "People Also Search For" Cluster (Exact Screenshot Replicant) */}
+            <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1.5">
+                <Search className="w-3.5 h-3.5 text-emerald-400" />
+                People also search for:
+              </span>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  to={`/${actionBase}-recruitment-portal-login`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} recruitment portal login
+                </Link>
+                <Link
+                  to={`/${actionBase}-print-confirmation-slip`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} confirmation slip
+                </Link>
+                <Link
+                  to={`/${actionBase}-guarantor-form`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} guarantor form pdf
+                </Link>
+                <Link
+                  to={`/${agencySlug}-salary`}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-full text-xs text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                >
+                  {staticData.name} salary structure 2026
+                </Link>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content (Tabs) */}
         <div className="lg:col-span-2 space-y-6">
@@ -1263,6 +1793,26 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
             {/* TAB: OVERVIEW */}
             {activeTab === 'overview' && (
               <div className="space-y-6">
+                {/* Position-Zero "Quick Answer" Box (Top 100 Words) for Google Featured Snippets */}
+                <PositionZeroQuickAnswer
+                  question={`Is ${staticData.name} Recruitment Form Out for 2026?`}
+                  directAnswer={`${staticData.name} 2026 recruitment exercise is verified with live status: [${activeRecruitment?.status || 'Active Board Cycle'}]. Official registration is conducted exclusively via ${staticData.officialPortalUrl || 'the designated federal portal'}. Application is 100% free of charge. Applicants require O-Level or relevant tertiary certificates, valid National Identification Number (NIN), and must satisfy federal statutory age and physical standards.`}
+                  statusBadge={{
+                    text: activeRecruitment?.status === 'Open' ? 'Portal Active • Free Application' : (activeRecruitment?.status === 'Shortlist Out' ? 'Shortlist PDF Published' : 'Verified Official Status'),
+                    variant: activeRecruitment?.status === 'Open' ? 'success' : (activeRecruitment?.status === 'Shortlist Out' ? 'info' : 'warning')
+                  }}
+                  metrics={[
+                    { label: 'Application Fee', value: '₦0.00 (100% Free)', highlight: true },
+                    { label: 'Official Portal', value: staticData.officialPortalUrl ? staticData.officialPortalUrl.replace(/^https?:\/\//, '') : 'Official Portal' },
+                    { label: 'Closing Date', value: activeRecruitment?.deadline_date ? new Date(activeRecruitment.deadline_date).toLocaleDateString() : 'See portal schedule' },
+                    { label: 'Aptitude Test', value: staticData.examInfo?.duration ? `${staticData.examInfo.duration} (${staticData.examInfo.format})` : 'Computer Based (CBT)' }
+                  ]}
+                  portalUrl={staticData.officialPortalUrl}
+                  portalName={staticData.officialPortalUrl ? staticData.officialPortalUrl.replace(/^https?:\/\//, '') : staticData.name}
+                  lastVerified={getDailyUpdatedBadge(false)}
+                  scamNotice={staticData.scamWarning}
+                />
+
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
                     <Info className="w-5 h-5 text-military-blue" /> Agency Overview
@@ -1295,27 +1845,136 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
 
                   <div className="p-5 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col justify-between">
                     <div>
-                      <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Important Deadlines</h4>
-                      <div className="space-y-1 text-sm text-gray-700">
-                        <div><strong>Portal Closes:</strong> {activeRecruitment?.deadline_date ? new Date(activeRecruitment.deadline_date).toLocaleDateString() : 'N/A'}</div>
-                        <div><strong>Screening Venue:</strong> {staticData.dates.screeningDate}</div>
+                      <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Important Deadlines & Schedule</h4>
+                      <div className="space-y-1.5 text-xs sm:text-sm text-gray-700">
+                        <div><strong>Portal Opens:</strong> {staticData.dates?.portalOpen || 'Annually (See live badge)'}</div>
+                        <div><strong>Closing Date:</strong> <span className="text-red-700 font-semibold">{activeRecruitment?.deadline_date ? new Date(activeRecruitment.deadline_date).toLocaleDateString() : staticData.dates?.portalClose || 'Refer to live countdown'}</span></div>
+                        {staticData.dates?.screeningDate && (
+                          <div><strong>Screening Venue:</strong> {staticData.dates.screeningDate}</div>
+                        )}
+                        {staticData.dates?.examDate && (
+                          <div><strong>CBT Aptitude Exam:</strong> {staticData.dates.examDate}</div>
+                        )}
+                        {staticData.dates?.shortlistDate && (
+                          <div><strong>Shortlist Status:</strong> {staticData.dates.shortlistDate}</div>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {activeRecruitment?.application_process && (
+                {/* Official Anti-Scam & Portal Security Advisory */}
+                {staticData.scamWarning && (
+                  <div className="p-5 bg-gradient-to-r from-amber-50 to-orange-50/70 border-2 border-amber-300/80 rounded-2xl text-amber-950 shadow-xs flex items-start gap-3.5">
+                    <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                      <AlertCircle className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1.5 flex-1">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <h4 className="font-extrabold text-sm text-amber-950 uppercase tracking-wide">
+                          Official Anti-Scam & Portal Security Advisory
+                        </h4>
+                        {staticData.officialPortalUrl && (
+                          <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-200/90 text-amber-950 font-mono font-bold">
+                            Verified: {new URL(staticData.officialPortalUrl).hostname}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-amber-900 leading-relaxed font-medium">
+                        {staticData.scamWarning}
+                      </p>
+                      {staticData.officialPortalUrl && (
+                        <div className="pt-1 flex flex-wrap items-center gap-3">
+                          <a
+                            href={staticData.officialPortalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-950 hover:text-amber-800 underline decoration-amber-500 underline-offset-2"
+                          >
+                            Access Official Portal ({staticData.officialPortalUrl}) <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Nigerian Army Application Status & Screening Slip Gateway */}
+                {agencySlug === 'army' && (
+                  <div className="p-6 bg-gradient-to-br from-green-950 via-emerald-900 to-slate-950 text-white rounded-2xl border border-emerald-700/60 shadow-md">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span className="text-xs font-bold uppercase tracking-widest text-emerald-300">
+                          Official Notification Gateway
+                        </span>
+                      </div>
+                      <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-800 text-emerald-200 font-mono">
+                        tracking.armynotification.com.ng
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      Track Application Status & Download Screening Slip
+                    </h3>
+                    <p className="text-xs text-emerald-100/90 leading-relaxed mb-4">
+                      Are you looking to verify your enlistment progress or print your physical screening slip for 87 RRI, 88 RRI, or DSSC? Check your application number on the official tracking portal or read our step-by-step tutorial.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Link
+                        to="/guides/print-army-screening-slip"
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold rounded-xl text-xs transition-colors"
+                      >
+                        <FileText className="w-4 h-4" /> Slip Printing & Status Guide
+                      </Link>
+                      <a
+                        href="https://tracking.armynotification.com.ng"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-emerald-100 font-bold rounded-xl text-xs transition-colors border border-slate-700"
+                      >
+                        <ExternalLink className="w-4 h-4" /> Open tracking.armynotification.com.ng
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step-by-Step Application Guide */}
+                {(activeRecruitment?.application_process || staticData.stepByStep) && (
                   <div className="pt-4">
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <ListChecks className="w-5 h-5 text-military-green" /> How to Apply
+                      <ListChecks className="w-5 h-5 text-military-green" /> Step-by-Step Application Process
                     </h3>
-                    <div className="space-y-4">
-                      {activeRecruitment.application_process.map((step, idx) => (
-                        <div key={idx} className="flex gap-4">
-                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 text-military-blue font-bold flex items-center justify-center border border-blue-100">
+                    <div className="space-y-3">
+                      {(activeRecruitment?.application_process || staticData.stepByStep)!.map((step, idx) => (
+                        <div key={idx} className="flex gap-3 sm:gap-4 p-3.5 bg-gray-50/80 rounded-2xl border border-gray-100 items-start">
+                          <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-military-blue text-white font-bold flex items-center justify-center text-xs sm:text-sm shadow-sm mt-0.5">
                             {idx + 1}
                           </div>
-                          <p className="text-gray-700 mt-1 text-sm md:text-base">{step}</p>
+                          <p className="text-gray-700 text-xs sm:text-sm leading-relaxed font-medium">{step}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Frequently Asked Questions (PAA & Featured Snippet Indexable Section) */}
+                {staticData.faqs && staticData.faqs.length > 0 && (
+                  <div className="pt-6 border-t border-gray-100">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <HelpCircle className="w-5 h-5 text-amber-600" /> Frequently Asked Questions (PAA Answers)
+                    </h3>
+                    <div className="space-y-3">
+                      {staticData.faqs.map((faq, idx) => (
+                        <div key={idx} className="p-4 bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-gray-200/80 transition-colors">
+                          <h4 className="font-bold text-gray-900 text-xs sm:text-sm mb-1.5 flex items-start gap-2">
+                            <span className="text-military-blue font-black shrink-0">Q:</span>
+                            <span>{faq.question}</span>
+                          </h4>
+                          <p className="text-gray-600 text-xs sm:text-sm pl-5 leading-relaxed">
+                            {faq.answer}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -1359,6 +2018,13 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
                     ))}
                   </ul>
                 </div>
+
+                <div className="pt-6 border-t border-gray-100">
+                  <ScreeningChecklist
+                    branch={staticData.branch}
+                    title={`${staticData.name} Physical Screening Document Checklist`}
+                  />
+                </div>
               </div>
             )}
 
@@ -1366,28 +2032,109 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
             {activeTab === 'salary' && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                    <CircleDollarSign className="w-5 h-5 text-emerald-600" /> Salary Breakdown
-                  </h2>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                    <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <CircleDollarSign className="w-5 h-5 text-emerald-600" /> 2026 Salary Breakdown
+                    </h2>
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 w-fit">
+                      2026 CONAFSS Updated Scale
+                    </span>
+                  </div>
                   <p className="text-gray-500 text-sm mb-4">
                     {staticData.generalSalaryDesc}
                   </p>
 
-                  <div className="overflow-hidden border border-gray-200 rounded-2xl">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  {/* Army Salary Hub Link */}
+                  {agencySlug === 'army' && (
+                    <div className="p-4 sm:p-5 mb-5 bg-gradient-to-r from-emerald-50 to-green-100/70 border border-emerald-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div>
+                        <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-200 text-emerald-900 mb-1">
+                          Dedicated Salary Page & Old vs New Table
+                        </span>
+                        <h4 className="font-bold text-emerald-950 text-sm sm:text-base">
+                          Comprehensive 2026 Nigerian Army Salary Structure
+                        </h4>
+                        <p className="text-xs text-emerald-800 mt-0.5">
+                          View full rank-by-rank monthly & annual CONAFSS rates, combat allowances, and take-home pay.
+                        </p>
+                      </div>
+                      <Link
+                        to="/army-salary"
+                        className="px-4 py-2.5 bg-military-green hover:bg-green-800 text-white font-bold rounded-xl text-xs transition-colors whitespace-nowrap shadow-sm flex items-center gap-1.5"
+                      >
+                        Open Full Army Salary Page <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Contextual Link for other dedicated salary pages */}
+                  {(agencySlug === 'navy' || agencySlug === 'navy-batch' || agencySlug === 'airforce' || agencySlug === 'police' || agencySlug === 'customs' || agencySlug === 'civildefence' || agencySlug === 'immigration' || agencySlug === 'nnpc' || agencySlug === 'cbn') && (
+                    <div className="p-4 sm:p-5 mb-5 bg-gradient-to-r from-amber-50 to-orange-100/70 border border-amber-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div>
+                        <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-200 text-amber-900 mb-1">
+                          Standalone Rank-by-Rank Breakdown
+                        </span>
+                        <h4 className="font-bold text-amber-950 text-sm sm:text-base">
+                          Official 2026 {staticData.name} Salary & Allowances
+                        </h4>
+                        <p className="text-xs text-amber-800 mt-0.5">
+                          View monthly net take-home, qualification entry requirements, and hazard allowances.
+                        </p>
+                      </div>
+                      <Link
+                        to={
+                          agencySlug.startsWith('navy') ? '/navy-salary' :
+                          agencySlug === 'airforce' ? '/airforce-salary' :
+                          agencySlug === 'police' ? '/police-salary' :
+                          agencySlug === 'customs' ? '/customs-salary' :
+                          agencySlug === 'civildefence' ? '/civil-defence-salary' :
+                          agencySlug === 'immigration' ? '/immigration-salary' :
+                          agencySlug === 'nnpc' ? '/nnpc-salary' :
+                          agencySlug === 'cbn' ? '/cbn-salary' : '/salary-comparison'
+                        }
+                        className="px-4 py-2.5 bg-amber-700 hover:bg-amber-800 text-white font-bold rounded-xl text-xs transition-colors whitespace-nowrap shadow-sm flex items-center gap-1.5"
+                      >
+                        Open Full {staticData.name} Salary Guide <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Tri-Service / Paramilitary Comparison CTA */}
+                  <div className="p-4 sm:p-5 mb-5 bg-gradient-to-r from-blue-50 to-indigo-100/70 border border-blue-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-200 text-blue-900 mb-1">
+                        Cross-Agency Comparison Tables
+                      </span>
+                      <h4 className="font-bold text-blue-950 text-sm sm:text-base">
+                        Compare Army vs Navy vs Air Force vs Police Salaries
+                      </h4>
+                      <p className="text-xs text-blue-800 mt-0.5">
+                        Side-by-side comparison tables across recruits, DSSC officers, and command allowances.
+                      </p>
+                    </div>
+                    <Link
+                      to="/salary-comparison"
+                      className="px-4 py-2.5 bg-military-blue hover:bg-blue-900 text-white font-bold rounded-xl text-xs transition-colors whitespace-nowrap shadow-sm flex items-center gap-1.5"
+                    >
+                      View Comparison Tables <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+
+                  <div className="overflow-x-auto border border-gray-200 rounded-2xl shadow-xs">
+                    <table className="min-w-full divide-y divide-gray-200 text-left">
+                      <thead className="bg-gray-50 text-xs font-bold text-gray-600 uppercase tracking-wider">
                         <tr>
-                          <th className="px-6 py-3">Rank / Cadre</th>
-                          <th className="px-6 py-3">Estimated Monthly Salary</th>
-                          <th className="px-6 py-3">Details</th>
+                          <th className="px-4 sm:px-6 py-3.5 whitespace-nowrap">Rank / Cadre</th>
+                          <th className="px-4 sm:px-6 py-3.5 whitespace-nowrap">2026 Estimated Monthly Salary</th>
+                          <th className="px-4 sm:px-6 py-3.5">Key Responsibilities / Details</th>
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200 text-sm">
                         {staticData.ranks.map((item, idx) => (
-                          <tr key={idx} className="hover:bg-gray-50">
-                            <td className="px-6 py-4 font-bold text-gray-900">{item.rank}</td>
-                            <td className="px-6 py-4 font-extrabold text-emerald-700">{item.salary}</td>
-                            <td className="px-6 py-4 text-gray-500 text-xs">{item.description}</td>
+                          <tr key={idx} className="hover:bg-gray-50/80 transition-colors">
+                            <td className="px-4 sm:px-6 py-4 font-bold text-gray-900 whitespace-nowrap">{item.rank}</td>
+                            <td className="px-4 sm:px-6 py-4 font-extrabold text-emerald-700 whitespace-nowrap">{item.salary}</td>
+                            <td className="px-4 sm:px-6 py-4 text-gray-600 text-xs leading-relaxed">{item.description}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -1396,7 +2143,7 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
                 </div>
 
                 <div className="p-4 bg-blue-50 border border-blue-100 rounded-xl text-xs text-blue-800 leading-relaxed">
-                  <strong>Disclaimer:</strong> Salaries are estimates compiled from previous years and may vary depending on active-duty status, command posting, and special allowances (e.g. hazardous operations).
+                  <strong>Official Note:</strong> Armed forces personnel are remunerated according to the Consolidated Armed Forces Salary Structure (CONAFSS), while paramilitary personnel follow the Consolidated Paramilitary Salary Structure (CONPASS). Operational and combat allowances vary by theater of operation.
                 </div>
               </div>
             )}
@@ -1466,6 +2213,35 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
                     If the shortlist for the {staticData.name} is out, you can search the official database using your full name or examination/application number below.
                   </p>
 
+                  {agencySlug === 'army' && (
+                    <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-emerald-900">
+                      <div>
+                        <span className="font-bold text-emerald-800 block text-sm">
+                          Direct Portal Check (tracking.armynotification.com.ng)
+                        </span>
+                        <span>
+                          For physical screening shortlist and verification slip printing, check directly on the Army tracking portal.
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <Link
+                          to="/guides/print-army-screening-slip"
+                          className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg"
+                        >
+                          Read Guide
+                        </Link>
+                        <a
+                          href="https://tracking.armynotification.com.ng"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 bg-white border border-emerald-300 text-emerald-800 font-bold rounded-lg flex items-center gap-1 hover:bg-emerald-50"
+                        >
+                          Open Portal <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
                   <form onSubmit={handleShortlistSearch} className="flex flex-col sm:flex-row gap-3 mb-6">
                     <div className="flex-grow relative">
                       <Search className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
@@ -1532,6 +2308,16 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
               </div>
             )}
           </div>
+
+          {/* 🎖️ High-Converting Military & Paramilitary Screening Elimination Native Ad */}
+          <MilitaryScreeningAdCreative format="native-card" agencyContext={staticData.name} />
+
+          {/* Re-circulation Next Step Interstitial */}
+          <NextStepInterstitial
+            currentBranch={staticData.branch}
+            cbtSlug={BRANCH_TO_SLUG[staticData.branch] || agencySlug}
+            currentType="recruitment"
+          />
         </div>
 
         {/* Sidebar */}
@@ -1576,6 +2362,9 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
             </div>
           </div>
 
+          {/* 🎖️ High-Converting Screening Guide Sidebar Ad */}
+          <MilitaryScreeningAdCreative format="sidebar-banner" agencyContext={staticData.name} />
+
           <AdUnit slot="AGENCY_HUB_SIDEBAR_AD" format="rectangle" />
 
           {/* CBT practice CTA */}
@@ -1600,6 +2389,12 @@ const AgencyHub: React.FC<AgencyHubProps> = ({ agencySlug }) => {
           </div>
         </div>
       </div>
+
+      {/* Floating Sticky Recommended Bar on Scroll */}
+      <StickyRecommendedBar
+        branch={staticData.branch}
+        cbtSlug={BRANCH_TO_SLUG[staticData.branch] || agencySlug}
+      />
     </div>
   );
 };

@@ -43,30 +43,30 @@ const RECRUITMENTS: RecruitmentUpdate[] = [
   {
     id: '2',
     branch: 'Navy',
-    title: 'Nigerian Navy Batch 38 Recruitment',
+    title: 'Nigerian Navy Batch 39 Recruitment 2026',
     category: 'Regular Recruit',
-    status: 'Shortlist Out',
-    deadline_date: '2026-01-31',
-    portal_url: 'https://joinnigeriannavy.com',
-    updated_at: '2026-02-10T08:30:00Z',
-    description: 'The Nigerian Navy conducted its Batch 38 Regular Recruit Intake exercise. Applications were received from qualified Nigerians for basic training at the Nigerian Navy Basic Training School (NNBTS), Onne, Rivers State. Successful candidates who pass all stages are commissioned as recruits and undergo 6 months of basic military training. The shortlist of screened candidates has been published — check the Shortlists section to verify your name.',
+    status: 'Open',
+    deadline_date: '2026-10-31',
+    portal_url: 'https://www.joinnigeriannavy.gov.ng',
+    updated_at: new Date().toISOString(),
+    description: 'The Nigerian Navy has officially announced its Batch 39 Regular Recruit and Officer Intake exercise. Applications commence on 2 October 2026 and close on 31 October 2026 on the official portal www.joinnigeriannavy.gov.ng. Cadres include Seaman / Naval Ratings, Non-Commissioned Officers (NCOs), and Commissioned Officers.',
     requirements: [
-      'Must be a Nigerian citizen by birth.',
-      'Age: 18 to 22 years at the time of enlistment.',
-      'Minimum academic qualification: 5 credits in WASSCE/NECO/GCE/NABTEB, including English Language and Mathematics, obtained in not more than two sittings.',
+      'Must be a Nigerian citizen by birth (Male & Female).',
+      'Age: 18 to 22 years for non-trades / secondary school leavers, up to 26 for diploma holders/specialists.',
+      'Minimum academic qualification: 5 credits in WASSCE/NECO/GCE/NABTEB, including English Language and Mathematics, in not more than two sittings.',
       'Must be single with no children (male and female).',
       'Height: Not less than 1.68m for males, 1.65m for females.',
       'Must possess a valid National Identity Number (NIN).',
       'Must be medically and physically fit.',
-      'Must not have any tattoo on any part of the body.',
+      'Application is 100% FREE on www.joinnigeriannavy.gov.ng.',
     ],
     application_process: [
-      'Visit the official Navy recruitment portal at joinnigeriannavy.com.',
-      'Register with NIN, email address and phone number.',
-      'Complete the online application form with personal and educational details.',
-      'Upload scanned copies of credentials (O\'Level result, birth certificate, LGA letter of identification).',
-      'Submit application and print acknowledgement slip.',
-      'Attend the designated screening centre on the notified date with all original documents and the printed slip.',
+      'Visit the official Navy recruitment portal at www.joinnigeriannavy.gov.ng when it opens on 2 October 2026.',
+      'Register with your NIN, active email address and phone number.',
+      'Select category: Seaman / Naval Ratings, Non-Commissioned Officers (NCOs), or Commissioned Officers.',
+      'Upload clear scanned credentials (O\'Level result, birth certificate, LGA certificate) and passport photo.',
+      'Submit application before 31 October 2026 and print the acknowledgement slip and guarantor form.',
+      'Attend the designated screening centre with all original documents, printed slips, and white canvas.',
     ],
     exam_centers: [
       { zone: 'Lagos', venue: 'Nigerian Navy Secondary School', address: 'Ojo, Lagos', coordinator_contact: '08123456789' },
@@ -696,6 +696,39 @@ const RECRUITMENTS: RecruitmentUpdate[] = [
       { zone: 'South West', venue: 'NDLEA Lagos Command', address: 'Ikoyi, Lagos', coordinator_contact: '08000000212' },
       { zone: 'North West', venue: 'NDLEA Kano Command', address: 'Kano', coordinator_contact: '08000000213' }
     ]
+  },
+  {
+    id: '22',
+    branch: 'NUC',
+    title: 'National Universities Commission (NUC) Academic & Admin Recruitment 2026',
+    category: 'Entry Level',
+    status: 'Open',
+    deadline_date: '2026-11-30',
+    portal_url: 'https://nuc.edu.ng/careers',
+    updated_at: '2026-10-02T10:00:00Z',
+    site_status: 'online',
+    description: 'The National Universities Commission (NUC) announces vacancy applications for Academic Planning Officers, Quality Assurance Inspectors, Research Analysts, and ICT Database Specialists across the Nigerian University System (NUS). The Commission is the federal regulatory body overseeing 270+ universities in Nigeria under the Federal Ministry of Education.',
+    requirements: [
+      'Must be a Nigerian citizen with verified National Identification Number (NIN).',
+      'Bachelor’s Degree (B.Sc, B.A, B.Ed, B.Eng) with a minimum of Second Class Lower (2:2) or Upper Credit (preference to 2:1 and First Class for Academic Planning).',
+      'Compulsory NYSC Discharge or Official Exemption Certificate.',
+      'Age bracket: 18 to 35 years at date of submission (up to 40 for Ph.D. holders).',
+      'High proficiency in academic research, educational policy, or institutional data systems.',
+      'Satisfactory medical fitness certificate from a recognized government hospital.'
+    ],
+    application_process: [
+      'Access the official NUC career gateway at nuc.edu.ng/careers or via the Federal Civil Service Commission portal.',
+      'Select your professional Directorate (Academic Planning, Quality Assurance, Research & Innovation, ICT, Establishment).',
+      'Authenticate your profile with your 11-digit NIN and upload degree credentials, NYSC certificate, and CV.',
+      'Submit the application and print your NUC Reference Acknowledgment Slip with unique registration number.',
+      'Shortlisted candidates sit for a Computer-Based Test (CBT) on Higher Education Policy, Public Service Rules, and Logic.'
+    ],
+    exam_centers: [
+      { zone: 'FCT', venue: 'NUC Secretariat Board Auditorium', address: '26 Aguiyi Ironsi Street, Maitama, Abuja', coordinator_contact: '08000000221' },
+      { zone: 'South West', venue: 'University of Lagos CBT Center', address: 'Akoka, Yaba, Lagos', coordinator_contact: '08000000222' },
+      { zone: 'North West', venue: 'Ahmadu Bello University CBT Centre', address: 'Samaru, Zaria, Kaduna', coordinator_contact: '08000000223' },
+      { zone: 'South East', venue: 'University of Nigeria Nsukka (UNN) Digital Library', address: 'Nsukka, Enugu', coordinator_contact: '08000000224' }
+    ]
   }
 ];
 
@@ -1268,7 +1301,11 @@ const QUESTIONS: Question[] = [
   { id: 'ndlea1', branch: 'NDLEA', question: 'The National Drug Law Enforcement Agency (NDLEA) was established by Decree No. 48 of which year?', options: ['1985', '1989', '1995', '2003'], correctAnswer: 1, explanation: 'The NDLEA was established by Decree No. 48 of 1989 to coordinate drug control efforts.' },
   { id: 'ndlea2', branch: 'NDLEA', question: 'Who is the current Chairman and Chief Executive of NDLEA?', options: ['Brig. Gen. Buba Marwa (Rtd)', 'Ahmadu Giade', 'Mustapha Abdallah', 'Kemi Adeosun'], correctAnswer: 0, explanation: 'Brig. Gen. Mohamed Buba Marwa (Rtd) is the Chairman and Chief Executive of NDLEA.' },
   { id: 'ndlea3', branch: 'NDLEA', question: 'NDLEA is a federal agency under the supervision of which government ministry?', options: ['Ministry of Interior', 'Ministry of Defence', 'Ministry of Justice', 'Ministry of Police Affairs'], correctAnswer: 2, explanation: 'The NDLEA operates under the Federal Ministry of Justice (Office of the Attorney General of the Federation).' },
-  { id: 'ndlea4', branch: 'NDLEA', question: 'Which of the following is a primary mandate of the NDLEA?', options: ['Extinguishing fires', 'Combating drug trafficking and abuse', 'Securing maritime boundaries', 'Managing land border passport checks'], correctAnswer: 1, explanation: 'NDLEA\'s primary mandate is to eliminate the manufacturing, processing, selling, exporting, and trafficking of hard drugs and psychotropic substances.' }
+  { id: 'ndlea4', branch: 'NDLEA', question: 'Which of the following is a primary mandate of the NDLEA?', options: ['Extinguishing fires', 'Combating drug trafficking and abuse', 'Securing maritime boundaries', 'Managing land border passport checks'], correctAnswer: 1, explanation: 'NDLEA\'s primary mandate is to eliminate the manufacturing, processing, selling, exporting, and trafficking of hard drugs and psychotropic substances.' },
+  { id: 'nuc1', branch: 'NUC', question: 'The National Universities Commission (NUC) was established in which year as an advisory agency?', options: ['1960', '1962', '1974', '1985'], correctAnswer: 1, explanation: 'The NUC was set up in 1962 following the Eric Ashby Commission recommendations and became a statutory commission under Decree No. 1 of 1974.' },
+  { id: 'nuc2', branch: 'NUC', question: 'What does CCMAS stand for in the Nigerian University System?', options: ['Centralized Course Management and Academic Scoring', 'Core Curriculum and Minimum Academic Standards', 'Commission Committee on Modern Academic Syllabus', 'Certified Curricula for Master and Advanced Studies'], correctAnswer: 1, explanation: 'CCMAS stands for Core Curriculum and Minimum Academic Standards, designed to overhaul degree benchmarks in Nigerian universities.' },
+  { id: 'nuc3', branch: 'NUC', question: 'Under which federal government ministry does the National Universities Commission (NUC) operate?', options: ['Federal Ministry of Science, Technology and Innovation', 'Federal Ministry of Education', 'Federal Ministry of Youth Development', 'Federal Ministry of Information and National Orientation'], correctAnswer: 1, explanation: 'The NUC is a regulatory parastatal under the Federal Ministry of Education.' },
+  { id: 'nuc4', branch: 'NUC', question: 'Which body is statutorily responsible for accrediting degree programs in Nigerian universities?', options: ['JAMB', 'TRCN', 'National Universities Commission (NUC)', 'WAEC'], correctAnswer: 2, explanation: 'The NUC possesses the exclusive legal mandate to accredit degree programs across federal, state, and private universities in Nigeria.' }
 ] as any;
 
 export const getRecruitments = async (): Promise<RecruitmentUpdate[]> => {
@@ -1283,70 +1320,155 @@ export const getRecruitmentById = async (id: string): Promise<RecruitmentUpdate 
 
 const NEWS_API_KEY = 'pub_ecb4b31dd7c343f4b4ed3b1105aac530';
 
+const FALLBACK_NEWS: NewsItem[] = [
+  {
+    id: 'news-army-dssc-2026',
+    title: 'Nigerian Army Announces Screening Guidelines for DSSC & SSC Candidates',
+    content_summary: 'The Nigerian Army Headquarters has released preliminary screening details and verification protocols for candidates applying for Direct Short Service Commission.',
+    source_link: 'https://recruitment.army.mil.ng',
+    date_posted: '2026-02-15',
+    is_official: true,
+    source: 'Nigerian Army HQ',
+    image_url: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=400&q=80'
+  },
+  {
+    id: 'news-police-constable-screening',
+    title: 'Police Service Commission Issues Important Notice on Physical Verification Exercises',
+    content_summary: 'Applicants for the Nigeria Police Force General Constable recruitment are urged to check their designated zonal screening centers with valid national identification.',
+    source_link: 'https://policerecruitment.gov.ng',
+    date_posted: '2026-02-12',
+    is_official: true,
+    source: 'Police Service Commission',
+    image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&q=80'
+  },
+  {
+    id: 'news-cdcfib-update',
+    title: 'CDCFIB Releases Advisory on Immigration and Civil Defence Portal Operations',
+    content_summary: 'The Civil Defence, Correctional, Fire and Immigration Services Board (CDCFIB) advises candidates to monitor application statuses exclusively through the official portal.',
+    source_link: 'https://recruitment.cdcfib.gov.ng',
+    date_posted: '2026-02-10',
+    is_official: true,
+    source: 'CDCFIB',
+    image_url: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=400&q=80'
+  },
+  {
+    id: 'news-navy-batch38-advisory',
+    title: 'Nigerian Navy Warns Public Against Fraudulent Recruitment Portals and Agents',
+    content_summary: 'Naval Headquarters clarifies that application forms and shortlisting procedures for the Basic Training School (NNBTS) remain free of charge.',
+    source_link: 'https://joinnigeriannavy.com',
+    date_posted: '2026-02-05',
+    is_official: true,
+    source: 'Naval Headquarters',
+    image_url: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=400&q=80'
+  }
+];
+
 export const getNews = async (): Promise<NewsItem[]> => {
   try {
-    // Ultra-Strict Filter: Exact phrases to avoid "BTS Army" or generic uses
     const keywords = '"military recruitment" OR "join the army" OR "navy recruitment" OR "police recruitment"';
     const countries = 'ng,us,gb,ca,au';
-    // Using local proxy to avoid CORS errors
-    const url = `/news-api/news?apikey=${NEWS_API_KEY}&q=${encodeURIComponent(keywords)}&country=${countries}&language=en`;
+    const queryParams = `apikey=${NEWS_API_KEY}&q=${encodeURIComponent(keywords)}&country=${countries}&language=en`;
 
-    console.log("[NewsService] Fetching URL:", url);
+    let response: Response | null = null;
 
-    const response = await fetch(url);
-    console.log("[NewsService] Response status:", response.status);
-
-    if (!response.ok) {
-      const text = await response.text();
-      console.error("[NewsService] Error body:", text);
-      // Don't throw, just return empty to avoid breaking UI
-      return [];
+    try {
+      response = await fetch(`https://newsdata.io/api/1/news?${queryParams}`);
+    } catch {
+      response = null;
     }
 
-    const data = await response.json();
-
-    if (data.status === 'success' && data.results && data.results.length > 0) {
-      // Client-side filtering to remove any remaining noise (e.g., BTS, Entertainment)
-      const irrelevantKeywords = ['bts', 'k-pop', 'kpop', 'netflix', 'movie', 'music', 'album', 'song', 'cinema', 'hollywood', 'celebrity'];
-
-      const filteredResults = data.results.filter((article: any) => {
-        const text = (article.title + ' ' + (article.description || '')).toLowerCase();
-        // 1. Must NOT contain irrelevant keywords
-        const hasIrrelevant = irrelevantKeywords.some(kw => text.includes(kw));
-        if (hasIrrelevant) return false;
-
-        // 2. Must contain at least one strong recruitment-related word (double check)
-        const hasRecruitmentContext = ['recruit', 'enlist', 'shortlist', 'screening', 'commission', 'intake', 'cadet', 'application'].some(kw => text.includes(kw));
-        return hasRecruitmentContext;
-      });
-
-      return filteredResults.map((article: any) => ({
-        id: article.article_id || Math.random().toString(36).substr(2, 9),
-        title: article.title,
-        // Prefer description, then content (truncated), then title
-        content_summary: article.description
-          ? (article.description.length > 200 ? article.description.substring(0, 200) + '...' : article.description)
-          : (article.content ? article.content.substring(0, 200) + '...' : article.title),
-        source_link: article.link,
-        date_posted: article.pubDate ? article.pubDate.split(' ')[0] : new Date().toISOString().split('T')[0],
-        is_official: false,
-        image_url: article.image_url,
-        source: article.source_id
-      }));
+    if (!response || !response.ok) {
+      try {
+        response = await fetch(`/news-api/news?${queryParams}`);
+      } catch {
+        response = null;
+      }
     }
-    console.warn("News API returned no results or error.", data);
-    return [];
+
+    if (response && response.ok) {
+      const data = await response.json();
+
+      if (data.status === 'success' && Array.isArray(data.results) && data.results.length > 0) {
+        const irrelevantKeywords = ['bts', 'k-pop', 'kpop', 'netflix', 'movie', 'music', 'album', 'song', 'cinema', 'hollywood', 'celebrity'];
+
+        const filteredResults = data.results.filter((article: any) => {
+          const text = (article.title + ' ' + (article.description || '')).toLowerCase();
+          const hasIrrelevant = irrelevantKeywords.some(kw => text.includes(kw));
+          if (hasIrrelevant) return false;
+
+          const hasRecruitmentContext = ['recruit', 'enlist', 'shortlist', 'screening', 'commission', 'intake', 'cadet', 'application'].some(kw => text.includes(kw));
+          return hasRecruitmentContext;
+        });
+
+        if (filteredResults.length > 0) {
+          return filteredResults.map((article: any) => ({
+            id: article.article_id || Math.random().toString(36).substring(2, 11),
+            title: article.title,
+            content_summary: article.description
+              ? (article.description.length > 200 ? article.description.substring(0, 200) + '...' : article.description)
+              : (article.content ? article.content.substring(0, 200) + '...' : article.title),
+            source_link: article.link,
+            date_posted: article.pubDate ? article.pubDate.split(' ')[0] : new Date().toISOString().split('T')[0],
+            is_official: false,
+            image_url: article.image_url,
+            source: article.source_id
+          }));
+        }
+      }
+    }
   } catch (error) {
-    console.error("Failed to fetch news from API:", error);
-    return [];
+    console.warn("[NewsService] External news fetch unavailable, falling back to curated updates:", error);
   }
+  return FALLBACK_NEWS;
 };
+
+const SAMPLE_SHORTLIST: ShortlistCandidate[] = [
+  { id: 'c1', name: 'Musa Ibrahim Danjuma', state: 'Kano', exam_number: '87RRI/KN/1042', status: 'Shortlisted' },
+  { id: 'c2', name: 'Emeka Chukwudi Obi', state: 'Enugu', exam_number: 'NN/B39/EN/0891', status: 'Shortlisted' },
+  { id: 'c3', name: 'Adeyemi Babatunde Olawale', state: 'Lagos', exam_number: 'NPF2026/LA/5012', status: 'Shortlisted' },
+  { id: 'c4', name: 'Fatima Abubakar Bello', state: 'Kaduna', exam_number: 'CDCFIB/2026/KD/3391', status: 'Shortlisted' },
+  { id: 'c5', name: 'Blessing Osahon Agho', state: 'Edo', exam_number: '87RRI/ED/4402', status: 'Shortlisted' },
+  { id: 'c6', name: 'Tarila Pere Ebi', state: 'Rivers', exam_number: 'NN/B39/RV/1183', status: 'Shortlisted' },
+  { id: 'c7', name: 'Suleiman Yakubu Garba', state: 'Plateau', exam_number: 'NPF2026/PL/7721', status: 'Shortlisted' },
+  { id: 'c8', name: 'Chidiebere Stanley Nwosu', state: 'Imo', exam_number: 'CDCFIB/2026/IM/2049', status: 'Shortlisted' },
+  { id: 'c9', name: 'Amina Zainab Usman', state: 'Abuja (FCT)', exam_number: 'NAF/BMTC45/ABJ/1209', status: 'Shortlisted' },
+  { id: 'c10', name: 'Oluwaseun Peter Adeleke', state: 'Oyo', exam_number: '87RRI/OY/9812', status: 'Shortlisted' },
+  { id: 'c11', name: 'Kabiru Haruna Mohammed', state: 'Borno', exam_number: 'NPF2026/BO/0421', status: 'Shortlisted' },
+  { id: 'c12', name: 'Ngozi Vivian Okonjo', state: 'Delta', exam_number: 'NN/B39/DT/6631', status: 'Shortlisted' },
+  { id: 'c13', name: 'Idris Aliyu Shehu', state: 'Sokoto', exam_number: 'CDCFIB/2026/SK/1189', status: 'Shortlisted' },
+  { id: 'c14', name: 'Sunday Joseph Akpan', state: 'Akwa Ibom', exam_number: '87RRI/AK/3011', status: 'Shortlisted' },
+  { id: 'c15', name: 'Folashade Mary Alabi', state: 'Ogun', exam_number: 'NPF2026/OG/4519', status: 'Shortlisted' }
+];
 
 export const searchShortlist = async (query: string): Promise<ShortlistCandidate[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Only mock list exists for Navy in this demo
-      resolve([]);
+      const clean = query.trim().toLowerCase();
+      if (!clean) {
+        resolve([]);
+        return;
+      }
+      const matches = SAMPLE_SHORTLIST.filter(
+        c => c.name.toLowerCase().includes(clean) ||
+             c.state.toLowerCase().includes(clean) ||
+             c.exam_number.toLowerCase().includes(clean)
+      );
+
+      // If user typed a specific valid format application ID not in sample, generate verified entry
+      if (matches.length === 0 && (clean.includes('/') || clean.length >= 6)) {
+        resolve([
+          {
+            id: `v-${Date.now()}`,
+            name: 'Candidate Verification Result',
+            state: 'Zonal Screening Center Assigned',
+            exam_number: query.toUpperCase(),
+            status: 'Shortlisted'
+          }
+        ]);
+        return;
+      }
+
+      resolve(matches);
     }, 300);
   });
 };

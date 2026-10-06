@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowRight, ArrowLeft, CheckCircle, XCircle,
-  Clock, RotateCcw, BookOpen, Play, ListChecks
+  Clock, RotateCcw, BookOpen, Play, ListChecks,
+  MessageCircle, Share2, Check
 } from 'lucide-react';
 import { getQuestions } from '../services/mockFirebase';
-import { Question, SLUG_TO_BRANCH } from '../types';
+import { Question, SLUG_TO_BRANCH, BRANCH_TO_SLUG, Branch } from '../types';
 import AdUnit from '../components/AdUnit';
 import SEO from '../components/SEO';
 import { QuizSchema } from '../components/StructuredData';
@@ -21,20 +22,19 @@ const COUNT_OPTIONS = [
 
 // ── Setup Screen ─────────────────────────────────────────────────────────────
 const SetupScreen: React.FC<{
-  branch: string;
+  branchSlug: string;
   branchDisplayName: string;
   maxQuestions: number;
   onStart: (count: number) => void;
   allQuestions: Question[];
-}> = ({ branch, branchDisplayName, maxQuestions, onStart, allQuestions }) => {
+}> = ({ branchSlug, branchDisplayName, maxQuestions, onStart, allQuestions }) => {
   const [selected, setSelected] = useState(20);
 
   const available = COUNT_OPTIONS.filter(o => o.value <= maxQuestions);
-  // Always show all options but cap if fewer questions exist
   const options = COUNT_OPTIONS.map(o => ({
     ...o,
     actualValue: Math.min(o.value, maxQuestions),
-    disabled: maxQuestions < o.value / 2, // hide if we can't fill even half
+    disabled: maxQuestions < o.value / 2,
   })).filter(o => !o.disabled);
 
   const schemaQuestions = allQuestions.slice(0, 15).map(q => ({
@@ -44,17 +44,19 @@ const SetupScreen: React.FC<{
     explanation: q.explanation
   }));
 
+  const canonicalBranchSlug = branchSlug;
+
   return (
     <>
       <SEO
-        title={`${branchDisplayName} CBT Past Questions & Mock Exam Simulator (2026)`}
-        description={`Practice free Nigerian ${branchDisplayName} recruitment CBT exam past questions. Timed test simulator with instant scoring and detailed answer explanations.`}
-        canonical={`/past-questions/${branch}`}
+        title={`Nigerian ${branchDisplayName} Past Questions & Answers 2026/2027 [Free CBT Practice & Scoring]`}
+        description={`Free online CBT practice test for Nigerian ${branchDisplayName} recruitment screening. Real exam questions with instant scoring, timer, and detailed explanations.`}
+        canonicalUrl={`/past-questions/${canonicalBranchSlug}`}
         keywords={[
-          `${branchDisplayName.toLowerCase()} past questions`,
-          `${branchDisplayName.toLowerCase()} cbt exam`,
-          `nigerian ${branchDisplayName.toLowerCase()} screening questions`,
-          'free cbt practice nigeria'
+          `${branchDisplayName} past questions 2026`,
+          `${branchDisplayName} aptitude test`,
+          `${branchDisplayName} CBT questions and answers`,
+          'Nigerian recruitment past questions'
         ]}
       />
       <QuizSchema
@@ -63,94 +65,58 @@ const SetupScreen: React.FC<{
         questions={schemaQuestions}
       />
       <div className="max-w-xl mx-auto py-10">
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-military-green to-green-700 p-8 text-white text-center">
-          <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <ListChecks className="w-7 h-7 text-white" />
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-military-green to-green-700 p-8 text-white text-center">
+            <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <ListChecks className="w-7 h-7 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold">{branchDisplayName} Past Questions</h2>
+            <p className="text-green-100 text-sm mt-1">Configure your session before starting</p>
+            <div className="mt-4 text-[10px] text-green-200 uppercase tracking-widest font-bold">Nigeria Recruitment Portal</div>
           </div>
-          <h2 className="text-2xl font-bold">{branchDisplayName} Past Questions</h2>
-          <p className="text-green-100 text-sm mt-1">Configure your session before starting</p>
-          <div className="mt-4 text-[10px] text-green-200 uppercase tracking-widest font-bold">Nigeria Recruitment Portal</div>
-        </div>
 
-        <div className="bg-blue-50/50 p-4 border-b border-blue-100 text-center">
-          <p className="text-xs text-blue-800 leading-tight">
-            <strong>Pro Tip:</strong> These questions are curated from previous {branch} recruitment exercises.
-            Focus on the patterns of the questions as similar logic is often repeated.
-          </p>
-        </div>
+          <div className="bg-blue-50/50 p-4 border-b border-blue-100 text-center">
+            <p className="text-xs text-blue-800 leading-tight">
+              <strong>Pro Tip:</strong> These questions are curated from previous {branchDisplayName} recruitment exercises.
+              Focus on the patterns of the questions as similar logic is often repeated.
+            </p>
+          </div>
 
-        <div className="p-8">
-          {/* Question count picker */}
-          <div className="mb-8">
-            <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-military-green" />
-              How many questions do you want?
-            </label>
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
-              {options.map(opt => (
-                <button
-                  key={opt.value}
-                  onClick={() => setSelected(opt.actualValue)}
-                  className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all font-semibold ${selected === opt.actualValue
-                    ? 'border-military-green bg-military-green text-white shadow-md scale-105'
-                    : 'border-gray-200 bg-gray-50 text-gray-600 hover:border-military-green hover:bg-green-50'
+          <div className="p-6 sm:p-8 space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                Select Number of Questions ({maxQuestions} available in bank)
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {options.map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setSelected(opt.actualValue)}
+                    className={`p-3 rounded-xl border-2 text-center transition-all ${
+                      selected === opt.actualValue
+                        ? 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold shadow-sm'
+                        : 'border-gray-200 hover:border-gray-300 text-gray-700'
                     }`}
-                >
-                  <span className="text-2xl font-extrabold">{opt.actualValue}</span>
-                  <span className="text-[10px] font-medium mt-0.5 opacity-80">{opt.desc}</span>
-                </button>
-              ))}
+                  >
+                    <div className="text-lg font-bold">{opt.actualValue}</div>
+                    <div className="text-[11px] text-gray-500">{opt.desc}</div>
+                  </button>
+                ))}
+              </div>
             </div>
-            {maxQuestions < 20 && (
-              <p className="text-xs text-amber-600 mt-2 flex items-center gap-1">
-                <XCircle className="w-3 h-3" />
-                Only {maxQuestions} questions available for {branch}.
-              </p>
-            )}
-          </div>
 
-          {/* Session summary */}
-          <div className="bg-gray-50 rounded-xl p-4 mb-6 flex justify-around text-center">
-            <div>
-              <p className="text-2xl font-extrabold text-gray-900">{selected}</p>
-              <p className="text-xs text-gray-400 font-medium">Questions</p>
-            </div>
-            <div className="w-px bg-gray-200" />
-            <div>
-              <p className="text-2xl font-extrabold text-gray-900">
-                {options.find(o => o.actualValue === selected)?.desc ?? `~${Math.ceil(selected / 2)} min`}
-              </p>
-              <p className="text-xs text-gray-400 font-medium">Est. Time</p>
-            </div>
-            <div className="w-px bg-gray-200" />
-            <div>
-              <p className="text-2xl font-extrabold text-gray-900">4</p>
-              <p className="text-xs text-gray-400 font-medium">Options/Q</p>
-            </div>
-          </div>
-
-          <AdUnit slot="QUIZ_SETUP_AD" />
-
-          {/* Actions */}
-          <div className="flex gap-3">
-              <Link
-                to="/past-questions"
-                className="flex-1 py-3 border border-gray-300 rounded-xl text-gray-600 font-medium text-center hover:bg-gray-50 transition-colors text-sm"
-              >
-                ← Back
-              </Link>
             <button
               onClick={() => onStart(selected)}
-              className="flex-1 py-3 bg-military-green text-white rounded-xl font-bold hover:bg-green-700 transition-all hover:scale-105 shadow-md flex items-center justify-center gap-2 text-sm"
+              className="w-full py-4 px-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2"
             >
-              <Play className="w-4 h-4" /> Start Test
+              <Play className="w-5 h-5 fill-current" />
+              <span>Start CBT Practice ({selected} Questions)</span>
             </button>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
@@ -182,7 +148,6 @@ const QuizInterface: React.FC = () => {
   }, [cleanBranchSlug]);
 
   const handleStart = (count: number) => {
-    // Shuffle and slice to the user-chosen count
     const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
     setQuestions(shuffled.slice(0, count));
     setCurrentQuestion(0);
@@ -223,7 +188,6 @@ const QuizInterface: React.FC = () => {
     if (currentQuestion > 0) setCurrentQuestion(prev => prev - 1);
   };
 
-  // ── Loading ──
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center h-96 space-y-4">
@@ -236,7 +200,6 @@ const QuizInterface: React.FC = () => {
     );
   }
 
-  // ── No questions ──
   if (allQuestions.length === 0) {
     return (
       <div className="text-center py-12">
@@ -246,11 +209,10 @@ const QuizInterface: React.FC = () => {
     );
   }
 
-  // ── Setup Screen ──
   if (!started) {
     return (
       <SetupScreen
-        branch={cleanBranchSlug}
+        branchSlug={cleanBranchSlug}
         branchDisplayName={branchDisplayName}
         maxQuestions={allQuestions.length}
         onStart={handleStart}
@@ -259,7 +221,6 @@ const QuizInterface: React.FC = () => {
     );
   }
 
-  // ── Results Screen ──
   if (showResult) {
     const score = calculateScore();
     const percentage = Math.round((score / questions.length) * 100);
@@ -270,7 +231,7 @@ const QuizInterface: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden text-center">
           <div className={`${passed ? 'bg-green-600' : 'bg-red-600'} p-8 text-white`}>
             <h2 className="text-3xl font-bold mb-2">{passed ? 'Congratulations!' : 'Keep Studying'}</h2>
-            <p className="opacity-90">You completed the {branch} Past Questions Test</p>
+            <p className="opacity-90">You completed the {branchDisplayName} Past Questions Test</p>
           </div>
 
           <div className="p-8">
@@ -278,6 +239,29 @@ const QuizInterface: React.FC = () => {
               <span className="text-sm text-gray-500 uppercase tracking-wide font-bold">Your Score</span>
               <div className="text-6xl font-extrabold text-gray-900 mt-2">{percentage}%</div>
               <p className="text-gray-500 mt-2">{score} out of {questions.length} questions correct</p>
+            </div>
+
+            {/* 1-Click Viral WhatsApp Score Share Engine */}
+            <div className="my-6 p-4 sm:p-5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-center space-y-3 shadow-sm">
+              <div className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center justify-center gap-1.5">
+                <MessageCircle className="w-4 h-4 text-emerald-600" /> Challenge Your Friends & Study Groups
+              </div>
+              <p className="text-xs text-emerald-800 max-w-md mx-auto">
+                Post your verified CBT score to your WhatsApp status or military/police study group and challenge others!
+              </p>
+              <div className="flex justify-center">
+                <a
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                    `🎯 *I just scored ${percentage}% (${score}/${questions.length}) on the Nigerian ${branchDisplayName} 2026 CBT Aptitude Mock Exam!* 🇳🇬\n\nCan you beat my score? Practice authentic past questions with instant answers and scoring here:\nhttps://recruitmenttracker.com.ng/past-questions/${cleanBranchSlug}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Share My Score on WhatsApp</span>
+                </a>
+              </div>
             </div>
 
             <AdUnit slot="QUIZ_RESULT_AD" />
@@ -344,7 +328,7 @@ const QuizInterface: React.FC = () => {
     <div className="max-w-3xl mx-auto py-6">
       <div className="mb-6 flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-bold text-gray-500">{branch} Past Question</h2>
+          <h2 className="text-lg font-bold text-gray-500">{branchDisplayName} Past Question</h2>
           <p className="text-xs text-gray-400">Question {currentQuestion + 1} of {questions.length}</p>
         </div>
         <div className="flex items-center gap-3">

@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { Ruler, User, BookOpen, Check, XCircle, RefreshCw, ChevronRight, ArrowRight, HeartPulse, Stethoscope, AlertTriangle, Activity } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Ruler, User, BookOpen, Check, XCircle, RefreshCw, ChevronRight, ArrowRight, HeartPulse, Stethoscope, AlertTriangle, Activity, Calendar, Shield, FileText } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import { UserEligibility, Grade } from '../types';
 import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
-import { FAQPageSchema } from '../components/StructuredData';
+import { FAQPageSchema, BreadcrumbListSchema } from '../components/StructuredData';
+import ScreeningChecklist from '../components/ScreeningChecklist';
+import NextStepInterstitial from '../components/NextStepInterstitial';
+import StickyRecommendedBar from '../components/StickyRecommendedBar';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
+import MilitaryScreeningAdCreative from '../components/MilitaryScreeningAdCreative';
 
 interface Result {
   qualified: boolean;
@@ -498,15 +503,64 @@ const EligibilityChecker: React.FC = () => {
 
       <AdUnit slot="ELIGIBILITY_RESULT_AD" />
 
+      {/* High-Impact Native Ad Unit for Screening Guide */}
+      <MilitaryScreeningAdCreative format="native-card" className="my-6" />
+
       {result?.qualified && (
         <div className="mb-8">
-          <p className="text-sm font-bold text-gray-500 mb-3 uppercase tracking-wide">Recommended Paths</p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {result.recommended.map(rec => (
-              <span key={rec} className="px-4 py-2 bg-military-blue text-white text-sm font-semibold rounded-full shadow-sm">
-                {rec}
-              </span>
-            ))}
+          <p className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wider">
+            ✓ Recommended Enlistment Pathways for Your Profile
+          </p>
+          <div className="flex flex-wrap gap-2.5 justify-center mb-6">
+            {result.recommended.map(rec => {
+              const getRecUrl = (name: string) => {
+                const n = name.toLowerCase();
+                if (n.includes('army')) return '/army-recruitment';
+                if (n.includes('navy')) return '/navy-batch-recruitment';
+                if (n.includes('air force') || n.includes('airforce')) return '/airforce-recruitment';
+                if (n.includes('police')) return '/police-recruitment';
+                if (n.includes('civil defence') || n.includes('nscdc')) return '/civil-defence-recruitment';
+                if (n.includes('immigration') || n.includes('nis')) return '/immigration-recruitment';
+                if (n.includes('customs')) return '/customs-recruitment';
+                if (n.includes('frsc')) return '/frsc-recruitment';
+                if (n.includes('fire')) return '/fire-service-recruitment';
+                return '/recruitments';
+              };
+              return (
+                <Link
+                  key={rec}
+                  to={getRecUrl(rec)}
+                  className="px-4 py-2.5 bg-military-blue hover:bg-blue-900 text-white text-xs sm:text-sm font-semibold rounded-xl shadow-sm transition-all hover:scale-105 flex items-center gap-1.5 group"
+                >
+                  <span>{rec}</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-3 bg-slate-50 border border-slate-200 rounded-2xl text-left">
+            <Link
+              to="/past-questions"
+              className="p-2.5 bg-white hover:bg-emerald-50 border border-slate-200 rounded-xl transition-colors block text-xs"
+            >
+              <span className="font-bold text-slate-800 block text-[11px] mb-0.5">Free CBT Tests</span>
+              <span className="text-[10px] text-slate-500">Practice questions</span>
+            </Link>
+            <Link
+              to="/salary-comparison"
+              className="p-2.5 bg-white hover:bg-amber-50 border border-slate-200 rounded-xl transition-colors block text-xs"
+            >
+              <span className="font-bold text-slate-800 block text-[11px] mb-0.5">Salary Scale</span>
+              <span className="text-[10px] text-slate-500">2026 Pay Structure</span>
+            </Link>
+            <Link
+              to="/shortlist-hub"
+              className="p-2.5 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl transition-colors block text-xs"
+            >
+              <span className="font-bold text-slate-800 block text-[11px] mb-0.5">Screening Centers</span>
+              <span className="text-[10px] text-slate-500">36 States Barracks</span>
+            </Link>
           </div>
         </div>
       )}
@@ -527,6 +581,23 @@ const EligibilityChecker: React.FC = () => {
         >
           <RefreshCw className="w-4 h-4 mr-2" /> Check Another Profile
         </button>
+      </div>
+
+      {result?.qualified && (
+        <div className="mt-8 pt-8 border-t border-gray-100 text-left">
+          <ScreeningChecklist
+            branch="Military & Paramilitary"
+            title="Screening Day Document Verification (Verify Before Venue)"
+          />
+        </div>
+      )}
+
+      <div className="mt-6 text-left">
+        <NextStepInterstitial
+          currentBranch="Military & Paramilitary"
+          cbtSlug="army"
+          currentType="recruitment"
+        />
       </div>
     </div>
   );
@@ -553,15 +624,25 @@ const EligibilityChecker: React.FC = () => {
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
       <SEO
-        title="Eligibility Checker - Check Your Recruitment Qualification"
-        description="Check if you are eligible for Nigerian Army, Navy, Police, and Paramilitary recruitment. Automated physical, medical, and academic screening tool."
+        title="Recruitment Eligibility Checker 2026/2027 [Free Age, Height & O'Level Calculator]"
+        description="Instantly check if you qualify for Nigerian Army, Navy, Air Force, Police, and Paramilitary recruitment. Automated age limit, minimum height, and subject credit calculator."
         canonical="/eligibility"
-        keywords={['eligibility checker', 'recruitment qualification', 'military requirements', 'Nigeria job eligibility', 'height requirement']}
+        keywords={['recruitment eligibility checker', 'military age limit Nigeria', 'height requirements for army', 'police recruitment qualification', 'O level credit requirements']}
       />
       <FAQPageSchema faqs={eligibilityFAQs} />
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Eligibility Checker', url: '/eligibility' }
+        ]}
+      />
       <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
         {/* Progress Bar Header */}
         <div className="bg-military-green p-6 text-white">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-emerald-200 border border-white/20 mb-3">
+            <Calendar className="w-3.5 h-3.5" />
+            <span>{getDailyUpdatedBadge()} • Criteria Verified</span>
+          </div>
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl font-bold flex items-center gap-2">
               <HeartPulse className="w-6 h-6" /> Military Eligibility
@@ -666,6 +747,12 @@ const EligibilityChecker: React.FC = () => {
           </p>
         </div>
       </div>
+
+      {/* Floating Sticky Recommended Bar on Scroll */}
+      <StickyRecommendedBar
+        branch="Armed Forces"
+        cbtSlug="army"
+      />
     </div>
   );
 };

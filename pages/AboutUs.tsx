@@ -70,6 +70,31 @@ const AboutUs: React.FC = () => {
                     </li>
                 </ul>
             </div>
+
+            <div className="mt-12 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">Join Our Candidate Community</h3>
+                    <p className="text-sm text-gray-600">Connect with fellow candidates on Telegram and get breaking updates on WhatsApp.</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                    <a
+                        href="https://t.me/recruitmenttracker"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+                    >
+                        <span>Telegram Channel</span>
+                    </a>
+                    <a
+                        href="https://whatsapp.com/channel/0029Vb9F6VeC1FuCXNvVif10"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl text-xs font-black transition-all shadow-sm"
+                    >
+                        <span>WhatsApp Channel</span>
+                    </a>
+                </div>
+            </div>
         </div>
     );
 };

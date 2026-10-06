@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrainCircuit, BookOpen, Clock, Award, Shield, CheckCircle2, AlertCircle, BarChart3 } from 'lucide-react';
+import { BrainCircuit, BookOpen, Clock, Award, Shield, CheckCircle2, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Branch, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
-import { FAQPageSchema } from '../components/StructuredData';
+import { FAQPageSchema, BreadcrumbListSchema } from '../components/StructuredData';
+import { getDailyUpdatedBadge } from '../services/dateUtils';
 import AdUnit from '../components/AdUnit';
+import MilitaryScreeningAdCreative from '../components/MilitaryScreeningAdCreative';
 
 const QuizHub: React.FC = () => {
   const practiceOptions: { branch: Branch | 'General', label: string, desc: string, color: string }[] = [
@@ -44,26 +46,32 @@ const QuizHub: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6">
       <SEO
-        title="Past Question Centre 2026: Free CBT Aptitude Test Practice | Army, Navy, Police, NSCDC"
+        title="Recruitment Past Questions & CBT Exam Practice 2026/2027 [Free Mock Tests & Answers]"
         description="Prepare for Nigerian military, police, and paramilitary recruitment examinations. Practice real computer-based test (CBT) past questions with instant grading, answers, and time-management tips."
         canonicalUrl="/past-questions"
         keywords={[
-          'past question',
-          'Nigeria recruitment test',
-          'aptitude test practice',
-          'Army past questions',
-          'Police past questions',
+          'recruitment past questions',
+          'Nigeria military CBT practice',
+          'police exam questions and answers',
+          'army aptitude test questions',
+          'free recruitment mock exam',
           'nscdc past questions',
           'navy cbt questions',
           'military screening exam practice'
         ]}
       />
       <FAQPageSchema faqs={quizFAQs} />
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Past Questions & CBT Practice', url: '/past-questions' }
+        ]}
+      />
 
       <div className="text-center py-10 sm:py-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-military-blue text-xs font-semibold mb-4">
-          <BrainCircuit className="w-3.5 h-3.5" />
-          <span>Official 2026 CBT Screening Simulation</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold mb-4">
+          <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+          <span>{getDailyUpdatedBadge()} • Official 2026 CBT Screening Simulation</span>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
           Recruitment Past Question CBT Centre
@@ -75,85 +83,48 @@ const QuizHub: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {practiceOptions.map((opt) => (
-          <div key={opt.branch} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow group flex flex-col justify-between">
-            <div>
-              <div className={`h-2.5 ${opt.color}`}></div>
-              <div className="p-6">
-                <div className={`w-11 h-11 rounded-lg ${opt.color} flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform shadow-sm`}>
-                  <Shield className="w-5 h-5" />
+          <div
+            key={opt.branch}
+            className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col justify-between"
+          >
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm ${opt.color}`}>
+                  {opt.label.slice(0, 2).toUpperCase()}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-1.5">{opt.label} Past Questions</h3>
-                <p className="text-gray-500 text-xs mb-4 leading-relaxed">{opt.desc}</p>
-
-                <div className="flex items-center text-xs text-gray-400 mb-2 space-x-3">
-                  <div className="flex items-center"><Clock className="w-3 h-3 mr-1" /> Timed & Untimed</div>
-                  <div className="flex items-center"><BookOpen className="w-3 h-3 mr-1" /> 10–100 Qs</div>
+                <div>
+                  <h2 className="font-bold text-gray-900 text-lg">{opt.label}</h2>
+                  <span className="text-xs text-gray-400 font-medium">Standard Screening Pool</span>
                 </div>
               </div>
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                {opt.desc}
+              </p>
             </div>
-
-            <div className="p-6 pt-0">
+            
+            <div className="p-6 pt-0 mt-auto">
               <Link
-                to={`/past-questions/${BRANCH_TO_SLUG[opt.branch] || opt.branch}`}
-                className={`w-full block text-center py-2.5 rounded-lg font-bold text-xs text-white transition-opacity hover:opacity-90 shadow-sm ${opt.color}`}
+                to={opt.branch === 'General' ? '/quiz/general' : `/quiz/${BRANCH_TO_SLUG[opt.branch as Branch]}`}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-black transition-colors"
               >
-                Launch Mock CBT Test
+                <span>Start Practice Quiz</span>
+                <BrainCircuit className="w-4 h-4" />
               </Link>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Ad Unit */}
-      <div className="my-8">
-        <AdUnit slot="QUIZ_HUB_MIDDLE_AD" />
+      <div className="mb-8">
+        <AdUnit slot="quiz-hub-ad" format="auto" />
       </div>
 
-      {/* CBT Exam Pattern & Subject Weightings Table */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm mb-12">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-          <BarChart3 className="w-6 h-6 text-military-blue" />
-          <span>Standard Exam Pattern & Subject Weightings</span>
-        </h2>
-        <p className="text-sm text-gray-500 mb-6">Standardized blueprint used in JAMB-facilitated and agency internal computer-based assessments</p>
+      {/* 🎖️ High-Converting Military & Paramilitary Screening Elimination Native Ad */}
+      <MilitaryScreeningAdCreative format="native-card" className="mb-12" />
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr className="border-b border-gray-200 text-gray-700 bg-gray-50">
-                <th className="p-3.5 font-bold">Subject Area</th>
-                <th className="p-3.5 font-bold">Weighting</th>
-                <th className="p-3.5 font-bold">Key Topics Covered</th>
-                <th className="p-3.5 font-bold">Benchmark Time</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100 text-gray-600">
-              <tr className="hover:bg-gray-50/50">
-                <td className="p-3.5 font-semibold text-gray-900">Current Affairs & Nigerian History</td>
-                <td className="p-3.5 font-bold text-emerald-600">40%</td>
-                <td className="p-3.5">Nigerian constitution, landmark historical dates, agency leadership, military ranks, ECOWAS/AU</td>
-                <td className="p-3.5">30 seconds / question</td>
-              </tr>
-              <tr className="hover:bg-gray-50/50">
-                <td className="p-3.5 font-semibold text-gray-900">Use of English & Comprehension</td>
-                <td className="p-3.5 font-bold text-blue-600">30%</td>
-                <td className="p-3.5">Synonyms, antonyms, sentence completion, idiomatic expressions, short comprehension passage</td>
-                <td className="p-3.5">40 seconds / question</td>
-              </tr>
-              <tr className="hover:bg-gray-50/50">
-                <td className="p-3.5 font-semibold text-gray-900">Mathematics & Quantitative Logic</td>
-                <td className="p-3.5 font-bold text-purple-600">30%</td>
-                <td className="p-3.5">Basic algebra, percentages, ratios, probability, series completion, logical syllogisms</td>
-                <td className="p-3.5">60 seconds / question</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Preparation Tips Section */}
+      {/* Guide Card */}
       <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm mb-12">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
           <BookOpen className="w-6 h-6 text-military-blue" />
           <span>Aptitude Test Preparation Strategy</span>
         </h2>
