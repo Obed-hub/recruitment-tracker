@@ -248,12 +248,31 @@ const App: React.FC = () => {
           {/* TOPIC 6: Specialized Salary Hubs */}
           <Route path="/nigerian-army-salary-structure" element={<Layout><ArmySalary /></Layout>} />
           <Route path="/army-salary-structure" element={<Navigate to="/nigerian-army-salary-structure" replace />} />
+          <Route path="/army-salary" element={<Navigate to="/nigerian-army-salary-structure" replace />} />
           <Route path="/salary-comparison-nigerian-armed-forces-paramilitary" element={<Layout><SalaryComparison /></Layout>} />
           <Route path="/military-vs-police-salary" element={<Navigate to="/salary-comparison-nigerian-armed-forces-paramilitary" replace />} />
+          <Route path="/salary-comparison" element={<Layout><SalaryComparison /></Layout>} />
           <Route path="/police-salary" element={<Layout><PoliceSalary /></Layout>} />
           <Route path="/nigeria-police-salary-structure" element={<Navigate to="/police-salary" replace />} />
           <Route path="/customs-salary" element={<Layout><CustomsSalary /></Layout>} />
           <Route path="/nigeria-customs-salary-structure" element={<Navigate to="/customs-salary" replace />} />
+
+          {/* Dedicated Agency Salary Hubs */}
+          <Route path="/navy-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="navy-salary" /></Layout>} />
+          <Route path="/airforce-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="airforce-salary" /></Layout>} />
+          <Route path="/air-force-salary" element={<Navigate to="/airforce-salary" replace />} />
+          <Route path="/civil-defence-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="civil-defence-salary" /></Layout>} />
+          <Route path="/nscdc-salary" element={<Navigate to="/civil-defence-salary" replace />} />
+          <Route path="/immigration-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="immigration-salary" /></Layout>} />
+          <Route path="/nis-salary" element={<Navigate to="/immigration-salary" replace />} />
+          <Route path="/nnpc-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="nnpc-salary" /></Layout>} />
+          <Route path="/cbn-salary" element={<Layout><StandaloneSalaryPage agencyKeyOverride="cbn-salary" /></Layout>} />
+
+          {/* Additional Public Sector Routes */}
+          <Route path="/recruitment-army-mil-ng-portal-login" element={<Navigate to="/army-portal-login" replace />} />
+          <Route path="/fcsc-recruitment-portal" element={<Navigate to="/fcsc-recruitment" replace />} />
+          <Route path="/teachers-recruitment-subeb" element={<Layout><CivilServiceCommissionGuide /></Layout>} />
+          <Route path="/nuc-recruitment-portal" element={<Layout><AgencyHub agencySlug="fcsc" /></Layout>} />
 
           {/* Dynamic Programmatic Salary Routes */}
           <Route path="/salary/:agencySlug" element={<Layout><StandaloneSalaryPage /></Layout>} />

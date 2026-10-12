@@ -38,6 +38,9 @@ const PrivacyPolicy: React.FC = () => {
                     <p className="text-gray-700 mt-4">
                         Google uses cookies to serve ads based on a user's prior visits to your website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.
                     </p>
+                    <p className="text-gray-700 mt-4">
+                        Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-military-blue underline font-semibold">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-military-blue underline font-semibold">www.aboutads.info</a> or <a href="https://www.youronlinechoices.com/" target="_blank" rel="noopener noreferrer" className="text-military-blue underline font-semibold">Your Online Choices</a>.
+                    </p>
                 </section>
 
                 <section>

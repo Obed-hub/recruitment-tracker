@@ -25,9 +25,12 @@ const ContactUs: React.FC = () => {
                         </div>
                         <div>
                             <h3 className="text-lg font-bold text-gray-900">Email Us</h3>
-                            <p className="text-gray-600">For inquiries and support:</p>
-                            <a href="mailto:JUSTONEGUYLIKETHAT@GMAIL.COM" className="text-military-blue font-semibold hover:underline">
-                                JUSTONEGUYLIKETHAT@GMAIL.COM
+                            <p className="text-gray-600">For inquiries, verification, and editorial support:</p>
+                            <a href="mailto:support@recruitmenttracker.com.ng" className="text-military-blue font-semibold hover:underline block">
+                                support@recruitmenttracker.com.ng
+                            </a>
+                            <a href="mailto:obedasekhamen@gmail.com" className="text-xs text-gray-500 hover:underline">
+                                Direct desk: obedasekhamen@gmail.com
                             </a>
                         </div>
                     </div>

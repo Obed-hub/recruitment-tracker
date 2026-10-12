@@ -8,7 +8,7 @@ import { RecruitmentUpdate, Question, NewsItem, ShortlistCandidate, Branch, Recr
 // TODO: Replace with your actual Firebase project configuration
 // You can get this from Firebase Console -> Project Settings -> General -> Your Apps -> SDK Setup and Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDN8W3KsN3pQWvmAQDfIC05AtvoNu8vn7g",
+    apiKey: (typeof process !== 'undefined' && process.env?.FIREBASE_API_KEY) || (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_FIREBASE_API_KEY) || "AIzaSyDN8W3KsN3pQWvmAQDfIC05AtvoNu8vn7g",
     authDomain: "recruitment-be456.firebaseapp.com",
     databaseURL: "https://recruitment-be456-default-rtdb.firebaseio.com",
     projectId: "recruitment-be456",
@@ -563,7 +563,7 @@ export const getQuestions = async (branch?: string): Promise<Question[]> => {
 
 // --- NEWS SERVICE ---
 
-const NEWS_API_KEY = 'pub_ecb4b31dd7c343f4b4ed3b1105aac530';
+const NEWS_API_KEY = (typeof process !== 'undefined' && process.env?.NEWS_API_KEY) || (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_NEWS_API_KEY) || 'pub_ecb4b31dd7c343f4b4ed3b1105aac530';
 
 const FALLBACK_NEWS: NewsItem[] = [
     {
