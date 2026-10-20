@@ -188,17 +188,25 @@
   <script type="module" src="/index.tsx"></script>
   <script>
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(reg) {
-          if (reg && typeof reg.update === 'function') {
-            reg.update().catch(function(e) {
-              console.warn('[SW] ServiceWorker update notice:', e && e.message ? e.message : e);
-            });
+      var host = window.location.hostname;
+      var isPreviewEnv = host.includes('run.app') || host.includes('localhost') || host.includes('127.0.0.1') || host.includes('webcontainer') || host.includes('stackblitz');
+      
+      if (isPreviewEnv) {
+        // Unregister any previously registered service worker in preview environment to clear browser errors
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for (var i = 0; i < registrations.length; i++) {
+            registrations[i].unregister();
           }
-        }).catch(function(err) {
-          console.warn('[SW] Registration notice:', err && err.message ? err.message : err);
+        }).catch(function() {});
+      } else {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./sw.js').then(function(reg) {
+            if (reg && typeof reg.update === 'function') {
+              reg.update().catch(function() {});
+            }
+          }).catch(function() {});
         });
-      });
+      }
     }
   </script>
 </body>
