@@ -1,18 +1,16 @@
 // Progressive Web App Service Worker for Nigeria Recruitment Tracker
-const CACHE_NAME = 'recruitment-tracker-v1';
-const OFFLINE_URLS = [
-  '/',
+const CACHE_NAME = 'recruitment-tracker-v2';
+const STATIC_ASSETS = [
   '/manifest.json',
   '/assets/logo.png',
   '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/past-questions'
+  '/icons/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(OFFLINE_URLS).catch((err) => {
+      return cache.addAll(STATIC_ASSETS).catch((err) => {
         console.warn('[SW] Pre-caching warning:', err);
       });
     })
@@ -26,6 +24,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log('[SW] Deleting stale cache:', key);
             return caches.delete(key);
           }
         })
@@ -36,12 +35,12 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Only cache GET requests
+  // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
 
-  // Skip external analytics, ads, and API calls from aggressive cache
+  // Skip external analytics, ads, and API calls
   if (
     url.origin !== location.origin ||
     url.pathname.startsWith('/api/') ||
@@ -51,25 +50,36 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Network first, falling back to cache
+  // HTML Navigation Requests: ALWAYS Network First, never serve stale HTML with outdated script hashes
+  if (event.request.mode === 'navigate' || event.request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request).then((cached) => cached || caches.match('/'));
+        })
+    );
+    return;
+  }
+
+  // Hashed JS/CSS Assets and Static Assets: Stale-While-Revalidate or Network First
   event.respondWith(
     fetch(event.request)
       .then((response) => {
         if (response && response.status === 200) {
           const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
         }
         return response;
       })
       .catch(() => {
-        return caches.match(event.request).then((cached) => {
-          if (cached) return cached;
-          if (event.request.mode === 'navigate') {
-            return caches.match('/');
-          }
-        });
+        return caches.match(event.request);
       })
   );
 });

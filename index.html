@@ -107,6 +107,19 @@
           if (event.stopImmediatePropagation) event.stopImmediatePropagation();
           return true;
         }
+        // Auto-recovery if JS script bundle or CSS load fails (e.g., stale service worker / chunk hash change on deployment)
+        if (event.target && (event.target.tagName === 'SCRIPT' || event.target.tagName === 'LINK')) {
+          console.warn('[Deployment Recovery] Asset load error:', event.target.src || event.target.href);
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+              for (var reg of registrations) { reg.unregister(); }
+            });
+          }
+          if (!sessionStorage.getItem('deploy_reload_retry')) {
+            sessionStorage.setItem('deploy_reload_retry', '1');
+            window.location.reload(true);
+          }
+        }
       }, true);
       window.addEventListener('unhandledrejection', function(event) {
         if (isAdSenseTagError(event.reason)) {
@@ -164,7 +177,9 @@
   <script>
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').catch(function(err) {
+        navigator.serviceWorker.register('/sw.js').then(function(reg) {
+          reg.update();
+        }).catch(function(err) {
           console.log('[SW] Registration failed:', err);
         });
       });
