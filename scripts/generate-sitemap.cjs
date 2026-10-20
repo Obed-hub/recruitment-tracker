@@ -5,8 +5,8 @@
  * to maximize Google Search Console crawl budget and indexation speed.
  * 
  * Generates:
- *  1. public/sitemap.xml (Comprehensive, deduplicated, tiered XML sitemap)
- *  2. public/sitemap-high-priority.xml (Fast-track indexation sitemap for the top pages)
+ *  1. public/sitemap.xml (Comprehensive, deduplicated, tiered XML sitemap - 200 OK only)
+ *  2. public/sitemap-high-priority.xml (Fast-track indexation sitemap for top pages)
  *  3. public/robots.txt (Automatically synced with both sitemaps)
  */
 
@@ -22,7 +22,6 @@ const TIER_1_HIGH_TRAFFIC = [
   { url: '/nigerian-navy-recruitment-2026', priority: '1.0', changefreq: 'daily' },
   { url: '/which-recruitment-form-is-out-now', priority: '1.0', changefreq: 'daily' },
   { url: '/military-screening-guide', priority: '0.98', changefreq: 'daily' },
-  { url: '/screening-guide-2026', priority: '0.95', changefreq: 'daily' },
   { url: '/shortlist-hub', priority: '0.95', changefreq: 'daily' },
   { url: '/recruitments', priority: '0.95', changefreq: 'daily' },
   { url: '/past-questions', priority: '0.90', changefreq: 'daily' },
@@ -30,7 +29,7 @@ const TIER_1_HIGH_TRAFFIC = [
   { url: '/faqs', priority: '0.90', changefreq: 'daily' },
 ];
 
-// TIER 2: HIGH-INTENT ACTION & PORTAL LOGIN HUBS (Priority: 0.90 - 0.85 | Changefreq: daily)
+// TIER 2: HIGH-INTENT ACTION & PORTAL LOGIN HUBS (Priority: 0.95 - 0.85 | Changefreq: daily)
 const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
   // High-Intent "Is Form Out" Searches
   { url: '/is-nigerian-navy-batch-39-form-out', priority: '0.90', changefreq: 'daily' },
@@ -46,7 +45,7 @@ const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
   { url: '/nis-recruitment-portal', priority: '0.93', changefreq: 'daily' },
   { url: '/ndlea-recruitment-portal', priority: '0.93', changefreq: 'daily' },
   { url: '/frsc-recruitment-portal', priority: '0.92', changefreq: 'daily' },
-  { url: '/fcsc-recruitment-portal', priority: '0.92', changefreq: 'daily' },
+  { url: '/fcsc-recruitment', priority: '0.92', changefreq: 'daily' },
   { url: '/teachers-recruitment-subeb', priority: '0.91', changefreq: 'daily' },
   { url: '/nuc-recruitment-portal', priority: '0.92', changefreq: 'daily' },
   { url: '/ncaa-recruitment', priority: '0.92', changefreq: 'daily' },
@@ -60,15 +59,15 @@ const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
   { url: '/training/on-the-job', priority: '0.88', changefreq: 'daily' },
   { url: '/tech/software-developer-traineeship', priority: '0.88', changefreq: 'daily' },
 
-  // Portal Login Actions
-  { url: '/navy-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
-  { url: '/army-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
-  { url: '/police-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
+  // Canonical Portal Login Actions (Direct 200 OK Routes)
+  { url: '/navy-portal-login', priority: '0.88', changefreq: 'daily' },
+  { url: '/army-portal-login', priority: '0.88', changefreq: 'daily' },
+  { url: '/police-portal-login', priority: '0.88', changefreq: 'daily' },
   { url: '/cdcfib-portal-login', priority: '0.88', changefreq: 'daily' },
-  { url: '/immigration-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
-  { url: '/customs-recruitment-portal-login', priority: '0.88', changefreq: 'daily' },
+  { url: '/immigration-portal-login', priority: '0.88', changefreq: 'daily' },
+  { url: '/customs-portal-login', priority: '0.88', changefreq: 'daily' },
 
-  // Slip Printing & PDF Downloads
+  // Slip Printing & Action Guides
   { url: '/navy-print-confirmation-slip', priority: '0.88', changefreq: 'daily' },
   { url: '/army-print-confirmation-slip', priority: '0.88', changefreq: 'daily' },
   { url: '/police-print-confirmation-slip', priority: '0.88', changefreq: 'daily' },
@@ -76,7 +75,7 @@ const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
   { url: '/immigration-print-confirmation-slip', priority: '0.88', changefreq: 'daily' },
   { url: '/print-army-screening-slip', priority: '0.88', changefreq: 'daily' },
 
-  // Guarantor Form PDF Downloads
+  // Guarantor Form Action Pages
   { url: '/navy-guarantor-form', priority: '0.86', changefreq: 'daily' },
   { url: '/army-guarantor-form', priority: '0.86', changefreq: 'daily' },
   { url: '/police-guarantor-form', priority: '0.86', changefreq: 'daily' },
@@ -87,17 +86,14 @@ const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
 // TIER 3: CONAFSS & CONPASS SALARY HUBS (Priority: 0.88 - 0.82 | Changefreq: weekly)
 const TIER_3_SALARY_HUBS = [
   { url: '/salary-comparison', priority: '0.88', changefreq: 'weekly' },
-  { url: '/army-salary', priority: '0.88', changefreq: 'weekly' },
+  { url: '/salary-comparison-nigerian-armed-forces-paramilitary', priority: '0.88', changefreq: 'weekly' },
+  { url: '/nigerian-army-salary-structure', priority: '0.88', changefreq: 'weekly' },
   { url: '/navy-salary', priority: '0.88', changefreq: 'weekly' },
   { url: '/police-salary', priority: '0.88', changefreq: 'weekly' },
   { url: '/customs-salary', priority: '0.88', changefreq: 'weekly' },
   { url: '/civil-defence-salary', priority: '0.85', changefreq: 'weekly' },
   { url: '/immigration-salary', priority: '0.85', changefreq: 'weekly' },
   { url: '/airforce-salary', priority: '0.85', changefreq: 'weekly' },
-  { url: '/frsc-salary', priority: '0.82', changefreq: 'weekly' },
-  { url: '/ndlea-salary', priority: '0.82', changefreq: 'weekly' },
-  { url: '/fire-service-salary', priority: '0.82', changefreq: 'weekly' },
-  { url: '/efcc-salary', priority: '0.82', changefreq: 'weekly' },
   { url: '/nnpc-salary', priority: '0.80', changefreq: 'weekly' },
   { url: '/cbn-salary', priority: '0.80', changefreq: 'weekly' },
 ];
@@ -146,16 +142,12 @@ const TIER_5_AGENCY_HUBS = [
   { url: '/airforce-recruitment', priority: '0.75', changefreq: 'weekly' },
   { url: '/customs-recruitment', priority: '0.75', changefreq: 'weekly' },
   { url: '/civil-defence-recruitment', priority: '0.75', changefreq: 'weekly' },
-  { url: '/nscdc-recruitment', priority: '0.75', changefreq: 'weekly' },
   { url: '/immigration-recruitment', priority: '0.75', changefreq: 'weekly' },
   { url: '/nis-recruitment', priority: '0.75', changefreq: 'weekly' },
   { url: '/ndlea-recruitment', priority: '0.75', changefreq: 'weekly' },
-  { url: '/frsc-recruitment', priority: '0.72', changefreq: 'weekly' },
   { url: '/fire-service-recruitment', priority: '0.72', changefreq: 'weekly' },
-  { url: '/fire-recruitment', priority: '0.72', changefreq: 'weekly' },
   { url: '/efcc-recruitment', priority: '0.72', changefreq: 'weekly' },
   { url: '/nda-recruitment', priority: '0.72', changefreq: 'weekly' },
-  { url: '/navy-dssc-recruitment', priority: '0.75', changefreq: 'weekly' },
   { url: '/nnpc-recruitment', priority: '0.70', changefreq: 'weekly' },
   { url: '/cbn-recruitment', priority: '0.70', changefreq: 'weekly' },
   { url: '/nimc-recruitment', priority: '0.70', changefreq: 'weekly' },
@@ -185,7 +177,7 @@ const RECRUITMENT_SLUGS = [
   'frsc-recruitment', 'fire-inspector', 'immigration-inspector', 'customs-supplementary',
   'efcc-investigator', 'fcsc-entry-level', 'nnpc-graduate', 'cbn-entry-level',
   'nimc-staff', 'ncc-entry-level', 'nitda-it-officer', 'faan-entry-level',
-  'nimasa-marine', 'nafdac-regulatory'
+  'nimasa-marine', 'nafdac-regulatory', 'ndlea-recruitment'
 ];
 
 const TIER_7_RECRUITMENT_DETAILS = RECRUITMENT_SLUGS.map(slug => ({
@@ -204,7 +196,7 @@ const TIER_8_STATIC_LEGAL = [
 ];
 
 /**
- * Builds standard XML sitemap string
+ * Builds standard XML sitemap string with accurate tiered priorities
  */
 function buildXmlSitemap(entries) {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -216,7 +208,7 @@ function buildXmlSitemap(entries) {
     xml += `    <loc>${loc}</loc>\n`;
     xml += `    <lastmod>${TODAY}</lastmod>\n`;
     xml += `    <changefreq>${entry.changefreq || 'daily'}</changefreq>\n`;
-    xml += `    <priority>1.0</priority>\n`;
+    xml += `    <priority>${entry.priority || '0.80'}</priority>\n`;
     xml += `  </url>\n`;
   });
 
@@ -252,7 +244,7 @@ function generateSitemaps() {
   addUnique(TIER_7_RECRUITMENT_DETAILS);
   addUnique(TIER_8_STATIC_LEGAL);
 
-  console.log(`[Sitemap Generator] Total unique URLs indexed: ${allEntries.length}`);
+  console.log(`[Sitemap Generator] Total unique 200 OK URLs indexed: ${allEntries.length}`);
 
   const highPriorityEntries = allEntries.filter(e => parseFloat(e.priority) >= 0.80);
   console.log(`[Sitemap Generator] High-Priority Cluster URLs (>=0.80 priority): ${highPriorityEntries.length}`);

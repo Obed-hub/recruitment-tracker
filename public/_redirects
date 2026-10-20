@@ -1,2 +1,81 @@
+# API Proxies
 /news-api/* https://newsdata.io/api/1/:splat 200
+
+# Canonical 301 Permanent Redirects for Clean Search Engine Indexing
+/screening-guide-2026 /military-screening-guide 301
+/medical-screening-guide /military-screening-guide 301
+/navy-batch-39 /nigerian-navy-recruitment-2026 301
+/navy-batch-39-recruitment /nigerian-navy-recruitment-2026 301
+/navy-batch-recruitment /nigerian-navy-recruitment-2026 301
+/navy-batch /nigerian-navy-recruitment-2026 301
+/navy-registration-portal /nigerian-navy-recruitment-2026 301
+/is-navy-form-out /nigerian-navy-recruitment-2026 301
+/nigeria-navy-portal-2026 /nigerian-navy-recruitment-2026 301
+/www-joinnigeriannavy-com-portal /nigerian-navy-recruitment-2026 301
+/joinnigeriannavy-portal /nigerian-navy-recruitment-2026 301
+/joinnigeriannavy-application-form /nigerian-navy-recruitment-2026 301
+
+/which-recruitment-form-is-out /which-recruitment-form-is-out-now 301
+/which-form-is-out-now /which-recruitment-form-is-out-now 301
+/recruitment-forms-out-now /which-recruitment-form-is-out-now 301
+
+/is-air-force-form-out /is-nigerian-air-force-form-out 301
+/is-naf-form-out /is-nigerian-air-force-form-out 301
+/naf-recruitment-2026 /is-nigerian-air-force-form-out 301
+/is-nigerian-airforce-form-out /is-nigerian-air-force-form-out 301
+/how-to-apply-air-force /how-to-apply-nigerian-air-force 301
+/how-to-apply-naf /how-to-apply-nigerian-air-force 301
+/how-to-apply-nigerian-airforce /how-to-apply-nigerian-air-force 301
+
+/police-recruitment-portal /npf-recruitment-portal 301
+/army-88-rri /nigerian-army-88-rri-recruitment 301
+/army-88-rri-recruitment /nigerian-army-88-rri-recruitment 301
+/navy-dssc-recruitment /nigerian-navy-dssc-recruitment 301
+/immigration-recruitment-portal /nis-recruitment-portal 301
+/ndlea-portal /ndlea-recruitment-portal 301
+/ndlea-recruitment /ndlea-recruitment-portal 301
+/frsc-portal /frsc-recruitment-portal 301
+/frsc-recruitment /frsc-recruitment-portal 301
+/fcsc-recruitment-portal /fcsc-recruitment 301
+
+/army-application-tracking /print-army-screening-slip 301
+/tracking-armynotification /print-army-screening-slip 301
+/tracking-armynotification-com-ng /print-army-screening-slip 301
+/armynotification /print-army-screening-slip 301
+/army-notification /print-army-screening-slip 301
+/army-print-screening-slip /print-army-screening-slip 301
+
+/army-salary /nigerian-army-salary-structure 301
+/army-salary-structure /nigerian-army-salary-structure 301
+/nigeria-police-salary-structure /police-salary 301
+/nigeria-customs-salary-structure /customs-salary 301
+/air-force-salary /airforce-salary 301
+/nscdc-salary /civil-defence-salary 301
+/nis-salary /immigration-salary 301
+/military-vs-police-salary /salary-comparison-nigerian-armed-forces-paramilitary 301
+
+/army-recruitment-portal-login /army-portal-login 301
+/recruitment-army-mil-ng-login /army-portal-login 301
+/recruitment-army-mil-ng-portal-login /army-portal-login 301
+/police-recruitment-portal-login /police-portal-login 301
+/npf-portal-login /police-portal-login 301
+/apply-policerecruitment-gov-ng-login /police-portal-login 301
+/navy-recruitment-portal-login /navy-portal-login 301
+/joinnigeriannavy-login /navy-portal-login 301
+/civil-defence-portal-login /cdcfib-portal-login 301
+/nscdc-portal-login /cdcfib-portal-login 301
+/cdcfib-recruitment-portal-login /cdcfib-portal-login 301
+/civil-defence-recruitment-portal-login /cdcfib-portal-login 301
+/nscdc-recruitment-portal-login /cdcfib-portal-login 301
+/immigration-recruitment-portal-login /immigration-portal-login 301
+/nis-portal-login /immigration-portal-login 301
+/nis-recruitment-portal-login /immigration-portal-login 301
+/customs-recruitment-portal-login /customs-portal-login 301
+/ncs-portal-login /customs-portal-login 301
+/ncs-recruitment-portal-login /customs-portal-login 301
+
+/news /blog 301
+/news/* /blog 301
+
+# SPA Fallback (All other clean routes handled by React SPA Router)
 /* /index.html 200

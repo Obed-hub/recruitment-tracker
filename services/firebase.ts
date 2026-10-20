@@ -763,37 +763,99 @@ export const updateAllPortals = async (portals: Record<string, any>): Promise<vo
 
 // ─── SPONSORED ADS REALTIME CONFIGURATION ──────────────────────────────────
 
+export interface CarouselSlide {
+    image: string;
+    caption: string;
+    tag?: string;
+    person?: string;
+    location?: string;
+}
+
 export interface SponsoredAdConfig {
     active: boolean;
     title: string;
     company: string;
     location: string;
     salary: string;
+    headline?: string;
+    cohortNotice?: string;
+    closingCall?: string;
     requirements: string[];
     directUrl: string;
     whatsappNumber?: string;
     prefilledMessage?: string;
     updatedAt?: number;
+    slides?: CarouselSlide[];
 }
+
+export const DEFAULT_CAROUSEL_SLIDES: CarouselSlide[] = [
+    {
+        image: '/assets/aistudio/IMG-20261019-WA0004_1__43a36b9d.webp',
+        caption: 'Find meaningful work in as little as 12 weeks! Apply for The Employment Bootcamp Today.',
+        tag: 'The Employment Bootcamp',
+        person: 'GraduatePro',
+        location: 'Pan-Nigeria & Remote'
+    },
+    {
+        image: '/assets/aistudio/IMG-20261019-WA0007_d6646379.webp',
+        caption: 'Real People, Real Impact — Landed fulfilling career role with proven employability framework.',
+        tag: 'Real People · Real Impact',
+        person: 'Joy Peter',
+        location: 'Lagos'
+    },
+    {
+        image: '/assets/aistudio/IMG-20261019-WA0003_0decfaa6.webp',
+        caption: 'Real People, Real Impact — Replaced application hope with exact framework that gets you hired.',
+        tag: 'Real People · Real Impact',
+        person: 'Joy Omo-Owa',
+        location: 'Lagos'
+    },
+    {
+        image: '/assets/aistudio/IMG-20261019-WA0008_ed8465f2.webp',
+        caption: 'Real People, Real Impact — Mastered the high-demand interview and recruitment preparation.',
+        tag: 'Real People · Real Impact',
+        person: 'Odo Oqua',
+        location: 'Abuja'
+    },
+    {
+        image: '/assets/aistudio/IMG-20261019-WA0005_486aad97.webp',
+        caption: 'Real People, Real Impact — Transformed career trajectory and stood out to top employers.',
+        tag: 'Real People · Real Impact',
+        person: 'Jeremiah Osemudiamen',
+        location: 'Ogun'
+    },
+    {
+        image: '/assets/aistudio/IMG-20261019-WA0006_aebc0b1c.webp',
+        caption: 'Real People, Real Impact — Prepared with discipline to win competitive professional jobs.',
+        tag: 'Real People · Real Impact',
+        person: 'Joseph Awara',
+        location: 'Abuja'
+    }
+];
 
 export const DEFAULT_SPONSORED_AD: SponsoredAdConfig = {
     active: true,
-    title: 'Head of Financial Institution',
-    company: 'Juntpay Payment Limited',
-    location: 'Nigeria (Hybrid / Remote)',
-    salary: '₦200,000–₦500,000/month',
+    title: 'The Employment Bootcamp 8.0',
+    company: 'GraduatePro · Starlin Africa',
+    location: 'Online Cohort (Pan-Nigeria & Remote)',
+    salary: 'Find Meaningful Work in as Little as 12 Weeks!',
+    headline: 'Jobs don’t go to the most qualified, they go to the most prepared. Replace hope with the exact framework that gets you hired!',
+    cohortNotice: 'Last cohort of the year starts 6th, November 2026.',
+    closingCall: 'End the year strong, start 2027 empowered.',
     requirements: [
-        'Minimum 5 years of relevant experience',
-        'Experience in online financial business',
-        'Knowledge of banking and financial compliance',
-        'Age 35 and above, as stated by the advertiser'
+        'Jobs don’t go to the most qualified, they go to the most prepared.',
+        'Replace hope with the exact framework that gets you hired!',
+        'Last cohort of the year starts 6th, November 2026.',
+        'End the year strong, start 2027 empowered.',
+        'To apply, visit graduatepro.starlin.africa'
     ],
-    directUrl: 'https://wa.link/64qnjm',
+    directUrl: 'https://graduatepro.starlin.africa',
     whatsappNumber: '',
-    prefilledMessage: 'Hello, I am applying for the Head of Financial Institution position (Juntpay Payment Limited) seen on Nigeria Recruitment Tracker.'
+    prefilledMessage: 'Hello GraduatePro, I want to apply for The Employment Bootcamp cohort starting 6th November 2026.',
+    slides: DEFAULT_CAROUSEL_SLIDES
 };
 
-const SPONSORED_AD_STORAGE_KEY = 'nrt_sponsored_ad_config';
+const SPONSORED_AD_STORAGE_KEY = 'nrt_sponsored_ad_config_v2';
 const SPONSORED_METRICS_STORAGE_KEY = 'nrt_sponsored_ad_metrics';
 
 const getCachedSponsoredAd = (): SponsoredAdConfig => {
@@ -802,11 +864,14 @@ const getCachedSponsoredAd = (): SponsoredAdConfig => {
         const raw = localStorage.getItem(SPONSORED_AD_STORAGE_KEY);
         if (raw) {
             const parsed = JSON.parse(raw);
-            return {
-                ...DEFAULT_SPONSORED_AD,
-                ...parsed,
-                requirements: Array.isArray(parsed.requirements) ? parsed.requirements : DEFAULT_SPONSORED_AD.requirements
-            };
+            if (parsed && !parsed.company?.includes('Juntpay')) {
+                return {
+                    ...DEFAULT_SPONSORED_AD,
+                    ...parsed,
+                    slides: Array.isArray(parsed.slides) && parsed.slides.length > 0 ? parsed.slides : DEFAULT_CAROUSEL_SLIDES,
+                    requirements: Array.isArray(parsed.requirements) ? parsed.requirements : DEFAULT_SPONSORED_AD.requirements
+                };
+            }
         }
     } catch (e) {
         console.warn('[Cache] Could not read cached ad:', e);

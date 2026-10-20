@@ -161,17 +161,17 @@ export const SponsoredAdReport: React.FC = () => {
           <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                WhatsApp Applications
+                Direct Enrolment Clicks
               </span>
               <span className="p-2 rounded-xl bg-emerald-50 text-emerald-600">
-                <MessageCircle className="w-4 h-4" />
+                <ArrowUpRight className="w-4 h-4" />
               </span>
             </div>
             <p className="text-3xl font-black text-emerald-600">
               {metrics.clicks.toLocaleString()}
             </p>
             <p className="text-[11px] text-slate-400">
-              Candidates who clicked to message hiring desk directly
+              Candidates who clicked to apply at graduatepro.starlin.africa
             </p>
           </div>
 

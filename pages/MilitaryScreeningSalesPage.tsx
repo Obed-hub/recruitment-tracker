@@ -31,7 +31,7 @@ const SALES_PAGE_FAQS = [
   },
   {
     question: "How will I receive the screening guide after payment?",
-    answer: "Instantly. Once your payment of ₦1,500 is confirmed via Paystack (Debit Card, Bank Transfer, USSD, Apple Pay), you will be redirected immediately to the instant high-speed PDF download page, and a backup link will be sent to your email."
+    answer: "Instantly. Once your payment of ₦1,000 is confirmed via Paystack (Debit Card, Bank Transfer, USSD, Apple Pay), you will be redirected immediately to the instant high-speed PDF download page, and a backup link will be sent to your email."
   },
   {
     question: "Can I read this guide on Android and iPhone?",
@@ -130,7 +130,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
         name="Nigerian Military & Paramilitary Screening Readiness Guide (2026 Edition)"
         description="Complete step-by-step readiness blueprint detailing doctor height posture tricks, 14-day flat-foot & knock-knee exercises, 3-folder NIN/NPC document sorting, and 4-week 3.2km physical fitness conditioning plan."
         image="/assets/screening-guide-cover.jpg"
-        price="1500"
+        price="1000"
         priceCurrency="NGN"
         sku="MIL-SCREEN-2026"
         mpn="NG-MIL-2026"
@@ -156,7 +156,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
           492+ APPLICANTS PURCHASED TODAY
         </span>
         <span>
-          ⚡ EARLY BIRD ACCESS: <strong className="text-[#FFB800] underline font-black">₦1,500 ONLY</strong> (PRICE JUMPS TO ₦5,000 AS SCREENING DRAWS CLOSE):
+          ⚡ EARLY BIRD ACCESS: <strong className="text-[#FFB800] underline font-black">₦1,000 ONLY</strong> (PRICE JUMPS TO ₦5,000 AS SCREENING DRAWS CLOSE):
         </span>
         <span className="bg-black/60 px-2.5 py-0.5 rounded font-mono text-yellow-300 font-black tracking-wider text-xs sm:text-sm">
           {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
@@ -682,7 +682,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
                 <span>PRICE INCREASE TEASER WARNING:</span>
               </div>
               <p className="text-xs sm:text-sm text-gray-200">
-                This <strong>₦1,500 early-bird price</strong> is heavily subsidised to help every serious candidate qualify. <strong>The price will automatically increase to ₦5,000</strong> as state screening dates draw close and the official shortlist is released!
+                This <strong>₦1,000 early-bird price</strong> is heavily subsidised to help every serious candidate qualify. <strong>The price will automatically increase to ₦5,000</strong> as state screening dates draw close and the official shortlist is released!
               </p>
             </div>
 
@@ -696,7 +696,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
                 Total Value (Guide + 5 Bonuses): <span className="line-through text-red-400 decoration-2 font-black">₦50,000</span>
               </div>
               <div className="text-4xl sm:text-6xl font-black text-[#FFB800] tracking-tight">
-                TODAY: ₦1,500
+                TODAY: ₦1,000
               </div>
               <div className="text-xs sm:text-sm text-emerald-400 font-black uppercase tracking-wider">
                 ⚡ (One-Time Payment • Instant PDF Download)
@@ -712,7 +712,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
                 className="w-full py-5 px-8 bg-gradient-to-r from-[#FFB800] via-yellow-400 to-[#FF9900] text-black font-black text-xl sm:text-2xl rounded-2xl shadow-2xl hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-3 border-2 border-white cursor-pointer"
               >
                 <Download className="w-6 h-6" />
-                <span>PAY ₦1,500 & DOWNLOAD NOW</span>
+                <span>PAY ₦1,000 & DOWNLOAD NOW</span>
               </a>
             </div>
 
@@ -768,7 +768,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
               },
               {
                 q: "How will I receive the guide after payment?",
-                a: "Instantly. Once your payment of ₦1,500 is confirmed via Paystack (Debit Card, Bank Transfer, USSD), you will be redirected to the instant high-speed download page, and a backup link will be sent to your email."
+                a: "Instantly. Once your payment of ₦1,000 is confirmed via Paystack (Debit Card, Bank Transfer, USSD), you will be redirected to the instant high-speed download page, and a backup link will be sent to your email."
               },
               {
                 q: "Can I read this on my Android / iPhone?",
@@ -814,7 +814,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
           </h2>
 
           <p className="text-gray-300 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-            Secure your copy right now for just <strong>₦1,500</strong> before the price increases, master the physical drills, sort your legal documents, and show up ready to earn your military uniform.
+            Secure your copy right now for just <strong>₦1,000</strong> before the price increases, master the physical drills, sort your legal documents, and show up ready to earn your military uniform.
           </p>
 
           <div className="pt-4 max-w-lg mx-auto">
@@ -822,7 +822,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
               onClick={scrollToCheckout}
               className="w-full py-5 px-8 bg-gradient-to-r from-[#FFB800] via-yellow-400 to-[#FF9900] text-black font-black text-xl sm:text-2xl rounded-2xl shadow-2xl hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-3 border-2 border-white cursor-pointer"
             >
-              <span>GET THE COMPLETE MANUAL (₦1,500)</span>
+              <span>GET THE COMPLETE MANUAL (₦1,000)</span>
               <ArrowRight className="w-6 h-6" />
             </button>
           </div>
@@ -840,7 +840,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-[#050f22]/95 border-t-2 border-[#FFB800] py-3 px-4 z-40 backdrop-blur-md flex items-center justify-between gap-4 max-w-7xl mx-auto shadow-2xl">
         <div className="hidden sm:block">
           <div className="text-xs font-bold text-gray-300">2026 Military & Police Screening Survival Guide</div>
-          <div className="text-lg font-black text-[#FFB800]">₦1,500 <span className="line-through text-xs text-gray-500 font-normal">₦50,000</span></div>
+          <div className="text-lg font-black text-[#FFB800]">₦1,000 <span className="line-through text-xs text-gray-500 font-normal">₦50,000</span></div>
         </div>
         
         <button
@@ -848,7 +848,7 @@ const MilitaryScreeningSalesPage: React.FC = () => {
           className="flex-1 sm:flex-initial py-3 px-6 sm:px-8 bg-gradient-to-r from-[#FFB800] to-yellow-400 text-black font-black text-sm sm:text-base rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           <Download className="w-4 h-4" />
-          <span>DOWNLOAD GUIDE (₦1,500)</span>
+          <span>DOWNLOAD GUIDE (₦1,000)</span>
         </button>
       </div>
     </div>

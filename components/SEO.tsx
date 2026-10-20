@@ -47,11 +47,15 @@ const SEO: React.FC<SEOProps> = ({
 
     let fullCanonical: string;
     if (effectiveCanonical) {
-        fullCanonical = effectiveCanonical.startsWith('http')
-            ? effectiveCanonical
-            : `${siteUrl}${effectiveCanonical.startsWith('/') ? effectiveCanonical : `/${effectiveCanonical}`}`;
+        if (effectiveCanonical.startsWith('http')) {
+            fullCanonical = effectiveCanonical;
+        } else {
+            const clean = effectiveCanonical === '/' ? '/' : effectiveCanonical.replace(/\/+$/, '');
+            fullCanonical = `${siteUrl}${clean.startsWith('/') ? clean : `/${clean}`}`;
+        }
     } else {
-        const cleanPath = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '') : '';
+        const rawPath = typeof window !== 'undefined' ? window.location.pathname : '';
+        const cleanPath = (rawPath === '/' || !rawPath) ? '/' : rawPath.replace(/\/+$/, '');
         fullCanonical = `${siteUrl}${cleanPath}`;
     }
 

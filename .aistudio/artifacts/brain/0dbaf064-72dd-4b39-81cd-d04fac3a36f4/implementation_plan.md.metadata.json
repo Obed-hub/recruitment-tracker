@@ -1,0 +1,6 @@
+{
+  "summary": "Implementation plan to resolve Google Search Console 'Crawled - currently not indexed' report for recruitmenttracker.com.ng by fixing canonical tag conflicts, eliminating sitemap redirect leaks, correcting SPA static HTML canonical inheritance, and optimizing crawl budget.",
+  "updatedAt": "2026-10-19T20:39:14.351829795Z",
+  "requestFeedback": true,
+  "userFacing": true
+}

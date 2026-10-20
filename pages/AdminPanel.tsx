@@ -998,28 +998,28 @@ const AdminPanel: React.FC = () => {
                             <div className="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
                                 <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                                     <h3 className="font-bold text-gray-900 text-sm uppercase tracking-wider">
-                                        Ad Content & WhatsApp Settings
+                                        Campaign Content & Application Link
                                     </h3>
                                     <button
                                         type="button"
                                         onClick={handleLoadDefaultAd}
-                                        className="text-xs text-emerald-700 font-semibold hover:underline"
+                                        className="text-xs text-amber-700 font-semibold hover:underline"
                                     >
-                                        Load Juntpay Template
+                                        Load GraduatePro Bootcamp Template
                                     </button>
                                 </div>
 
-                                {/* Job Title */}
+                                {/* Campaign / Program Title */}
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                                        Job Title
+                                        Program / Campaign Title
                                     </label>
                                     <input
                                         type="text"
                                         value={sponsoredAd.title || ''}
                                         onChange={e => handleSponsoredAdChange('title', e.target.value)}
-                                        placeholder="e.g. Head of Financial Institution"
-                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                        placeholder="e.g. The Employment Bootcamp 8.0"
+                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                                     />
                                 </div>
 
@@ -1027,58 +1027,58 @@ const AdminPanel: React.FC = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <div>
                                         <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                                            Company / Organization Name
+                                            Organization / Brand Name
                                         </label>
                                         <input
                                             type="text"
                                             value={sponsoredAd.company || ''}
                                             onChange={e => handleSponsoredAdChange('company', e.target.value)}
-                                            placeholder="e.g. Juntpay Payment Limited"
-                                            className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                            placeholder="e.g. GraduatePro · Starlin Africa"
+                                            className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                                            Location / Region
+                                            Location / Mode
                                         </label>
                                         <input
                                             type="text"
                                             value={sponsoredAd.location || ''}
                                             onChange={e => handleSponsoredAdChange('location', e.target.value)}
-                                            placeholder="e.g. Nigeria / Lagos"
-                                            className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                            placeholder="e.g. Online Cohort (Pan-Nigeria & Remote)"
+                                            className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                                         />
                                     </div>
                                 </div>
 
-                                {/* Salary Range */}
+                                {/* Salary / Subtitle Range */}
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                                        Salary Range / Rate
+                                        Value Proposition / Subheading
                                     </label>
                                     <input
                                         type="text"
                                         value={sponsoredAd.salary || ''}
                                         onChange={e => handleSponsoredAdChange('salary', e.target.value)}
-                                        placeholder="e.g. ₦200,000–₦500,000/month"
-                                        className="w-full bg-slate-50 border border-slate-200 text-emerald-700 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                        placeholder="e.g. Find Meaningful Work in as Little as 12 Weeks!"
+                                        className="w-full bg-slate-50 border border-slate-200 text-amber-700 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                                     />
                                 </div>
 
-                                {/* Direct WhatsApp Link */}
+                                {/* Direct Action Link */}
                                 <div>
                                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                                        Direct WhatsApp URL / Action Link
+                                        Application URL / Action Link
                                     </label>
                                     <input
                                         type="url"
                                         value={sponsoredAd.directUrl || ''}
                                         onChange={e => handleSponsoredAdChange('directUrl', e.target.value)}
-                                        placeholder="https://wa.link/64qnjm or https://wa.me/2348000000000"
-                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
+                                        placeholder="https://graduatepro.starlin.africa"
+                                        className="w-full bg-slate-50 border border-slate-200 text-gray-900 rounded-xl px-3.5 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                                     />
                                     <span className="text-[11px] text-gray-500 mt-1 block">
-                                        Enter any <code className="text-emerald-700 font-semibold">https://wa.link/...</code> or WhatsApp link. Clicks will open directly in the applicant's WhatsApp and log in GA4.
+                                        Direct link e.g. <code className="text-amber-700 font-semibold">https://graduatepro.starlin.africa</code>. Clicks will open the enrolment page and track in GA4 and Firebase.
                                     </span>
                                 </div>
 
