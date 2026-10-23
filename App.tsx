@@ -57,6 +57,7 @@ const StandaloneSalaryPage = lazyWithRetry(() => import('./pages/StandaloneSalar
 const ShortlistHub = lazyWithRetry(() => import('./pages/ShortlistHub'));
 const WhichFormIsOut = lazyWithRetry(() => import('./pages/WhichFormIsOut'));
 const NavyRecruitmentBatch39 = lazyWithRetry(() => import('./pages/NavyRecruitmentBatch39'));
+const AirForceShortlist2026 = lazyWithRetry(() => import('./pages/AirForceShortlist2026'));
 const FAQHub = lazyWithRetry(() => import('./pages/FAQHub'));
 const PortalActionPage = lazyWithRetry(() => import('./pages/PortalActionPage'));
 const SponsoredAdReport = lazyWithRetry(() => import('./pages/SponsoredAdReport'));
@@ -120,6 +121,20 @@ const App: React.FC = () => {
           <Route path="/joinnigeriannavy-portal" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
           <Route path="/joinnigeriannavy-application-form" element={<Navigate to="/nigerian-navy-recruitment-2026" replace />} />
           <Route path="/login-nigerian-navy-portal" element={<Navigate to="/navy-recruitment-portal-login" replace />} />
+
+          {/* Dedicated Ranking Page: Nigerian Air Force Shortlisted Candidates 2026 */}
+          <Route path="/air-force-shortlist" element={<Layout><AirForceShortlist2026 /></Layout>} />
+          <Route path="/nigerian-air-force-shortlisted-candidates" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/airforce-shortlist" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/naf-shortlist" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/naf-exam-shortlist" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/air-force-exam-shortlist" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/naf-bmtc-shortlist" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/naf-shortlisted-candidates-2026" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/airforce-shortlisted-candidates-pdf" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/nafrecruitment-airforce-mil-ng-shortlist" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/air-force-cbt-exam-date" element={<Navigate to="/air-force-shortlist" replace />} />
+          <Route path="/air-force-screening-venues" element={<Navigate to="/air-force-shortlist" replace />} />
 
           {/* Dedicated Searchable FAQ Hub */}
           <Route path="/faqs" element={<Layout><FAQHub /></Layout>} />

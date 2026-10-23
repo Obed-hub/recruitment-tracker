@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   MapPin, Search, FileText, CheckCircle2, AlertTriangle, Shield,
   ArrowRight, Download, Filter, HelpCircle, ExternalLink, Calendar,
-  MessageCircle
+  MessageCircle, Plane
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -249,6 +249,51 @@ const ShortlistHub: React.FC = () => {
               <Calendar className="w-4 h-4 text-amber-400" /> {getDailyUpdatedBadge()} • Screening Schedules
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Active Air Force Exam Shortlist Breaking Alert */}
+      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-sky-950 via-slate-900 to-blue-950 border-2 border-sky-400/60 shadow-lg text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 border border-sky-400/40">
+            <Plane className="w-6 h-6 text-amber-300" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+              <span className="text-[11px] font-black uppercase tracking-wider text-amber-400">
+                ACTIVE SHORTLIST RELEASE • 2026 INTAKE
+              </span>
+            </div>
+            <h3 className="font-black text-base sm:text-lg text-white mt-0.5">
+              Nigerian Air Force (NAF) CBT Exam Shortlist is Live!
+            </h3>
+            <p className="text-xs text-slate-300">
+              Access full 36 states + FCT base locations, screening schedule, documents checklist & free CBT mock tests.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+          <a
+            href="https://drive.google.com/drive/folders/1cqKwJssriCQb9xiwhdcCbnOuFg-Atf3y?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Download Nigerian Air Force Shortlist PDF from Google Drive"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-xs transition-all shadow-md shrink-0 flex items-center gap-1.5 animate-pulse"
+          >
+            <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+            Download PDF (Drive Mirror)
+            <ExternalLink className="w-3 h-3" />
+          </a>
+          <Link
+            to="/air-force-shortlist"
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs transition-all shadow-md shrink-0 flex items-center gap-1.5"
+          >
+            Check Venues & Guide <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
 

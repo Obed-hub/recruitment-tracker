@@ -19,6 +19,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 // TIER 1: CRITICAL MONEY & HIGH-TRAFFIC PAGES (Priority: 1.0 - 0.95 | Changefreq: daily)
 const TIER_1_HIGH_TRAFFIC = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
+  { url: '/air-force-shortlist', priority: '1.0', changefreq: 'daily' },
   { url: '/nigerian-navy-recruitment-2026', priority: '1.0', changefreq: 'daily' },
   { url: '/which-recruitment-form-is-out-now', priority: '1.0', changefreq: 'daily' },
   { url: '/military-screening-guide', priority: '0.98', changefreq: 'daily' },

@@ -25,6 +25,7 @@ const KNOWN_LABELS: Record<string, string> = {
 
   // High-Priority Dedicated Pages
   'nigerian-navy-recruitment-2026': 'Nigerian Navy Recruitment 2026 (Batch 39)',
+  'air-force-shortlist': 'Nigerian Air Force Shortlisted Candidates 2026',
   'navy-salary': 'Nigerian Navy Salary Structure',
   'army-salary': 'Nigerian Army Salary Structure',
   'police-salary': 'Nigeria Police Salary Structure',

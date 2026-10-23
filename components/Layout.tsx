@@ -34,15 +34,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <AdSenseScript />
 
       {/* Official Community Sticky Alert Bar */}
-      <div className="bg-emerald-900 text-white text-xs py-2 px-4 shadow-sm border-b border-emerald-700">
+      <div className="bg-slate-950 text-white text-xs py-2 px-4 shadow-sm border-b border-sky-800">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-300"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
             </span>
             <span>
-              Follow <strong className="text-emerald-200 font-bold">NIGERIA RECRUITMENT UPDATE</strong> on WhatsApp & join our active <strong className="text-sky-300 font-bold">Telegram Discussion</strong> for verified 2026 Shortlists!
+              <strong className="text-amber-400 font-extrabold uppercase">BREAKING:</strong> Nigerian Air Force (NAF) 2026 CBT Exam Shortlist is <strong className="text-emerald-300 font-bold">OUT!</strong>{' '}
+              <Link to="/air-force-shortlist" className="underline font-bold text-sky-300 hover:text-sky-200 ml-1">
+                Check Screening Centers & PDF Here &rarr;
+              </Link>
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -74,7 +77,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3">
-              <img src="/assets/logo.png" alt="Recruitment Tracker Logo" className="w-10 h-10 object-contain rounded-lg shadow-sm bg-white p-1" />
+              <img 
+                src="/assets/logo.png" 
+                alt="Recruitment Tracker Logo" 
+                className="w-10 h-10 object-contain rounded-lg shadow-sm bg-white p-1" 
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.retried) {
+                    target.dataset.retried = '1';
+                    target.src = '/assets/logo.webp';
+                  }
+                }}
+              />
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight tracking-wide text-white">RECRUITMENT TRACKER</span>
                 <span className="text-[10px] text-gray-300 tracking-wider">NIGERIA PORTAL</span>
@@ -191,7 +205,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 text-center sm:text-left">
             <div>
               <div className="flex items-center justify-center sm:justify-start space-x-3 text-white mb-4">
-                <img src="/assets/logo.png" alt="Recruitment Tracker Logo" className="w-8 h-8 object-contain rounded-md bg-white p-0.5" />
+                <img 
+                  src="/assets/logo.png" 
+                  alt="Recruitment Tracker Logo" 
+                  className="w-8 h-8 object-contain rounded-md bg-white p-0.5" 
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.dataset.retried) {
+                      target.dataset.retried = '1';
+                      target.src = '/assets/logo.webp';
+                    }
+                  }}
+                />
                 <span className="font-bold tracking-wide">RECRUITMENT TRACKER</span>
               </div>
               <p className="text-sm text-gray-400 leading-relaxed">

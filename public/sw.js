@@ -1,5 +1,5 @@
 // Progressive Web App Service Worker for Nigeria Recruitment Tracker
-const CACHE_NAME = 'recruitment-tracker-v2';
+const CACHE_NAME = 'recruitment-tracker-v3';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/assets/logo.png',
@@ -50,7 +50,26 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML Navigation Requests: ALWAYS Network First with no-cache revalidation
+  // 1. Image Requests: Network First, cache valid 200 responses, NEVER fallback to HTML
+  const isImage = event.request.destination === 'image' || url.pathname.match(/\.(png|jpe?g|webp|svg|gif|ico)$/i);
+  if (isImage) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // 2. HTML Navigation Requests: Network First with no-cache revalidation, fallback only to index.html for page navigation
   if (event.request.mode === 'navigate' || event.request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(event.request, { cache: 'no-cache' })
@@ -68,7 +87,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // JS/CSS Assets and Static Files: Cache First with Network Fallback
+  // 3. JS/CSS Assets and Static Files: Cache First with Network Fallback
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {

@@ -119,15 +119,26 @@ export const STATIC_DATA: RecruitmentUpdate[] = [
     {
         id: 'naf-bmtc',
         branch: 'Air Force',
-        title: 'NAF BMTC 45 Recruitment',
+        title: 'Nigerian Air Force (NAF) BMTC 47 Shortlist 2026',
         category: 'Regular Recruit',
-        status: 'Closed',
-        deadline_date: '2025-11-01',
+        status: 'Shortlist Out',
+        deadline_date: '2026-10-24',
         portal_url: 'https://nafrecruitment.airforce.mil.ng',
-        updated_at: '2025-11-02T09:00:00Z',
-        description: 'The Nigerian Air Force (NAF) Basic Military Training Course (BMTC) is a recruitment program for airmen and airwomen to serve in various technical and non-technical roles.',
-        requirements: ['Nigerian citizen by birth.', 'Age 18-22 (non-trades) or 18-25 (trades).', 'Height: 1.66m (M), 1.63m (F).', 'Primary school leaving certificate.', '5 Credits SSCE including English.'],
-        application_process: ['Apply online at nafrecruitment.airforce.mil.ng.', 'Print application and parent consent forms.', 'Attend recruitment interview exercise across various centers.']
+        updated_at: new Date().toISOString(),
+        description: 'Headquarters Nigerian Air Force (HQ NAF) has officially invited shortlisted applicants to the Zonal General Aptitude Test for BMTC 47 holding Saturday, 24 October 2026 at 7:00 AM across zonal centers.',
+        requirements: [
+            'NAF Application Acknowledgment Card.',
+            'Pencil (HB recommended).',
+            'Eraser.',
+            'Report strictly by 7:00 AM on Saturday, 24 October 2026 at designated Zonal Air Force Base.',
+            'Note: All enlistment processes are 100% FREE OF CHARGE.'
+        ],
+        application_process: [
+            'Check candidate name on state PDF at nafrecruitment.airforce.mil.ng.',
+            'Print out 2026 Verification Slip and Attestation Forms.',
+            'Report to designated state Air Force Base/Detachment with mandatory screening dress code.',
+            'Participate in physical verification, credential vetting, and CBT aptitude test.'
+        ]
     },
     {
         id: 'police-constable',
@@ -855,7 +866,7 @@ export const DEFAULT_SPONSORED_AD: SponsoredAdConfig = {
     slides: DEFAULT_CAROUSEL_SLIDES
 };
 
-const SPONSORED_AD_STORAGE_KEY = 'nrt_sponsored_ad_config_v2';
+const SPONSORED_AD_STORAGE_KEY = 'nrt_sponsored_ad_config_v3';
 const SPONSORED_METRICS_STORAGE_KEY = 'nrt_sponsored_ad_metrics';
 
 const getCachedSponsoredAd = (): SponsoredAdConfig => {
@@ -922,6 +933,7 @@ export const subscribeToSponsoredAd = (callback: (ad: SponsoredAdConfig) => void
                 const resolvedAd: SponsoredAdConfig = {
                     ...DEFAULT_SPONSORED_AD,
                     ...data,
+                    slides: Array.isArray(data.slides) && data.slides.length > 0 ? data.slides : DEFAULT_CAROUSEL_SLIDES,
                     requirements: Array.isArray(data.requirements) 
                         ? data.requirements 
                         : (typeof data.requirements === 'string' ? data.requirements.split('\n').filter(Boolean) : DEFAULT_SPONSORED_AD.requirements)

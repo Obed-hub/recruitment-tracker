@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 import AdUnit from '../components/AdUnit';
 import { WebSiteSchema, OrganizationSchema, FAQPageSchema } from '../components/StructuredData';
 import ViralCommunityWidget from '../components/ViralCommunityWidget';
+import AirForceShortlistBanner from '../components/AirForceShortlistBanner';
 import NavyBatch39Banner from '../components/NavyBatch39Banner';
 import SponsoredJobCard from '../components/SponsoredJobCard';
 import { getDailyUpdatedBadge, formatCardUpdateDate } from '../services/dateUtils';
@@ -146,6 +147,9 @@ const Dashboard: React.FC = () => {
       />
       <WebSiteSchema />
       <OrganizationSchema />
+
+      {/* Breaking News Announcement: Nigerian Air Force 2026 Exam Shortlist */}
+      <AirForceShortlistBanner />
 
       {/* Primary Priority Announcement: Nigerian Navy Batch 39 Recruitment 2026 */}
       <NavyBatch39Banner />

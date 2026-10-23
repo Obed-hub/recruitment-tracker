@@ -20,7 +20,7 @@ interface UpcomingAgency {
   category: string;
   expectedDate: string;
   cadres: string;
-  status: 'Announced' | 'Awaiting Gazetting' | 'Portal Maintenance';
+  status: 'Announced' | 'Awaiting Gazetting' | 'Portal Maintenance' | 'Shortlist Out';
   portalUrl: string;
   hubUrl: string;
   warning: string;
@@ -40,12 +40,12 @@ const UPCOMING_2026_AGENCIES: UpcomingAgency[] = [
   {
     name: 'Nigerian Air Force (NAF BMTC 45 & DSSC)',
     category: 'Military',
-    expectedDate: '2026/2027 Cycle Announcement',
+    expectedDate: 'Shortlist Out • Screening Active',
     cadres: 'Non-Tradesmen (Airmen/Airwomen), Tradesmen & DSSC',
-    status: 'Announced',
+    status: 'Shortlist Out',
     portalUrl: 'https://nafrecruitment.airforce.mil.ng',
-    hubUrl: '/is-nigerian-air-force-form-out',
-    warning: 'Official Air Force registration is 100% free on nafrecruitment.airforce.mil.ng. NAF does not charge registration scratch card fees.',
+    hubUrl: '/air-force-shortlist',
+    warning: 'Official NAF exam shortlist released for CBT screening & zonal verification across all 36 states and FCT. Check your state center and download list.',
   },
   {
     name: 'Nigeria Immigration Service (NIS)',

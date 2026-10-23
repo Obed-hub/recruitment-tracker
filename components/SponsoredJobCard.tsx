@@ -215,16 +215,31 @@ export const SponsoredJobCard: React.FC<SponsoredJobProps> = ({
         >
           {/* Main Slide Image (Square / 1:1 Aspect Frame) */}
           <div className="aspect-square w-full relative bg-slate-950 flex items-center justify-center overflow-hidden">
-            <img
-              src={activeSlideData.image}
-              alt={activeSlideData.caption || 'The Employment Bootcamp 8.0 Slide'}
-              className="w-full h-full object-cover sm:object-contain transition-transform duration-500 group-hover/carousel:scale-[1.02]"
-              loading={currentSlide === 0 ? "eager" : "lazy"}
-              fetchPriority={currentSlide === 0 ? "high" : "auto"}
-              decoding="async"
-              width={800}
-              height={800}
-            />
+            <picture className="w-full h-full flex items-center justify-center">
+              {activeSlideData.image && activeSlideData.image.endsWith('.webp') && (
+                <source srcSet={activeSlideData.image} type="image/webp" />
+              )}
+              <img
+                src={activeSlideData.image && activeSlideData.image.endsWith('.webp') ? activeSlideData.image.replace(/\.webp$/i, '.jpg') : activeSlideData.image}
+                alt={activeSlideData.caption || 'The Employment Bootcamp 8.0 Slide'}
+                className="w-full h-full object-cover sm:object-contain transition-transform duration-500 group-hover/carousel:scale-[1.02]"
+                loading={currentSlide === 0 ? "eager" : "lazy"}
+                fetchPriority={currentSlide === 0 ? "high" : "auto"}
+                decoding="async"
+                width={800}
+                height={800}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.retried) {
+                    target.dataset.retried = '1';
+                    const nextSrc = target.src.includes('.jpg')
+                      ? target.src.replace(/\.jpg/i, '.webp')
+                      : target.src.replace(/\.webp/i, '.jpg');
+                    target.src = nextSrc + (nextSrc.includes('?') ? '&' : '?') + 'r=' + Date.now();
+                  }
+                }}
+              />
+            </picture>
           </div>
 
           {/* Navigation Arrows */}
