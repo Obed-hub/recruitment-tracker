@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
     "generate-sitemap": "node scripts/generate-sitemap.cjs",
-    "build": "node scripts/generate-sitemap.cjs && vite build",
+    "build": "node scripts/generate-sitemap.cjs && vite build && node scripts/generate-static-routes.cjs",
     "deploy:cf": "npm run build && npx wrangler pages deploy dist --project-name=recruitment-tracker --commit-dirty=true",
     "preview": "vite preview",
     "lint": "tsc --noEmit"

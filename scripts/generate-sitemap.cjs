@@ -295,4 +295,38 @@ Sitemap: ${SITE_URL}/sitemap-high-priority.xml
   console.log(`[Sitemap Generator] ✓ Synced public/robots.txt with both sitemap locations`);
 }
 
-generateSitemaps();
+function getAllEntries() {
+  const seenUrls = new Set();
+  const allEntries = [];
+
+  const addUnique = (list) => {
+    list.forEach(item => {
+      const cleanUrl = item.url === '/' ? '/' : item.url.replace(/\/+$/, '');
+      if (!seenUrls.has(cleanUrl)) {
+        seenUrls.add(cleanUrl);
+        allEntries.push({ ...item, url: cleanUrl });
+      }
+    });
+  };
+
+  addUnique(TIER_1_HIGH_TRAFFIC);
+  addUnique(TIER_2_PORTAL_ACTIONS_AND_STATUS);
+  addUnique(TIER_3_SALARY_HUBS);
+  addUnique(TIER_4_GUIDES_AND_BLOGS);
+  addUnique(TIER_5_AGENCY_HUBS);
+  addUnique(TIER_6_CBT_PAGES);
+  addUnique(TIER_7_RECRUITMENT_DETAILS);
+  addUnique(TIER_8_STATIC_LEGAL);
+
+  return allEntries;
+}
+
+if (require.main === module) {
+  generateSitemaps();
+}
+
+module.exports = {
+  generateSitemaps,
+  getAllEntries,
+  SITE_URL
+};
