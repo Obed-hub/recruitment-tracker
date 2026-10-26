@@ -87,7 +87,6 @@ const TIER_2_PORTAL_ACTIONS_AND_STATUS = [
 // TIER 3: CONAFSS & CONPASS SALARY HUBS (Priority: 0.88 - 0.82 | Changefreq: weekly)
 const TIER_3_SALARY_HUBS = [
   { url: '/salary-comparison', priority: '0.88', changefreq: 'weekly' },
-  { url: '/salary-comparison-nigerian-armed-forces-paramilitary', priority: '0.88', changefreq: 'weekly' },
   { url: '/nigerian-army-salary-structure', priority: '0.88', changefreq: 'weekly' },
   { url: '/navy-salary', priority: '0.88', changefreq: 'weekly' },
   { url: '/police-salary', priority: '0.88', changefreq: 'weekly' },
@@ -116,7 +115,6 @@ const TIER_4_GUIDES_AND_BLOGS = [
   { url: '/guides/military-medical-screening-test-requirements', priority: '0.80', changefreq: 'weekly' },
   { url: '/guides/correct-cdcfib-portal-errors', priority: '0.78', changefreq: 'weekly' },
   { url: '/guides/efcc-recruitment-screening-qualifications', priority: '0.78', changefreq: 'weekly' },
-  { url: '/guides/ncaa-recruitment-guide', priority: '0.85', changefreq: 'weekly' },
   { url: '/guides/how-to-apply-police-constable', priority: '0.82', changefreq: 'weekly' },
   { url: '/guides/how-to-apply-cdcfib-portal', priority: '0.82', changefreq: 'weekly' },
   { url: '/guides/nscdc-physical-screening-centers', priority: '0.80', changefreq: 'weekly' },
@@ -156,7 +154,6 @@ const TIER_5_AGENCY_HUBS = [
   { url: '/faan-recruitment', priority: '0.70', changefreq: 'weekly' },
   { url: '/nimasa-recruitment', priority: '0.70', changefreq: 'weekly' },
   { url: '/nafdac-recruitment', priority: '0.70', changefreq: 'weekly' },
-  { url: '/fcsc-recruitment', priority: '0.70', changefreq: 'weekly' },
   { url: '/ncc-recruitment', priority: '0.70', changefreq: 'weekly' },
 ];
 

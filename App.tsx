@@ -217,33 +217,33 @@ const App: React.FC = () => {
 
           {/* Traineeships & Graduate Schemes Authority Pillars */}
           <Route path="/traineeships/guide" element={<Layout><GraduateTraineeGuide /></Layout>} />
-          <Route path="/guides/graduate-trainee-programs" element={<Layout><GraduateTraineeGuide /></Layout>} />
+          <Route path="/guides/graduate-trainee-programs" element={<Navigate to="/traineeships/guide" replace />} />
           <Route path="/graduate-trainee" element={<Navigate to="/traineeships/guide" replace />} />
           <Route path="/graduate-trainee-program" element={<Navigate to="/traineeships/guide" replace />} />
           <Route path="/graduate-training-schemes" element={<Navigate to="/traineeships/guide" replace />} />
 
           <Route path="/traineeships/management" element={<Layout><ManagementTraineeGuide /></Layout>} />
-          <Route path="/guides/management-trainee-programs" element={<Layout><ManagementTraineeGuide /></Layout>} />
+          <Route path="/guides/management-trainee-programs" element={<Navigate to="/traineeships/management" replace />} />
           <Route path="/management-trainee" element={<Navigate to="/traineeships/management" replace />} />
           <Route path="/management-trainee-programme" element={<Navigate to="/traineeships/management" replace />} />
 
           <Route path="/training/on-the-job" element={<Layout><OnTheJobTrainingGuide /></Layout>} />
-          <Route path="/on-the-job-training-jobs" element={<Layout><OnTheJobTrainingGuide /></Layout>} />
+          <Route path="/on-the-job-training-jobs" element={<Navigate to="/training/on-the-job" replace />} />
           <Route path="/on-the-job-training" element={<Navigate to="/training/on-the-job" replace />} />
 
           <Route path="/tech/software-developer-traineeship" element={<Layout><TechTraineeshipGuide /></Layout>} />
-          <Route path="/traineeships/engineering-technical" element={<Layout><TechTraineeshipGuide /></Layout>} />
-          <Route path="/software-developer-traineeship" element={<Layout><TechTraineeshipGuide /></Layout>} />
+          <Route path="/traineeships/engineering-technical" element={<Navigate to="/tech/software-developer-traineeship" replace />} />
+          <Route path="/software-developer-traineeship" element={<Navigate to="/tech/software-developer-traineeship" replace />} />
           <Route path="/it-trainee-programme" element={<Navigate to="/tech/software-developer-traineeship" replace />} />
           <Route path="/web-developer-training-jobs" element={<Navigate to="/tech/software-developer-traineeship" replace />} />
 
           {/* Civil Service Authority Pillars */}
           <Route path="/exams/civil-service-exam-guide" element={<Layout><CivilServiceExamGuide /></Layout>} />
-          <Route path="/civil-service-exam-guide" element={<Layout><CivilServiceExamGuide /></Layout>} />
+          <Route path="/civil-service-exam-guide" element={<Navigate to="/exams/civil-service-exam-guide" replace />} />
           <Route path="/cbt-exam-for-civil-service" element={<Navigate to="/exams/civil-service-exam-guide" replace />} />
           <Route path="/civil-service-commission-exam" element={<Navigate to="/exams/civil-service-exam-guide" replace />} />
           <Route path="/jobs/civil-service-commission-guide" element={<Layout><CivilServiceCommissionGuide /></Layout>} />
-          <Route path="/civil-service-commission-guide" element={<Layout><CivilServiceCommissionGuide /></Layout>} />
+          <Route path="/civil-service-commission-guide" element={<Navigate to="/jobs/civil-service-commission-guide" replace />} />
           <Route path="/public-service-commission-jobs" element={<Navigate to="/jobs/civil-service-commission-guide" replace />} />
           <Route path="/civil-service-commission-jobs" element={<Navigate to="/jobs/civil-service-commission-guide" replace />} />
           <Route path="/city-civil-service-jobs" element={<Navigate to="/jobs/civil-service-commission-guide" replace />} />
@@ -258,15 +258,16 @@ const App: React.FC = () => {
 
           {/* NCAA Authority Pillar Guide */}
           <Route path="/ncaa-recruitment-guide" element={<Layout><NcaaRecruitmentGuide /></Layout>} />
+          <Route path="/guides/ncaa-recruitment-guide" element={<Navigate to="/ncaa-recruitment-guide" replace />} />
           <Route path="/ncaa-recruitment" element={<Layout><AgencyHub agencySlug="ncaa" /></Layout>} />
 
           {/* TOPIC 6: Specialized Salary Hubs */}
           <Route path="/nigerian-army-salary-structure" element={<Layout><ArmySalary /></Layout>} />
           <Route path="/army-salary-structure" element={<Navigate to="/nigerian-army-salary-structure" replace />} />
           <Route path="/army-salary" element={<Navigate to="/nigerian-army-salary-structure" replace />} />
-          <Route path="/salary-comparison-nigerian-armed-forces-paramilitary" element={<Layout><SalaryComparison /></Layout>} />
-          <Route path="/military-vs-police-salary" element={<Navigate to="/salary-comparison-nigerian-armed-forces-paramilitary" replace />} />
           <Route path="/salary-comparison" element={<Layout><SalaryComparison /></Layout>} />
+          <Route path="/salary-comparison-nigerian-armed-forces-paramilitary" element={<Navigate to="/salary-comparison" replace />} />
+          <Route path="/military-vs-police-salary" element={<Navigate to="/salary-comparison" replace />} />
           <Route path="/police-salary" element={<Layout><PoliceSalary /></Layout>} />
           <Route path="/nigeria-police-salary-structure" element={<Navigate to="/police-salary" replace />} />
           <Route path="/customs-salary" element={<Layout><CustomsSalary /></Layout>} />
@@ -370,9 +371,8 @@ const App: React.FC = () => {
           <Route path="/recruitment-photo-resizer" element={<Navigate to="/guides" replace />} />
 
           {/* Agency Hubs & Specialized In-Demand Portals */}
-          <Route path="/navy-dssc-recruitment" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
-          <Route path="/navy-dssc" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
-          <Route path="/dssc-recruitment" element={<Layout><AgencyHub agencySlug="navy-dssc" /></Layout>} />
+          <Route path="/navy-dssc" element={<Navigate to="/nigerian-navy-dssc-recruitment" replace />} />
+          <Route path="/dssc-recruitment" element={<Navigate to="/nigerian-navy-dssc-recruitment" replace />} />
 
           <Route path="/ncc" element={<Navigate to="/ncc-recruitment" replace />} />
           <Route path="/ncc-recruitment" element={<Layout><AgencyHub agencySlug="ncc" /></Layout>} />

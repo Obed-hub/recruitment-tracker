@@ -64,7 +64,48 @@
 /air-force-salary /airforce-salary 301
 /nscdc-salary /civil-defence-salary 301
 /nis-salary /immigration-salary 301
-/military-vs-police-salary /salary-comparison-nigerian-armed-forces-paramilitary 301
+/military-vs-police-salary /salary-comparison 301
+/salary-comparison-nigerian-armed-forces-paramilitary /salary-comparison 301
+
+# Duplicate Canonical Aliases (Consolidated to Single Master URL)
+/guides/ncaa-recruitment-guide /ncaa-recruitment-guide 301
+/guides/graduate-trainee-programs /traineeships/guide 301
+/guides/management-trainee-programs /traineeships/management 301
+/on-the-job-training-jobs /training/on-the-job 301
+/traineeships/engineering-technical /tech/software-developer-traineeship 301
+/software-developer-traineeship /tech/software-developer-traineeship 301
+/civil-service-exam-guide /exams/civil-service-exam-guide 301
+/civil-service-commission-guide /jobs/civil-service-commission-guide 301
+
+# Legacy Numeric ID Redirects (Resolves 404s from Old Database Structure)
+/recruitments/1 /recruitments/army-dssc 301
+/recruitments/2 /recruitments/navy-batch 301
+/recruitments/3 /recruitments/naf-bmtc 301
+/recruitments/4 /recruitments 301
+/recruitments/5 /recruitments/police-constable 301
+/recruitments/6 /recruitments/nscdc-general 301
+/recruitments/7 /recruitments/frsc-recruitment 301
+/recruitments/8 /recruitments/fire-inspector 301
+/recruitments/9 /recruitments/immigration-inspector 301
+/recruitments/10 /recruitments/customs-supplementary 301
+/recruitments/11 /recruitments/efcc-investigator 301
+/recruitments/12 /recruitments/fcsc-entry-level 301
+/recruitments/13 /recruitments/nnpc-graduate 301
+/recruitments/14 /recruitments/cbn-entry-level 301
+/recruitments/15 /recruitments/nimc-staff 301
+/recruitments/16 /recruitments/ncc-entry-level 301
+/recruitments/17 /recruitments/nitda-it-officer 301
+/recruitments/18 /recruitments/faan-entry-level 301
+/recruitments/19 /recruitments/nimasa-marine 301
+/recruitments/20 /recruitments/nafdac-regulatory 301
+/recruitments/21 /recruitments/ndlea-recruitment 301
+
+# Legacy Practice & Utility Redirects
+/passport-resizer /guides 301
+/photo-compressor /guides 301
+/recruitment-photo-resizer /guides 301
+/practice /past-questions 301
+/practice/* /past-questions 301
 
 /army-recruitment-portal-login /army-portal-login 301
 /recruitment-army-mil-ng-login /army-portal-login 301
