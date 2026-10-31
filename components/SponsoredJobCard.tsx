@@ -112,10 +112,6 @@ export const SponsoredJobCard: React.FC<SponsoredJobProps> = ({
     return () => observer.disconnect();
   }, [isActive, title, company, placementContext]);
 
-  if (!isActive) {
-    return null;
-  }
-
   const handleApplyClick = () => {
     recordAdClick(placementContext);
 
@@ -162,13 +158,18 @@ export const SponsoredJobCard: React.FC<SponsoredJobProps> = ({
 
   // Preload all carousel slide images in memory for instant transitions without latency
   useEffect(() => {
+    if (!isActive) return;
     slides.forEach((slide) => {
       if (slide.image) {
         const img = new Image();
         img.src = slide.image;
       }
     });
-  }, [slides]);
+  }, [slides, isActive]);
+
+  if (!isActive) {
+    return null;
+  }
 
   const activeSlideData = slides[currentSlide] || slides[0];
 

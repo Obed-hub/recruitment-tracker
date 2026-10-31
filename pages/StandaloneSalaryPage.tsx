@@ -27,20 +27,12 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
   const normalizedSlug = activeSlug.endsWith('-salary') ? activeSlug : `${activeSlug}-salary`;
   const agencyData: AgencySalaryProfile | undefined = SALARY_AGENCIES[normalizedSlug];
 
-  // If not found in dynamic dict, redirect to general comparison hub
-  if (!agencyData) {
-    // If slug matches army, police, customs, let their dedicated routes handle or redirect
-    if (activeSlug.includes('army')) return <Navigate to="/army-salary" replace />;
-    if (activeSlug.includes('police')) return <Navigate to="/police-salary" replace />;
-    if (activeSlug.includes('customs')) return <Navigate to="/customs-salary" replace />;
-    return <Navigate to="/salary-comparison" replace />;
-  }
-
-  // State filters
+  // State filters - declare hooks unconditionally
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const categories = useMemo(() => {
+    if (!agencyData) return ['All'];
     const cats = new Set<string>();
     cats.add('All');
     agencyData.ranks.forEach(r => cats.add(r.category));
@@ -48,6 +40,7 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
   }, [agencyData]);
 
   const filteredRanks = useMemo(() => {
+    if (!agencyData) return [];
     return agencyData.ranks.filter(rank => {
       const matchesCat = selectedCategory === 'All' || rank.category === selectedCategory;
       const matchesSearch =
@@ -58,6 +51,15 @@ export const StandaloneSalaryPage: React.FC<StandaloneSalaryPageProps> = ({ agen
       return matchesCat && matchesSearch;
     });
   }, [agencyData, selectedCategory, searchQuery]);
+
+  // If not found in dynamic dict, redirect to general comparison hub
+  if (!agencyData) {
+    // If slug matches army, police, customs, let their dedicated routes handle or redirect
+    if (activeSlug.includes('army')) return <Navigate to="/army-salary" replace />;
+    if (activeSlug.includes('police')) return <Navigate to="/police-salary" replace />;
+    if (activeSlug.includes('customs')) return <Navigate to="/customs-salary" replace />;
+    return <Navigate to="/salary-comparison" replace />;
+  }
 
   // JSON-LD breadcrumbs
   const breadcrumbItems = [

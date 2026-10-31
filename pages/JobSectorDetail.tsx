@@ -101,6 +101,26 @@ const JobSectorDetail: React.FC = () => {
     return () => clearInterval(interval);
   }, [cbtState, timerActive, timeLeftSeconds]);
 
+  // CBT Calculations - declare hooks unconditionally
+  const totalQuestions = sector?.aptitudeQuestions?.length || 0;
+  const answeredCount = Object.keys(userAnswers).length;
+
+  const scoreResult = useMemo(() => {
+    if (!sector || cbtState !== 'completed') return { score: 0, percentage: 0, passed: false };
+    let correct = 0;
+    sector.aptitudeQuestions.forEach((q, idx) => {
+      if (userAnswers[idx] === q.correctAnswer) {
+        correct++;
+      }
+    });
+    const percentage = Math.round((correct / (sector.aptitudeQuestions.length || 1)) * 100);
+    return {
+      score: correct,
+      percentage,
+      passed: percentage >= 60
+    };
+  }, [cbtState, sector, userAnswers]);
+
   if (!sector) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-4">
@@ -119,26 +139,6 @@ const JobSectorDetail: React.FC = () => {
       </div>
     );
   }
-
-  // CBT Calculations
-  const totalQuestions = sector.aptitudeQuestions.length;
-  const answeredCount = Object.keys(userAnswers).length;
-
-  const scoreResult = useMemo(() => {
-    if (cbtState !== 'completed') return { score: 0, percentage: 0, passed: false };
-    let correct = 0;
-    sector.aptitudeQuestions.forEach((q, idx) => {
-      if (userAnswers[idx] === q.correctAnswer) {
-        correct++;
-      }
-    });
-    const percentage = Math.round((correct / totalQuestions) * 100);
-    return {
-      score: correct,
-      percentage,
-      passed: percentage >= 60
-    };
-  }, [cbtState, sector, userAnswers, totalQuestions]);
 
   const startTest = () => {
     setUserAnswers({});
