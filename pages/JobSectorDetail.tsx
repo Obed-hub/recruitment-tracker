@@ -48,12 +48,19 @@ const SectorIcon: React.FC<{ name: string; className?: string }> = ({ name, clas
   }
 };
 
-const JobSectorDetail: React.FC = () => {
+interface JobSectorDetailProps {
+  modeOverride?: 'cbt' | 'interview';
+  pathPrefix?: string;
+}
+
+const JobSectorDetail: React.FC<JobSectorDetailProps> = ({ modeOverride, pathPrefix }) => {
   const { sectorSlug } = useParams<{ sectorSlug: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Tab State: 'cbt' | 'interview'
-  const activeTab = searchParams.get('tab') === 'interview' ? 'interview' : 'cbt';
+  const activeTab = modeOverride
+    ? modeOverride
+    : (searchParams.get('tab') === 'interview' ? 'interview' : 'cbt');
 
   const sector = useMemo(() => {
     return JOB_SECTORS.find((s) => s.slug === sectorSlug);
@@ -190,14 +197,47 @@ const JobSectorDetail: React.FC = () => {
     }
   ];
 
+  const isAptitudeMode = modeOverride === 'cbt' || pathPrefix === '/aptitude-test-past-questions';
+  const isInterviewMode = modeOverride === 'interview' || pathPrefix === '/interview-questions-and-answers';
+
+  const effectiveCanonicalUrl = isAptitudeMode
+    ? `/aptitude-test-past-questions/${sector.slug}`
+    : isInterviewMode
+    ? `/interview-questions-and-answers/${sector.slug}`
+    : `/job-prep/${sector.slug}`;
+
+  const effectiveTitle = isAptitudeMode
+    ? `${sector.shortTitle} Aptitude Test Past Questions & Answers 2026/2027 [Free CBT Practice]`
+    : isInterviewMode
+    ? `${sector.shortTitle} Job Interview Questions & Answers Nigeria 2026/2027 [STAR Method Scripts]`
+    : `${sector.title} Aptitude Test Practice & Top Interview Questions 2026/2027`;
+
+  const effectiveDescription = isAptitudeMode
+    ? `Practice free ${sector.title} aptitude test past questions and answers with countdown timer. Tested by ${sector.aptitudeTestOverview.testBody} for ${sector.targetEmployers.slice(0, 3).join(', ')}. Instant scoring.`
+    : isInterviewMode
+    ? `Master top ${sector.title} interview questions with word-for-word STAR model answers, recruiter intent analysis, and sample scripts for ${sector.targetEmployers.slice(0, 3).join(', ')}.`
+    : sector.description;
+
+  const hubUrl = isAptitudeMode
+    ? '/aptitude-test-past-questions'
+    : isInterviewMode
+    ? '/interview-questions-and-answers'
+    : '/job-prep';
+
+  const hubName = isAptitudeMode
+    ? 'Aptitude Test Past Questions'
+    : isInterviewMode
+    ? 'Interview Questions & Answers'
+    : 'Job Prep Hub';
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-8">
       <SEO
-        title={`${sector.title} Aptitude Test Practice & Top Interview Questions 2026/2027`}
-        description={sector.description}
-        canonicalUrl={`/job-prep/${sector.slug}`}
+        title={effectiveTitle}
+        description={effectiveDescription}
+        canonicalUrl={effectiveCanonicalUrl}
         keywords={[
-          `${sector.shortTitle} aptitude test practice`,
+          `${sector.shortTitle} aptitude test past questions`,
           `${sector.shortTitle} interview questions and answers Nigeria`,
           `${sector.targetEmployers[0]} aptitude test questions`,
           `${sector.targetEmployers[1] || sector.shortTitle} interview questions`,
@@ -208,8 +248,8 @@ const JobSectorDetail: React.FC = () => {
       <BreadcrumbListSchema
         items={[
           { name: 'Home', url: '/' },
-          { name: 'Job Prep', url: '/job-prep' },
-          { name: sector.shortTitle, url: `/job-prep/${sector.slug}` }
+          { name: hubName, url: hubUrl },
+          { name: sector.shortTitle, url: effectiveCanonicalUrl }
         ]}
       />
 
@@ -225,7 +265,7 @@ const JobSectorDetail: React.FC = () => {
       <div className="flex items-center gap-2 text-xs text-gray-500">
         <Link to="/" className="hover:text-emerald-600">Home</Link>
         <span>/</span>
-        <Link to="/job-prep" className="hover:text-emerald-600">Job Prep Hub</Link>
+        <Link to={hubUrl} className="hover:text-emerald-600">{hubName}</Link>
         <span>/</span>
         <span className="text-gray-900 font-bold">{sector.shortTitle}</span>
       </div>
@@ -319,9 +359,6 @@ const JobSectorDetail: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Ad Placement */}
-      <AdUnit slot="job-sector-top" format="horizontal" />
 
       {/* ========================================================================= */}
       {/* TAB 1: APTITUDE TEST CBT PRACTICE ENGINE                                  */}

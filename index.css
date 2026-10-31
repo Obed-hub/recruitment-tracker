@@ -11,3 +11,17 @@
     margin: 0;
   }
 }
+
+/* Auto-collapse unfilled or empty Google AdSense units across all screens */
+ins.adsbygoogle[data-ad-status="unfilled"],
+ins.adsbygoogle:empty:not([data-adsbygoogle-status="done"]),
+.ad-container:has(ins.adsbygoogle[data-ad-status="unfilled"]),
+.ad-container:has(ins[style*="display: none"]),
+.ad-container.is-unfilled {
+  display: none !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}

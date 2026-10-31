@@ -228,6 +228,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <div>
               <h4 className="text-white font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm">
+                <li><Link to="/how-to-apply" className="text-amber-300 hover:text-amber-200 font-bold transition-colors">How to Apply for Jobs (Official Portals Directory)</Link></li>
+                <li><Link to="/aptitude-test-past-questions" className="text-sky-300 hover:text-sky-200 font-bold transition-colors">Aptitude Test Past Questions & Answers (Free CBT)</Link></li>
+                <li><Link to="/interview-questions-and-answers" className="text-violet-300 hover:text-violet-200 font-bold transition-colors">Job Interview Questions & Answers (STAR Scripts)</Link></li>
+                <li><Link to="/cbt-practice-test" className="text-emerald-300 hover:text-emerald-200 font-bold transition-colors">Free CBT Practice Test Simulator</Link></li>
                 <li><Link to="/faqs" className="text-amber-300 hover:text-amber-200 font-bold transition-colors">Recruitment FAQs (35+ Answers)</Link></li>
                 <li><Link to="/which-recruitment-form-is-out-now" className="text-emerald-300 hover:text-emerald-200 font-bold transition-colors">Which Form is Out (2026)?</Link></li>
                 <li><Link to="/about" className="hover:text-yellow-400 transition-colors">About Us</Link></li>

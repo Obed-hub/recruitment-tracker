@@ -1,3 +1,5 @@
+import { HOW_TO_APPLY_GUIDES } from '../data/howToApplyData';
+
 export interface GuideArticle {
   slug: string;
   title: string;
@@ -2596,6 +2598,8 @@ export const GUIDES: GuideArticle[] = [
       '10. Forged Documents or Impersonation.'
     ]
   }
+,
+  ...HOW_TO_APPLY_GUIDES
 ];
 
 export const getGuides = async (): Promise<GuideArticle[]> => {

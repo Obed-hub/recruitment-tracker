@@ -27,7 +27,7 @@ export interface JobInterviewQuestion {
     experiencedTip?: string;
   };
   sampleAnswerScript: string;
-  proTip: string;
+  proTip?: string;
 }
 
 export interface JobSector {

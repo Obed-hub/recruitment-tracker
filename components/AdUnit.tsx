@@ -17,11 +17,14 @@ const AdUnit: React.FC<AdUnitProps> = ({
   style = { display: 'block' },
   className = '',
 }) => {
-  const adSlot = slot || slotId || 'DEFAULT_SLOT';
+  const rawSlot = slot || slotId || '';
+  // Only pass data-ad-slot if it is a valid Google AdSense numeric ID
+  const isNumericSlot = /^\d+$/.test(rawSlot);
   const containerRef = useRef<HTMLDivElement>(null);
   const insRef = useRef<HTMLModElement>(null);
   const hasPushedRef = useRef<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(false);
+  const [isUnfilled, setIsUnfilled] = useState<boolean>(false);
 
   // Measure container width and ensure it is rendered and visible (> 0 width)
   useEffect(() => {
@@ -36,11 +39,8 @@ const AdUnit: React.FC<AdUnitProps> = ({
       }
     };
 
-    // Check on next frame after CSS styles and layout have settled
     const rafId = requestAnimationFrame(checkWidth);
 
-    // Use ResizeObserver to detect when the element becomes visible
-    // (e.g. screen orientation change, tab switch, or responsive breakpoint)
     let resizeObserver: ResizeObserver | null = null;
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver((entries) => {
@@ -62,21 +62,60 @@ const AdUnit: React.FC<AdUnitProps> = ({
     };
   }, []);
 
+  // Monitor AdSense status: if Google marks the ad as unfilled or hidden, auto-collapse
+  useEffect(() => {
+    const ins = insRef.current;
+    if (!ins) return;
+
+    const checkStatus = () => {
+      const status = ins.getAttribute('data-ad-status');
+      if (status === 'unfilled') {
+        setIsUnfilled(true);
+        return;
+      }
+      if (ins.style.display === 'none') {
+        setIsUnfilled(true);
+        return;
+      }
+      // If AdSense populated an iframe with 0 height or unfilled status
+      const iframe = ins.querySelector('iframe');
+      if (iframe && (iframe.getAttribute('data-ad-status') === 'unfilled' || iframe.height === '0')) {
+        setIsUnfilled(true);
+      }
+    };
+
+    const mutationObserver = new MutationObserver(() => {
+      checkStatus();
+    });
+
+    mutationObserver.observe(ins, {
+      attributes: true,
+      attributeFilter: ['data-ad-status', 'style', 'class'],
+      childList: true,
+      subtree: true,
+    });
+
+    // Check after a timeout to collapse any abandoned empty slots
+    const fallbackTimer = setTimeout(checkStatus, 3000);
+
+    return () => {
+      mutationObserver.disconnect();
+      clearTimeout(fallbackTimer);
+    };
+  }, [isReady]);
+
   // Once the container is verified visible and isReady is true, initialize the ad
   useEffect(() => {
-    if (!isReady || hasPushedRef.current) return;
+    if (!isReady || hasPushedRef.current || isUnfilled) return;
 
-    // Small delay to allow the newly mounted <ins> element to be styled by browser
     const timer = setTimeout(() => {
       const ins = insRef.current;
       const container = containerRef.current;
       if (!ins || !container) return;
 
-      // Ensure the element has a valid positive width in the DOM before pushing
       const availableWidth = container.offsetWidth || ins.offsetWidth || container.clientWidth;
       if (availableWidth <= 0) return;
 
-      // If Google already processed this ins, don't push again
       if (
         hasPushedRef.current ||
         ins.getAttribute('data-adsbygoogle-status') ||
@@ -91,7 +130,6 @@ const AdUnit: React.FC<AdUnitProps> = ({
         // @ts-ignore
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       } catch (err: any) {
-        // Silently handle any AdSense TagErrors (e.g., in dev/staging environments or strict-mode remounts)
         const msg = err?.message || '';
         if (!msg.includes('TagError') && !msg.includes('adsbygoogle')) {
           console.warn('AdSense notice:', err);
@@ -100,28 +138,29 @@ const AdUnit: React.FC<AdUnitProps> = ({
     }, 50);
 
     return () => clearTimeout(timer);
-  }, [isReady]);
+  }, [isReady, isUnfilled]);
+
+  if (isUnfilled) {
+    return null;
+  }
 
   return (
     <div
       ref={containerRef}
-      className={`ad-container my-6 overflow-hidden min-h-[90px] sm:min-h-[250px] w-full flex items-center justify-center bg-gray-50/50 rounded-lg border border-gray-100/60 ${className}`}
+      className={`ad-container overflow-hidden w-full flex items-center justify-center transition-all ${
+        isReady ? 'my-4 min-h-0' : 'min-h-0'
+      } ${className}`}
     >
-      {isReady ? (
+      {isReady && (
         <ins
           ref={insRef}
           className="adsbygoogle"
           style={style}
           data-ad-client="ca-pub-7004052052030908"
-          data-ad-slot={adSlot}
+          {...(isNumericSlot ? { 'data-ad-slot': rawSlot } : {})}
           data-ad-format={format}
           data-full-width-responsive={responsive}
         />
-      ) : (
-        /* Subtle placeholder until element layout is computed with positive width */
-        <div className="w-full h-full min-h-[90px] flex items-center justify-center text-xs text-slate-400 font-medium tracking-wide">
-          Advertisement
-        </div>
       )}
     </div>
   );

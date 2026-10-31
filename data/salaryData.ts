@@ -1,3 +1,4 @@
+import { JOB_SALARY_PROFILES } from './jobSalaryData';
 // Comprehensive 2026 Salary Intelligence for Nigerian Military, Paramilitary & Key Federal Agencies
 // Grounded in latest federal reviews:
 // - New National Minimum Wage (₦70,000 baseline)
@@ -7,7 +8,7 @@
 
 export interface SalaryCadreRank {
   rank: string;
-  category: 'Non-Commissioned (Recruits & Junior)' | 'Senior Non-Commissioned / Inspectorate' | 'Commissioned Officers';
+  category: string;
   gradeLevel: string;
   oldMonthly: string;
   newMonthly2026: string;
@@ -51,6 +52,7 @@ export interface AgencySalaryProfile {
 }
 
 export const SALARY_AGENCIES: Record<string, AgencySalaryProfile> = {
+  ...JOB_SALARY_PROFILES,
   // 1. NIGERIAN NAVY SALARY (CONAFSS 2026)
   'navy-salary': {
     slug: 'navy-salary',

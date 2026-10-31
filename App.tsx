@@ -75,6 +75,10 @@ const OnTheJobTrainingGuide = lazyWithRetry(() => import('./pages/OnTheJobTraini
 const TechTraineeshipGuide = lazyWithRetry(() => import('./pages/TechTraineeshipGuide'));
 const JobPrepHub = lazyWithRetry(() => import('./pages/JobPrepHub'));
 const JobSectorDetail = lazyWithRetry(() => import('./pages/JobSectorDetail'));
+const AptitudeTestPastQuestions = lazyWithRetry(() => import('./pages/AptitudeTestPastQuestions'));
+const InterviewQuestionsHub = lazyWithRetry(() => import('./pages/InterviewQuestionsHub'));
+const CBTPracticeLanding = lazyWithRetry(() => import('./pages/CBTPracticeLanding'));
+const HowToApplyHub = lazyWithRetry(() => import('./pages/HowToApplyHub'));
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -111,13 +115,31 @@ const App: React.FC = () => {
           {/* Job Aptitude Test Practice & Interview Prep Suites */}
           <Route path="/job-prep" element={<Layout><JobPrepHub /></Layout>} />
           <Route path="/job-prep/:sectorSlug" element={<Layout><JobSectorDetail /></Layout>} />
-          <Route path="/aptitude-test-practice" element={<Navigate to="/job-prep" replace />} />
-          <Route path="/aptitude-tests" element={<Navigate to="/job-prep" replace />} />
-          <Route path="/interview-questions" element={<Navigate to="/job-prep" replace />} />
-          <Route path="/job-interview-questions" element={<Navigate to="/job-prep" replace />} />
-          <Route path="/interview-prep" element={<Navigate to="/job-prep" replace />} />
+          {/* SEO Targeted Hubs: Aptitude Test Past Questions & Free CBT */}
+          <Route path="/aptitude-test-past-questions" element={<Layout><AptitudeTestPastQuestions /></Layout>} />
+          <Route path="/aptitude-test-past-questions/:sectorSlug" element={<Layout><JobSectorDetail modeOverride="cbt" pathPrefix="/aptitude-test-past-questions" /></Layout>} />
+          <Route path="/aptitude-test-practice" element={<Navigate to="/aptitude-test-past-questions" replace />} />
+          <Route path="/aptitude-tests" element={<Navigate to="/aptitude-test-past-questions" replace />} />
+
+          {/* SEO Targeted Hubs: Job Interview Questions & Answers */}
+          <Route path="/interview-questions-and-answers" element={<Layout><InterviewQuestionsHub /></Layout>} />
+          <Route path="/interview-questions-and-answers/:sectorSlug" element={<Layout><JobSectorDetail modeOverride="interview" pathPrefix="/interview-questions-and-answers" /></Layout>} />
+          <Route path="/interview-questions" element={<Navigate to="/interview-questions-and-answers" replace />} />
+          <Route path="/job-interview-questions" element={<Navigate to="/interview-questions-and-answers" replace />} />
+          <Route path="/interview-prep" element={<Navigate to="/interview-questions-and-answers" replace />} />
+
+          {/* SEO Targeted Landing: Free CBT Practice Simulator */}
+          <Route path="/cbt-practice-test" element={<Layout><CBTPracticeLanding /></Layout>} />
+          <Route path="/cbt-practice" element={<Navigate to="/cbt-practice-test" replace />} />
           <Route path="/guides" element={<Layout><GuidesHub /></Layout>} />
           <Route path="/guides/:slug" element={<Layout><GuideDetail /></Layout>} />
+
+          {/* How to Apply Directory & Official Portals */}
+          <Route path="/how-to-apply" element={<Layout><HowToApplyHub /></Layout>} />
+          <Route path="/how-to-apply/:slug" element={<Layout><GuideDetail /></Layout>} />
+          <Route path="/how-to-apply-guide" element={<Navigate to="/how-to-apply" replace />} />
+          <Route path="/how-to-apply-jobs" element={<Navigate to="/how-to-apply" replace />} />
+          <Route path="/recruitment-portals" element={<Navigate to="/how-to-apply" replace />} />
 
           {/* Dedicated Ranking Page: Nigerian Navy Batch 39 Recruitment 2026 */}
           <Route path="/nigerian-navy-recruitment-2026" element={<Layout><NavyRecruitmentBatch39 /></Layout>} />

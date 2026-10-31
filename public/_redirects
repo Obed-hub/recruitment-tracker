@@ -106,11 +106,14 @@
 /recruitment-photo-resizer /guides 301
 /practice /past-questions 301
 /practice/* /past-questions 301
-/aptitude-test-practice /job-prep 301
-/aptitude-tests /job-prep 301
-/interview-questions /job-prep 301
-/job-interview-questions /job-prep 301
-/interview-prep /job-prep 301
+# High-Intent Keyword Redirects
+/aptitude-test-practice /aptitude-test-past-questions 301
+/aptitude-tests /aptitude-test-past-questions 301
+/interview-questions /interview-questions-and-answers 301
+/job-interview-questions /interview-questions-and-answers 301
+/interview-prep /interview-questions-and-answers 301
+/cbt-practice /cbt-practice-test 301
+/cbt-test-practice /cbt-practice-test 301
 
 /army-recruitment-portal-login /army-portal-login 301
 /recruitment-army-mil-ng-login /army-portal-login 301

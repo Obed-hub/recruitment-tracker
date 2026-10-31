@@ -18,6 +18,30 @@ const TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
 
 // Custom high-impact SEO metadata for core money and hub pages
 const ROUTE_METADATA = {
+  '/how-to-apply': {
+    title: 'How to Apply for Jobs in Nigeria 2026/2027: Official Portals, Cadres & Application Guides',
+    description: 'Verified step-by-step application walkthroughs for NNPC, Access Bank ELTP, GTBank, FIRS, EFCC, NLNG, SUBEB, and Federal Civil Service. Direct official portal links, document checklists, and CBT test prep.',
+    keywords: 'how to apply for jobs in nigeria, how to apply for nnpc recruitment, how to apply for access bank graduate trainee, how to apply for firs recruitment portal, official recruitment portals nigeria 2026',
+    ogImage: '/assets/logo.png'
+  },
+  '/aptitude-test-past-questions': {
+    title: 'Aptitude Test Past Questions and Answers 2026/2027 [Free CBT Practice for Nigerian Jobs]',
+    description: 'Free aptitude test past questions and answers for Nigerian job recruitment. Practice timed CBT mock tests for banking, oil & gas, civil service, nursing, teaching & tech. Dragnet, SHL & Workforce-style questions with instant scoring.',
+    keywords: 'aptitude test past questions and answers, job aptitude test past questions PDF Nigeria, CBT practice test Nigerian jobs, banking aptitude test past questions, NNPC aptitude test past questions, civil service exam past questions, Dragnet aptitude test questions',
+    ogImage: '/assets/logo.png'
+  },
+  '/interview-questions-and-answers': {
+    title: 'Job Interview Questions and Answers Nigeria 2026/2027 [STAR Method Scripts & Expert Tips]',
+    description: 'Master the top job interview questions asked by Nigerian employers. Free STAR model answers for banking, oil & gas, civil service, healthcare, teaching & tech interviews. Expert recruiter tips and sample answer scripts.',
+    keywords: 'job interview questions and answers Nigeria, interview questions and answers, bank interview questions Nigeria, STAR method interview answers, oil and gas interview questions, civil service interview questions, nursing interview questions Nigeria',
+    ogImage: '/assets/logo.png'
+  },
+  '/cbt-practice-test': {
+    title: 'Free CBT Practice Test for Nigerian Jobs 2026 [Timed Quiz + Instant Scoring]',
+    description: 'Take free computer-based aptitude tests for Nigerian job recruitment. Timed questions for banking, oil & gas, civil service, nursing & tech. Dragnet, SHL & Workforce-style CBT simulator with instant scoring and explanations.',
+    keywords: 'CBT practice test Nigeria, free CBT test for Nigerian jobs, computer based test practice, Dragnet CBT practice, aptitude test CBT Nigeria, timed aptitude test practice',
+    ogImage: '/assets/logo.png'
+  },
   '/job-prep': {
     title: 'Job Aptitude Test Practice & Top Interview Questions 2026/2027 [Free Sector CBT Mock Tests & STAR Answers]',
     description: 'Master job recruitment exams and panel interviews in Nigeria. Free CBT practice tests and model STAR interview answers for Banking, Oil & Gas, Civil Service, Teaching, Healthcare, NGOs, and Tech.',
