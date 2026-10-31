@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrainCircuit, BookOpen, Clock, Award, Shield, CheckCircle2, Calendar } from 'lucide-react';
+import { BrainCircuit, BookOpen, Clock, Award, Shield, CheckCircle2, Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Branch, BRANCH_TO_SLUG } from '../types';
 import SEO from '../components/SEO';
@@ -79,6 +79,28 @@ const QuizHub: React.FC = () => {
         <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Master your computer-based screening test with simulated mock examinations. Practice real past questions from previous Nigerian Army, Navy, Air Force, Police, and paramilitary recruitment cycles.
         </p>
+      </div>
+
+      {/* Prominent Cross-Link to Job Sector & Interview Prep */}
+      <div className="mb-10 p-6 rounded-2xl bg-gradient-to-r from-slate-900 to-emerald-950 text-white shadow-md border border-emerald-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="space-y-1 text-center md:text-left">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase">
+            <span>Corporate & Civil Service Career Prep</span>
+          </div>
+          <h3 className="text-xl font-bold">
+            Preparing for Bank, Oil & Gas, or Civil Service Job Tests?
+          </h3>
+          <p className="text-xs text-gray-300 max-w-xl">
+            Access our specialized Job Prep Hub with Dragnet/Workforce aptitude tests and top recruiter interview questions with STAR answers for Banking, NNPC, Civil Service, Tech, and more.
+          </p>
+        </div>
+        <Link
+          to="/job-prep"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wider transition shrink-0 shadow-lg"
+        >
+          <span>Explore Job & Interview Prep</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

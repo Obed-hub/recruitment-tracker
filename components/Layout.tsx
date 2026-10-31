@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit, Newspaper, CircleDollarSign, MapPin, MessageCircle, HelpCircle } from 'lucide-react';
+import { Shield, Menu, X, FileText, CheckCircle, Home, Search, BrainCircuit, Newspaper, CircleDollarSign, MapPin, MessageCircle, HelpCircle, Briefcase } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import InstallPrompt from './InstallPrompt';
 import AdSenseScript from './AdSenseScript';
@@ -24,6 +24,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: 'Recruitments', path: '/recruitments', icon: <Search className="w-5 h-5" /> },
     { label: 'Shortlists & Venues', path: '/shortlist-hub', icon: <MapPin className="w-5 h-5" /> },
     { label: 'Salaries (2026)', path: '/salary-comparison', icon: <CircleDollarSign className="w-5 h-5" /> },
+    { label: 'Job & Interview Prep', path: '/job-prep', icon: <Briefcase className="w-5 h-5" /> },
     { label: 'Past Questions', path: '/past-questions', icon: <BrainCircuit className="w-5 h-5" /> },
     { label: 'Eligibility', path: '/eligibility', icon: <CheckCircle className="w-5 h-5" /> },
     { label: 'FAQs', path: '/faqs', icon: <HelpCircle className="w-5 h-5" /> },

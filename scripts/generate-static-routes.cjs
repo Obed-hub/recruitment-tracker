@@ -18,6 +18,12 @@ const TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
 
 // Custom high-impact SEO metadata for core money and hub pages
 const ROUTE_METADATA = {
+  '/job-prep': {
+    title: 'Job Aptitude Test Practice & Top Interview Questions 2026/2027 [Free Sector CBT Mock Tests & STAR Answers]',
+    description: 'Master job recruitment exams and panel interviews in Nigeria. Free CBT practice tests and model STAR interview answers for Banking, Oil & Gas, Civil Service, Teaching, Healthcare, NGOs, and Tech.',
+    keywords: 'job aptitude test practice Nigeria, job interview questions and answers Nigeria, bank graduate trainee aptitude test, civil service exam past questions, STAR method interview answers Nigeria',
+    ogImage: '/assets/logo.png'
+  },
   '/air-force-shortlist': {
     title: 'Nigerian Air Force Shortlisted Candidates 2026 PDF Download & CBT Exam Venues (BMTC 45 / DSSC)',
     description: 'Check Nigerian Air Force (NAF) 2026 shortlisted candidates list and state screening centers across all 36 states and FCT. Download PDF, verify CBT exam date, required dress code & take free mock tests.',

@@ -73,6 +73,8 @@ const GraduateTraineeGuide = lazyWithRetry(() => import('./pages/GraduateTrainee
 const ManagementTraineeGuide = lazyWithRetry(() => import('./pages/ManagementTraineeGuide'));
 const OnTheJobTrainingGuide = lazyWithRetry(() => import('./pages/OnTheJobTrainingGuide'));
 const TechTraineeshipGuide = lazyWithRetry(() => import('./pages/TechTraineeshipGuide'));
+const JobPrepHub = lazyWithRetry(() => import('./pages/JobPrepHub'));
+const JobSectorDetail = lazyWithRetry(() => import('./pages/JobSectorDetail'));
 
 const PracticeBranchRedirect: React.FC = () => {
   const { branch } = useParams<{ branch: string }>();
@@ -105,6 +107,15 @@ const App: React.FC = () => {
           <Route path="/practice/:branch" element={<PracticeBranchRedirect />} />
           <Route path="/past-questions" element={<Layout><QuizHub /></Layout>} />
           <Route path="/past-questions/:branch" element={<Layout><QuizInterface /></Layout>} />
+
+          {/* Job Aptitude Test Practice & Interview Prep Suites */}
+          <Route path="/job-prep" element={<Layout><JobPrepHub /></Layout>} />
+          <Route path="/job-prep/:sectorSlug" element={<Layout><JobSectorDetail /></Layout>} />
+          <Route path="/aptitude-test-practice" element={<Navigate to="/job-prep" replace />} />
+          <Route path="/aptitude-tests" element={<Navigate to="/job-prep" replace />} />
+          <Route path="/interview-questions" element={<Navigate to="/job-prep" replace />} />
+          <Route path="/job-interview-questions" element={<Navigate to="/job-prep" replace />} />
+          <Route path="/interview-prep" element={<Navigate to="/job-prep" replace />} />
           <Route path="/guides" element={<Layout><GuidesHub /></Layout>} />
           <Route path="/guides/:slug" element={<Layout><GuideDetail /></Layout>} />
 
